@@ -1,0 +1,411 @@
+// CoolFormat3.cpp : Defines the class behaviors for the application.
+//
+
+#include "stdafx.h"
+#include "CoolFormat3.h"
+#include "MainFrm.h"
+
+#include "ChildFrm.h"
+#include "CoolFormat3Doc.h"
+#include "CoolFormat3View.h"
+
+#include "GlobalUtils.h"
+#include "KofFile.h"
+#include "FormatterHelp.h"
+
+#ifdef _DEBUG
+#define new DEBUG_NEW
+#endif
+
+
+// CCoolFormat3App
+
+BEGIN_MESSAGE_MAP(CCoolFormat3App, CWinApp)
+	ON_COMMAND(ID_APP_ABOUT, OnAppAbout)
+	// Standard file based document commands
+	ON_COMMAND(ID_FILE_NEW, CWinApp::OnFileNew)
+	ON_COMMAND(ID_FILE_OPEN, OnFileOpen)
+	// Standard print setup command
+	ON_COMMAND(ID_FILE_PRINT_SETUP, CWinApp::OnFilePrintSetup)
+END_MESSAGE_MAP()
+
+
+// CCoolFormat3App construction
+
+CCoolFormat3App::CCoolFormat3App() :
+	CBCGPWorkspace (TRUE /* m_bResourceSmartUpdate */)
+{
+	m_bChangedLang = FALSE;
+}
+
+
+// The one and only CCoolFormat3App object
+
+CCoolFormat3App theApp;
+
+
+// CCoolFormat3App initialization
+
+BOOL CCoolFormat3App::InitInstance()
+{
+	// InitCommonControlsEx() is required on Windows XP if an application
+	// manifest specifies use of ComCtl32.dll version 6 or later to enable
+	// visual styles.  Otherwise, any window creation will fail.
+	INITCOMMONCONTROLSEX InitCtrls;
+	InitCtrls.dwSize = sizeof(InitCtrls);
+	// Set this to include all the common control classes you want to use
+	// in your application.
+	InitCtrls.dwICC = ICC_WIN95_CLASSES;
+	InitCommonControlsEx(&InitCtrls);
+
+	CWinApp::InitInstance();
+
+	// Initialize OLE libraries
+	if (!AfxOleInit())
+	{
+		AfxMessageBox(IDP_OLE_INIT_FAILED);
+		return FALSE;
+	}
+	//AfxEnableControlContainer();
+
+	//globalData.SetDPIAware ();
+
+	// Standard initialization
+	// If you are not using these features and wish to reduce the size
+	// of your final executable, you should remove from the following
+	// the specific initialization routines you do not need
+	// Change the registry key under which our settings are stored
+	// TODO: You should modify this string to be something appropriate
+	// such as the name of your company or organization
+	SetRegistryKey(_T("CoolFormat"));
+	LoadStdProfileSettings(8);  // Load standard INI file options (including MRU)
+
+	SetRegistryBase (_T("Settings"));	
+
+	//加载注册表配置
+	LoadReg();
+	if (FALSE == IsCmdLine())
+	{
+		return FALSE;
+	}
+	globalData.SetDPIAware ();
+	RunLang();
+
+	// Initialize all Managers for usage. They are automatically constructed
+	// if not yet present
+	InitContextMenuManager();
+	InitKeyboardManager();
+
+	// TODO: Remove this if you don't want extended tooltips:
+	InitTooltipManager();
+
+	CBCGPToolTipParams params;
+	params.m_bVislManagerTheme = TRUE;
+
+	theApp.GetTooltipManager ()->SetTooltipParams (
+		BCGP_TOOLTIP_TYPE_ALL,
+		RUNTIME_CLASS (CBCGPToolTipCtrl),
+		&params);
+
+	// Register the application's document templates.  Document templates
+	//  serve as the connection between documents, frame windows and views
+	CMultiDocTemplate* pDocTemplate;
+	pDocTemplate = new CMultiDocTemplate(IDR_CoolFormat3TYPE,
+		RUNTIME_CLASS(CCoolFormat3Doc),
+		RUNTIME_CLASS(CChildFrame), // custom MDI child frame
+		RUNTIME_CLASS(CCoolFormat3View));
+	if (!pDocTemplate)
+		return FALSE;
+	AddDocTemplate(pDocTemplate);
+
+	// create main MDI Frame window
+	CMainFrame* pMainFrame = new CMainFrame;
+	if (!pMainFrame->LoadFrame(IDR_MAINFRAME))
+		return FALSE;
+	m_pMainWnd = pMainFrame;
+	// call DragAcceptFiles only if there's a suffix
+	//  In an MDI app, this should occur immediately after setting m_pMainWnd
+
+
+	// Parse command line for standard shell commands, DDE, file open
+	CCommandLineInfo cmdInfo;
+	ParseCommandLine(cmdInfo);
+
+
+	/*if (cmdInfo.m_nShellCommand == CCommandLineInfo::FileNew)
+	{
+		if (!pMainFrame->LoadMDIState (GetRegSectionPath ()))
+		{
+			if (!ProcessShellCommand(cmdInfo))
+				return FALSE;
+		}
+	}
+	else*/
+	{
+		// Dispatch commands specified on the command line
+		if (!ProcessShellCommand(cmdInfo))
+			return FALSE;
+	}
+
+	m_pMainWnd->DragAcceptFiles(TRUE);
+
+	// The main window has been initialized, so show and update it
+	pMainFrame->ShowWindow(m_nCmdShow);
+	pMainFrame->UpdateWindow();
+
+	return TRUE;
+}
+
+// CCoolFormat3App message handlers
+
+int CCoolFormat3App::ExitInstance() 
+{
+	WriteInt(_T("ApplicationLook"), m_nAppLook);
+	WriteInt(_T("ShowToolTips"), m_bShowToolTips);
+	WriteInt(_T("ShowToolTipDescr"), m_bShowToolTipDescr);
+	WriteInt(_T("ApplicationLanguage"), m_nAppLanguageID);
+	WriteInt(_T("SynLanguage"), m_nSynLanguage);
+	WriteInt(_T("BatchLanguage"), m_nBatchSyn);
+	BCGCBProCleanUp();
+
+	return CWinApp::ExitInstance();
+}
+
+// CAboutDlg dialog used for App About
+
+class CAboutDlg : public CBCGPDialog
+{
+public:
+	CAboutDlg();
+
+// Dialog Data
+	enum { IDD = IDD_ABOUTBOX };
+	CBCGPURLLinkButton m_btnURL;
+
+protected:
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+
+// Implementation
+protected:
+	DECLARE_MESSAGE_MAP()
+public:
+	virtual BOOL OnInitDialog();
+};
+
+CAboutDlg::CAboutDlg() : CBCGPDialog(CAboutDlg::IDD)
+{
+}
+
+void CAboutDlg::DoDataExchange(CDataExchange* pDX)
+{
+	CBCGPDialog::DoDataExchange(pDX);
+	DDX_Control(pDX, IDC_COMPANY_URL, m_btnURL);
+}
+
+BEGIN_MESSAGE_MAP(CAboutDlg, CBCGPDialog)
+END_MESSAGE_MAP()
+
+// App command to run the dialog
+void CCoolFormat3App::OnAppAbout()
+{
+	CAboutDlg aboutDlg;
+	aboutDlg.EnableVisualManagerStyle(TRUE, TRUE);
+	aboutDlg.DoModal();
+}
+
+
+// CCoolFormat3App message handlers
+
+
+void CCoolFormat3App::PreLoadState ()
+{
+	GetContextMenuManager()->AddMenu(IDS_STRING_MENU_EDIT, IDR_EDIT_CONTEXT_MENU);
+	GetContextMenuManager()->AddMenu(IDS_STRING_MENU_HTML, IDR_HTML_CONTEXT_MENU);
+}
+
+void CCoolFormat3App::OnFileOpen()
+{
+	CString strFilter = _T("All Files(*.*)|*.*|")
+		_T("C/C++ Files(*.c;*.cpp;*.h;*.hpp)|*.c;*.cpp;*.h;*.hpp|")
+		_T("C# Files(*.cs)|*.cs|")
+		_T("Java Files(*.java)|*.java||");
+	g_GlobalUtils.m_sLanguageExt.GetAllLanguageFilter(strFilter);
+	CFileDialog dlg(TRUE, NULL, NULL, OFN_OVERWRITEPROMPT, strFilter, NULL);
+	if (IDOK == dlg.DoModal())
+	{
+		CString strExt;
+		strExt.Format(_T(".%s"), dlg.GetFileExt());
+		strExt.MakeLower();
+
+		if (!g_GlobalUtils.m_sLanguageExt.IsDocSupport(strExt))
+		{
+			CString strTemp;
+			BOOL bNameVaild = strTemp.LoadString(IDS_DOC_UNSUPPORT);
+			ASSERT(bNameVaild);
+			CFMessageBox(strTemp, MB_OK | MB_ICONERROR);
+			return;
+		}
+		theApp.OpenDocumentFile(dlg.GetPathName());
+	}
+}
+
+int CCoolFormat3App::DoMessageBox(LPCTSTR lpszPrompt, UINT nType, UINT nIDPrompt)
+{
+	return CFMessageBox(lpszPrompt, nType);
+	//return __super::DoMessageBox(lpszPrompt, nType, nIDPrompt);
+}
+
+void CCoolFormat3App::LoadReg()
+{
+	m_nAppLook = GetInt (_T("ApplicationLook"), ID_VIEW_APPLOOK_2010_3);
+	m_bShowToolTips = GetInt (_T("ShowToolTips"), TRUE);
+	m_bShowToolTipDescr = GetInt (_T("ShowToolTipDescr"), TRUE);
+	m_nAppLanguageID = GetInt(_T("ApplicationLanguage"), 0);
+	m_nSynLanguage = GetInt(_T("SynLanguage"), SYN_NORMALTEXT);
+	m_nBatchSyn = GetInt(_T("BatchLanguage"), 0);
+	g_GlobalUtils.InitGlobalUtilsFrist();
+}
+
+void CCoolFormat3App::RunLang()
+{
+	g_GlobalUtils.InitGlobalUtils();
+	//0表示第一次启动程序，判断操作系统语言
+	//1表示中文，2表示英文
+	LANGID langNowID = GetSystemDefaultLangID();
+	LANGID langCHS = MAKELANGID(LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED);
+	LANGID langENG = MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_US);
+	if (0 == m_nAppLanguageID)
+	{
+
+		if (langNowID == langCHS)
+		{
+			m_nAppLanguageID = 1;
+			return;
+		}
+		else if (langNowID == langENG)
+		{
+			m_nAppLanguageID = 2;
+			return;
+		}
+		else
+		{
+			m_nAppLanguageID = 2;			
+		}
+	}	
+	if (globalData.bIsWindowsVista)
+	{
+		if (1 == m_nAppLanguageID)
+		{
+			if (langNowID != langCHS)
+			{
+				SetThreadUILanguage(langCHS);
+			}
+		} 
+		else
+		{
+			if (langNowID != langENG)
+			{
+				SetThreadUILanguage(langENG);
+			}
+		}
+	}
+	else
+	{
+		LCID nOldId = GetThreadLocale();
+		if (1 == m_nAppLanguageID)
+		{
+			if (langNowID != langCHS)
+			{
+				SetThreadLocale(MAKELCID(langCHS, SORT_DEFAULT));
+			}
+		} 
+		else
+		{
+			if (langNowID != langENG)
+			{
+				SetThreadLocale(MAKELCID(langENG, SORT_DEFAULT));
+			}
+		}
+		m_bChangedLang = nOldId != GetThreadLocale();
+	}
+}
+
+BOOL CCoolFormat3App::IsCmdLine()
+{
+	BOOL bNoCmd = TRUE;
+	CString strName(theApp.m_lpCmdLine);
+	if (strName.GetLength() > 0)
+	{
+		strName = strName.Trim('"');
+		CFileFind fileFind;
+		if (fileFind.FindFile(strName))
+		{
+			bNoCmd = FALSE;
+		}		
+		fileFind.Close();
+	}
+	if (FALSE == bNoCmd)
+	{
+		CString strExt, strText;
+		CString strTextOut, strMsgOut;
+		int nSynIndex;
+		CFormatterHelp formatterSP;		
+		strExt = strName.Right(strName.GetLength() - strName.ReverseFind('.') - 1);
+		nSynIndex = g_GlobalUtils.m_sLanguageExt.GetLanguageByExt(strExt);
+		if (FALSE == g_GlobalTidy.m_bTidySyn[nSynIndex])
+		{
+			return bNoCmd;
+		}
+
+		CKofFile m_File;
+		if (!m_File.OpenFile(strName, strText))
+		{
+			return bNoCmd;
+		}
+		if (strText.IsEmpty())
+		{
+			return bNoCmd;
+		}
+
+		CStringA strTextIn(strText);
+		strTextOut.Empty();
+		if (formatterSP.DoFormatter(nSynIndex, strTextIn, strTextOut, strMsgOut))
+		{
+			m_File.SaveFile(strName, strTextOut);
+		}
+	}
+	return bNoCmd;
+}
+BOOL CAboutDlg::OnInitDialog()
+{
+	CBCGPDialog::OnInitDialog();
+
+	CString strTemp;
+	BOOL bNameVaild = strTemp.LoadString(IDS_STRING_ABOUTDESC);
+	ASSERT(bNameVaild);
+	SetDlgItemText(IDC_STATIC_ABOUT, strTemp);
+
+	bNameVaild = strTemp.LoadString(IDS_STRING_WUHUAN);
+	ASSERT(bNameVaild);
+	SetDlgItemText(IDC_STATIC_WUHUAN, strTemp);
+
+	bNameVaild = strTemp.LoadString(IDOK);
+	ASSERT(bNameVaild);
+	SetDlgItemText(IDOK, strTemp);
+
+	bNameVaild = strTemp.LoadString(IDS_STRING_VERSION);
+	ASSERT(bNameVaild);
+	SetDlgItemText(IDC_STATIC_VERSION, strTemp);
+
+	bNameVaild = strTemp.LoadString(IDS_STRING_RES_ABOUTLB);
+	ASSERT(bNameVaild);
+	SetWindowText(strTemp);
+
+	m_btnURL.SizeToContent();
+	bNameVaild = strTemp.LoadString(IDS_STRING_GOWUHUAN);
+	ASSERT(bNameVaild);
+	m_btnURL.SetTooltip(strTemp);
+	return TRUE;  // return TRUE unless you set the focus to a control
+	// 异常: OCX 属性页应返回 FALSE
+}
+

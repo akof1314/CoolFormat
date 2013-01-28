@@ -1,0 +1,7 @@
+/* ¶ÁÕßÇ½ÑùÊ½ */
+#readerswall{padding:0 8px;}
+#readerswall img{border-radius:5px;margin:0 3px 3px 0;vertical-align:middle;opacity:0.8;filter:alpha(opacity=80);-moz-opacity:0.8;background:#F4F4F4;border-radius:6px;padding:1px;-webkit-box-shadow:2px 2px 6px #999;-moz-box-shadow:2px 2px 6px #999;-webkit-transition:.5s;-moz-transition:.5s;}
+#readerswall a:hover img{opacity:1.0;-webkit-transform:rotate(360deg) scale(0.8);-moz-transform:rotate(360deg) scale(0.8);}
+#readerswall_side{padding:0 8px;position:relative;margin:0 -20px 10px 0;padding-top:4px}
+#readerswall_side img{margin:0 3px 3px 0;vertical-align:middle;opacity:0.8;filter:alpha(opacity=80);-moz-opacity:0.8;background:#F4F4F4;border-radius:6px;padding:1px;-webkit-box-shadow:2px 2px 6px #999;-moz-box-shadow:2px 2px 6px #999;-webkit-transition:.5s;-moz-transition:.5s;}
+#readerswall_side a:hover img{-webkit-transform:rotate(360deg) scale(0.8);-moz-transform:rotate(360deg) scale(0.8);}

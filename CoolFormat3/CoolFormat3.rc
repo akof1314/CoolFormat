@@ -1,0 +1,2682 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// 中文(中华人民共和国) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)\r\n"
+    "LANGUAGE 4, 2\r\n"
+    "#pragma code_page(936)\r\n"
+    "#include ""res\\CoolFormat3.rc2""  // 非 Microsoft Visual C++ 编辑的资源\r\n"
+    "#include ""l.CHS\\afxres.rc""         // 标准组件\r\n"
+    "#include ""l.CHS\\afxprint.rc""       // 打印/打印预览资源\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\CoolFormat3.ico"
+IDR_CoolFormat3TYPE     ICON                    "res\\CoolFormat3Doc.ico"
+IDI_OUTPUT_BAR_HC       ICON                    "res\\output_bar_hc.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_RIBBON_ICONS        BITMAP                  "res\\ribbonicons.bmp"
+IDB_RIBBON_FILESMALL    BITMAP                  "res\\ribbonfilesmall.bmp"
+IDB_RIBBON_FILELARGE    BITMAP                  "res\\ribbonfilelarge.bmp"
+IDB_RIBBON_HOMESMALL    BITMAP                  "res\\ribbonhomesmall.bmp"
+IDB_RIBBON_HOMELARGE    BITMAP                  "res\\ribbonhomelarge.bmp"
+IDR_MENU_IMAGES         BITMAP                  "res\\menuimages.bmp"
+IDB_BITMAP_ABOUT        BITMAP                  "res\\aboutmain.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINFRAME MENU 
+BEGIN
+    POPUP "文件(&F)"
+    BEGIN
+        MENUITEM "新建(&N)\tCtrl+N",              ID_FILE_NEW
+        MENUITEM "打开(&O)...\tCtrl+O",           ID_FILE_OPEN
+        MENUITEM SEPARATOR
+        MENUITEM "打印设置(&R)...",                 ID_FILE_PRINT_SETUP
+        MENUITEM SEPARATOR
+        MENUITEM "最近的文件",                       ID_FILE_MRU_FILE1, GRAYED
+        MENUITEM SEPARATOR
+        MENUITEM "关闭(&C)",                      ID_FILE_CLOSE
+        MENUITEM "退出(&X)",                      ID_APP_EXIT
+    END
+    POPUP "视图(&V)"
+    BEGIN
+        POPUP "工具栏(&T)"
+        BEGIN
+            MENUITEM "",                            ID_VIEW_TOOLBARS
+        END
+        MENUITEM "状态栏(&S)",                     ID_VIEW_STATUS_BAR
+        POPUP "应用程序外观(&A)"
+        BEGIN
+            MENUITEM "Office &2000",                ID_VIEW_APPLOOK_2000
+            MENUITEM "Office &XP",                  ID_VIEW_APPLOOK_XP
+            MENUITEM "Office 200&3",                ID_VIEW_APPLOOK_2003
+            MENUITEM "Visual Studio 200&5",         ID_VIEW_APPLOOK_VS2005
+            MENUITEM "&Windows Native",             ID_VIEW_APPLOOK_WIN_XP
+            POPUP "Office 200&7"
+            BEGIN
+                MENUITEM "&Blue Style",                 ID_VIEW_APPLOOK_2007
+                MENUITEM "B&lack Style",                ID_VIEW_APPLOOK_2007_1
+                MENUITEM "&Silver Style",               ID_VIEW_APPLOOK_2007_2
+                MENUITEM "&Aqua Style",                 ID_VIEW_APPLOOK_2007_3
+            END
+            MENUITEM "Visual Studio 200&8",         ID_VIEW_APPLOOK_VS2008
+            MENUITEM "Visual Studio 20&10",         ID_VIEW_APPLOOK_VS2010
+            POPUP "Office 201&0"
+            BEGIN
+                MENUITEM "&Blue Style",                 ID_VIEW_APPLOOK_2010_1
+                MENUITEM "B&lack Style",                ID_VIEW_APPLOOK_2010_2
+                MENUITEM "&Silver Style",               ID_VIEW_APPLOOK_2010_3
+            END
+            MENUITEM "Window&s 7",                  ID_VIEW_APPLOOK_WIN7
+        END
+    END
+    POPUP "帮助(&H)"
+    BEGIN
+        MENUITEM "关于 CoolFormat3 (&A)...",      ID_APP_ABOUT
+    END
+END
+
+IDR_CoolFormat3TYPE MENU 
+BEGIN
+    POPUP "文件(&F)"
+    BEGIN
+        MENUITEM "新建(&N)\tCtrl+N",              ID_FILE_NEW
+        MENUITEM "打开(&O)...\tCtrl+O",           ID_FILE_OPEN
+        MENUITEM "关闭(&C)",                      ID_FILE_CLOSE
+        MENUITEM "保存(&S)\tCtrl+S",              ID_FILE_SAVE
+        MENUITEM "另存为(&A)...",                  ID_FILE_SAVE_AS
+        MENUITEM SEPARATOR
+        MENUITEM "打印(&P)...\tCtrl+P",           ID_FILE_PRINT
+        MENUITEM "打印预览(&V)",                    ID_FILE_PRINT_PREVIEW
+        MENUITEM "打印设置(&R)...",                 ID_FILE_PRINT_SETUP
+        MENUITEM SEPARATOR
+        MENUITEM "最近的文件",                       ID_FILE_MRU_FILE1, GRAYED
+        MENUITEM SEPARATOR
+        MENUITEM "退出(&X)",                      ID_APP_EXIT
+    END
+    POPUP "编辑(&E)"
+    BEGIN
+        MENUITEM "撤消(&U)\tCtrl+Z",              ID_EDIT_UNDO
+        MENUITEM SEPARATOR
+        MENUITEM "剪切(&T)\tCtrl+X",              ID_EDIT_CUT
+        MENUITEM "复制(&C)\tCtrl+C",              ID_EDIT_COPY
+        MENUITEM "粘贴(&P)\tCtrl+V",              ID_EDIT_PASTE
+    END
+    POPUP "视图(&V)"
+    BEGIN
+        POPUP "工具栏(&T)"
+        BEGIN
+            MENUITEM "",                            ID_VIEW_TOOLBARS
+        END
+        MENUITEM "状态栏(&S)",                     ID_VIEW_STATUS_BAR
+        POPUP "应用程序外观(&A)"
+        BEGIN
+            MENUITEM "Office &2000",                ID_VIEW_APPLOOK_2000
+            MENUITEM "Office &XP",                  ID_VIEW_APPLOOK_XP
+            MENUITEM "Office 200&3",                ID_VIEW_APPLOOK_2003
+            MENUITEM "Visual Studio 200&5",         ID_VIEW_APPLOOK_VS2005
+            MENUITEM "&Windows Native",             ID_VIEW_APPLOOK_WIN_XP
+            POPUP "Office 200&7"
+            BEGIN
+                MENUITEM "&Blue Style",                 ID_VIEW_APPLOOK_2007
+                MENUITEM "B&lack Style",                ID_VIEW_APPLOOK_2007_1
+                MENUITEM "&Silver Style",               ID_VIEW_APPLOOK_2007_2
+                MENUITEM "&Aqua Style",                 ID_VIEW_APPLOOK_2007_3
+            END
+            MENUITEM "Visual Studio 200&8",         ID_VIEW_APPLOOK_VS2008
+            MENUITEM "Visual Studio 20&10",         ID_VIEW_APPLOOK_VS2010
+            POPUP "Office 201&0"
+            BEGIN
+                MENUITEM "&Blue Style",                 ID_VIEW_APPLOOK_2010_1
+                MENUITEM "B&lack Style",                ID_VIEW_APPLOOK_2010_2
+                MENUITEM "&Silver Style",               ID_VIEW_APPLOOK_2010_3
+            END
+            MENUITEM "Window&s 7",                  ID_VIEW_APPLOOK_WIN7
+        END
+    END
+    POPUP "窗口(&W)"
+    BEGIN
+        MENUITEM "新建窗口(&N)",                    ID_WINDOW_NEW
+        MENUITEM "层叠(&C)",                      ID_WINDOW_CASCADE
+        MENUITEM "平铺(&T)",                      ID_WINDOW_TILE_HORZ
+        MENUITEM "排列图标(&A)",                    ID_WINDOW_ARRANGE
+    END
+    POPUP "帮助(&H)"
+    BEGIN
+        MENUITEM "关于 CoolFormat3 (&A)...",      ID_APP_ABOUT
+    END
+    POPUP "开始"
+    BEGIN
+        MENUITEM "快速格式化",                       ID_FASTFORMAT
+        MENUITEM "语言",                          ID_LANG
+        MENUITEM "当前语言",                        ID_NOW_LANG
+        MENUITEM "扩展名设置",                       ID_LANGEXT
+        MENUITEM "编辑器设置",                       ID_SETEDIT
+        MENUITEM "高亮到博客",                       ID_HTMLTOBLOG
+        MENUITEM "高亮设置",                        ID_SETHTML
+        MENUITEM "导出配置",                        ID_EXPORTREG
+        MENUITEM "导入配置",                        ID_IMPORTREG
+        MENUITEM "提交建议",                        ID_TELLBUG
+        MENUITEM "帮助主题",                        ID_ONLINEHELP
+        MENUITEM "减少缩进",                        ID_INDENT_MIN
+        MENUITEM "增加缩进",                        ID_INDENT_ADD
+        MENUITEM "注释选中行",                       ID_COMMENT_DO
+        MENUITEM "取消行注释",                       ID_COMMENT_NOT
+        MENUITEM "所选格式化",                       ID_SELFORMAT
+        MENUITEM "格式化设置",                       32950
+        MENUITEM "输出窗口",                        32951
+        MENUITEM "批量格式化",                       ID_BATCHFORMAT
+    END
+END
+
+IDR_POPUP_TOOLBAR MENU 
+BEGIN
+    POPUP "DUMMY"
+    BEGIN
+        MENUITEM "标准工具栏",                       ID_VIEW_TOOLBAR
+    END
+END
+
+IDR_POPUP_MDITABS MENU 
+BEGIN
+    POPUP "DUMMY"
+    BEGIN
+        MENUITEM "保存(&S)",                      ID_FILE_SAVE
+        MENUITEM "关闭(&C)",                      ID_FILE_CLOSE
+        MENUITEM "除此之外全部关闭(&A)",                ID_FILE_OTHER_CLOSE
+        MENUITEM SEPARATOR
+        MENUITEM "复制完整路径(&F)",                  ID_FILE_PATH
+        MENUITEM "打开所在的文件夹(&O)",                ID_FILEDIR_OPEN
+        MENUITEM SEPARATOR
+        MENUITEM "新建水平选项卡组(&H)",                ID_MDI_NEW_HORZ_TAB_GROUP
+        MENUITEM "新建垂直选项卡组(&V)",                ID_MDI_NEW_VERT_GROUP
+        MENUITEM "移动到下一选项卡组(&X)",               ID_MDI_MOVE_TO_NEXT_GROUP
+        MENUITEM "移动到上一选项卡组(&R)",               ID_MDI_MOVE_TO_PREV_GROUP
+    END
+END
+
+IDR_POPUP_DROP_MDITABS MENU 
+BEGIN
+    POPUP "DUMMY"
+    BEGIN
+        MENUITEM "新建水平选项卡组(&H)",                ID_MDI_NEW_HORZ_TAB_GROUP
+        MENUITEM "新建垂直选项卡组(&V)",                ID_MDI_NEW_VERT_GROUP
+        MENUITEM "移动到下一选项卡组(&X)",               ID_MDI_MOVE_TO_NEXT_GROUP
+        MENUITEM "移动到上一选项卡组(&R)",               ID_MDI_MOVE_TO_PREV_GROUP
+        MENUITEM SEPARATOR
+        MENUITEM "取消(&C)",                      ID_MDI_CANCEL
+    END
+END
+
+IDR_PASTE_MENU MENU 
+BEGIN
+    MENUITEM "粘贴(&P)",                      ID_EDIT_PASTE
+    MENUITEM "选择性粘贴(&S)...",                ID_EDIT_PASTE_SPECIAL
+END
+
+IDR_WINDOWS_MENU MENU 
+BEGIN
+    MENUITEM "新建窗口(&N)",                    ID_WINDOW_NEW
+END
+
+IDR_THEME_MENU MENU 
+BEGIN
+    MENUITEM "Office 2010 Bl&ue Theme",     ID_VIEW_APPLOOK_2010_1
+    MENUITEM "Office 2010 Bla&ck Theme",    ID_VIEW_APPLOOK_2010_2
+    MENUITEM "Office 2010 Sil&ver Theme",   ID_VIEW_APPLOOK_2010_3
+END
+
+IDR_EDIT_CONTEXT_MENU MENU 
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "剪切",                          ID_EDIT_CUT
+        MENUITEM "复制",                          ID_EDIT_COPY
+        MENUITEM "粘贴",                          ID_EDIT_PASTE
+        MENUITEM "全选",                          ID_EDIT_SELECT_ALL
+        MENUITEM SEPARATOR
+        POPUP "大纲显示"
+        BEGIN
+            MENUITEM "隐藏选定内容(&H)",                  ID_EDIT_HIDESELECTION
+            MENUITEM "停止隐藏当前区域(&I)",                ID_EDIT_STOPHIDINGCURRENT
+            MENUITEM "切换大纲显示展开(&T)",                ID_EDIT_TOGGLEOUTLINING
+            MENUITEM "切换所有大纲显示(&L)",                ID_EDIT_TOGGLEALLOUTLINING
+            MENUITEM "折叠到定义(&O)",                   ID_EDIT_COLLAPSETODEFINITIONS
+            MENUITEM "停止大纲显示(&P)",                  ID_EDIT_STOPOUTLINING
+        END
+        MENUITEM "行定位...",                      ID_EDIT_GOTO_LINE
+    END
+END
+
+IDR_HTML_CONTEXT_MENU MENU 
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "复制",                          ID_EDIT_COPY
+        MENUITEM "全选",                          ID_EDIT_SELECT_ALL
+        MENUITEM SEPARATOR
+        MENUITEM "复制HTML代码",                    ID_COPY_HTMLSRC
+    END
+END
+
+IDR_LANG_MENU MENU 
+BEGIN
+    POPUP "A"
+    BEGIN
+        MENUITEM "ActionScript",                ID_A_ACTIONSCRIPT
+        MENUITEM "Ada",                         ID_A_ADA
+        MENUITEM "ASM",                         ID_A_ASM
+        MENUITEM "ASP",                         ID_A_ASP
+        MENUITEM "AutoHotkey",                  ID_A_AUTOHOTKEY
+        MENUITEM "AutoIt",                      ID_A_AUTOIT
+    END
+    MENUITEM "Batch",                       ID_BATCH
+    POPUP "C"
+    BEGIN
+        MENUITEM "COBOL",                       ID_C_COBOL
+        MENUITEM "C++",                         ID_C_C
+        MENUITEM "C#",                          ID_C_C32893
+        MENUITEM "CSS",                         ID_C_CSS
+    END
+    MENUITEM "D",                           ID_D
+    MENUITEM "Fortran",                     ID_FORTRAN
+    POPUP "H"
+    BEGIN
+        MENUITEM "Haskell",                     ID_H_HASKELL
+        MENUITEM "HTML",                        ID_H_HTML
+    END
+    MENUITEM "INI",                         ID_INI
+    POPUP "J"
+    BEGIN
+        MENUITEM "Java",                        ID_J_JAVA
+        MENUITEM "JavaScript",                  ID_J_JAVASCRIPT
+        MENUITEM "JSON",                        ID_J_JSON
+        MENUITEM "JSP",                         ID_J_JSP
+    END
+    POPUP "L"
+    BEGIN
+        MENUITEM "LISP",                        ID_L_LISP
+        MENUITEM "LUA",                         ID_L_LUA
+    END
+    MENUITEM "NormalText",                  ID_NORMALTEXT
+    MENUITEM "Objective-C",                 ID_OBJECTIVE
+    POPUP "P"
+    BEGIN
+        MENUITEM "Pascal",                      ID_P_PASCAL
+        MENUITEM "Perl",                        ID_P_PERL
+        MENUITEM "PHP",                         ID_P_PHP
+        MENUITEM "Python",                      ID_P_PYTHON
+    END
+    MENUITEM "Ruby",                        ID_RUBY
+    MENUITEM "SQL",                         ID_SQL
+    POPUP "V"
+    BEGIN
+        MENUITEM "VB",                          ID_V_VB
+        MENUITEM "Verilog",                     ID_V_VERILOG
+        MENUITEM "VHDL",                        ID_V_VHDL
+    END
+    MENUITEM "XML",                         ID_XML
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS 
+BEGIN
+    "4",            ID_BATCHFORMAT,         VIRTKEY, CONTROL, NOINVERT
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL, NOINVERT
+    "F",            ID_EDIT_FIND,           VIRTKEY, CONTROL, NOINVERT
+    "G",            ID_EDIT_GOTO_LINE,      VIRTKEY, CONTROL, NOINVERT
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL, NOINVERT
+    VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, NOINVERT
+    "H",            ID_EDIT_REPLACE,        VIRTKEY, CONTROL, NOINVERT
+    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL, NOINVERT
+    "1",            ID_FASTFORMAT,          VIRTKEY, CONTROL, NOINVERT
+    "N",            ID_FILE_NEW,            VIRTKEY, CONTROL, NOINVERT
+    "3",            ID_HTMLTOBLOG,          VIRTKEY, CONTROL, NOINVERT
+    VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
+    "2",            ID_SELFORMAT,           VIRTKEY, CONTROL, NOINVERT
+    "Y",            ID_EDIT_REDO,           VIRTKEY, CONTROL, NOINVERT
+END
+
+IDR_ACCEL_EDIT ACCELERATORS 
+BEGIN
+    "W",            ID_FILE_CLOSE,          VIRTKEY, CONTROL, NOINVERT
+    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 235, 122
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "关于 CoolFormat"
+FONT 9, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    LTEXT           "无幻出品",IDC_STATIC_WUHUAN,7,105,69,8
+    DEFPUSHBUTTON   "确定",IDOK,178,100,50,16,WS_GROUP
+    PUSHBUTTON      "http://blog.csdn.net/akof1314",IDC_COMPANY_URL,55,104,119,14
+    CONTROL         196,IDC_STATIC,"Static",SS_BITMAP,21,21,46,46
+    LTEXT           "CoolFormat 版本 3.1       版权所有 (C) 2012",IDC_STATIC_VERSION,7,90,180,8,SS_NOPREFIX
+    LTEXT           "静态",IDC_STATIC_ABOUT,84,24,142,57
+END
+
+IDD_GOTO_LINE DIALOGEX 0, 0, 194, 71
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "转到行"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_LINE,7,27,180,14,ES_AUTOHSCROLL | ES_NUMBER
+    DEFPUSHBUTTON   "确定",IDOK,85,50,50,14
+    PUSHBUTTON      "取消",IDCANCEL,137,50,50,14
+    LTEXT           "行号(1 - 12):",IDC_LINETIP,7,14,95,8
+END
+
+IDD_OPTIONS_PAGE_POPULAR_PAGE DIALOGEX 0, 0, 316, 183
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "常用"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "配色方案：",IDC_STATIC_STYLECOLOR,8,8,64,8
+    COMBOBOX        IDC_COMBO_COLORSTYLE,81,5,42,30,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "屏幕提示样式：",IDC_STATIC_STYLESCREEN,8,27,98,8
+    COMBOBOX        IDC_COMBO_TIPSTYLE,81,24,161,30,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "语言设置：",IDC_STATIC_STYLELANG,8,46,96,8
+    COMBOBOX        IDC_COMBO_LANG,81,43,48,30,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_OPTIONS_PAGE_RESOURCE DIALOGEX 0, 0, 401, 183
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "资源"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "获取更新",IDC_STATIC_RESUPDATE,8,8,82,8
+    PUSHBUTTON      "检查更新",IDC_BUTTON_CHECKUPDATE,311,5,83,14
+    LTEXT           "与我联系",IDC_STATIC_LINKME,8,44,60,8
+    PUSHBUTTON      "与我联系",IDC_BUTTON_LINKME,311,41,83,14
+    LTEXT           "关于CoolFormat",IDC_STATIC_ABOUT,8,81,83,8
+    PUSHBUTTON      "关于",IDC_BUTTON_ABOUT,311,78,83,14
+END
+
+IDD_LANG_EXT DIALOGEX 0, 0, 333, 229
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "语言扩展名设置"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,223,208,50,14
+    PUSHBUTTON      "取消",IDCANCEL,277,208,50,14
+    CONTROL         "",IDC_LIST_LANGEXT,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,7,7,319,198
+    PUSHBUTTON      "恢复默认值",IDC_BUTTON_DEFAULTEXT,6,210,50,14
+END
+
+IDD_LANG_EXT_EDIT DIALOGEX 0, 0, 285, 69
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "语言扩展名设置—修改"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,175,48,50,14
+    PUSHBUTTON      "取消",IDCANCEL,228,48,50,14
+    LTEXT           "语言：",IDC_STATIC_LANG,7,9,37,8
+    LTEXT           "扩展名：",IDC_STATIC_EXT,7,31,39,8
+    EDITTEXT        IDC_EDIT_LANG,50,7,79,14,ES_AUTOHSCROLL | WS_DISABLED
+    EDITTEXT        IDC_EDIT_EXT,50,28,228,14,ES_AUTOHSCROLL
+END
+
+IDD_SYNEDIT_SET DIALOGEX 0, 0, 333, 229
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "编辑器设置"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "字体：",IDC_STATIC_EDITFONT,13,25,25,8
+    COMBOBOX        IDC_COMBO_EDITFONT,37,22,121,30,CBS_DROPDOWNLIST | CBS_OWNERDRAWFIXED | CBS_SORT | CBS_HASSTRINGS | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "字形：",IDC_STATIC_EDITSTYLE,167,25,25,8
+    COMBOBOX        IDC_COMBO_EDITSTYLE,191,22,54,30,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "字号：",IDC_STATIC_EDITSIZE,255,25,25,8
+    COMBOBOX        IDC_COMBO_EDITSIZE,279,22,41,311,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "恢复默认值",IDC_BUTTON_DEFAULTEXT,6,210,50,14
+    DEFPUSHBUTTON   "确定",IDOK,223,208,50,14
+    PUSHBUTTON      "取消",IDCANCEL,277,208,50,14
+    GROUPBOX        "字体设置：",IDC_STATIC_FONT,7,7,319,41
+    GROUPBOX        "颜色设置：",IDC_STATIC_COLOR,7,54,319,151
+    LTEXT           "背景：",IDC_STATIC_COLOR_BACK,13,73,39,8
+    PUSHBUTTON      "Button2",IDC_BUTTON_COLOR_BACK,53,70,46,14
+    LTEXT           "大纲线框：",IDC_STATIC_COLOR_LINEOUTLINE,109,73,78,8
+    PUSHBUTTON      "Button2",IDC_BUTTON_COLOR_LINEOUTLINE,181,70,46,14
+    LTEXT           "关键字：",IDC_STATIC_COLOR_SYN,235,73,40,8
+    PUSHBUTTON      "Button2",IDC_BUTTON_COLOR_SYN,275,70,46,14
+    LTEXT           "文本：",IDC_STATIC_COLOR_TEXT,13,95,31,8
+    PUSHBUTTON      "Button2",IDC_BUTTON_COLOR_TEXT,53,92,46,14
+    LTEXT           "大纲背景：",IDC_STATIC_COLOR_BACKOUTLINE,109,95,88,8
+    PUSHBUTTON      "Button2",IDC_BUTTON_COLOR_BACKOUTLINE,181,92,46,14
+    LTEXT           "数据类型：",IDC_STATIC_COLOR_TYPE,235,95,41,8
+    PUSHBUTTON      "Button2",IDC_BUTTON_COLOR_TYPE,275,92,46,14
+    LTEXT           "行号：",IDC_STATIC_COLOR_LINENUMBER,13,118,48,8
+    PUSHBUTTON      "Button2",IDC_BUTTON_COLOR_LINENUMBER,53,115,46,14
+    LTEXT           "选定的背景：",IDC_STATIC_COLOR_BACKSELACTIVE,109,118,123,8
+    PUSHBUTTON      "Button2",IDC_BUTTON_COLOR_BACKSELACTIVE,181,115,46,14
+    LTEXT           "字符串：",IDC_STATIC_COLOR_STRING,235,118,33,8
+    PUSHBUTTON      "Button2",IDC_BUTTON_COLOR_STRING,275,115,46,14
+    LTEXT           "行号背景：",IDC_STATIC_COLOR_LINENUMBERBACK,13,140,56,8
+    PUSHBUTTON      "Button2",IDC_BUTTON_COLOR_LINENUMBERBACK,53,137,46,14
+    LTEXT           "非活动的选定背景：",IDC_STATIC_COLOR_BACKSELINACTIVE,109,140,73,8
+    PUSHBUTTON      "Button2",IDC_BUTTON_COLOR_BACKSELINACTIVE,181,137,46,14
+    LTEXT           "数字：",IDC_STATIC_COLOR_NUMBER,235,140,30,8
+    PUSHBUTTON      "Button2",IDC_BUTTON_COLOR_NUMBER,275,137,46,14
+    LTEXT           "分割线：",IDC_STATIC_COLOR_SIDEBAR,13,163,45,8
+    PUSHBUTTON      "Button2",IDC_BUTTON_COLOR_SIDEBAR,53,160,46,14
+    LTEXT           "选定的文本：",IDC_STATIC_COLOR_TEXTSELACTIVE,109,163,70,8
+    PUSHBUTTON      "Button2",IDC_BUTTON_COLOR_TEXTSELACTIVE,181,160,46,14
+    LTEXT           "字符：",IDC_STATIC_COLOR_CHAR,235,163,25,8
+    PUSHBUTTON      "Button2",IDC_BUTTON_COLOR_CHAR,275,160,46,14
+    LTEXT           "超链接：",IDC_STATIC_COLOR_LINK,13,185,46,8
+    PUSHBUTTON      "Button2",IDC_BUTTON_COLOR_LINK,53,182,46,14
+    LTEXT           "非活动的选定文本：",IDC_STATIC_COLOR_TEXTSELINACTIVE,109,185,73,8
+    PUSHBUTTON      "Button2",IDC_BUTTON_COLOR_TEXTSELINACTIVE,181,182,46,14
+    LTEXT           "注释：",IDC_STATIC_COLOR_COMMENT,235,185,39,8
+    PUSHBUTTON      "Button2",IDC_BUTTON_COLOR_COMMENT,275,182,46,14
+END
+
+IDD_SYNHTML_SET DIALOGEX 0, 0, 333, 229
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "高亮设置"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "字体：",IDC_STATIC_EDITFONT,13,25,25,8
+    COMBOBOX        IDC_COMBO_HTMLFONT,37,22,121,30,CBS_DROPDOWNLIST | CBS_OWNERDRAWFIXED | CBS_SORT | CBS_HASSTRINGS | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "字形：",IDC_STATIC_EDITSTYLE,167,25,25,8
+    COMBOBOX        IDC_COMBO_HTMLSTYLE,191,22,54,30,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "字号：",IDC_STATIC_EDITSIZE,255,25,25,8
+    COMBOBOX        IDC_COMBO_HTMLSIZE,279,22,41,311,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "边框宽度：",IDC_STATIC_BORDER_WIDTH,13,73,41,8
+    EDITTEXT        IDC_EDIT_BORDER_WIDTH,54,71,62,14,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "",IDC_SPIN_BORDER_WIDTH,"msctls_updown32",UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | UDS_ARROWKEYS,105,71,10,14
+    LTEXT           "边框样式：",IDC_STATIC_BORDER_STYLE,128,73,41,8
+    COMBOBOX        IDC_COMBO_BORDER_STYLE,169,71,54,135,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "边框颜色：",IDC_STATIC_BORDER_COLOR,236,73,41,8
+    PUSHBUTTON      "Button2",IDC_BUTTON_BORDER_COLOR,275,71,46,14
+    LTEXT           "背景颜色：",IDC_STATIC_BACKGROUND_COLOR,13,122,41,8
+    PUSHBUTTON      "Button2",IDC_BUTTON_BACKGROUND_COLOR,54,119,46,14
+    LTEXT           "行间距：",IDC_STATIC_LINEHEIGHT,110,122,33,8
+    EDITTEXT        IDC_EDIT_LINEHEIGHT,143,119,57,14,ES_AUTOHSCROLL
+    CONTROL         "",IDC_SPIN_LINEHEIGHT,"msctls_updown32",UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | UDS_ARROWKEYS,179,114,11,14
+    CONTROL         "显示行号",IDC_CHECK_SHOW_LINENUMBER,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,212,121,48,10
+    CONTROL         "显示分割线",IDC_CHECK_SHOW_SIDEBAR,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,266,121,56,10
+    CONTROL         "自动复制",IDC_CHECK_AUTO_COPY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,174,48,10
+    CONTROL         "复制代码",IDC_CHECK_COPY_CODE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,68,174,53,10
+    CONTROL         "显示语言标题",IDC_CHECK_SHOW_LANGTITLE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,121,174,67,10
+    CONTROL         "附加标题",IDC_CHECK_SHOW_ADDTITLE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,191,174,53,10
+    EDITTEXT        IDC_EDIT_ADDTITLE,245,173,75,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "确定",IDOK,223,208,50,14
+    PUSHBUTTON      "取消",IDCANCEL,277,208,50,14
+    PUSHBUTTON      "恢复默认值",IDC_BUTTON_DEFAULTEXT,6,210,50,14
+    GROUPBOX        "字体设置：",IDC_STATIC_FONT,7,7,319,41
+    GROUPBOX        "基本设置：",IDC_STATIC_BASIC_SET,7,102,319,41
+    GROUPBOX        "",IDC_STATIC,7,54,319,41
+    CONTROL         "显示边框",IDC_CHECK_SHOW_BORDER,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,52,48,10
+    GROUPBOX        "其他设置：",IDC_STATIC_OTHER_SET,7,150,319,55
+END
+
+IDD_SET_CPP DIALOGEX 0, 0, 440, 326
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
+CAPTION "C/C++"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_STATIC_CPPRECT,"Static",SS_GRAYRECT | NOT WS_VISIBLE,4,3,239,315
+    GROUPBOX        "预览",IDC_STATIC_VIEWFORMATTER,250,14,189,304
+    EDITTEXT        IDC_EDIT_VIEWFORMATTER,257,25,175,286,ES_MULTILINE | ES_AUTOHSCROLL | ES_WANTRETURN | WS_HSCROLL
+END
+
+IDD_SET_JS DIALOGEX 0, 0, 440, 327
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
+CAPTION "JavaScript"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    COMBOBOX        IDC_COMBO_JS_INDENT_TAB,13,21,92,30,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO_JS_INDENT_STYLE,120,21,111,30,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_EDIT_JS_INDENT_NUMBER,13,45,40,14,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "",IDC_SPIN_JS_INDENT_NUMBER,"msctls_updown32",UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | UDS_ARROWKEYS,54,41,10,14
+    EDITTEXT        IDC_EDIT_VIEWFORMATTER,257,19,175,292,ES_MULTILINE | ES_AUTOHSCROLL | ES_WANTRETURN
+    GROUPBOX        "Indentation, Bracket",IDC_STATIC,5,5,237,312
+    GROUPBOX        "预览",IDC_STATIC_VIEWFORMATTER,250,5,189,312
+    LTEXT           "indent_number",IDC_STATIC,60,47,53,8
+END
+
+IDD_SET_CPP_FAST DIALOGEX 0, 0, 185, 301
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "allman/ansi/bsd/break",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON,8,7,99,10
+    CONTROL         "java/attach",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,8,25,62,10
+    CONTROL         "kr",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON,8,43,22,10
+    CONTROL         "stroustrup",IDC_RADIO4,"Button",BS_AUTORADIOBUTTON,8,62,63,10
+    CONTROL         "whitesmith",IDC_RADIO5,"Button",BS_AUTORADIOBUTTON,8,80,72,10
+    CONTROL         "banner",IDC_RADIO6,"Button",BS_AUTORADIOBUTTON,8,98,39,10
+    CONTROL         "gnu",IDC_RADIO7,"Button",BS_AUTORADIOBUTTON,8,117,28,10
+    CONTROL         "linux",IDC_RADIO8,"Button",BS_AUTORADIOBUTTON,8,135,31,10
+    CONTROL         "horstmann",IDC_RADIO9,"Button",BS_AUTORADIOBUTTON,8,153,50,10
+    CONTROL         "1tbs/otbs",IDC_RADIO10,"Button",BS_AUTORADIOBUTTON,8,172,47,10
+    CONTROL         "pico",IDC_RADIO11,"Button",BS_AUTORADIOBUTTON,8,190,29,10
+    CONTROL         "lisp/python",IDC_RADIO12,"Button",BS_AUTORADIOBUTTON,8,209,67,10
+    CONTROL         "None",IDC_RADIO13,"Button",BS_AUTORADIOBUTTON,8,228,32,10
+END
+
+IDD_TELL_BUG DIALOGEX 0, 0, 285, 165
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "提交建议或BUG"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,228,144,50,14
+    LTEXT           "欢迎您提交建议或BUG，以便改进软件的功能。",IDC_STATIC_TELLBUG_TOP,7,7,271,26
+    LTEXT           "提交方式：",IDC_STATIC_TELLBUG_TIJIAO,7,36,93,8
+    LTEXT           "①邮箱方式：",IDC_STATIC_EMAIL,7,50,49,8
+    LTEXT           "②网站方式：",IDC_STATIC_CSDN,7,64,49,8
+    LTEXT           "③Q Q 方式：",IDC_STATIC_QQ,7,77,48,8
+    PUSHBUTTON      "kof1234@sina.com",IDC_LINK_EMAIL,54,48,135,14
+    PUSHBUTTON      "http://blog.csdn.net/akof1314",IDC_LINK_CSDN,54,62,169,14
+    PUSHBUTTON      "307458053",IDC_LINK_QQ,54,75,50,14
+END
+
+IDD_SET_CPP_HIGH DIALOGEX 0, 0, 239, 309
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    COMBOBOX        IDC_COMBO_CPP_INDENT_TAB,7,7,89,30,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_EDIT_CPP_INDENT_SPACES,101,7,40,14,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "",IDC_SPIN_CPP_INDENT_SPACES,"msctls_updown32",UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | UDS_ARROWKEYS,136,11,11,14
+    LTEXT           "Spaces per indent",IDC_STATIC,146,10,88,8
+    CONTROL         "Indent classes",IDC_CHECK_CPP_INDENT_CLASS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,28,73,10
+    CONTROL         "Indent switches",IDC_CHECK_CPP_INDENT_SWITCH,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,46,82,10
+    CONTROL         "Indent cases",IDC_CHECK_CPP_INDENT_CASE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,64,73,10
+    CONTROL         "Indent namespaces",IDC_CHECK_CPP_INDENT_NAMESPACES,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,82,85,10
+    CONTROL         "Indent labels",IDC_CHECK_CPP_INDENT_LABEL,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,99,71,10
+    CONTROL         "Indent preprocessor",IDC_CHECK_CPP_INDENT_PREPRO,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,117,96,10
+    CONTROL         "Indent col1 comments",IDC_CHECK_CPP_INDENT_COL1COMMENT,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,135,97,10
+    CONTROL         "Break blocks",IDC_CHECK_CPP_BREAK_BLOCKS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,153,65,10
+    CONTROL         "Break all blocks",IDC_CHECK_CPP_BREAK_ALLBLOCKS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,171,76,10
+    CONTROL         "Pad operators",IDC_CHECK_CPP_PAD_OPER,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,189,73,10
+    CONTROL         "Pad parens",IDC_CHECK_CPP_PAD_PARENS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,207,53,10
+    CONTROL         "Pad parens out",IDC_CHECK_CPP_PAD_PARENSOUT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,225,70,10
+    CONTROL         "Pad parens in",IDC_CHECK_CPP_PAD_PARENSIN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,114,28,73,10
+    CONTROL         "Pad header",IDC_CHECK_CPP_PAD_HEADER,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,114,46,53,10
+    CONTROL         "Unpad parens",IDC_CHECK_CPP_UNPAD_PARENS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,114,64,61,10
+    CONTROL         "Delete empty lines",IDC_CHECK_CPP_DEL_EMPTYLINES,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,114,82,92,10
+    CONTROL         "Fill empty lines",IDC_CHECK_CPP_FILL_EMPTYLINES,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,114,99,80,10
+    CONTROL         "Break closing brackets",IDC_CHECK_CPP_BREAK_CLOSINGBRACKETS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,114,117,99,10
+    CONTROL         "Break elseifs",IDC_CHECK_CPP_BREAK_ELSEIFS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,114,135,65,10
+    CONTROL         "Add brackets",IDC_CHECK_CPP_ADD_BRACKETS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,114,153,80,10
+    CONTROL         "Add one line brackets",IDC_CHECK_CPP_ADD_ONELINEBRACKETS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,114,171,98,10
+    CONTROL         "Keep one line blocks",IDC_CHECK_CPP_KEEP_ONELINEBLOCKS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,114,189,96,10
+    CONTROL         "Keep one line statements",IDC_CHECK_CPP_KEEP_ONELINESTATE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,114,207,110,10
+    CONTROL         "Convert tabs",IDC_CHECK_CPP_CONVERT_TABS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,114,225,74,10
+    LTEXT           "Min conditional:",IDC_STATIC,7,244,95,8
+    COMBOBOX        IDC_COMBO_CPP_MIN_CONDITIONAL,71,241,51,30,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Max instatement:",IDC_STATIC,7,260,79,8
+    COMBOBOX        IDC_COMBO_CPP_MAX_INSTATEMENT,71,258,51,60,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Align pointer:",IDC_STATIC,127,244,65,8
+    COMBOBOX        IDC_COMBO_CPP_ALIGN_POINTER,190,241,36,30,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Align reference:",IDC_STATIC,127,260,69,8
+    COMBOBOX        IDC_COMBO_CPP_ALIGN_REFERENCE,190,257,36,30,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_SET_HTML DIALOGEX 0, 0, 440, 322
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
+CAPTION "HTML"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDIT_VIEWFORMATTER,12,248,418,64,ES_MULTILINE | ES_AUTOVSCROLL | ES_WANTRETURN | WS_VSCROLL
+    GROUPBOX        "说明：",IDC_STATIC_VIEWFORMATTER,4,235,434,83
+    CONTROL         "",IDC_STATIC_HTMLRECT,"Static",SS_GRAYRECT | NOT WS_VISIBLE,4,3,434,224
+END
+
+IDD_SET_HTML_ONE DIALOGEX 0, 0, 450, 209
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "add-xml-decl",IDC_CHECK_HTML_ADD_XML_DECL,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,7,72,10
+    CONTROL         "add-xml-space",IDC_CHECK_HTML_ADD_XML_SPACE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,25,63,10
+    CONTROL         "anchor-as-name",IDC_CHECK_HTML_ANCHOR_AS_NAME,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,43,68,10
+    CONTROL         "assume-xml-procins",IDC_CHECK_HTML_ASSUME_XML_PROCINS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,61,90,10
+    CONTROL         "bare",IDC_CHECK_HTML_BARE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,79,31,10
+    CONTROL         "clean",IDC_CHECK_HTML_CLEAN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,97,33,10
+    CONTROL         "decorate-inferred-ul",IDC_CHECK_HTML_DECORATE_INFERRED_UL,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,115,92,10
+    CONTROL         "drop-empty-paras",IDC_CHECK_HTML_DROP_EMPTY_PARAS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,133,92,10
+    CONTROL         "drop-font-tags",IDC_CHECK_HTML_DROP_FONT_TAGS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,151,82,10
+    CONTROL         "drop-proprietary-atts",IDC_CHECK_HTML_DROP_PROPRIETARY_ATTS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,169,96,10
+    CONTROL         "enclose-block-text",IDC_CHECK_HTML_ENCLOSE_BLOCK_TEXT,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,113,7,84,10
+    CONTROL         "enclose-text",IDC_CHECK_HTML_ENCLOSE_TEXT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,113,25,64,10
+    CONTROL         "escape-cdata",IDC_CHECK_HTML_ESCAPE_CDATA,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,113,43,71,10
+    CONTROL         "fix-backslash",IDC_CHECK_HTML_FIX_BACKSLASH,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,113,61,67,10
+    CONTROL         "fix-bad-comments",IDC_CHECK_HTML_FIX_BAD_COMMENTS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,113,79,83,10
+    CONTROL         "fix-uri",IDC_CHECK_HTML_FIX_URI,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,113,97,44,10
+    CONTROL         "hide-comments",IDC_CHECK_HTML_HIDE_COMMENTS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,113,115,71,10
+    CONTROL         "hide-endtags",IDC_CHECK_HTML_HIDE_ENDTAGS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,113,133,68,10
+    CONTROL         "indent-cdata",IDC_CHECK_HTML_INDENT_CDATA,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,113,151,70,10
+    CONTROL         "input-xml",IDC_CHECK_HTML_INPUT_XML,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,113,169,55,10
+    CONTROL         "join-classes",IDC_CHECK_HTML_JOIN_CLASSES,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,219,7,61,10
+    CONTROL         "join-styles",IDC_CHECK_HTML_JOIN_STYLES,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,219,25,63,10
+    CONTROL         "literal-attributes",IDC_CHECK_HTML_LITERAL_ATTRIBUTES,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,219,43,88,10
+    CONTROL         "logical-emphasis",IDC_CHECK_HTML_LOGICAL_EMPHASIS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,219,61,80,10
+    CONTROL         "lower-literals",IDC_CHECK_HTML_LOWER_LITERALS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,219,79,69,10
+    CONTROL         "ncr",IDC_CHECK_HTML_NCR,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,219,97,26,10
+    CONTROL         "numeric-entities",IDC_CHECK_HTML_NUMERIC_ENTITIES,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,219,115,86,10
+    CONTROL         "output-html",IDC_CHECK_HTML_OUTPUT_HTML,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,219,133,68,10
+    CONTROL         "output-xhtml",IDC_CHECK_HTML_OUTPUT_XHTML,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,219,151,70,10
+    CONTROL         "output-xml",IDC_CHECK_HTML_OUTPUT_XML,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,219,169,51,10
+    CONTROL         "preserve-entities",IDC_CHECK_HTML_PRESERVE_ENTITIES,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,324,7,94,10
+    CONTROL         "quote-ampersand",IDC_CHECK_HTML_QUOTE_AMPERSAND,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,324,25,73,10
+    CONTROL         "quote-marks",IDC_CHECK_HTML_QUOTE_MARKS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,324,43,56,10
+    CONTROL         "quote-nbsp",IDC_CHECK_HTML_QUOTE_NBSP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,324,61,53,10
+    CONTROL         "replace-color",IDC_CHECK_HTML_REPLACE_COLOR,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,324,79,70,10
+    CONTROL         "uppercase-attributes",IDC_CHECK_HTML_UPPERCASE_ATTRIBUTES,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,324,97,95,10
+    CONTROL         "uppercase-tags",IDC_CHECK_HTML_UPPERCASE_TAGS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,324,115,80,10
+    CONTROL         "word-2000",IDC_CHECK_HTML_WORD_2000,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,324,133,51,10
+END
+
+IDD_SET_HTML_TWO DIALOGEX 0, 0, 450, 217
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "break-before-br",IDC_CHECK_HTML_BREAK_BEFORE_BR,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,7,74,10
+    CONTROL         "indent-attributes",IDC_CHECK_HTML_INDENT_ATTRIBUTES,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,25,83,10
+    CONTROL         "markup",IDC_CHECK_HTML_MARKUP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,43,48,10
+    CONTROL         "punctuation-wrap",IDC_CHECK_HTML_PUNCTUATION_WRAP,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,61,79,10
+    CONTROL         "vertical-space",IDC_CHECK_HTML_VERTICAL_SPACE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,79,67,10
+    CONTROL         "wrap-asp",IDC_CHECK_HTML_WRAP_ASP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,97,53,10
+    CONTROL         "wrap-attributes",IDC_CHECK_HTML_WRAP_ATTRIBUTES,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,115,73,10
+    CONTROL         "wrap-jste",IDC_CHECK_HTML_WRAP_JSTE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,133,55,10
+    CONTROL         "wrap-php",IDC_CHECK_HTML_WRAP_PHP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,151,51,10
+    CONTROL         "wrap-script-literals",IDC_CHECK_HTML_WRAP_SCRIPT_LITERALS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,169,93,10
+    CONTROL         "wrap-sections",IDC_CHECK_HTML_WRAP_SECTIONS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,113,7,66,10
+    CONTROL         "ascii-chars",IDC_CHECK_HTML_ASCII_CHARS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,113,25,63,10
+    CONTROL         "show-warnings",IDC_CHECK_HTML_SHOW_WARNINGS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,113,43,64,10
+    COMBOBOX        IDC_COMBO_HTML_INDENT,113,77,30,30,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO_HTML_MERGE_DIVS,113,95,30,30,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO_HTML_MERGE_SPANS,113,113,30,30,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO_HTML_SHOW_BODY_ONLY,113,131,30,30,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO_HTML_DOCTYPE,113,149,51,30,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO_HTML_REPEATED_ATTRIBUTES,113,167,51,30,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_EDIT_HTML_ALT_TEXT,273,5,143,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_HTML_CSS_PREFIX,273,23,143,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_HTML_NEW_BLOCKLEVEL_TAGS,273,41,143,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_HTML_NEW_EMPTY_TAGS,273,59,143,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_HTML_NEW_INLINE_TAGS,273,77,143,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_HTML_NEW_PRE_TAGS,273,95,143,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_HTML_SHOW_ERRORS,273,113,30,14,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "",IDC_SPIN4,"msctls_updown32",UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | UDS_ARROWKEYS,262,114,10,14
+    EDITTEXT        IDC_EDIT_HTML_INDENT_SPACES,273,131,30,14,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "",IDC_SPIN1,"msctls_updown32",UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | UDS_ARROWKEYS,263,131,10,14
+    EDITTEXT        IDC_EDIT_HTML_TAB_SIZE,273,149,30,14,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "",IDC_SPIN2,"msctls_updown32",UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | UDS_ARROWKEYS,264,149,10,14
+    EDITTEXT        IDC_EDIT_HTML_WRAP,273,167,30,14,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "",IDC_SPIN3,"msctls_updown32",UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | UDS_ARROWKEYS,264,172,10,14
+    COMBOBOX        IDC_COMBO_HTML_CHAR_ENCODING,310,131,43,30,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO_HTML_INPUT_ENCODING,310,149,43,30,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO_HTML_OUTPUT_ENCODING,310,167,43,30,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO_HTML_SORT_ATTRIBUTES,310,113,43,30,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "alt-text",IDC_STATIC,234,8,37,8
+    LTEXT           "css-prefix",IDC_STATIC,226,26,45,8
+    LTEXT           "doctype",IDC_STATIC,168,152,38,8
+    LTEXT           "merge-divs",IDC_STATIC,147,98,42,8
+    LTEXT           "merge-spans",IDC_STATIC,147,116,50,8
+    LTEXT           "new-blocklevel-tags",IDC_STATIC,190,44,75,8
+    LTEXT           "new-empty-tags",IDC_STATIC,210,62,61,8
+    LTEXT           "new-inline-tags",IDC_STATIC,206,80,59,8
+    LTEXT           "new-pre-tags",IDC_STATIC,218,98,53,8
+    LTEXT           "repeated-attributes",IDC_STATIC,170,170,84,8
+    LTEXT           "show-body-only",IDC_STATIC,147,134,62,8
+    LTEXT           "indent",IDC_STATIC,147,80,25,8
+    LTEXT           "indent-spaces",IDC_STATIC,214,134,53,8
+    LTEXT           "tab-size",IDC_STATIC,234,152,34,8
+    LTEXT           "wrap",IDC_STATIC,250,170,17,8
+    LTEXT           "sort-attributes",IDC_STATIC,358,116,62,8
+    LTEXT           "char-encoding",IDC_STATIC,358,134,52,8
+    LTEXT           "input-encoding",IDC_STATIC,358,152,55,8
+    LTEXT           "output-encoding",IDC_STATIC,358,170,65,8
+    LTEXT           "show-errors",IDC_STATIC,225,116,40,8
+    CONTROL         "force-output",IDC_CHECK_HTML_FORCE_OUTPUT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,113,61,79,10
+END
+
+IDD_BATCHFORMAT DIALOGEX 0, 0, 440, 322
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_ACCEPTFILES
+CAPTION "批量格式化"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "C/C++",IDC_CHECK_BAT_C,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,24,39,10
+    CONTROL         "C#",IDC_CHECK_BAT_CS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,60,24,26,10
+    CONTROL         "CSS",IDC_CHECK_BAT_CSS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,93,24,29,10
+    CONTROL         "HTML",IDC_CHECK_BAT_HTML,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,129,24,33,10
+    CONTROL         "Java",IDC_CHECK_BAT_JAVA,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,169,24,31,10
+    CONTROL         "JavaScript",IDC_CHECK_BAT_JAVAST,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,207,24,55,10
+    CONTROL         "JSON",IDC_CHECK_BAT_JSON,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,264,24,33,10
+    CONTROL         "PHP",IDC_CHECK_BAT_PHP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,301,24,29,10
+    CONTROL         "SQL",IDC_CHECK_BAT_SQL,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,337,24,29,10
+    CONTROL         "XML",IDC_CHECK_BAT_XML,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,373,24,29,10
+    PUSHBUTTON      "添加...",IDC_BUTTON_BARCHADDFILES,13,68,57,14
+    PUSHBUTTON      "加载列表",IDC_BUTTON_BATCHLOADLIST,73,68,57,14
+    PUSHBUTTON      "保存列表",IDC_BUTTON_SAVELIST,133,68,57,14
+    CONTROL         "",IDC_LIST_BATCHFILE,"SysListView32",LVS_REPORT | LVS_ALIGNLEFT | LVS_OWNERDATA | WS_BORDER | WS_TABSTOP,13,88,414,203
+    PUSHBUTTON      "批量格式化",IDC_BUTTON_DOBATCH,317,301,63,14
+    PUSHBUTTON      "退出",IDCANCEL,383,301,50,14
+    GROUPBOX        "选择语言：",IDC_STATIC_BATCHSELLAN,7,7,426,41
+    GROUPBOX        "选择文件：",IDC_STATIC_BATCHSELFILES,7,54,426,243
+    LTEXT           "可直接拖动文件、文件夹或列表存档文件到列表框",IDC_STATIC_DROPTIP,194,72,232,8
+    CONTROL         "",IDC_PROGRESS_BATCHPGR,"msctls_progress32",NOT WS_VISIBLE | WS_BORDER,7,307,307,9
+END
+
+IDD_SET_PHP DIALOGEX 0, 0, 440, 327
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
+CAPTION "PHP"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    COMBOBOX        IDC_COMBO_PHP_INDENT_TAB,13,21,92,30,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO_PHP_INDENT_STYLE,120,21,111,30,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_EDIT_PHP_INDENT_NUMBER,13,45,40,14,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "",IDC_SPIN_PHP_INDENT_NUMBER,"msctls_updown32",UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | UDS_ARROWKEYS,54,41,10,14
+    EDITTEXT        IDC_EDIT_PHP_FIRST_NUMBER,120,45,40,14,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "",IDC_SPIN_PHP_FIRST_NUMBER,"msctls_updown32",UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | UDS_ARROWKEYS,161,41,10,14
+    CONTROL         "space_after_structures",IDC_CHECK_PHP_SPACE_STRUCTURES,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,70,103,10
+    CONTROL         "indent_case_default",IDC_CHECK_PHP_INDENT_CASE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,89,92,10
+    CONTROL         "brackets",IDC_CHECK_PHP_BRACKETS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,109,43,10
+    CONTROL         "empty_brackets",IDC_CHECK_PHP_EMPTY_BRACKETS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,129,67,10
+    CONTROL         "block_brackets",IDC_CHECK_PHP_BLOCK_BRACKETS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,148,72,10
+    CONTROL         "empty_block_brackets",IDC_CHECK_PHP_EMPTY_BLOCK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,168,95,10
+    CONTROL         "math_operators",IDC_CHECK_PHP_MATH_OPERATORS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,188,67,10
+    CONTROL         "logical_operators",IDC_CHECK_PHP_LOGICAL_OPERATORS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,208,79,10
+    CONTROL         "equality_operators",IDC_CHECK_PHP_EQUALITY_OPERATORS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,228,85,10
+    CONTROL         "relational_operators",IDC_CHECK_PHP_RELATIONAL_OPER,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,248,93,10
+    CONTROL         "bitwise_operators",IDC_CHECK_PHP_BITWISE_OPER,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,268,83,10
+    CONTROL         "assignment_operators",IDC_CHECK_PHP_ASSIGNMENT_OPER,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,288,98,10
+    CONTROL         "map_operator",IDC_CHECK_PHP_MAP_OPER,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,120,70,68,10
+    CONTROL         "remove_comments",IDC_CHECK_PHP_REMOVE_COMMENTS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,120,89,81,10
+    CONTROL         "comment_after_structures",IDC_CHECK_PHP_COMMENT_STRUCTURES,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,120,109,111,10
+    CONTROL         "align_assignments",IDC_CHECK_PHP_ALIGN_ASSIGNMENTS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,120,129,82,10
+    CONTROL         "remove_empty_lines",IDC_CHECK_PHP_REMOVE_EMPTYLINES,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,120,148,94,10
+    CONTROL         "remove_semicolon_lines",IDC_CHECK_PHP_REMOVE_SEMICOLON,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,120,168,104,10
+    CONTROL         "indent_empty_lines",IDC_CHECK_PHP_INDENT_EMPTYLINES,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,120,188,91,10
+    CONTROL         "rewrite_perl_comments",IDC_CHECK_PHP_REWRITE_PERL_COMM,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,120,208,100,10
+    CONTROL         "rewrite_short_tag",IDC_CHECK_PHP_REWRITE_SHORT_TAG,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,120,228,93,10
+    CONTROL         "asp_tags",IDC_CHECK_PHP_ASP_TAGS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,120,248,60,10
+    CONTROL         "short_tags",IDC_CHECK_PHP_SHORT_TAGS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,120,268,64,10
+    CONTROL         "quiet",IDC_CHECK_PHP_QUIET,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,120,288,36,10
+    EDITTEXT        IDC_EDIT_VIEWFORMATTER,257,19,175,292,ES_MULTILINE | ES_AUTOHSCROLL | ES_WANTRETURN | WS_HSCROLL
+    GROUPBOX        "Indentation, Structures, Operators, Others",IDC_STATIC,5,5,237,312
+    GROUPBOX        "预览",IDC_STATIC_VIEWFORMATTER,250,5,189,312
+    LTEXT           "indent_number",IDC_STATIC,60,47,53,8
+    LTEXT           "first_indent_number",IDC_STATIC,162,47,76,8
+END
+
+IDD_SET_CSS DIALOGEX 0, 0, 440, 327
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
+CAPTION "CSS"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    COMBOBOX        IDC_COMBO_CSS_COMPRESSION,13,28,223,30,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_EDIT_CSS_TEMPLATE,13,57,223,66,ES_MULTILINE | ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
+    CONTROL         "Preserve CSS",IDC_CHECK_CSS_PRESERVE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,134,68,10
+    CONTROL         "Sort Selectors(caution)",IDC_CHECK_CSS_SELECTORS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,153,104,10
+    CONTROL         "Sort Properties",IDC_CHECK_CSS_PROPERTIES,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,173,75,10
+    CONTROL         "Remove last ;",IDC_CHECK_CSS_REMOVELAST,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,192,81,10
+    CONTROL         "Remove unnecessary backslashes",IDC_CHECK_CSS_REMOVESLASH,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,211,164,10
+    CONTROL         "Discard invalid properties",IDC_CHECK_CSS_DISCARD,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,231,119,10
+    CONTROL         "Silent",IDC_CHECK_CSS_SILENT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,251,57,10
+    LTEXT           "Optimise shorthands:",IDC_STATIC,13,270,85,8
+    COMBOBOX        IDC_COMBO_CSS_REGROUP,13,297,223,30,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Compress colors",IDC_CHECK_CSS_COLORS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,120,134,85,10
+    CONTROL         "Compress font-weight",IDC_CHECK_CSS_FONTWEIGHT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,120,153,109,10
+    CONTROL         "Lowercase selectors",IDC_CHECK_CSS_LOWERCASE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,120,173,100,10
+    CONTROL         "Add timestamp",IDC_CHECK_CSS_TIMESTAMP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,120,192,63,10
+    COMBOBOX        IDC_COMBO_CSS_DISCARD,133,229,48,30,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Case for properties:",IDC_STATIC,89,252,87,8
+    COMBOBOX        IDC_COMBO_CSS_CASE,174,250,62,30,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO_CSS_OPTIMISE,100,267,136,30,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_EDIT_VIEWFORMATTER,257,19,175,292,ES_MULTILINE | ES_AUTOHSCROLL | ES_WANTRETURN | WS_HSCROLL
+    LTEXT           "Regroup selectors:",IDC_STATIC,13,285,72,8
+    GROUPBOX        "Code Layout, Options",IDC_STATIC,5,5,237,312
+    GROUPBOX        "预览",IDC_STATIC_VIEWFORMATTER,250,5,189,312
+    LTEXT           "Compression (code layout):",IDC_STATIC,13,18,105,8
+    LTEXT           "Custom template:",IDC_STATIC,14,46,80,8
+END
+
+IDD_SET_JSON DIALOGEX 0, 0, 440, 327
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
+CAPTION "JSON"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDIT_JSON_INDENT_NUMBER,13,21,40,14,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "",IDC_SPIN_JSON_INDENT_NUMBER,"msctls_updown32",UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | UDS_ARROWKEYS,54,17,10,14
+    EDITTEXT        IDC_EDIT_VIEWFORMATTER,257,19,175,292,ES_MULTILINE | ES_AUTOHSCROLL | ES_WANTRETURN
+    GROUPBOX        "Indentation",IDC_STATIC,5,5,237,312
+    GROUPBOX        "预览",IDC_STATIC_VIEWFORMATTER,250,5,189,312
+    LTEXT           "indent_number",IDC_STATIC,60,23,53,8
+END
+
+IDD_SET_SQL DIALOGEX 0, 0, 440, 327
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
+CAPTION "SQL"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDIT_VIEWFORMATTER,257,19,175,292,ES_MULTILINE | ES_AUTOHSCROLL | ES_WANTRETURN | WS_HSCROLL
+    GROUPBOX        "Indentation, Subquery",IDC_STATIC,5,5,237,312
+    GROUPBOX        "预览",IDC_STATIC_VIEWFORMATTER,250,5,189,312
+    COMBOBOX        IDC_COMBO_SQL_INDENT_TAB,13,21,92,30,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_EDIT_SQL_INDENT_NUMBER,13,45,40,14,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "",IDC_SPIN_SQL_INDENT_NUMBER,"msctls_updown32",UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | UDS_ARROWKEYS,54,41,10,14
+    LTEXT           "indent_number",IDC_STATIC,60,47,53,8
+    EDITTEXT        IDC_EDIT_SQL_SUB_NUMBER,120,46,40,14,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "",IDC_SPIN_SQL_SUB_NUMBER,"msctls_updown32",UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | UDS_ARROWKEYS | UDS_NOTHOUSANDS,161,42,11,14
+    LTEXT           "min_subquery_Len",IDC_STATIC,165,47,69,8
+    CONTROL         "Endline on subquery",IDC_CHECK_SQL_ENDLINE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,135,23,99,10
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 3,1,0,1
+ PRODUCTVERSION 3,1,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "804003a8"
+        BEGIN
+            VALUE "CompanyName", "无幻出品"
+            VALUE "FileDescription", "源代码格式化"
+            VALUE "FileVersion", "3.1.0.1"
+            VALUE "InternalName", "CoolFormat.exe"
+            VALUE "LegalCopyright", "无幻 (c) 2010-2012。保留所有权利。"
+            VALUE "OriginalFilename", "CoolFormat.exe"
+            VALUE "ProductName", "CoolFormat源代码格式化"
+            VALUE "ProductVersion", "3.1.0.1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x8040, 936
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 115
+    END
+
+    IDD_GOTO_LINE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 187
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 64
+    END
+
+    IDD_OPTIONS_PAGE_POPULAR_PAGE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 309
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 176
+    END
+
+    IDD_OPTIONS_PAGE_RESOURCE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 391
+        VERTGUIDE, 8
+        VERTGUIDE, 311
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 176
+    END
+
+    IDD_LANG_EXT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 326
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 222
+    END
+
+    IDD_LANG_EXT_EDIT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 278
+        VERTGUIDE, 50
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 62
+    END
+
+    IDD_SYNEDIT_SET, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 326
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 222
+    END
+
+    IDD_SYNHTML_SET, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 326
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 222
+    END
+
+    IDD_SET_CPP, DIALOG
+    BEGIN
+        LEFTMARGIN, 4
+        RIGHTMARGIN, 434
+        TOPMARGIN, 3
+        BOTTOMMARGIN, 322
+    END
+
+    IDD_SET_JS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 433
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 320
+    END
+
+    IDD_SET_CPP_FAST, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 178
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 294
+    END
+
+    IDD_TELL_BUG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 278
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 158
+    END
+
+    IDD_SET_CPP_HIGH, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 232
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 302
+    END
+
+    IDD_SET_HTML, DIALOG
+    BEGIN
+        LEFTMARGIN, 4
+        RIGHTMARGIN, 438
+        TOPMARGIN, 3
+        BOTTOMMARGIN, 315
+    END
+
+    IDD_SET_HTML_ONE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 443
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 202
+    END
+
+    IDD_SET_HTML_TWO, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 443
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 210
+    END
+
+    IDD_BATCHFORMAT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 433
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 315
+    END
+
+    IDD_SET_PHP, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 434
+        TOPMARGIN, 3
+        BOTTOMMARGIN, 322
+    END
+
+    IDD_SET_CSS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 433
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 320
+    END
+
+    IDD_SET_JSON, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 433
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 320
+    END
+
+    IDD_SET_SQL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 433
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 320
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_MENU_IMAGES TOOLBAR  16, 16
+BEGIN
+    BUTTON      ID_MDI_NEW_HORZ_TAB_GROUP
+    BUTTON      ID_MDI_NEW_VERT_GROUP
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// PNG
+//
+
+IDB_MENU_IMAGES_HC      PNG                     "res\\menuimages_hc.png"
+IDB_OPTIONS             PNG                     "res\\options.png"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_OPTIONS_PAGE_POPULAR_PAGE DLGINIT
+BEGIN
+    IDC_COMBO_COLORSTYLE, 0x403, 5, 0
+0xb6c0, 0xabc9, "\000" 
+    IDC_COMBO_COLORSTYLE, 0x403, 5, 0
+0xdaba, 0xabc9, "\000" 
+    IDC_COMBO_COLORSTYLE, 0x403, 5, 0
+0xf8d2, 0xabc9, "\000" 
+    IDC_COMBO_TIPSTYLE, 0x403, 25, 0
+0xdad4, 0xc1c6, 0xbbc4, 0xe1cc, 0xbeca, 0xd0d6, 0xd4cf, 0xbeca, 0xa6b9, 
+0xdcc4, 0xb5cb, 0xf7c3, "\000" 
+    IDC_COMBO_TIPSTYLE, 0x403, 27, 0
+0xbbb2, 0xdad4, 0xc1c6, 0xbbc4, 0xe1cc, 0xbeca, 0xd0d6, 0xd4cf, 0xbeca, 
+0xa6b9, 0xdcc4, 0xb5cb, 0xf7c3, "\000" 
+    IDC_COMBO_TIPSTYLE, 0x403, 15, 0
+0xbbb2, 0xd4cf, 0xbeca, 0xc1c6, 0xbbc4, 0xe1cc, 0xbeca, "\000" 
+    IDC_COMBO_LANG, 0x403, 5, 0
+0xd0d6, 0xc4ce, "\000" 
+    IDC_COMBO_LANG, 0x403, 8, 0
+0x6e45, 0x6c67, 0x7369, 0x0068, 
+    0
+END
+
+IDD_SYNEDIT_SET DLGINIT
+BEGIN
+    IDC_COMBO_EDITSTYLE, 0x403, 5, 0
+0xa3b3, 0xe6b9, "\000" 
+    IDC_COMBO_EDITSTYLE, 0x403, 5, 0
+0xd6b4, 0xe5cc, "\000" 
+    IDC_COMBO_EDITSTYLE, 0x403, 5, 0
+0xb1d0, 0xe5cc, "\000" 
+    IDC_COMBO_EDITSTYLE, 0x403, 10, 0
+0xd6b4, 0xe5cc, 0xd02b, 0xccb1, 0x00e5, 
+    IDC_COMBO_EDITSIZE, 0x403, 2, 0
+0x0038, 
+    IDC_COMBO_EDITSIZE, 0x403, 2, 0
+0x0039, 
+    IDC_COMBO_EDITSIZE, 0x403, 3, 0
+0x3031, "\000" 
+    IDC_COMBO_EDITSIZE, 0x403, 3, 0
+0x3131, "\000" 
+    IDC_COMBO_EDITSIZE, 0x403, 3, 0
+0x3231, "\000" 
+    IDC_COMBO_EDITSIZE, 0x403, 3, 0
+0x3431, "\000" 
+    IDC_COMBO_EDITSIZE, 0x403, 3, 0
+0x3631, "\000" 
+    IDC_COMBO_EDITSIZE, 0x403, 3, 0
+0x3831, "\000" 
+    IDC_COMBO_EDITSIZE, 0x403, 3, 0
+0x3032, "\000" 
+    IDC_COMBO_EDITSIZE, 0x403, 3, 0
+0x3232, "\000" 
+    IDC_COMBO_EDITSIZE, 0x403, 3, 0
+0x3432, "\000" 
+    IDC_COMBO_EDITSIZE, 0x403, 3, 0
+0x3632, "\000" 
+    IDC_COMBO_EDITSIZE, 0x403, 3, 0
+0x3832, "\000" 
+    IDC_COMBO_EDITSIZE, 0x403, 3, 0
+0x3633, "\000" 
+    IDC_COMBO_EDITSIZE, 0x403, 3, 0
+0x3834, "\000" 
+    IDC_COMBO_EDITSIZE, 0x403, 3, 0
+0x3237, "\000" 
+    0
+END
+
+IDD_SYNHTML_SET DLGINIT
+BEGIN
+    IDC_COMBO_HTMLSTYLE, 0x403, 5, 0
+0xa3b3, 0xe6b9, "\000" 
+    IDC_COMBO_HTMLSTYLE, 0x403, 5, 0
+0xd6b4, 0xe5cc, "\000" 
+    IDC_COMBO_HTMLSTYLE, 0x403, 5, 0
+0xb1d0, 0xe5cc, "\000" 
+    IDC_COMBO_HTMLSTYLE, 0x403, 10, 0
+0xd6b4, 0xe5cc, 0xd02b, 0xccb1, 0x00e5, 
+    IDC_COMBO_HTMLSIZE, 0x403, 2, 0
+0x0038, 
+    IDC_COMBO_HTMLSIZE, 0x403, 2, 0
+0x0039, 
+    IDC_COMBO_HTMLSIZE, 0x403, 3, 0
+0x3031, "\000" 
+    IDC_COMBO_HTMLSIZE, 0x403, 3, 0
+0x3131, "\000" 
+    IDC_COMBO_HTMLSIZE, 0x403, 3, 0
+0x3231, "\000" 
+    IDC_COMBO_HTMLSIZE, 0x403, 3, 0
+0x3431, "\000" 
+    IDC_COMBO_HTMLSIZE, 0x403, 3, 0
+0x3631, "\000" 
+    IDC_COMBO_HTMLSIZE, 0x403, 3, 0
+0x3831, "\000" 
+    IDC_COMBO_HTMLSIZE, 0x403, 3, 0
+0x3032, "\000" 
+    IDC_COMBO_HTMLSIZE, 0x403, 3, 0
+0x3232, "\000" 
+    IDC_COMBO_HTMLSIZE, 0x403, 3, 0
+0x3432, "\000" 
+    IDC_COMBO_HTMLSIZE, 0x403, 3, 0
+0x3632, "\000" 
+    IDC_COMBO_HTMLSIZE, 0x403, 3, 0
+0x3832, "\000" 
+    IDC_COMBO_HTMLSIZE, 0x403, 3, 0
+0x3633, "\000" 
+    IDC_COMBO_HTMLSIZE, 0x403, 3, 0
+0x3834, "\000" 
+    IDC_COMBO_HTMLSIZE, 0x403, 3, 0
+0x3237, "\000" 
+    IDC_COMBO_BORDER_STYLE, 0x403, 3, 0
+0xdece, "\000" 
+    IDC_COMBO_BORDER_STYLE, 0x403, 5, 0
+0xb5ca, 0xdfcf, "\000" 
+    IDC_COMBO_BORDER_STYLE, 0x403, 5, 0
+0xe9d0, 0xdfcf, "\000" 
+    IDC_COMBO_BORDER_STYLE, 0x403, 5, 0
+0xe3b5, 0xdfcf, "\000" 
+    IDC_COMBO_BORDER_STYLE, 0x403, 5, 0
+0xabcb, 0xdfcf, "\000" 
+    IDC_COMBO_BORDER_STYLE, 0x403, 5, 0
+0xdbb2, 0xb4d7, "\000" 
+    IDC_COMBO_BORDER_STYLE, 0x403, 5, 0
+0xb9bc, 0xb4d7, "\000" 
+    IDC_COMBO_BORDER_STYLE, 0x403, 5, 0
+0xbcb0, 0xddcf, "\000" 
+    IDC_COMBO_BORDER_STYLE, 0x403, 5, 0
+0xb9cd, 0xf6b3, "\000" 
+    0
+END
+
+IDD_SET_CPP_HIGH DLGINIT
+BEGIN
+    IDC_COMBO_CPP_INDENT_TAB, 0x403, 20, 0
+0x6e49, 0x6564, 0x746e, 0x7520, 0x6973, 0x676e, 0x7320, 0x6170, 0x6563, 
+0x0073, 
+    IDC_COMBO_CPP_INDENT_TAB, 0x403, 17, 0
+0x6e49, 0x6564, 0x746e, 0x7520, 0x6973, 0x676e, 0x7420, 0x6261, "\000" 
+    IDC_COMBO_CPP_INDENT_TAB, 0x403, 23, 0
+0x6f46, 0x6372, 0x2065, 0x6e69, 0x6564, 0x746e, 0x7520, 0x6973, 0x676e, 
+0x7420, 0x6261, "\000" 
+    IDC_COMBO_CPP_MIN_CONDITIONAL, 0x403, 9, 0
+0x2030, 0x6e69, 0x6564, 0x746e, "\000" 
+    IDC_COMBO_CPP_MIN_CONDITIONAL, 0x403, 9, 0
+0x2031, 0x6e69, 0x6564, 0x746e, "\000" 
+    IDC_COMBO_CPP_MIN_CONDITIONAL, 0x403, 10, 0
+0x2032, 0x6e69, 0x6564, 0x746e, 0x0073, 
+    IDC_COMBO_CPP_MIN_CONDITIONAL, 0x403, 11, 0
+0x2e30, 0x2035, 0x6e69, 0x6564, 0x746e, "\000" 
+    IDC_COMBO_CPP_MAX_INSTATEMENT, 0x403, 10, 0
+0x3034, 0x7320, 0x6170, 0x6563, 0x0073, 
+    IDC_COMBO_CPP_MAX_INSTATEMENT, 0x403, 10, 0
+0x3035, 0x7320, 0x6170, 0x6563, 0x0073, 
+    IDC_COMBO_CPP_MAX_INSTATEMENT, 0x403, 10, 0
+0x3036, 0x7320, 0x6170, 0x6563, 0x0073, 
+    IDC_COMBO_CPP_MAX_INSTATEMENT, 0x403, 10, 0
+0x3037, 0x7320, 0x6170, 0x6563, 0x0073, 
+    IDC_COMBO_CPP_MAX_INSTATEMENT, 0x403, 10, 0
+0x3038, 0x7320, 0x6170, 0x6563, 0x0073, 
+    IDC_COMBO_CPP_MAX_INSTATEMENT, 0x403, 10, 0
+0x3039, 0x7320, 0x6170, 0x6563, 0x0073, 
+    IDC_COMBO_CPP_MAX_INSTATEMENT, 0x403, 11, 0
+0x3031, 0x2030, 0x7073, 0x6361, 0x7365, "\000" 
+    IDC_COMBO_CPP_MAX_INSTATEMENT, 0x403, 11, 0
+0x3131, 0x2030, 0x7073, 0x6361, 0x7365, "\000" 
+    IDC_COMBO_CPP_MAX_INSTATEMENT, 0x403, 11, 0
+0x3231, 0x2030, 0x7073, 0x6361, 0x7365, "\000" 
+    IDC_COMBO_CPP_ALIGN_POINTER, 0x403, 5, 0
+0x6f6e, 0x656e, "\000" 
+    IDC_COMBO_CPP_ALIGN_POINTER, 0x403, 5, 0
+0x7974, 0x6570, "\000" 
+    IDC_COMBO_CPP_ALIGN_POINTER, 0x403, 7, 0
+0x696d, 0x6464, 0x656c, "\000" 
+    IDC_COMBO_CPP_ALIGN_POINTER, 0x403, 5, 0
+0x616e, 0x656d, "\000" 
+    IDC_COMBO_CPP_ALIGN_REFERENCE, 0x403, 5, 0
+0x6173, 0x656d, "\000" 
+    IDC_COMBO_CPP_ALIGN_REFERENCE, 0x403, 5, 0
+0x6f6e, 0x656e, "\000" 
+    IDC_COMBO_CPP_ALIGN_REFERENCE, 0x403, 5, 0
+0x7974, 0x6570, "\000" 
+    IDC_COMBO_CPP_ALIGN_REFERENCE, 0x403, 7, 0
+0x696d, 0x6464, 0x656c, "\000" 
+    IDC_COMBO_CPP_ALIGN_REFERENCE, 0x403, 5, 0
+0x616e, 0x656d, "\000" 
+    0
+END
+
+IDD_SET_HTML_TWO DLGINIT
+BEGIN
+    IDC_COMBO_HTML_INDENT, 0x403, 5, 0
+0x7561, 0x6f74, "\000" 
+    IDC_COMBO_HTML_INDENT, 0x403, 4, 0
+0x6579, 0x0073, 
+    IDC_COMBO_HTML_INDENT, 0x403, 3, 0
+0x6f6e, "\000" 
+    IDC_COMBO_HTML_MERGE_DIVS, 0x403, 5, 0
+0x7561, 0x6f74, "\000" 
+    IDC_COMBO_HTML_MERGE_DIVS, 0x403, 4, 0
+0x6579, 0x0073, 
+    IDC_COMBO_HTML_MERGE_DIVS, 0x403, 3, 0
+0x6f6e, "\000" 
+    IDC_COMBO_HTML_MERGE_SPANS, 0x403, 5, 0
+0x7561, 0x6f74, "\000" 
+    IDC_COMBO_HTML_MERGE_SPANS, 0x403, 4, 0
+0x6579, 0x0073, 
+    IDC_COMBO_HTML_MERGE_SPANS, 0x403, 3, 0
+0x6f6e, "\000" 
+    IDC_COMBO_HTML_SHOW_BODY_ONLY, 0x403, 5, 0
+0x7561, 0x6f74, "\000" 
+    IDC_COMBO_HTML_SHOW_BODY_ONLY, 0x403, 4, 0
+0x6579, 0x0073, 
+    IDC_COMBO_HTML_SHOW_BODY_ONLY, 0x403, 3, 0
+0x6f6e, "\000" 
+    IDC_COMBO_HTML_DOCTYPE, 0x403, 5, 0
+0x6d6f, 0x7469, "\000" 
+    IDC_COMBO_HTML_DOCTYPE, 0x403, 5, 0
+0x7561, 0x6f74, "\000" 
+    IDC_COMBO_HTML_DOCTYPE, 0x403, 7, 0
+0x7473, 0x6972, 0x7463, "\000" 
+    IDC_COMBO_HTML_DOCTYPE, 0x403, 13, 0
+0x7274, 0x6e61, 0x6973, 0x6974, 0x6e6f, 0x6c61, "\000" 
+    IDC_COMBO_HTML_DOCTYPE, 0x403, 5, 0
+0x7375, 0x7265, "\000" 
+    IDC_COMBO_HTML_REPEATED_ATTRIBUTES, 0x403, 11, 0
+0x656b, 0x7065, 0x662d, 0x7269, 0x7473, "\000" 
+    IDC_COMBO_HTML_REPEATED_ATTRIBUTES, 0x403, 10, 0
+0x656b, 0x7065, 0x6c2d, 0x7361, 0x0074, 
+    IDC_COMBO_HTML_CHAR_ENCODING, 0x403, 4, 0
+0x6172, 0x0077, 
+    IDC_COMBO_HTML_CHAR_ENCODING, 0x403, 6, 0
+0x7361, 0x6963, 0x0069, 
+    IDC_COMBO_HTML_CHAR_ENCODING, 0x403, 7, 0
+0x616c, 0x6974, 0x306e, "\000" 
+    IDC_COMBO_HTML_CHAR_ENCODING, 0x403, 7, 0
+0x616c, 0x6974, 0x316e, "\000" 
+    IDC_COMBO_HTML_CHAR_ENCODING, 0x403, 5, 0
+0x7475, 0x3866, "\000" 
+    IDC_COMBO_HTML_CHAR_ENCODING, 0x403, 8, 0
+0x7369, 0x326f, 0x3230, 0x0032, 
+    IDC_COMBO_HTML_CHAR_ENCODING, 0x403, 4, 0
+0x616d, 0x0063, 
+    IDC_COMBO_HTML_CHAR_ENCODING, 0x403, 8, 0
+0x6977, 0x316e, 0x3532, 0x0032, 
+    IDC_COMBO_HTML_CHAR_ENCODING, 0x403, 7, 0
+0x6269, 0x386d, 0x3835, "\000" 
+    IDC_COMBO_HTML_CHAR_ENCODING, 0x403, 8, 0
+0x7475, 0x3166, 0x6c36, 0x0065, 
+    IDC_COMBO_HTML_CHAR_ENCODING, 0x403, 8, 0
+0x7475, 0x3166, 0x6236, 0x0065, 
+    IDC_COMBO_HTML_CHAR_ENCODING, 0x403, 6, 0
+0x7475, 0x3166, 0x0036, 
+    IDC_COMBO_HTML_CHAR_ENCODING, 0x403, 5, 0
+0x6962, 0x3567, "\000" 
+    IDC_COMBO_HTML_CHAR_ENCODING, 0x403, 9, 0
+0x6873, 0x6669, 0x6a74, 0x7369, "\000" 
+    IDC_COMBO_HTML_INPUT_ENCODING, 0x403, 4, 0
+0x6172, 0x0077, 
+    IDC_COMBO_HTML_INPUT_ENCODING, 0x403, 6, 0
+0x7361, 0x6963, 0x0069, 
+    IDC_COMBO_HTML_INPUT_ENCODING, 0x403, 7, 0
+0x616c, 0x6974, 0x306e, "\000" 
+    IDC_COMBO_HTML_INPUT_ENCODING, 0x403, 7, 0
+0x616c, 0x6974, 0x316e, "\000" 
+    IDC_COMBO_HTML_INPUT_ENCODING, 0x403, 5, 0
+0x7475, 0x3866, "\000" 
+    IDC_COMBO_HTML_INPUT_ENCODING, 0x403, 8, 0
+0x7369, 0x326f, 0x3230, 0x0032, 
+    IDC_COMBO_HTML_INPUT_ENCODING, 0x403, 4, 0
+0x616d, 0x0063, 
+    IDC_COMBO_HTML_INPUT_ENCODING, 0x403, 8, 0
+0x6977, 0x316e, 0x3532, 0x0032, 
+    IDC_COMBO_HTML_INPUT_ENCODING, 0x403, 7, 0
+0x6269, 0x386d, 0x3835, "\000" 
+    IDC_COMBO_HTML_INPUT_ENCODING, 0x403, 8, 0
+0x7475, 0x3166, 0x6c36, 0x0065, 
+    IDC_COMBO_HTML_INPUT_ENCODING, 0x403, 8, 0
+0x7475, 0x3166, 0x6236, 0x0065, 
+    IDC_COMBO_HTML_INPUT_ENCODING, 0x403, 6, 0
+0x7475, 0x3166, 0x0036, 
+    IDC_COMBO_HTML_INPUT_ENCODING, 0x403, 5, 0
+0x6962, 0x3567, "\000" 
+    IDC_COMBO_HTML_INPUT_ENCODING, 0x403, 9, 0
+0x6873, 0x6669, 0x6a74, 0x7369, "\000" 
+    IDC_COMBO_HTML_OUTPUT_ENCODING, 0x403, 4, 0
+0x6172, 0x0077, 
+    IDC_COMBO_HTML_OUTPUT_ENCODING, 0x403, 6, 0
+0x7361, 0x6963, 0x0069, 
+    IDC_COMBO_HTML_OUTPUT_ENCODING, 0x403, 7, 0
+0x616c, 0x6974, 0x306e, "\000" 
+    IDC_COMBO_HTML_OUTPUT_ENCODING, 0x403, 7, 0
+0x616c, 0x6974, 0x316e, "\000" 
+    IDC_COMBO_HTML_OUTPUT_ENCODING, 0x403, 5, 0
+0x7475, 0x3866, "\000" 
+    IDC_COMBO_HTML_OUTPUT_ENCODING, 0x403, 8, 0
+0x7369, 0x326f, 0x3230, 0x0032, 
+    IDC_COMBO_HTML_OUTPUT_ENCODING, 0x403, 4, 0
+0x616d, 0x0063, 
+    IDC_COMBO_HTML_OUTPUT_ENCODING, 0x403, 8, 0
+0x6977, 0x316e, 0x3532, 0x0032, 
+    IDC_COMBO_HTML_OUTPUT_ENCODING, 0x403, 7, 0
+0x6269, 0x386d, 0x3835, "\000" 
+    IDC_COMBO_HTML_OUTPUT_ENCODING, 0x403, 8, 0
+0x7475, 0x3166, 0x6c36, 0x0065, 
+    IDC_COMBO_HTML_OUTPUT_ENCODING, 0x403, 8, 0
+0x7475, 0x3166, 0x6236, 0x0065, 
+    IDC_COMBO_HTML_OUTPUT_ENCODING, 0x403, 6, 0
+0x7475, 0x3166, 0x0036, 
+    IDC_COMBO_HTML_OUTPUT_ENCODING, 0x403, 5, 0
+0x6962, 0x3567, "\000" 
+    IDC_COMBO_HTML_OUTPUT_ENCODING, 0x403, 9, 0
+0x6873, 0x6669, 0x6a74, 0x7369, "\000" 
+    IDC_COMBO_HTML_SORT_ATTRIBUTES, 0x403, 5, 0
+0x6f6e, 0x656e, "\000" 
+    IDC_COMBO_HTML_SORT_ATTRIBUTES, 0x403, 6, 0
+0x6c61, 0x6870, 0x0061, 
+    0
+END
+
+IDD_SET_PHP DLGINIT
+BEGIN
+    IDC_COMBO_PHP_INDENT_TAB, 0x403, 20, 0
+0x6e49, 0x6564, 0x746e, 0x7520, 0x6973, 0x676e, 0x7320, 0x6170, 0x6563, 
+0x0073, 
+    IDC_COMBO_PHP_INDENT_TAB, 0x403, 17, 0
+0x6e49, 0x6564, 0x746e, 0x7520, 0x6973, 0x676e, 0x7420, 0x6261, "\000" 
+    IDC_COMBO_PHP_INDENT_STYLE, 0x403, 17, 0
+0x6e49, 0x6564, 0x746e, 0x7320, 0x7974, 0x656c, 0x4b20, 0x5226, "\000" 
+    IDC_COMBO_PHP_INDENT_STYLE, 0x403, 20, 0
+0x6e49, 0x6564, 0x746e, 0x7320, 0x7974, 0x656c, 0x4120, 0x6c6c, 0x616d, 
+0x006e, 
+    IDC_COMBO_PHP_INDENT_STYLE, 0x403, 25, 0
+0x6e49, 0x6564, 0x746e, 0x7320, 0x7974, 0x656c, 0x5720, 0x6968, 0x6574, 
+0x6d73, 0x7469, 0x7368, "\000" 
+    IDC_COMBO_PHP_INDENT_STYLE, 0x403, 17, 0
+0x6e49, 0x6564, 0x746e, 0x7320, 0x7974, 0x656c, 0x4720, 0x554e, "\000" 
+    IDC_COMBO_PHP_INDENT_STYLE, 0x403, 18, 0
+0x6e49, 0x6564, 0x746e, 0x7320, 0x7974, 0x656c, 0x5020, 0x4145, 0x0052, 
+
+    0
+END
+
+IDD_SET_JS DLGINIT
+BEGIN
+    IDC_COMBO_JS_INDENT_TAB, 0x403, 20, 0
+0x6e49, 0x6564, 0x746e, 0x7520, 0x6973, 0x676e, 0x7320, 0x6170, 0x6563, 
+0x0073, 
+    IDC_COMBO_JS_INDENT_TAB, 0x403, 17, 0
+0x6e49, 0x6564, 0x746e, 0x7520, 0x6973, 0x676e, 0x7420, 0x6261, "\000" 
+    IDC_COMBO_JS_INDENT_STYLE, 0x403, 20, 0
+0x6e49, 0x6564, 0x746e, 0x7320, 0x7974, 0x656c, 0x6120, 0x7474, 0x6361, 
+0x0068, 
+    IDC_COMBO_JS_INDENT_STYLE, 0x403, 19, 0
+0x6e49, 0x6564, 0x746e, 0x7320, 0x7974, 0x656c, 0x6220, 0x6572, 0x6b61, 
+"\000" 
+    0
+END
+
+IDD_SET_CSS DLGINIT
+BEGIN
+    IDC_COMBO_CSS_COMPRESSION, 0x403, 40, 0
+0x6948, 0x6867, 0x7365, 0x2074, 0x6e28, 0x206f, 0x6572, 0x6461, 0x6261, 
+0x6c69, 0x7469, 0x2c79, 0x7320, 0x616d, 0x6c6c, 0x7365, 0x2074, 0x6973, 
+0x657a, 0x0029, 
+    IDC_COMBO_CSS_COMPRESSION, 0x403, 42, 0
+0x6948, 0x6867, 0x2820, 0x6f6d, 0x6564, 0x6172, 0x6574, 0x7220, 0x6165, 
+0x6164, 0x6962, 0x696c, 0x7974, 0x202c, 0x6d73, 0x6c61, 0x656c, 0x2072, 
+0x6973, 0x657a, 0x0029, 
+    IDC_COMBO_CSS_COMPRESSION, 0x403, 48, 0
+0x7453, 0x6e61, 0x6164, 0x6472, 0x2820, 0x6162, 0x616c, 0x636e, 0x2065, 
+0x6562, 0x7774, 0x6565, 0x206e, 0x6572, 0x6461, 0x6261, 0x6c69, 0x7469, 
+0x2079, 0x6e61, 0x2064, 0x6973, 0x657a, 0x0029, 
+    IDC_COMBO_CSS_COMPRESSION, 0x403, 25, 0
+0x6f4c, 0x2077, 0x6828, 0x6769, 0x6568, 0x2072, 0x6572, 0x6461, 0x6261, 
+0x6c69, 0x7469, 0x2979, "\000" 
+    IDC_COMBO_CSS_COMPRESSION, 0x403, 21, 0
+0x7543, 0x7473, 0x6d6f, 0x2820, 0x6e65, 0x6574, 0x2072, 0x6562, 0x6f6c, 
+0x2977, "\000" 
+    IDC_COMBO_CSS_REGROUP, 0x403, 23, 0
+0x6f44, 0x6e20, 0x746f, 0x6320, 0x6168, 0x676e, 0x2065, 0x6e61, 0x7479, 
+0x6968, 0x676e, "\000" 
+    IDC_COMBO_CSS_REGROUP, 0x403, 37, 0
+0x6e4f, 0x796c, 0x7320, 0x7065, 0x7265, 0x7461, 0x2065, 0x6573, 0x656c, 
+0x7463, 0x726f, 0x2073, 0x7328, 0x6c70, 0x7469, 0x6120, 0x2074, 0x292c, 
+"\000" 
+    IDC_COMBO_CSS_REGROUP, 0x403, 48, 0
+0x654d, 0x6772, 0x2065, 0x6573, 0x656c, 0x7463, 0x726f, 0x2073, 0x6977, 
+0x6874, 0x7420, 0x6568, 0x7320, 0x6d61, 0x2065, 0x7270, 0x706f, 0x7265, 
+0x6974, 0x7365, 0x2820, 0x6166, 0x7473, 0x0029, 
+    IDC_COMBO_CSS_DISCARD, 0x403, 7, 0
+0x5343, 0x3253, 0x312e, "\000" 
+    IDC_COMBO_CSS_DISCARD, 0x403, 7, 0
+0x5343, 0x3253, 0x302e, "\000" 
+    IDC_COMBO_CSS_DISCARD, 0x403, 7, 0
+0x5343, 0x3153, 0x302e, "\000" 
+    IDC_COMBO_CSS_CASE, 0x403, 10, 0
+0x6f4c, 0x6577, 0x6372, 0x7361, 0x0065, 
+    IDC_COMBO_CSS_CASE, 0x403, 10, 0
+0x7055, 0x6570, 0x6372, 0x7361, 0x0065, 
+    IDC_COMBO_CSS_OPTIMISE, 0x403, 15, 0
+0x6f44, 0x276e, 0x2074, 0x706f, 0x6974, 0x696d, 0x6573, "\000" 
+    IDC_COMBO_CSS_OPTIMISE, 0x403, 19, 0
+0x6153, 0x6566, 0x6f20, 0x7470, 0x6d69, 0x7369, 0x7461, 0x6f69, 0x736e, 
+"\000" 
+    IDC_COMBO_CSS_OPTIMISE, 0x403, 18, 0
+0x6c41, 0x206c, 0x706f, 0x6974, 0x696d, 0x6173, 0x6974, 0x6e6f, 0x0073, 
+
+    0
+END
+
+IDD_SET_SQL DLGINIT
+BEGIN
+    IDC_COMBO_SQL_INDENT_TAB, 0x403, 20, 0
+0x6e49, 0x6564, 0x746e, 0x7520, 0x6973, 0x676e, 0x7320, 0x6170, 0x6563, 
+0x0073, 
+    IDC_COMBO_SQL_INDENT_TAB, 0x403, 17, 0
+0x6e49, 0x6564, 0x746e, 0x7520, 0x6973, 0x676e, 0x7420, 0x6261, "\000" 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDR_MAINFRAME           "CoolFormat源代码格式化"
+    IDR_CoolFormat3TYPE     "\nNewFile\nCoolFormat3\n\n\nCoolFormat3.Document\nCoolFormat3.Document"
+    IDS_STRING_POPULARCOLORSTR "蓝色;黑色;银色;"
+    IDS_STRING_POPULARSCRSTR "在屏幕提示中显示功能说明;不在屏幕提示中显示功能说明;不显示屏幕提示;"
+    IDS_STRING_RES_UPDATE   "获取更新"
+    IDS_STRING_RES_LINKEME  "与我联系"
+    IDS_STRING_RES_TITLE    "资源"
+    IDS_STRING_RES_CHECKUP  "检查更新"
+    IDS_STRING_RES_ABOUTLB  "关于 CoolFormat"
+    IDS_STRING_RES_ABOUT    "关于"
+    IDS_STR_VIEWFORMATTER   "预览："
+    IDS_STRING_VIEWDESC     "说明："
+    IDS_STRING_WUHUAN       "无幻出品"
+    IDS_STRING_CHANGELANG   "更改语言将在退出并重启程序后生效"
+    IDS_STRING_HTML_AUTOCOPY "自动复制"
+    IDS_STRING_VERSION      "CoolFormat 版本 3.1       版权所有 (C) 2012"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "CoolFormat3"
+    AFX_IDS_IDLEMESSAGE     "就绪"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_INDICATOR_EXT        "EXT"
+    ID_INDICATOR_CAPS       "CAP"
+    ID_INDICATOR_NUM        "NUM"
+    ID_INDICATOR_SCRL       "SCRL"
+    ID_INDICATOR_OVR        "OVR"
+    ID_INDICATOR_REC        "REC"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_FILE_NEW             "创建新文档\n新建"
+    ID_FILE_OPEN            "打开现有文档\n打开"
+    ID_FILE_CLOSE           "关闭活动文档\n关闭"
+    ID_FILE_SAVE            "保存活动文档\n保存"
+    ID_FILE_SAVE_AS         "用新名称保存活动文档\n另存为"
+    ID_FILE_PAGE_SETUP      "更改打印选项\n页面设置"
+    ID_FILE_PRINT_SETUP     "选择打印机、打印份数及其他选项\n打印设置"
+    ID_FILE_PRINT           "打印活动文档\n打印"
+    ID_FILE_PRINT_DIRECT    "不更改设置，直接发送文档到默认打印机\n快速打印"
+    ID_FILE_PRINT_PREVIEW   "打印前预览整个页面\n打印预览"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_APP_ABOUT            "显示程序信息、版本号和版权\n关于"
+    ID_APP_EXIT             "退出应用程序；提示保存文档\n退出"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_FILE_MRU_FILE1       "打开此文档"
+    ID_FILE_MRU_FILE2       "打开此文档"
+    ID_FILE_MRU_FILE3       "打开此文档"
+    ID_FILE_MRU_FILE4       "打开此文档"
+    ID_FILE_MRU_FILE5       "打开此文档"
+    ID_FILE_MRU_FILE6       "打开此文档"
+    ID_FILE_MRU_FILE7       "打开此文档"
+    ID_FILE_MRU_FILE8       "打开此文档"
+    ID_FILE_MRU_FILE9       "打开此文档"
+    ID_FILE_MRU_FILE10      "打开此文档"
+    ID_FILE_MRU_FILE11      "打开此文档"
+    ID_FILE_MRU_FILE12      "打开此文档"
+    ID_FILE_MRU_FILE13      "打开此文档"
+    ID_FILE_MRU_FILE14      "打开此文档"
+    ID_FILE_MRU_FILE15      "打开此文档"
+    ID_FILE_MRU_FILE16      "打开此文档"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_NEXT_PANE            "切换到下一个窗格\n下一窗格"
+    ID_PREV_PANE            "切换回上一个窗格\n上一窗格"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_WINDOW_NEW           "为活动文档打开另一个窗口\n新建窗口"
+    ID_WINDOW_ARRANGE       "在窗口底部排列图标\n排列图标"
+    ID_WINDOW_CASCADE       "以重叠方式排列窗口\n层叠窗口"
+    ID_WINDOW_TILE_HORZ     "以非重叠的平铺方式排列窗口\n平铺窗口"
+    ID_WINDOW_TILE_VERT     "以非重叠的平铺方式排列窗口\n平铺窗口"
+    ID_WINDOW_SPLIT         "将活动窗口拆分为多个窗格\n拆分"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_EDIT_CLEAR           "清除选定内容\n清除"
+    ID_EDIT_CLEAR_ALL       "清除全部内容\n全部清除"
+    ID_EDIT_COPY            "复制选定内容并将其放到剪贴板上\n复制"
+    ID_EDIT_CUT             "剪切选定内容并将其放到剪贴板上\n剪切"
+    ID_EDIT_FIND            "查找指定的文本\n查找"
+    ID_EDIT_PASTE           "插入剪贴板内容\n粘贴"
+    ID_EDIT_REPEAT          "重复上一操作\n重复"
+    ID_EDIT_REPLACE         "用其他文本替换特定的文本\n替换"
+    ID_EDIT_SELECT_ALL      "选定整个文档\n全选"
+    ID_EDIT_UNDO            "撤消上一操作\n撤消"
+    ID_EDIT_REDO            "恢复上次撤消的操作\n重做"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_VIEW_TOOLBAR         "显示或隐藏工具栏\n切换工具栏"
+    ID_VIEW_STATUS_BAR      "显示或隐藏状态栏\n切换状态栏"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_SCSIZE          "更改窗口大小"
+    AFX_IDS_SCMOVE          "更改窗口位置"
+    AFX_IDS_SCMINIMIZE      "将窗口缩小为图标"
+    AFX_IDS_SCMAXIMIZE      "使窗口最大化显示"
+    AFX_IDS_SCNEXTWINDOW    "切换到下一个文档窗口"
+    AFX_IDS_SCPREVWINDOW    "切换到前一个文档窗口"
+    AFX_IDS_SCCLOSE         "关闭活动窗口并提示保存文档"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_SCRESTORE       "将窗口恢复到正常大小"
+    AFX_IDS_SCTASKLIST      "激活任务列表"
+    AFX_IDS_MDICHILD        "激活此窗口"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_PREVIEW_CLOSE   "关闭打印预览模式\n取消预览"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING96            "提交建议或BUG\nu"
+    IDS_STRING97            "帮助主题\ni"
+    IDS_STRING_BATCHFORMAT  "批量格式化"
+    IDS_STRING_COMMPOPULAR  "常用命令"
+    IDS_STRING_COMMHIDDEN   "不在功能区中的命令"
+    IDS_MAIN_TOOLBAR        "标准"
+    ID_STATUSBAR_PANE3      "当前光标"
+    ID_STATUSBAR_PANE4      "作者网站"
+    IDS_STATUS_LINK         "无幻出品 http://blog.csdn.net/akof1314"
+    IDS_STATUS_AUTOR        "作者"
+    IDS_STATUS_ROWCOL       "行 %d    列 %d"
+    IDS_WINDOWS_MANAGER     "窗口(&W)..."
+    IDS_STATUS_CUR_RC       "当前光标"
+    IDS_STATUS_QQ           "QQ：307458053"
+    IDS_STATUS_CONTACT      "联系方式"
+    IDS_DOC_UNSUPPORT       "您打开了不支持的文件类型！"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_VIEW_APPLOOK_2010_1  "使用 Office 2010 应用程序外观\nOffice 2010 外观 (Blue)"
+    ID_VIEW_APPLOOK_2010_2  "使用 Office 2010 应用程序外观\nOffice 2010 外观 (Black)"
+    ID_VIEW_APPLOOK_2010_3  "使用 Office 2010 应用程序外观\nOffice 2010 外观 (Silver)"
+    ID_TOOLS_OPTIONS        "更改应用程序选项\n选项"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_STATUSBAR_PANE1      "作者"
+    ID_STATUSBAR_PANE2      "联系方式"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_FASTFORMAT           "格式化当前文档\n快速格式化"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_LANG                 "当前文档语言\n语言"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_NOW_LANG             "当前文档语言\n当前语言"
+    ID_COPY_HTMLSRC         "复制选定内容的HTML代码并将其放到剪贴板上\n复制HTML代码"
+    ID_LANGEXT              "进行扩展名设置\n扩展名设置"
+END
+
+STRINGTABLE 
+BEGIN
+    IDOK                    "确定"
+    IDCANLE                 "取消"
+    IDS_LANGEXT_DLG         "扩展名设置"
+    IDS_LANGEXT_DLG_TIP     "双击进行扩展名设置"
+    IDS_LANGEXT_EDIT_DLG    "扩展名设置—修改"
+    IDS_LANGUAGE_EX         "语言："
+    IDS_LANGUAGEEXT_EX      "扩展名："
+    IDS_REG_ERROR           "保存配置失败，请检查注册表是否可写！"
+    IDS_GOTOLINE_DLG        "转到行"
+    IDS_GOTOLINE_DLG_TIP    "行号(1 - %d)："
+    IDS_EDITSTYLE_DATA      "常规;粗体;斜体;粗体+斜体;"
+    ID_TAB_HTML             "高亮(Ctrl+~) "
+    ID_TAB_CODE             "代码 "
+    IDS_HTML_TIP            "已经重新高亮代码，可以全选复制粘贴到博客！"
+    IDS_TELLBUG_TITLE       "提交建议或BUG"
+END
+
+STRINGTABLE 
+BEGIN
+    IDC_BUTTON_DEFAULTEXT   "恢复默认值"
+    IDS_IS_WANTSAVE         "是否保存对 %s 的更改？"
+    IDS_MSG_GODEFAULT       "是否要恢复原始默认设置？\n\n此操作将恢复当前选择的默认初始状态值，并请按“确定”按钮生效。"
+    IDS_LANGUAGE            "语言"
+    IDS_LANGUAGEEXT         "扩展名(双击修改)"
+END
+
+STRINGTABLE 
+BEGIN
+    IDD_SYNEDIT_SET         "编辑器设置"
+    IDD_SYNHTML_SET         "高亮设置"
+END
+
+STRINGTABLE 
+BEGIN
+    IDC_STATIC_EDITFONT     "字体："
+END
+
+STRINGTABLE 
+BEGIN
+    IDC_STATIC_EDITSTYLE    "字形："
+    IDC_STATIC_EDITSIZE     "字号："
+    IDC_STATIC_COLOR_BACK   "背景："
+    IDC_STATIC_COLOR_TEXT   "文本："
+    IDC_STATIC_COLOR_LINENUMBER "行号："
+    IDC_STATIC_COLOR_LINENUMBERBACK "行号背景："
+    IDC_STATIC_COLOR_SIDEBAR "分割线："
+    IDC_STATIC_COLOR_LINK   "超链接："
+    IDC_STATIC_COLOR_LINEOUTLINE "大纲线框："
+    IDC_STATIC_COLOR_BACKOUTLINE "大纲背景："
+    IDC_STATIC_COLOR_BACKSELACTIVE "选定的背景："
+    IDC_STATIC_COLOR_BACKSELINACTIVE "非活动的选定背景："
+    IDC_STATIC_COLOR_TEXTSELACTIVE "选定的文本："
+    IDC_STATIC_COLOR_TEXTSELINACTIVE "非活动的选定文本："
+    IDC_STATIC_COLOR_SYN    "关键字："
+    IDC_STATIC_COLOR_TYPE   "数据类型："
+END
+
+STRINGTABLE 
+BEGIN
+    IDC_STATIC_COLOR_STRING "字符串："
+    IDC_STATIC_COLOR_NUMBER "数字："
+    IDC_STATIC_COLOR_CHAR   "字符："
+    IDC_STATIC_COLOR_COMMENT "注释："
+    IDC_STATIC_FONT         "字体设置："
+    IDC_STATIC_COLOR        "颜色设置："
+    IDC_CHECK_SHOW_LINENUMBER "显示行号"
+    IDC_CHECK_SHOW_SIDEBAR  "显示分割线"
+    IDC_CHECK_SHOW_BORDER   "显示边框"
+    IDC_CHECK_SHOW_LANGTITLE "显示语言标题"
+    IDC_CHECK_SHOW_ADDTITLE "附加标题"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_SETEDIT              "进行编辑器设置\n编辑器设置"
+    ID_HTMLTOBLOG           "源代码网页高亮显示\n高亮到博客"
+    ID_SETHTML              "进行高亮设置\n高亮设置"
+    ID_EXPORTREG            "导出配置到文件\n导出配置"
+    ID_IMPORTREG            "从文件导入配置\n导入配置"
+    ID_TELLBUG              "提交建议或BUG给作者\n提交建议或BUG"
+    ID_ONLINEHELP           "联机获取帮助主题\n帮助主题"
+    ID_INDENT_MIN           "减少一个TAB位缩进\n减少缩进"
+    ID_INDENT_ADD           "增加一个TAB位缩进\n增加缩进"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_BORDERSTYLE_DATA    "无;实线;虚线;点线;双线;槽状;脊状;凹陷;凸出;"
+    IDC_STATIC_BORDER_WIDTH "边框宽度："
+    IDC_STATIC_BORDER_STYLE "边框样式："
+    IDC_STATIC_BORDER_COLOR "边框颜色："
+    IDC_STATIC_BACKGROUND_COLOR "背景颜色："
+    IDC_STATIC_OTHER_SET    "其他设置："
+    IDC_STATIC_LINEHEIGHT   "行间距："
+    IDC_STATIC_BASIC_SET    "基本设置："
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_TELLBUG_TEXT        "欢迎您提交建议或BUG，以便改进软件的功能。\n\n提交方式：\n①.邮箱：kof1234@sina.com\n②网站留言：http://blog.csdn.net/akof1314\n③QQ联系：307458053"
+    IDS_STRING_SET_CPP      "C/C++"
+    IDS_STRING_SET_JAVA     "Java"
+    IDS_STRING_SET_CSHARP   "C#"
+    IDS_STRING_SET_HTML     "HTML"
+    IDS_STRING_SET_XML      "XML"
+    IDS_STRING_CONFIGOK     "导入配置成功，请重新启动程序以加载新配置。"
+    IDS_STRING_CONFIGFAIL   "导入配置失败，请检查配置文件是否正确。"
+    IDS_STRING_CONFIGOUTOK  "导出配置成功，配置文件保存在：\r\n"
+    IDS_STRING_CONFIGOUTFAIL "导出配置失败，请重新尝试。"
+    IDS_STRING_LISTOUTOK    "保存批处理列表成功，列表存档文件保存在：\r\n"
+    IDS_STRING_BATCHFINDFILES "请选择目录\r\n\r\n将会自动按照选择的语言进行过滤后缀名"
+    IDS_STRING_BATCH_EMPTY  "请添加要批量格式化的文件！"
+    IDS_STRING_BATCH_QUEREN "确定要格式化所有文件？\n\n温馨提示：个人重要文件请做好备份！"
+    IDS_STRING_BATCH_OVER   "全部格式化完毕！"
+    IDS_STRING_FILENAMES    "文件名"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_COMMENT_DO           "注释选中行\n注释选中行"
+    ID_COMMENT_NOT          "取消行注释\n取消行注释"
+    ID_SELFORMAT            "对所选内容进行格式化\n所选格式化"
+    ID_SETFORMATTER         "格式化设置选项\n格式化设置"
+    ID_BATCHFORMAT          "批量格式化指定文件\n批量格式化"
+END
+
+STRINGTABLE 
+BEGIN
+    IDD_TELL_BUG            "提交建议或BUG"
+END
+
+STRINGTABLE 
+BEGIN
+    IDC_STATIC_TELLBUG_TOP  "欢迎您提交建议或BUG，以便改进软件的功能。"
+    IDC_STATIC_TELLBUG_TIJIAO "提交方式："
+    IDC_STATIC_EMAIL        "①邮箱方式："
+    IDC_STATIC_CSDN         "②网站方式："
+    IDC_STATIC_QQ           "③Q Q 方式："
+    IDS_EMAIL_TIP           "点击发送邮件"
+    IDS_CSDN_TIP            "点击进入网站"
+    IDS_QQ_TIP              "点击进行临时对话"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_TITLEFILE    "文件"
+    IDS_STRING_TITLENEW     "新建(&N)"
+    IDS_STRING_GOWUHUAN     "访问无幻博客"
+    IDS_MSG_GODEFAULTOUT    "是否要恢复原始默认设置？\n\n此操作将恢复当前选择的默认初始状态值，并自动关闭“格式化设置”界面。"
+    IDS_STRING_OUTPUT       "输出"
+    IDS_STRING_UAT_UNDEF    "未定义"
+    IDS_STRING_UAT_TYPE     "键入"
+    IDS_STRING_UAT_BACK     "后退"
+    IDS_STRING_UAT_CUT      "剪切"
+    IDS_STRING_UAT_PASTE    "粘贴"
+    IDS_STRING_UAT_DEL      "删除"
+    IDS_STRING_UAT_DRAG     "拖/放"
+    IDS_STRING_UAT_ENTER    "回车"
+    IDS_STRING_UAT_INDENT   "缩进"
+    IDS_STRING_UAT_UNINDENT "取消缩进"
+    IDS_STRING_UAT_TAB      "制表"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_UAT_REP      "替换"
+    IDS_STRING_UAT_COMM     "行注释"
+    IDS_STRING_UAT_UNCOMM   "取消行注释"
+    IDS_STRING_UAT_TIDY     "格式化"
+    IDS_STRING_MENU_EDIT    "编辑器上下文菜单"
+    IDS_STRING_MENU_HTML    "高亮上下文菜单"
+    IDS_STRING_ABOUTDESC    "    CoolFormat源代码格式化是一款C\\C++\\C# \\CSS\\HTML\\Java\\JavaScript\\JSON\\PHP\\SQL\\ XML代码格式化工具，并且支持代码高亮到网页上显示，方便博客文章之类的撰写阅读。"
+    IDS_STRING_OPTIONS      "选项"
+    IDS_STRING_NEEDFILE     "未指定所要打开的文件名。"
+    IDS_STRING57            "打开(&O)..."
+    IDS_STRING58            "保存(&S)"
+    IDS_STRING59            "另存为(&A)..."
+    IDS_STRING60            "打印(&P)"
+    IDS_STRING61            "预览并打印文档"
+    IDS_STRING62            "打印(&P)"
+    IDS_STRING63            "快速打印(&Q)"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING64            "打印预览(&V)"
+    IDS_STRING65            "关闭(&C)"
+    IDS_STRING66            "最近使用的文档"
+    IDS_STRING67            "选项(&I)"
+    IDS_STRING68            "退出(&X)"
+    IDS_STRING69            "开始\nh"
+    IDS_STRING70            "剪贴板"
+    IDS_STRING71            "粘贴\nv"
+    IDS_STRING72            "剪切\nx"
+    IDS_STRING73            "复制\nc"
+    IDS_STRING74            "全选\na"
+    IDS_STRING75            "功能"
+    IDS_STRING76            "快速格式化\nk"
+    IDS_STRING77            "所选格式化\ns"
+    IDS_STRING78            "高亮到博客\ng"
+    IDS_STRING79            "批量格式化\np"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING80            "风格"
+    IDS_STRING81            "语言\ny"
+    IDS_STRING82            "窗口"
+    IDS_STRING83            "撤销"
+    IDS_STRING84            "重做"
+    IDS_STRING85            "高级\ng"
+    IDS_STRING86            "语言设置"
+    IDS_STRING87            "格式化设置\nq"
+    IDS_STRING88            "扩展名设置\nw"
+    IDS_STRING89            "样式设置"
+    IDS_STRING90            "编辑器设置\ne"
+    IDS_STRING91            "高亮设置\nr"
+    IDS_STRING92            "导入导出"
+    IDS_STRING93            "导出配置\nt"
+    IDS_STRING94            "导入配置\ny"
+    IDS_STRING95            "其他功能"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_COMMALL      "所有命令"
+    IDS_STRING_SETFORMATTER "格式化设置"
+    IDS_STRING_CHANGEOPTIONS "更改最常用的选项"
+    IDS_STRING_CHANGEVISIT  "自定义快速访问工具栏和键盘快捷键"
+    IDS_STRING_LINKEUPDATE  "与作者联系，或查找联机资源，以便确保 CoolFormat 程序可以正常可靠地运行"
+    IDS_STRING_BATCHEXIT    "退出"
+    IDS_STRING_BATCHSELLANG "选择语言："
+    IDS_STRING_BATCHSELFILE "选择文件："
+    IDS_STRING_BATCHADD     "添加..."
+    IDS_STRING_BATCHLOADLIST "加载列表"
+    IDS_STRING_BATCHSAVELIST "保存列表"
+    IDS_STRING_BATCHDROPTIP "可直接拖动文件、文件夹或列表存档文件到列表框"
+    IDS_STRING_POPULARTITLE "常用"
+    IDS_STRING_POPULARCOLOR "配色方案："
+    IDS_STRING_POPULARSCREEN "屏幕提示样式："
+    IDS_STRING_POPULARLANG  "语言设置："
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_COPYCODE     "复制代码"
+END
+
+#endif    // 中文(中华人民共和国) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// 英语(美国) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_EDIT_CONTEXT_MENU MENU 
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "Cut",                         ID_EDIT_CUT
+        MENUITEM "Copy",                        ID_EDIT_COPY
+        MENUITEM "Paste",                       ID_EDIT_PASTE
+        MENUITEM "Select All",                  ID_EDIT_SELECT_ALL
+        MENUITEM SEPARATOR
+        POPUP "Outlining"
+        BEGIN
+            MENUITEM "&Hide Selection",             ID_EDIT_HIDESELECTION
+            MENUITEM "Stop H&iding Current",        ID_EDIT_STOPHIDINGCURRENT
+            MENUITEM "&Toggle Outlining",           ID_EDIT_TOGGLEOUTLINING
+            MENUITEM "Toggle All Out&lining",       ID_EDIT_TOGGLEALLOUTLINING
+            MENUITEM "C&ollapse to Definitions",    ID_EDIT_COLLAPSETODEFINITIONS
+            MENUITEM "Sto&p Outlining",             ID_EDIT_STOPOUTLINING
+        END
+        MENUITEM "Go to line...",               ID_EDIT_GOTO_LINE
+    END
+END
+
+IDR_HTML_CONTEXT_MENU MENU 
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "Copy",                        ID_EDIT_COPY
+        MENUITEM "Select All",                  ID_EDIT_SELECT_ALL
+        MENUITEM SEPARATOR
+        MENUITEM "Copy the HTML code",          ID_COPY_HTMLSRC
+    END
+END
+
+IDR_POPUP_MDITABS MENU 
+BEGIN
+    POPUP "DUMMY"
+    BEGIN
+        MENUITEM "&Save",                       ID_FILE_SAVE
+        MENUITEM "&Close",                      ID_FILE_CLOSE
+        MENUITEM "Close &All But This",         ID_FILE_OTHER_CLOSE
+        MENUITEM SEPARATOR
+        MENUITEM "Copy &Full Path",             ID_FILE_PATH
+        MENUITEM "&Open Containing Folder",     ID_FILEDIR_OPEN
+        MENUITEM SEPARATOR
+        MENUITEM "New &Horizontal Tab Group",   ID_MDI_NEW_HORZ_TAB_GROUP
+        MENUITEM "New &Vertical Tab Group",     ID_MDI_NEW_VERT_GROUP
+        MENUITEM "Move to Ne&xt Tab Group",     ID_MDI_MOVE_TO_NEXT_GROUP
+        MENUITEM "Move to P&revious Tab Group", ID_MDI_MOVE_TO_PREV_GROUP
+    END
+END
+
+IDR_POPUP_DROP_MDITABS MENU 
+BEGIN
+    POPUP "DUMMY"
+    BEGIN
+        MENUITEM "New &Horizontal Tab Group",   ID_MDI_NEW_HORZ_TAB_GROUP
+        MENUITEM "New &Vertical Tab Group",     ID_MDI_NEW_VERT_GROUP
+        MENUITEM "Move to Ne&xt Tab Group",     ID_MDI_MOVE_TO_NEXT_GROUP
+        MENUITEM "Move to P&revious Tab Group", ID_MDI_MOVE_TO_PREV_GROUP
+        MENUITEM SEPARATOR
+        MENUITEM "&Cancel",                     ID_MDI_CANCEL
+    END
+END
+
+IDR_WINDOWS_MENU MENU 
+BEGIN
+    MENUITEM "&New Window",                 ID_WINDOW_NEW
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 3,1,0,1
+ PRODUCTVERSION 3,1,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "804003a8"
+        BEGIN
+            VALUE "CompanyName", "WuHuan Product"
+            VALUE "FileDescription", "Source Code Formatter"
+            VALUE "FileVersion", "3.1.0.1"
+            VALUE "InternalName", "CoolFormat.exe"
+            VALUE "LegalCopyright", "WuHuan (c) 2010-2012.  All rights reserved."
+            VALUE "OriginalFilename", "CoolFormat.exe"
+            VALUE "ProductName", "CoolFormat Source Code Formatter"
+            VALUE "ProductVersion", "3.1.0.1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x8040, 936
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDR_MAINFRAME           "CoolFormat Source Code Formatter"
+    IDR_CoolFormat3TYPE     "\nNewFile\nCoolFormat3\n\n\nCoolFormat3.Document\nCoolFormat3.Document"
+    IDS_STRING_POPULARCOLORSTR "Blue;Black;Silver;"
+    IDS_STRING_POPULARSCRSTR 
+                            "Show feature descriptions in ScreenTips;Don't show feature descriptions in ScreenTips;Don't show ScreenTips;"
+    IDS_STRING_RES_UPDATE   "Get Updates"
+    IDS_STRING_RES_LINKEME  "Contact Us"
+    IDS_STRING_RES_TITLE    "Resources"
+    IDS_STRING_RES_CHECKUP  "Check for Updates"
+    IDS_STRING_RES_ABOUTLB  "About CoolFormat"
+    IDS_STRING_RES_ABOUT    "About"
+    IDS_STR_VIEWFORMATTER   "Preview:"
+    IDS_STRING_VIEWDESC     "Description:"
+    IDS_STRING_WUHUAN       "WuHuan Product"
+    IDS_STRING_CHANGELANG   "Change the language setting will take effect after you exit and restart the program"
+    IDS_STRING_HTML_AUTOCOPY "Auto Copy"
+    IDS_STRING_VERSION      "CoolFormat Version 3.1   Copyright (C) 2012"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "CoolFormat3"
+    AFX_IDS_IDLEMESSAGE     "Ready"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_INDICATOR_EXT        "EXT"
+    ID_INDICATOR_CAPS       "CAP"
+    ID_INDICATOR_NUM        "NUM"
+    ID_INDICATOR_SCRL       "SCRL"
+    ID_INDICATOR_OVR        "OVR"
+    ID_INDICATOR_REC        "REC"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_FILE_NEW             "Create a new document\nNew"
+    ID_FILE_OPEN            "Open an existing document\nOpen"
+    ID_FILE_CLOSE           "Close the active document\nClose"
+    ID_FILE_SAVE            "Save the active document\nSave"
+    ID_FILE_SAVE_AS         "Save the active document with a new name\nSave As"
+    ID_FILE_PAGE_SETUP      "Change the printing options\nPage Setup"
+    ID_FILE_PRINT_SETUP     "Change the printer and printing options\nPrint Setup"
+    ID_FILE_PRINT           "Print the active document\nPrint"
+    ID_FILE_PRINT_DIRECT    "Send the document directly to the default printer without making changes\nQuick Print"
+    ID_FILE_PRINT_PREVIEW   "Display full pages\nPrint Preview"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_APP_ABOUT            "Display program information, version number and copyright\nAbout"
+    ID_APP_EXIT             "Quit the application; prompts to save documents\nExit"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_FILE_MRU_FILE1       "Open this document"
+    ID_FILE_MRU_FILE2       "Open this document"
+    ID_FILE_MRU_FILE3       "Open this document"
+    ID_FILE_MRU_FILE4       "Open this document"
+    ID_FILE_MRU_FILE5       "Open this document"
+    ID_FILE_MRU_FILE6       "Open this document"
+    ID_FILE_MRU_FILE7       "Open this document"
+    ID_FILE_MRU_FILE8       "Open this document"
+    ID_FILE_MRU_FILE9       "Open this document"
+    ID_FILE_MRU_FILE10      "Open this document"
+    ID_FILE_MRU_FILE11      "Open this document?"
+    ID_FILE_MRU_FILE12      "Open this document"
+    ID_FILE_MRU_FILE13      "Open this document"
+    ID_FILE_MRU_FILE14      "Open this document"
+    ID_FILE_MRU_FILE15      "Open this document"
+    ID_FILE_MRU_FILE16      "Open this document"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_NEXT_PANE            "Switch to the next window pane\nNext Pane"
+    ID_PREV_PANE            "Switch back to the previous window pane\nPrevious Pane"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_WINDOW_NEW           "Open another window for the active document\nNew Window"
+    ID_WINDOW_ARRANGE       "Arrange icons at the bottom of the window\nArrange Icons"
+    ID_WINDOW_CASCADE       "Arrange windows so they overlap\nCascade Windows"
+    ID_WINDOW_TILE_HORZ     "Arrange windows as non-overlapping tiles\nTile Windows"
+    ID_WINDOW_TILE_VERT     "Arrange windows as non-overlapping tiles\nTile Windows"
+    ID_WINDOW_SPLIT         "Split the active window into panes\nSplit"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_EDIT_CLEAR           "Erase the selection\nErase"
+    ID_EDIT_CLEAR_ALL       "Erase everything\nErase All"
+    ID_EDIT_COPY            "Copy the selection and put it on the Clipboard\nCopy"
+    ID_EDIT_CUT             "Cut the selection and put it on the Clipboard\nCut"
+    ID_EDIT_FIND            "Find the specified text\nFind"
+    ID_EDIT_PASTE           "Insert Clipboard contents\nPaste"
+    ID_EDIT_REPEAT          "Repeat the last action\nRepeat"
+    ID_EDIT_REPLACE         "Replace specific text with different text\nReplace"
+    ID_EDIT_SELECT_ALL      "Select the entire document\nSelect All"
+    ID_EDIT_UNDO            "Undo the last action\nUndo"
+    ID_EDIT_REDO            "Redo the previously undone action\nRedo"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_VIEW_TOOLBAR         "Show or hide the toolbar\nToggle ToolBar"
+    ID_VIEW_STATUS_BAR      "Show or hide the status bar\nToggle StatusBar"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_SCSIZE          "Change the window size"
+    AFX_IDS_SCMOVE          "Change the window position"
+    AFX_IDS_SCMINIMIZE      "Reduce the window to an icon"
+    AFX_IDS_SCMAXIMIZE      "Enlarge the window to full size"
+    AFX_IDS_SCNEXTWINDOW    "Switch to the next document window"
+    AFX_IDS_SCPREVWINDOW    "Switch to the previous document window"
+    AFX_IDS_SCCLOSE         "Close the active window and prompts to save the documents"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_SCRESTORE       "Restore the window to normal size"
+    AFX_IDS_SCTASKLIST      "Activate Task List"
+    AFX_IDS_MDICHILD        "Activate this window"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_PREVIEW_CLOSE   "Close print preview mode\nCancel Preview"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING96            "Submit Suggestions or BUG\nu"
+    IDS_STRING97            "Help Topics\ni"
+    IDS_STRING_BATCHFORMAT  "Batch Format"
+    IDS_STRING_COMMPOPULAR  "Popular Commands"
+    IDS_STRING_COMMHIDDEN   "Commands not in the Ribbon"
+    IDS_MAIN_TOOLBAR        "Standard"
+    ID_STATUSBAR_PANE3      "Current Cursor"
+    ID_STATUSBAR_PANE4      "Author Website"
+    IDS_STATUS_LINK         "WuHuan Product http://blog.csdn.net/akof1314"
+    IDS_STATUS_AUTOR        "Author"
+    IDS_STATUS_ROWCOL       "Row %d    Col %d"
+    IDS_WINDOWS_MANAGER     "Windows(&W)..."
+    IDS_STATUS_CUR_RC       "Current Cursor"
+    IDS_STATUS_QQ           "QQ:307458053"
+    IDS_STATUS_CONTACT      "Contact"
+    IDS_DOC_UNSUPPORT       "You open a file type is not supported!"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_VIEW_APPLOOK_2010_1  "Activate Office 2010 application look\nOffice 2010 Look (Blue)"
+    ID_VIEW_APPLOOK_2010_2  "Activate Office 2010 application look\nOffice 2010 Look (Black)"
+    ID_VIEW_APPLOOK_2010_3  "Activate Office 2010 application look\nOffice 2010 Look (Silver)"
+    ID_TOOLS_OPTIONS        "Changes application options\nOptions"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_STATUSBAR_PANE1      "Author"
+    ID_STATUSBAR_PANE2      "Contact"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_FASTFORMAT           "Format the current document\nQuick Format"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_LANG                 "Current document language\nLanguage"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_NOW_LANG             "Current document language\nLanguage"
+    ID_COPY_HTMLSRC         "Copy the selected content HTML code and put it on the Clipboard\nCopy the HTML code"
+    ID_LANGEXT              "For Extension Settings\nExtension Settings"
+END
+
+STRINGTABLE 
+BEGIN
+    IDOK                    "OK"
+    IDCANLE                 "Cancel"
+    IDS_LANGEXT_DLG         "Extensions Settings"
+    IDS_LANGEXT_DLG_TIP     "Double-click the extension settings"
+    IDS_LANGEXT_EDIT_DLG    "Extensions Settings桵odify"
+    IDS_LANGUAGE_EX         "Language:"
+    IDS_LANGUAGEEXT_EX      "Extension:"
+    IDS_REG_ERROR           "Save the configuration fails, check the registry is writable!"
+    IDS_GOTOLINE_DLG        "Go to line"
+    IDS_GOTOLINE_DLG_TIP    "Line number(1 - %d):"
+    IDS_EDITSTYLE_DATA      "Regular;Bold;Italic;Bold+Italic;"
+    ID_TAB_HTML             "Highlight(Ctrl+~) "
+    ID_TAB_CODE             "Code"
+    IDS_HTML_TIP            "Has been re-highlighted code, select to copy and paste to your blog!"
+    IDS_TELLBUG_TITLE       "Submit suggestions or BUG"
+END
+
+STRINGTABLE 
+BEGIN
+    IDC_BUTTON_DEFAULTEXT   "Restore Defaults"
+    IDS_IS_WANTSAVE         "Do you want to save changes to %s?"
+    IDS_MSG_GODEFAULT       "Do you want to restore the original default settings?\n\nThis operation will restore the currently selected default initial state value and press the ""OK"" button to take effect."
+    IDS_LANGUAGE            "Language"
+    IDS_LANGUAGEEXT         "Extension(Double-click to modify)"
+END
+
+STRINGTABLE 
+BEGIN
+    IDD_SYNEDIT_SET         "Editor Settings"
+    IDD_SYNHTML_SET         "Highlight Settings"
+END
+
+STRINGTABLE 
+BEGIN
+    IDC_STATIC_EDITFONT     "Name:"
+END
+
+STRINGTABLE 
+BEGIN
+    IDC_STATIC_EDITSTYLE    "Style:"
+    IDC_STATIC_EDITSIZE     "Size:"
+    IDC_STATIC_COLOR_BACK   "Background:"
+    IDC_STATIC_COLOR_TEXT   "Text:"
+    IDC_STATIC_COLOR_LINENUMBER "Line Number:"
+    IDC_STATIC_COLOR_LINENUMBERBACK "Line Number Background:"
+    IDC_STATIC_COLOR_SIDEBAR "Dividing Line:"
+    IDC_STATIC_COLOR_LINK   "Hyperlink:"
+    IDC_STATIC_COLOR_LINEOUTLINE "Outline Wireframe:"
+    IDC_STATIC_COLOR_BACKOUTLINE "Outline Background:"
+    IDC_STATIC_COLOR_BACKSELACTIVE "Selected Background:"
+    IDC_STATIC_COLOR_BACKSELINACTIVE "Inactive Selected Background:"
+    IDC_STATIC_COLOR_TEXTSELACTIVE "Selected text:"
+    IDC_STATIC_COLOR_TEXTSELINACTIVE "Inactive Selected Text:"
+    IDC_STATIC_COLOR_SYN    "Keywords:"
+    IDC_STATIC_COLOR_TYPE   "Data Type:"
+END
+
+STRINGTABLE 
+BEGIN
+    IDC_STATIC_COLOR_STRING "Strings:"
+    IDC_STATIC_COLOR_NUMBER "Number:"
+    IDC_STATIC_COLOR_CHAR   "Char:"
+    IDC_STATIC_COLOR_COMMENT "Comment:"
+    IDC_STATIC_FONT         "Font Settings:"
+    IDC_STATIC_COLOR        "Color Settings:"
+    IDC_CHECK_SHOW_LINENUMBER "Line No."
+    IDC_CHECK_SHOW_SIDEBAR  "Dividing Line"
+    IDC_CHECK_SHOW_BORDER   "Border"
+    IDC_CHECK_SHOW_LANGTITLE "Language Title"
+    IDC_CHECK_SHOW_ADDTITLE "Add Title"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_SETEDIT              "For Editor Settings\nEditor Settings"
+    ID_HTMLTOBLOG           "Highlighting of source code to a Web page\nBlog Highlight"
+    ID_SETHTML              "For Highlight Settings\nHighlight Settings"
+    ID_EXPORTREG            "Export configuration to file\nExport Configuration"
+    ID_IMPORTREG            "Import configuration from file\nImport Configuration"
+    ID_TELLBUG              "Submit suggestions or BUG to the author\nSubmit Suggestions or BUG"
+    ID_ONLINEHELP           "Online access to help topics\nHelp Topics"
+    ID_INDENT_MIN           "Decrease a TAB indent\nDecrease Indent"
+    ID_INDENT_ADD           "Increase a TAB indent\nIncrease Indent"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_BORDERSTYLE_DATA    "None;Solid;Dashed;Dotted;Double;Groove;Ridge;Inset;Outset;"
+    IDC_STATIC_BORDER_WIDTH "   Width:"
+    IDC_STATIC_BORDER_STYLE "   Style:"
+    IDC_STATIC_BORDER_COLOR "   Color:"
+    IDC_STATIC_BACKGROUND_COLOR "Background:"
+    IDC_STATIC_OTHER_SET    "Other Settings:"
+    IDC_STATIC_LINEHEIGHT   "Spacing:"
+    IDC_STATIC_BASIC_SET    "Basic Settings:"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_TELLBUG_TEXT        "nothing"
+    IDS_STRING_SET_CPP      "C/C++"
+    IDS_STRING_SET_JAVA     "Java"
+    IDS_STRING_SET_CSHARP   "C#"
+    IDS_STRING_SET_HTML     "HTML"
+    IDS_STRING_SET_XML      "XML"
+    IDS_STRING_CONFIGOK     "The import configuration successfully, restart the program in order to load the new configuration."
+    IDS_STRING_CONFIGFAIL   "The import configuration failed, check whether the configuration file."
+    IDS_STRING_CONFIGOUTOK  "The export configuration successfully, the configuration file is saved in the:\r\n"
+    IDS_STRING_CONFIGOUTFAIL 
+                            "The export configuration failed, please try again."
+    IDS_STRING_LISTOUTOK    "Successfully saved batch list, list of archive files stored in:\r\n"
+    IDS_STRING_BATCHFINDFILES 
+                            "Please select the directory\r\n\r\nWill be automatically according to the selected language filter extension"
+    IDS_STRING_BATCH_EMPTY  "Please add the files to be formatted batch!"
+    IDS_STRING_BATCH_QUEREN "You sure you want to format all the files?\n\nTips: important personal files, please make a backup!"
+    IDS_STRING_BATCH_OVER   "All formatting is complete!"
+    IDS_STRING_FILENAMES    "File Name"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_COMMENT_DO           "Comment selected lines\nBlock Comment"
+    ID_COMMENT_NOT          "Uncomment selected lines\nBlock Uncomment"
+    ID_SELFORMAT            "Format the selected content\nSelected Format"
+    ID_SETFORMATTER         "Formatter settings options\nFormatter Settings"
+    ID_BATCHFORMAT          "Batch format the specified file\nBatch Format"
+END
+
+STRINGTABLE 
+BEGIN
+    IDD_TELL_BUG            "Submit Suggestions or BUG"
+END
+
+STRINGTABLE 
+BEGIN
+    IDC_STATIC_TELLBUG_TOP  "We welcome you to submit suggestions or BUG, in order to improve the functionality of the software."
+    IDC_STATIC_TELLBUG_TIJIAO "Submitted By:"
+    IDC_STATIC_EMAIL        "1.E-mail:"
+    IDC_STATIC_CSDN         "2.Website:"
+    IDC_STATIC_QQ           "3.QQ:"
+    IDS_EMAIL_TIP           "Click to send a Email"
+    IDS_CSDN_TIP            "Click to visit this website"
+    IDS_QQ_TIP              "Click to a temporary dialogue"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_TITLEFILE    "File"
+    IDS_STRING_TITLENEW     "&New"
+    IDS_STRING_GOWUHUAN     "Visit WuHuan's blog"
+    IDS_MSG_GODEFAULTOUT    "Do you want to restore the original default settings?\n\nThis operation will restore the currently selected default initial state values, and automatically turn off the ""Formatter Settings"" interface."
+    IDS_STRING_OUTPUT       "Output"
+    IDS_STRING_UAT_UNDEF    "Undefined"
+    IDS_STRING_UAT_TYPE     "Typing"
+    IDS_STRING_UAT_BACK     "Backspace"
+    IDS_STRING_UAT_CUT      "Cut"
+    IDS_STRING_UAT_PASTE    "Paste"
+    IDS_STRING_UAT_DEL      "Delete"
+    IDS_STRING_UAT_DRAG     "Drag/drop"
+    IDS_STRING_UAT_ENTER    "Enter"
+    IDS_STRING_UAT_INDENT   "Indent"
+    IDS_STRING_UAT_UNINDENT "Unindent"
+    IDS_STRING_UAT_TAB      "Tab"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_UAT_REP      "Replace"
+    IDS_STRING_UAT_COMM     "Comment"
+    IDS_STRING_UAT_UNCOMM   "Uncomment"
+    IDS_STRING_UAT_TIDY     "Formated"
+    IDS_STRING_MENU_EDIT    "Editor context menu"
+    IDS_STRING_MENU_HTML    "Highlight the context menu"
+    IDS_STRING_ABOUTDESC    "       CoolFormat source code formatter is a code formatter for C\\C++\\C#\\CSS \\HTML\\Java\\JavaScript\\JSON\\PHP\\SQL\\XML, and support for code highlighting displayed on a Web page to facilitate the writing of a blog post like reading."
+    IDS_STRING_OPTIONS      "Options"
+    IDS_STRING_NEEDFILE     "Do not specify the name of the file to open."
+    IDS_STRING57            "&Open..."
+    IDS_STRING58            "&Save"
+    IDS_STRING59            "Save &As..."
+    IDS_STRING60            "&Print"
+    IDS_STRING61            "Preview and print the document"
+    IDS_STRING62            "&Print"
+    IDS_STRING63            "&Quick Print"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING64            "Print Pre&view"
+    IDS_STRING65            "&Close"
+    IDS_STRING66            "Recent Documents"
+    IDS_STRING67            "Opt&ions"
+    IDS_STRING68            "E&xit"
+    IDS_STRING69            "Home\nh"
+    IDS_STRING70            "Clipboard"
+    IDS_STRING71            "Paste\nv"
+    IDS_STRING72            "Cut\nx"
+    IDS_STRING73            "Copy\nc"
+    IDS_STRING74            "Select All\na"
+    IDS_STRING75            "Feature"
+    IDS_STRING76            "Quick Format\nk"
+    IDS_STRING77            "Selected Format\ns"
+    IDS_STRING78            "Blog Highlight\ng"
+    IDS_STRING79            "Batch Format\np"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING80            "Style"
+    IDS_STRING81            "Language\ny"
+    IDS_STRING82            "Windows"
+    IDS_STRING83            "Undo"
+    IDS_STRING84            "Redo"
+    IDS_STRING85            "Advanced\ng"
+    IDS_STRING86            "Language Settings"
+    IDS_STRING87            "Formatter Settings\nq"
+    IDS_STRING88            "Extension Settings\nw"
+    IDS_STRING89            "Style Settings"
+    IDS_STRING90            "Editor Settings\ne"
+    IDS_STRING91            "Highlight Settings\nr"
+    IDS_STRING92            "Import and Export"
+    IDS_STRING93            "Export Configuration\nt"
+    IDS_STRING94            "Import Configuration\ny"
+    IDS_STRING95            "Other Features"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_COMMALL      "All Commands"
+    IDS_STRING_SETFORMATTER "Formatter Settings"
+    IDS_STRING_CHANGEOPTIONS "Change the most frequently used options"
+    IDS_STRING_CHANGEVISIT  "Customize the Quick Access Toolbar and keyboard shortcuts"
+    IDS_STRING_LINKEUPDATE  "Contact the author, or find online resources in order to ensure CoolFormat program can run normally reliable"
+    IDS_STRING_BATCHEXIT    "Exit"
+    IDS_STRING_BATCHSELLANG "Select Language:"
+    IDS_STRING_BATCHSELFILE "Select File(s):"
+    IDS_STRING_BATCHADD     "Add..."
+    IDS_STRING_BATCHLOADLIST "Load List"
+    IDS_STRING_BATCHSAVELIST "Save List"
+    IDS_STRING_BATCHDROPTIP "Directly drag files, folders, or a file(.cfconfig) to here"
+    IDS_STRING_POPULARTITLE "Popular"
+    IDS_STRING_POPULARCOLOR "Color Scheme:"
+    IDS_STRING_POPULARSCREEN "ScreenTip Style:"
+    IDS_STRING_POPULARLANG  "Language Settings:"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_STRING_COPYCODE     "Copy Code"
+END
+
+#endif    // 英语(美国) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+LANGUAGE 4, 2
+#pragma code_page(936)
+#include "res\CoolFormat3.rc2"  // 非 Microsoft Visual C++ 编辑的资源
+#include "l.CHS\afxres.rc"         // 标准组件
+#include "l.CHS\afxprint.rc"       // 打印/打印预览资源
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
