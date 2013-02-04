@@ -63,7 +63,7 @@ BOOL CFormatterHelp::FormatterCs( const char *pTextIn, CString &strTextOut )
 {
 	AStyleInterface astyle;
 	CStringA strTidy(g_GlobalTidy.m_TidyCSharp);
-	strTidy.Append("--mode=cs");
+	strTidy.Append(" --mode=cs");
 	char *pTextOut = astyle.formatSource(pTextIn, strTidy);
 	if (pTextOut == NULL)
 	{
@@ -79,7 +79,7 @@ BOOL CFormatterHelp::FormatterJava( const char *pTextIn, CString &strTextOut )
 {
 	AStyleInterface astyle;
 	CStringA strTidy(g_GlobalTidy.m_TidyJava);
-	strTidy.Append("--mode=java");
+	strTidy.Append(" --mode=java");
 	char *pTextOut = astyle.formatSource(pTextIn, strTidy);
 	if (pTextOut == NULL)
 	{
