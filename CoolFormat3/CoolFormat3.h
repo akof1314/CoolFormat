@@ -7,7 +7,7 @@
 
 #include "resource.h"       // main symbols
 
-
+#define COOLFORMAT_CLASS _T("CoolFormat")
 // CCoolFormat3App:
 // See CoolFormat3.cpp for the implementation of this class
 //
@@ -31,9 +31,10 @@ public:
 	
 	/**
 	 * 是否有命令行参数
-	 * @return BOOL FALSE表示有参数，退出程序
+	 * @return BOOL TRUE表示有参数，退出程序
 	 */
 	BOOL IsCmdLine();
+
 	UINT m_nAppLook;
 	BOOL m_bShowToolTips;
 	BOOL m_bShowToolTipDescr;

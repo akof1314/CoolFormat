@@ -70,6 +70,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CBCGPMDIFrameWnd)
 	ON_COMMAND(ID_ONLINEHELP, &CMainFrame::OnOnlinehelp)
 	ON_COMMAND(ID_SETFORMATTER, &CMainFrame::OnSetformatter)
 	ON_COMMAND(ID_BATCHFORMAT, &CMainFrame::OnBatchformat)
+	ON_WM_COPYDATA()
 END_MESSAGE_MAP()
 
 // CMainFrame construction/destruction
@@ -166,11 +167,20 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 //////////////////////////////////////////////////////////////////////////
 BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 {
+	if (cs.lpszClass)
+	{
+		WNDCLASS wndcls;
+		GetClassInfo(AfxGetInstanceHandle(), cs.lpszClass, &wndcls);
+		wndcls.lpszClassName = COOLFORMAT_CLASS;
+		AfxRegisterClass(&wndcls);
+		cs.lpszClass = wndcls.lpszClassName;
+	}
+
 	if( !CBCGPMDIFrameWnd::PreCreateWindow(cs) )
 		return FALSE;
 	// TODO: Modify the Window class or styles here by modifying
 	//  the CREATESTRUCT cs
-
+	
 	return TRUE;
 }
 
@@ -1034,4 +1044,31 @@ void CMainFrame::OnBatchformat()
 {
 	CBatchFormat dlg;
 	dlg.DoModal();
+}
+//////////////////////////////////////////////////////////////////////////
+BOOL CMainFrame::OnCopyData(CWnd* pWnd, COPYDATASTRUCT* pCopyDataStruct)
+{
+	CString strName((LPCTSTR)pCopyDataStruct->lpData);
+	strName = strName.Left(pCopyDataStruct->cbData / 2);
+	LPTSTR pszExtension = PathFindExtension(strName);
+	if (pszExtension != NULL && *pszExtension == _T('.'))
+	{
+		_tcslwr_s(pszExtension, _tcslen(pszExtension) + 1);
+		if (!g_GlobalUtils.m_sLanguageExt.IsDocSupport(pszExtension))
+		{
+			CString strTemp;
+			BOOL bNameVaild = strTemp.LoadString(IDS_DOC_UNSUPPORT);
+			ASSERT(bNameVaild);
+			CFMessageBox(strTemp, MB_OK | MB_ICONERROR);
+		}
+		else
+		{
+			theApp.OpenDocumentFile(strName);
+		}
+	}
+	else
+	{
+		theApp.OpenDocumentFile(strName);
+	}
+	return CBCGPMDIFrameWnd::OnCopyData(pWnd, pCopyDataStruct);
 }

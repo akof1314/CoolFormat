@@ -45,6 +45,6 @@ void GlobalUtils::InitGlobalUtilsFrist()
 int CFMessageBox( LPCTSTR lpText, UINT uType )
 {
 	int nResult = IDOK;	
-	nResult = BCGPMessageBox(::GetActiveWindow(), lpText, _T("CoolFormat"), uType);
+	nResult = BCGPMessageBox(::GetActiveWindow(), lpText, COOLFORMAT_CLASS, uType);
 	return nResult;
 }

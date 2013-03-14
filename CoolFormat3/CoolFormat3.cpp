@@ -84,7 +84,7 @@ BOOL CCoolFormat3App::InitInstance()
 
 	//¼ÓÔØ×¢²á±íÅäÖÃ
 	LoadReg();
-	if (FALSE == IsCmdLine())
+	if (IsCmdLine())
 	{
 		return FALSE;
 	}
@@ -332,19 +332,34 @@ void CCoolFormat3App::RunLang()
 
 BOOL CCoolFormat3App::IsCmdLine()
 {
-	BOOL bNoCmd = TRUE;
-	CString strName(theApp.m_lpCmdLine);
+	CString strCmd(theApp.m_lpCmdLine);
+	CString strArgs(strCmd.Left(3));
+	CString strName(strCmd);
+	BOOL bFormatter = FALSE;
+	if (0 == strArgs.CompareNoCase(_T("-f ")))
+	{
+		strName = strCmd.Mid(3);
+		bFormatter = TRUE;
+	}	
+
+	BOOL bFindFile = FALSE;
 	if (strName.GetLength() > 0)
 	{
 		strName = strName.Trim('"');
 		CFileFind fileFind;
 		if (fileFind.FindFile(strName))
 		{
-			bNoCmd = FALSE;
+			bFindFile = TRUE;
 		}		
 		fileFind.Close();
 	}
-	if (FALSE == bNoCmd)
+
+	if (!bFindFile)
+	{
+		return bFormatter;
+	}
+
+	if (bFormatter)
 	{
 		CString strExt, strText;
 		CString strTextOut, strMsgOut;
@@ -354,17 +369,17 @@ BOOL CCoolFormat3App::IsCmdLine()
 		nSynIndex = g_GlobalUtils.m_sLanguageExt.GetLanguageByExt(strExt);
 		if (FALSE == g_GlobalTidy.m_bTidySyn[nSynIndex])
 		{
-			return bNoCmd;
+			return TRUE;
 		}
 
 		CKofFile m_File;
 		if (!m_File.OpenFile(strName, strText))
 		{
-			return bNoCmd;
+			return TRUE;
 		}
 		if (strText.IsEmpty())
 		{
-			return bNoCmd;
+			return TRUE;
 		}
 
 		CStringA strTextIn(strText);
@@ -373,8 +388,38 @@ BOOL CCoolFormat3App::IsCmdLine()
 		{
 			m_File.SaveFile(strName, strTextOut);
 		}
+		return TRUE;
+	} 
+	else
+	{
+		HWND hCoolFormat = FindWindow(COOLFORMAT_CLASS, NULL);
+		if (!hCoolFormat)
+		{
+			return FALSE;
+		}
+
+		int nCmdShow = SW_SHOW;
+		if (IsZoomed(hCoolFormat))
+		{
+			nCmdShow = SW_MAXIMIZE;
+		} 
+		else if (IsIconic(hCoolFormat))
+		{
+			nCmdShow = SW_RESTORE;
+		}
+		ShowWindow(hCoolFormat, nCmdShow);
+		SetForegroundWindow(hCoolFormat);
+
+		COPYDATASTRUCT fileNamesData;
+		fileNamesData.dwData = 0;
+		fileNamesData.cbData = strName.GetLength() * sizeof(TCHAR);
+		fileNamesData.lpData = (void *)strName.GetBuffer(fileNamesData.cbData);
+		SendMessage(hCoolFormat, WM_COPYDATA, NULL, (LPARAM)&fileNamesData);
+		strName.ReleaseBuffer();
+		return TRUE;
 	}
-	return bNoCmd;
+	
+	return FALSE;
 }
 BOOL CAboutDlg::OnInitDialog()
 {

@@ -109,6 +109,7 @@ public:
 	afx_msg void OnOnlinehelp();
 	afx_msg void OnSetformatter();
 	afx_msg void OnBatchformat();
+	afx_msg BOOL OnCopyData(CWnd* pWnd, COPYDATASTRUCT* pCopyDataStruct);
 };
 
 
