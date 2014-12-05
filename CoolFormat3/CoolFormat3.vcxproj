@@ -177,7 +177,7 @@
     <ClCompile Include="XmlOutlineParser.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\BCGControlBarPro\BCGCBPro\resource.h" />
+    <ClInclude Include="..\..\BCGControlBarPro\BCGCBPro\bcgprores.h" />
     <ClInclude Include="BatchFormat.h" />
     <ClInclude Include="BCGEX\MyBCGPRibbonLabel.h" />
     <ClInclude Include="BCGEX\OptionsPropSheet.h" />
@@ -207,7 +207,6 @@
     <ClInclude Include="PageResource.h" />
     <ClInclude Include="RegConfig.h" />
     <ClInclude Include="Resource.h" />
-    <ClInclude Include="res\bcgprores.h" />
     <ClInclude Include="SetEditDlg.h" />
     <ClInclude Include="SetHtmlDlg.h" />
     <ClInclude Include="SetPageCpp.h" />

@@ -221,9 +221,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="res\bcgprores.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="FormatterHelp.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -383,7 +380,7 @@
     <ClInclude Include="Core\SQL\SqlTidy.h">
       <Filter>头文件\格式化核心\SQL</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\BCGControlBarPro\BCGCBPro\resource.h">
+    <ClInclude Include="..\..\BCGControlBarPro\BCGCBPro\bcgprores.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
