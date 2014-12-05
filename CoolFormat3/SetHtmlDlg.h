@@ -1,5 +1,4 @@
 #pragma once
-#include "KofBCGPFontComboBox.h"
 #include "kofColorButton.h"
 
 //////////////////////////////////////////////////////////////////////////
@@ -17,7 +16,7 @@ public:
 	enum { IDD = IDD_SYNHTML_SET };
 
 protected:
-	CKofBCGPFontComboBox m_htmlFont;
+	CBCGPFontComboBox m_htmlFont;
 	CBCGPComboBox m_htmlStyle;
 	CBCGPComboBox m_htmlSize;
 	

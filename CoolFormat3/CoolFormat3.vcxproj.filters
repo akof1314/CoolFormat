@@ -90,9 +90,6 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="KofBCGPFontComboBox.cpp">
-      <Filter>源文件\源码扩展</Filter>
-    </ClCompile>
     <ClCompile Include="KofBCGPListCtrl.cpp">
       <Filter>源文件\源码扩展</Filter>
     </ClCompile>
@@ -239,14 +236,8 @@
     <ClInclude Include="Resource.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\MyCode\VC界面库\BCGSoft\BCGControlBarPro\BCGCBPro\Styles\resource.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="stdafx.h">
       <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="KofBCGPFontComboBox.h">
-      <Filter>头文件\源码扩展</Filter>
     </ClInclude>
     <ClInclude Include="KofBCGPListCtrl.h">
       <Filter>头文件\源码扩展</Filter>
@@ -392,6 +383,9 @@
     <ClInclude Include="Core\SQL\SqlTidy.h">
       <Filter>头文件\格式化核心\SQL</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\BCGControlBarPro\BCGCBPro\resource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\aboutmain.bmp">
@@ -438,16 +432,16 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="..\..\..\..\MyCode\VC界面库\BCGSoft\BCGControlBarPro\BCGCBPro\Styles\BCGPStyle2010Black.rc">
-      <Filter>资源文件</Filter>
-    </ResourceCompile>
-    <ResourceCompile Include="..\..\..\..\MyCode\VC界面库\BCGSoft\BCGControlBarPro\BCGCBPro\Styles\BCGPStyle2010Blue.rc">
-      <Filter>资源文件</Filter>
-    </ResourceCompile>
-    <ResourceCompile Include="..\..\..\..\MyCode\VC界面库\BCGSoft\BCGControlBarPro\BCGCBPro\Styles\BCGPStyle2010White.rc">
-      <Filter>资源文件</Filter>
-    </ResourceCompile>
     <ResourceCompile Include="CoolFormat3.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="..\..\BCGControlBarPro\BCGCBPro\Styles\BCGPStyle2010Black.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="..\..\BCGControlBarPro\BCGCBPro\Styles\BCGPStyle2010Blue.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="..\..\BCGControlBarPro\BCGCBPro\Styles\BCGPStyle2010White.rc">
       <Filter>资源文件</Filter>
     </ResourceCompile>
   </ItemGroup>

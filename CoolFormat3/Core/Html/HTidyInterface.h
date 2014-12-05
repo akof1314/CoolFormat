@@ -1,8 +1,8 @@
 #pragma once
 #ifdef _DEBUG
-#pragma comment(lib, "libtidydb.lib")
+#pragma comment(lib, "tidylibd.lib")
 #else
-#pragma comment(lib, "libtidy.lib")
+#pragma comment(lib, "tidylib.lib")
 #endif // _DEBUG
 #include "tidy.h"
 
