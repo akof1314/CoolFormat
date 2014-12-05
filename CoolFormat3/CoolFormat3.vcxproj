@@ -1,0 +1,380 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug Static|Win32">
+      <Configuration>Debug Static</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release Static|Win32">
+      <Configuration>Release Static</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{3ED78A39-F379-4B65-9411-E952B7D87793}</ProjectGuid>
+    <RootNamespace>CoolFormat3</RootNamespace>
+    <Keyword>MFCProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Static|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v120_xp</PlatformToolset>
+    <UseOfMfc>Static</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Static|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v120_xp</PlatformToolset>
+    <UseOfMfc>Static</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <UseOfMfc>Dynamic</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release Static|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug Static|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>12.0.30501.0</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)Temp\Link\$(ProjectName)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)Temp\Compile\$(ProjectName)\$(Configuration)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)Temp\Link\$(ProjectName)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)Temp\Compile\$(ProjectName)\$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Static|Win32'">
+    <OutDir>$(SolutionDir)Temp\Link\$(ProjectName)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)Temp\Compile\$(ProjectName)\$(Configuration)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+    <TargetName>$(ProjectName)d</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Static|Win32'">
+    <OutDir>$(SolutionDir)Temp\Link\$(ProjectName)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)Temp\Compile\$(ProjectName)\$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>false</ValidateAllParameters>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>F:\MyCode\VC界面库\BCGSoft\BCGControlBarPro\BCGCBPro;$(SolutionDir)Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0804</Culture>
+      <AdditionalIncludeDirectories>F:\MyCode\VC界面库\BCGSoft\BCGControlBarPro\BCGCBPro;F:\MyCode\VC界面库\BCGSoft\BCGControlBarPro\BCGCBPro\Styles;$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalLibraryDirectories>F:\MyCode\VC界面库\BCGSoft\BCGControlBarPro\Bin;$(SolutionDir)Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <PostBuildEvent>
+      <Command>echo D | xcopy "$(TargetPath)" "$(SolutionDir)Bin\$(Configuration)" /y</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>false</ValidateAllParameters>
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>F:\MyCode\VC界面库\BCGSoft\BCGControlBarPro\BCGCBPro;$(SolutionDir)Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0804</Culture>
+      <AdditionalIncludeDirectories>F:\MyCode\VC界面库\BCGSoft\BCGControlBarPro\BCGCBPro;F:\MyCode\VC界面库\BCGSoft\BCGControlBarPro\BCGCBPro\Styles;$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalLibraryDirectories>F:\MyCode\VC界面库\BCGSoft\BCGControlBarPro\Bin;$(SolutionDir)Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <PostBuildEvent>
+      <Command>echo D | xcopy "$(TargetPath)" "$(SolutionDir)Bin\$(Configuration)" /y</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug Static|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>false</ValidateAllParameters>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\..\BCGCBPro;$(SolutionDir)Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;AFX_TARG_CHS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0804</Culture>
+      <AdditionalIncludeDirectories>F:\MyCode\VC界面库\BCGSoft\BCGControlBarPro\BCGCBPro;F:\MyCode\VC界面库\BCGSoft\BCGControlBarPro\BCGCBPro\Styles;$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalLibraryDirectories>$(SolutionDir)Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <PostBuildEvent>
+      <Command>echo D | xcopy "$(TargetPath)" "$(SolutionDir)Bin\$(Configuration)" /y</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release Static|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>false</ValidateAllParameters>
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>..\..\BCGCBPro;$(SolutionDir)Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0804</Culture>
+      <AdditionalIncludeDirectories>F:\MyCode\VC界面库\BCGSoft\BCGControlBarPro\BCGCBPro;F:\MyCode\VC界面库\BCGSoft\BCGControlBarPro\BCGCBPro\Styles;$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+      <AdditionalLibraryDirectories>$(SolutionDir)Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <PostBuildEvent>
+      <Command>echo D | xcopy "$(TargetPath)" "$(SolutionDir)Bin\$(Configuration)" /y</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="BatchFormat.cpp" />
+    <ClCompile Include="BCGEX\MyBCGPRibbonLabel.cpp" />
+    <ClCompile Include="BCGEX\OptionsPropSheet.cpp" />
+    <ClCompile Include="ChildFrm.cpp" />
+    <ClCompile Include="CoolFormat3.cpp" />
+    <ClCompile Include="CoolFormat3Doc.cpp" />
+    <ClCompile Include="CoolFormat3View.cpp" />
+    <ClCompile Include="Core\Cpp\AStyleInterface.cpp" />
+    <ClCompile Include="Core\Html\HTidyInterface.cpp" />
+    <ClCompile Include="FormatterHelp.cpp" />
+    <ClCompile Include="GlobalTidy.cpp" />
+    <ClCompile Include="GlobalUtils.cpp" />
+    <ClCompile Include="GotoLineDlg.cpp" />
+    <ClCompile Include="KofBCGPFontComboBox.cpp" />
+    <ClCompile Include="KofBCGPListCtrl.cpp" />
+    <ClCompile Include="kofColorButton.cpp" />
+    <ClCompile Include="KofFile.cpp" />
+    <ClCompile Include="LangExtDlg.cpp" />
+    <ClCompile Include="LangExtEditDlg.cpp" />
+    <ClCompile Include="MainFrm.cpp" />
+    <ClCompile Include="OutputViewBar.cpp" />
+    <ClCompile Include="PagePopular.cpp" />
+    <ClCompile Include="PageResource.cpp" />
+    <ClCompile Include="RegConfig.cpp" />
+    <ClCompile Include="SetEditDlg.cpp" />
+    <ClCompile Include="SetHtmlDlg.cpp" />
+    <ClCompile Include="SetPageCpp.cpp" />
+    <ClCompile Include="SetPageCppFast.cpp" />
+    <ClCompile Include="SetPageCppHigh.cpp" />
+    <ClCompile Include="SetPageCSS.cpp" />
+    <ClCompile Include="SetPageHtml.cpp" />
+    <ClCompile Include="SetPageHtmlOne.cpp" />
+    <ClCompile Include="SetPageHtmlTwo.cpp" />
+    <ClCompile Include="SetPageJS.cpp" />
+    <ClCompile Include="SetPageJson.cpp" />
+    <ClCompile Include="SetPagePHP.cpp" />
+    <ClCompile Include="SetPageSql.cpp" />
+    <ClCompile Include="SetSheet.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug Static|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release Static|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="SynBCGPEditCtrl.cpp" />
+    <ClCompile Include="SynBCGPEditView.cpp" />
+    <ClCompile Include="SynColorScheme.cpp" />
+    <ClCompile Include="SynExtension.cpp" />
+    <ClCompile Include="SynHtmlView.cpp" />
+    <ClCompile Include="SynLanguage.cpp" />
+    <ClCompile Include="SynStyle.cpp" />
+    <ClCompile Include="TellBug.cpp" />
+    <ClCompile Include="XmlOutlineParser.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\MyCode\VC界面库\BCGSoft\BCGControlBarPro\BCGCBPro\Styles\resource.h" />
+    <ClInclude Include="BatchFormat.h" />
+    <ClInclude Include="BCGEX\MyBCGPRibbonLabel.h" />
+    <ClInclude Include="BCGEX\OptionsPropSheet.h" />
+    <ClInclude Include="ChildFrm.h" />
+    <ClInclude Include="CoolFormat3.h" />
+    <ClInclude Include="CoolFormat3Doc.h" />
+    <ClInclude Include="CoolFormat3View.h" />
+    <ClInclude Include="Core\Cpp\AStyleInterface.h" />
+    <ClInclude Include="Core\CSS\CssFormatter.h" />
+    <ClInclude Include="Core\Html\HTidyInterface.h" />
+    <ClInclude Include="Core\Json\JsonTidy.h" />
+    <ClInclude Include="Core\Js\JsTidy.h" />
+    <ClInclude Include="Core\PHP\PhpTidy.h" />
+    <ClInclude Include="Core\SQL\SqlTidy.h" />
+    <ClInclude Include="FormatterHelp.h" />
+    <ClInclude Include="GlobalTidy.h" />
+    <ClInclude Include="GlobalUtils.h" />
+    <ClInclude Include="GotoLineDlg.h" />
+    <ClInclude Include="KofBCGPFontComboBox.h" />
+    <ClInclude Include="KofBCGPListCtrl.h" />
+    <ClInclude Include="kofColorButton.h" />
+    <ClInclude Include="KofFile.h" />
+    <ClInclude Include="LangExtDlg.h" />
+    <ClInclude Include="LangExtEditDlg.h" />
+    <ClInclude Include="MainFrm.h" />
+    <ClInclude Include="OutputViewBar.h" />
+    <ClInclude Include="PagePopular.h" />
+    <ClInclude Include="PageResource.h" />
+    <ClInclude Include="RegConfig.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="res\bcgprores.h" />
+    <ClInclude Include="SetEditDlg.h" />
+    <ClInclude Include="SetHtmlDlg.h" />
+    <ClInclude Include="SetPageCpp.h" />
+    <ClInclude Include="SetPageCppFast.h" />
+    <ClInclude Include="SetPageCppHigh.h" />
+    <ClInclude Include="SetPageCSS.h" />
+    <ClInclude Include="SetPageHtml.h" />
+    <ClInclude Include="SetPageHtmlOne.h" />
+    <ClInclude Include="SetPageHtmlTwo.h" />
+    <ClInclude Include="SetPageJS.h" />
+    <ClInclude Include="SetPageJson.h" />
+    <ClInclude Include="SetPagePHP.h" />
+    <ClInclude Include="SetPageSql.h" />
+    <ClInclude Include="SetSheet.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="SynBCGPEditCtrl.h" />
+    <ClInclude Include="SynBCGPEditView.h" />
+    <ClInclude Include="SynColorScheme.h" />
+    <ClInclude Include="SynExtension.h" />
+    <ClInclude Include="SynHtmlView.h" />
+    <ClInclude Include="SynLanguage.h" />
+    <ClInclude Include="SynStyle.h" />
+    <ClInclude Include="TellBug.h" />
+    <ClInclude Include="XmlOutlineParser.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\aboutmain.bmp" />
+    <Image Include="res\CoolFormat3.ico" />
+    <Image Include="res\CoolFormat3Doc.ico" />
+    <Image Include="res\Document.ico" />
+    <Image Include="res\menuimages.bmp" />
+    <Image Include="res\menuimages_hc.png" />
+    <Image Include="res\options.png" />
+    <Image Include="res\output_bar_hc.ico" />
+    <Image Include="res\ribbonfilelarge.bmp" />
+    <Image Include="res\ribbonfilesmall.bmp" />
+    <Image Include="res\ribbonhomelarge.bmp" />
+    <Image Include="res\ribbonhomesmall.bmp" />
+    <Image Include="res\ribbonicons.bmp" />
+    <Image Include="res\ribbonmain.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\..\..\..\MyCode\VC界面库\BCGSoft\BCGControlBarPro\BCGCBPro\Styles\BCGPStyle2010Black.rc" />
+    <ResourceCompile Include="..\..\..\..\MyCode\VC界面库\BCGSoft\BCGControlBarPro\BCGCBPro\Styles\BCGPStyle2010Blue.rc" />
+    <ResourceCompile Include="..\..\..\..\MyCode\VC界面库\BCGSoft\BCGControlBarPro\BCGCBPro\Styles\BCGPStyle2010White.rc" />
+    <ResourceCompile Include="CoolFormat3.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\CoolFormat3.rc2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="F:\MyCode\VC界面库\BCGSoft\BCGControlBarPro\BCGCBPro\Styles\BCGPStyle2010Black.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

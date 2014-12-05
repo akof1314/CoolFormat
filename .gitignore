@@ -26,3 +26,11 @@
 *.exe
 *.out
 *.app
+
+*.sdf
+/Lib
+/Temp
+/ipch
+*.opensdf
+*.suo
+*.user
