@@ -103,7 +103,6 @@ protected:
 	CKofFile m_File;
 	void OnGetCharColor (TCHAR ch, int nOffset, COLORREF& clrText, COLORREF& clrBk);
 	BOOL OnGetWordColor (const CString& strWord, COLORREF& clrText, COLORREF& clrBk, int nPos);	
-	virtual void OnDrawLineNumbersBar (CDC* pDC, CRect rect);
 	DECLARE_MESSAGE_MAP()
 
 public:

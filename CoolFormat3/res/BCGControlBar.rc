@@ -1187,6 +1187,7 @@ STRINGTABLE
 BEGIN
     IDS_BCGBARRES_ROW_UP    "向上滚动"
     IDS_BCGBARRES_ROW_DOWN  "向下滚动"
+    IDS_BCGBARRES_EDITCTRL_LINKTOOLTIP  "%s\n按住 Ctrl 并单击可访问链接"
 END
 
 #endif    // 中文(中华人民共和国) resources
@@ -1601,6 +1602,7 @@ STRINGTABLE DISCARDABLE
 BEGIN
     IDS_BCGBARRES_ROW_UP    "Row Up"
     IDS_BCGBARRES_ROW_DOWN  "Row Down"
+    IDS_BCGBARRES_EDITCTRL_LINKTOOLTIP  "%s\nCTRL + click to follow link"
 END
 
 #endif    // 英语(美国) resources
