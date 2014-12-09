@@ -69,7 +69,9 @@ BOOL CSetEditDlg::OnInitDialog()
 	m_btnDefaultLink.SizeToContent();
 
 	InitFont();
-	return TRUE;
+
+	GetDlgItem(IDCANCEL)->SetFocus();
+	return FALSE;
 }
 
 void CSetEditDlg::OnBnClickedOk()

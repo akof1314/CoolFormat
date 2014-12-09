@@ -59,7 +59,8 @@ BOOL CSetHtmlDlg::OnInitDialog()
 	InitFont();
 	InitStyle();
 
-	return TRUE;  // return TRUE unless you set the focus to a control
+	GetDlgItem(IDCANCEL)->SetFocus();
+	return FALSE;  // return TRUE unless you set the focus to a control
 	// 异常: OCX 属性页应返回 FALSE
 }
 

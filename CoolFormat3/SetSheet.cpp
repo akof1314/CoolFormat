@@ -56,7 +56,8 @@ BOOL CSetSheet::OnInitDialog()
 	bNameVaild = strTemp.LoadString(IDCANCEL);
 	ASSERT(bNameVaild);
 	SetDlgItemText(IDCANCEL, strTemp);
-	return bResult;
+	GetDlgItem(IDCANCEL)->SetFocus();
+	return FALSE;
 }
 
 BOOL CSetSheet::PreTranslateMessage(MSG* pMsg)

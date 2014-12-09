@@ -985,6 +985,7 @@ END
 IDB_BCGBARRES_RIBBON_PRINT_LARGE PNG                     "res\\RibbonPrintL.png"
 IDB_BCGBARRES_RIBBON_PRINT_SMALL PNG                     "res\\RibbonPrintS.png"
 // IDB_BCGBARRES_CALCBUTTONS PNG                     "res\\calcbuttons.png"
+IDB_BCGBARRES_FONT32    PNG     MOVEABLE PURE     "res\\font-pro32.png"
 
 /////////////////////////////////////////////////////////////////////////////
 //
