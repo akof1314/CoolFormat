@@ -5,6 +5,15 @@
 #include "CoolFormat3.h"
 #include "SetSheet.h"
 
+#include "SetPageCpp.h"
+#include "SetPageJS.h"
+#include "SetPageHtml.h"
+#include "SetPagePHP.h"
+#include "SetPageCSS.h"
+#include "SetPageJson.h"
+#include "SetPageSql.h"
+#include "SetPageBase.h"
+
 #define  IDC_SETSHEET_DEFAULT 501
 // CSetSheet
 
@@ -93,6 +102,44 @@ BOOL CSetSheet::PreTranslateMessage(MSG* pMsg)
 		}
 	}
 	return CBCGPPropertySheet::PreTranslateMessage(pMsg);
+}
+
+INT_PTR CSetSheet::DoModalAllPage()
+{
+	m_psh.dwFlags |= PSH_NOAPPLYNOW;
+	SetLook(CBCGPPropertySheet::PropSheetLook_List, 124);
+
+	CSetPageCpp pageCpp(SYN_CPP, IDS_STRING_SET_CPP);
+	CSetPageCpp pageJava(SYN_JAVA, IDS_STRING_SET_JAVA);
+	CSetPageCpp pageCs(SYN_CS, IDS_STRING_SET_CSHARP);
+	CSetPageJS pageJS;
+	CSetPageHtml pageHtml(SYN_HTML, IDS_STRING_SET_HTML);
+	CSetPageHtml pageXml(SYN_XML, IDS_STRING_SET_XML);
+	CSetPagePHP pagePHP;
+	CSetPageCSS pageCSS;
+	CSetPageJson pageJson;
+	CSetPageSql pageSql;
+	CSetPageBase pagebase;
+	AddPage(&pagebase);
+	AddPage(&pageCpp);
+	AddPage(&pageCs);
+	AddPage(&pageCSS);
+	AddPage(&pageHtml);
+	AddPage(&pageJava);
+	AddPage(&pageJS);
+	AddPage(&pageJson);
+	AddPage(&pagePHP);
+	AddPage(&pageSql);
+	AddPage(&pageXml);
+
+	EnableVisualManagerStyle(TRUE, TRUE);
+
+	INT_PTR nResult = DoModal();
+	if (nResult == IDOK)
+	{
+		SaveTidyToReg();
+	}
+	return nResult;
 }
 
 void CSetSheet::SaveTidyToReg()

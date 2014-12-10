@@ -1,6 +1,6 @@
 //{{NO_DEPENDENCIES}}
-// Microsoft Visual C++ generated include file.
-// Used by CoolFormat3.rc
+// Microsoft Visual C++ 生成的包含文件。
+// 供 CoolFormat3.rc 使用
 //
 #define IDCANLE                         2
 #define IDS_LANGEXT_DLG                 3
@@ -209,6 +209,9 @@
 #define IDB_BITMAP1                     196
 #define IDB_BITMAP_ABOUT                196
 #define IDR_ACCEL_EDIT                  197
+#define IDD_DIALOG8                     198
+#define IDD_SET_ALL                     198
+#define IDD_SET_BASE                    198
 #define IDC_COMPANY_URL                 1041
 #define IDC_LINE                        1053
 #define IDC_LINETIP                     1054
@@ -599,6 +602,7 @@
 #define IDC_STATIC_VIEWFORMATTER        1271
 #define IDC_STATIC_WUHUAN               1272
 #define IDC_STATIC_VERSION              1273
+#define IDC_PROPLIST_LOCATION           1274
 #define ID_VIEW_TOOLBARS                32771
 #define ID_WINDOW_MANAGER               32825
 #define ID_VIEW_APPLOOK_2000            32826
@@ -729,9 +733,9 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        198
+#define _APS_NEXT_RESOURCE_VALUE        199
 #define _APS_NEXT_COMMAND_VALUE         32977
-#define _APS_NEXT_CONTROL_VALUE         1274
+#define _APS_NEXT_CONTROL_VALUE         1275
 #define _APS_NEXT_SYMED_VALUE           108
 #endif
 #endif

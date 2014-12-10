@@ -19,13 +19,6 @@
 #include "BatchFormat.h"
 
 #include "SetSheet.h"
-#include "SetPageCpp.h"
-#include "SetPageJS.h"
-#include "SetPageHtml.h"
-#include "SetPagePHP.h"
-#include "SetPageCSS.h"
-#include "SetPageJson.h"
-#include "SetPageSql.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -1007,37 +1000,7 @@ void CMainFrame::OnSetformatter()
 	BOOL bNameVaild = strTemp.LoadString(IDS_STRING_SETFORMATTER);
 	ASSERT(bNameVaild);
 	CSetSheet setSheet(strTemp, this, 0);
-	setSheet.m_psh.dwFlags |= PSH_NOAPPLYNOW;
-	setSheet.SetLook(CBCGPPropertySheet::PropSheetLook_List, 124);
-
-	CSetPageCpp pageCpp(SYN_CPP, IDS_STRING_SET_CPP);
-	CSetPageCpp pageJava(SYN_JAVA, IDS_STRING_SET_JAVA);
-	CSetPageCpp pageCs(SYN_CS, IDS_STRING_SET_CSHARP);
-	CSetPageJS pageJS;
-	CSetPageHtml pageHtml(SYN_HTML, IDS_STRING_SET_HTML);
-	CSetPageHtml pageXml(SYN_XML, IDS_STRING_SET_XML);
-	CSetPagePHP pagePHP;
-	CSetPageCSS pageCSS;
-	CSetPageJson pageJson;
-	CSetPageSql pageSql;
-	setSheet.AddPage(&pageCpp);
-	setSheet.AddPage(&pageCs);
-	setSheet.AddPage(&pageCSS);
-	setSheet.AddPage(&pageHtml);
-	setSheet.AddPage(&pageJava);
-	setSheet.AddPage(&pageJS);
-	setSheet.AddPage(&pageJson);
-	setSheet.AddPage(&pagePHP);
-	setSheet.AddPage(&pageSql);
-	setSheet.AddPage(&pageXml);
-
-	setSheet.EnableVisualManagerStyle(TRUE, TRUE);
-
-	INT_PTR nResult = setSheet.DoModal();
-	if (nResult == IDOK)
-	{
-		setSheet.SaveTidyToReg();
-	}
+	setSheet.DoModalAllPage();	
 }
 //////////////////////////////////////////////////////////////////////////
 void CMainFrame::OnBatchformat()

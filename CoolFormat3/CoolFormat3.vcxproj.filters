@@ -219,6 +219,9 @@
     <ClCompile Include="Core\Html\HTidyInterface.cpp">
       <Filter>源文件\格式化核心\Html</Filter>
     </ClCompile>
+    <ClCompile Include="SetPageBase.cpp">
+      <Filter>源文件\格式化设置</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FormatterHelp.h">
@@ -382,6 +385,9 @@
     </ClInclude>
     <ClInclude Include="..\..\BCGControlBarPro\BCGCBPro\bcgprores.h">
       <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SetPageBase.h">
+      <Filter>头文件\格式化设置</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

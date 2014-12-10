@@ -117,6 +117,7 @@ IDB_BCGBARRES_MENU_IMAGES24 BITMAP                  "res\\menuimg-pro24.bmp"
 // IDB_BCGBARRES_SD2010_MIDDLE BITMAP                  "res\\SD2010center.bmp"
 // IDB_BCGBARRES_SD2010_RIGHT BITMAP                  "res\\SD2010right.bmp"
 // IDB_BCGBARRES_SD2010_BASE BITMAP                  "res\\SD2010Base.bmp"
+IDR_BCGBARRES_PROPLIST  BITMAP  DISCARDABLE     "res\\proplist.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -169,6 +170,11 @@ BEGIN
     BUTTON      ID_BCGRES_TWO_PAGES_DUMMY
 END
 
+IDR_BCGBARRES_PROPLIST TOOLBAR DISCARDABLE  16, 16
+BEGIN
+    BUTTON      ID_BCGBARRES_PROPLIST_CATEGORIZED
+    BUTTON      ID_BCGBARRES_PROPLIST_ALPHABETICAL
+END
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -980,11 +986,12 @@ END
 // IDB_BCGBARRES_NAV_FRAMES PNG                     "res\\NavFrames.png"
 // IDB_BCGBARRES_NAV_BUTTONS_120 PNG                     "res\\NavButtons120.png"
 // IDB_BCGBARRES_NAV_FRAMES_120 PNG                     "res\\NavFrames120.png"
-// IDB_BCGBARRES_SEARCH32  PNG                     "res\\search32.png"
-// IDB_BCGBARRES_CLEAR32   PNG                     "res\\clear32.png"
+IDB_BCGBARRES_SEARCH32  PNG                     "res\\search32.png"
+IDB_BCGBARRES_CLEAR32   PNG                     "res\\clear32.png"
 IDB_BCGBARRES_RIBBON_PRINT_LARGE PNG                     "res\\RibbonPrintL.png"
 IDB_BCGBARRES_RIBBON_PRINT_SMALL PNG                     "res\\RibbonPrintS.png"
 // IDB_BCGBARRES_CALCBUTTONS PNG                     "res\\calcbuttons.png"
+IDR_BCGBARRES_PROPLIST32 PNG     MOVEABLE PURE   "res\\proplist32.png"
 IDB_BCGBARRES_FONT32    PNG     MOVEABLE PURE     "res\\font-pro32.png"
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1189,6 +1196,44 @@ BEGIN
     IDS_BCGBARRES_ROW_UP    "向上滚动"
     IDS_BCGBARRES_ROW_DOWN  "向下滚动"
     IDS_BCGBARRES_EDITCTRL_LINKTOOLTIP  "%s\n按住 Ctrl 并单击可访问链接"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_BCGBARRES_PIN_ITEM  "Pin this item to the list"
+    IDS_BCGBARRES_UNPIN_ITEM "Unpin this item from the list"
+    IDS_BCGBARRES_CHART_TOOLTIP_AXIS_VALUE_FORMAT "Value: %s"
+    IDS_BCGBARRES_CHART_TOOLTIP_TERNARY_VALUE_FORMAT "%s: %s\n%s: %s\n%s: %s"
+    IDS_BCGBARRES_CHART_TOOLTIP_RANGE_VALUE_FORMAT "X: %s\nY: %s\nSize: %s"
+    IDS_BCGBARRES_LINE_STYLES "Solid\nDash\nDot\nDash Dot\nDash Dot Dot"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_BCGBARRES_CHART_TOOLTIP_VALUE_FORMAT "X: %s\nY: %s"
+    IDS_BCGBARRES_CHART_STOCK_VALUE_FORMAT 
+                            "Time: %s\nOpen: %.4f\nHigh: %.4f\nLow: %.4f\nClose: %.4f"
+    IDS_BCGBARRES_PROPLIST_MENU_RESET "Reset Value"
+    IDS_BCGBARRES_PROPLIST_MENU_COPY "Copy Value"
+    IDS_BCGBARRES_PROPLIST_MENU_PASTE "Paste Value"
+    IDS_BCGBARRES_PROPLIST_MENU_EDIT "Edit Value"
+    IDS_BCGBARRES_PROPLIST_MENU_VIEW_COMMANDS "View Commands"
+    IDS_BCGBARRES_PROPLIST_MENU_VIEW_DESCR "View Descriptions"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_BCGBARRES_SCRIPT_LABEL "Scr&ipt:"
+    ID_BCGBARRES_PROPLIST_CATEGORIZED "分类顺序\nCategorized"
+    ID_BCGBARRES_PROPLIST_ALPHABETICAL "字母顺序\nAlphabetical"
+    IDS_BCGBARRES_PROPLIST_OUT_OF_FILTER 
+                            "No properties match the search criteria"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_BCGBARRES_SEARCH_PROMPT "Search"
+    IDS_BCGBARRES_SELECT_ALL "Select All"
 END
 
 #endif    // 中文(中华人民共和国) resources
@@ -1604,6 +1649,44 @@ BEGIN
     IDS_BCGBARRES_ROW_UP    "Row Up"
     IDS_BCGBARRES_ROW_DOWN  "Row Down"
     IDS_BCGBARRES_EDITCTRL_LINKTOOLTIP  "%s\nCTRL + click to follow link"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_BCGBARRES_PIN_ITEM  "Pin this item to the list"
+    IDS_BCGBARRES_UNPIN_ITEM "Unpin this item from the list"
+    IDS_BCGBARRES_CHART_TOOLTIP_AXIS_VALUE_FORMAT "Value: %s"
+    IDS_BCGBARRES_CHART_TOOLTIP_TERNARY_VALUE_FORMAT "%s: %s\n%s: %s\n%s: %s"
+    IDS_BCGBARRES_CHART_TOOLTIP_RANGE_VALUE_FORMAT "X: %s\nY: %s\nSize: %s"
+    IDS_BCGBARRES_LINE_STYLES "Solid\nDash\nDot\nDash Dot\nDash Dot Dot"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_BCGBARRES_CHART_TOOLTIP_VALUE_FORMAT "X: %s\nY: %s"
+    IDS_BCGBARRES_CHART_STOCK_VALUE_FORMAT 
+                            "Time: %s\nOpen: %.4f\nHigh: %.4f\nLow: %.4f\nClose: %.4f"
+    IDS_BCGBARRES_PROPLIST_MENU_RESET "Reset Value"
+    IDS_BCGBARRES_PROPLIST_MENU_COPY "Copy Value"
+    IDS_BCGBARRES_PROPLIST_MENU_PASTE "Paste Value"
+    IDS_BCGBARRES_PROPLIST_MENU_EDIT "Edit Value"
+    IDS_BCGBARRES_PROPLIST_MENU_VIEW_COMMANDS "View Commands"
+    IDS_BCGBARRES_PROPLIST_MENU_VIEW_DESCR "View Descriptions"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_BCGBARRES_SCRIPT_LABEL "Scr&ipt:"
+    ID_BCGBARRES_PROPLIST_CATEGORIZED "Categorized\nCategorized"
+    ID_BCGBARRES_PROPLIST_ALPHABETICAL "Alphabetical\nAlphabetical"
+    IDS_BCGBARRES_PROPLIST_OUT_OF_FILTER 
+                            "No properties match the search criteria"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_BCGBARRES_SEARCH_PROMPT "Search"
+    IDS_BCGBARRES_SELECT_ALL "Select All"
 END
 
 #endif    // 英语(美国) resources

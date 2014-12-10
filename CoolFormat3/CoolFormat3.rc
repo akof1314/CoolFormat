@@ -13,13 +13,11 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// 中文(中华人民共和国) resources
+// 中文(简体，中国) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
-#ifdef _WIN32
 LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
 #pragma code_page(936)
-#endif //_WIN32
 
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
@@ -86,7 +84,7 @@ IDB_BITMAP_ABOUT        BITMAP                  "res\\aboutmain.bmp"
 // Menu
 //
 
-IDR_MAINFRAME MENU 
+IDR_MAINFRAME MENU
 BEGIN
     POPUP "文件(&F)"
     BEGIN
@@ -138,7 +136,7 @@ BEGIN
     END
 END
 
-IDR_CoolFormat3TYPE MENU 
+IDR_CoolFormat3TYPE MENU
 BEGIN
     POPUP "文件(&F)"
     BEGIN
@@ -231,7 +229,7 @@ BEGIN
     END
 END
 
-IDR_POPUP_TOOLBAR MENU 
+IDR_POPUP_TOOLBAR MENU
 BEGIN
     POPUP "DUMMY"
     BEGIN
@@ -239,7 +237,7 @@ BEGIN
     END
 END
 
-IDR_POPUP_MDITABS MENU 
+IDR_POPUP_MDITABS MENU
 BEGIN
     POPUP "DUMMY"
     BEGIN
@@ -257,7 +255,7 @@ BEGIN
     END
 END
 
-IDR_POPUP_DROP_MDITABS MENU 
+IDR_POPUP_DROP_MDITABS MENU
 BEGIN
     POPUP "DUMMY"
     BEGIN
@@ -270,25 +268,25 @@ BEGIN
     END
 END
 
-IDR_PASTE_MENU MENU 
+IDR_PASTE_MENU MENU
 BEGIN
     MENUITEM "粘贴(&P)",                      ID_EDIT_PASTE
     MENUITEM "选择性粘贴(&S)...",                ID_EDIT_PASTE_SPECIAL
 END
 
-IDR_WINDOWS_MENU MENU 
+IDR_WINDOWS_MENU MENU
 BEGIN
     MENUITEM "新建窗口(&N)",                    ID_WINDOW_NEW
 END
 
-IDR_THEME_MENU MENU 
+IDR_THEME_MENU MENU
 BEGIN
     MENUITEM "Office 2010 Bl&ue Theme",     ID_VIEW_APPLOOK_2010_1
     MENUITEM "Office 2010 Bla&ck Theme",    ID_VIEW_APPLOOK_2010_2
     MENUITEM "Office 2010 Sil&ver Theme",   ID_VIEW_APPLOOK_2010_3
 END
 
-IDR_EDIT_CONTEXT_MENU MENU 
+IDR_EDIT_CONTEXT_MENU MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
@@ -310,7 +308,7 @@ BEGIN
     END
 END
 
-IDR_HTML_CONTEXT_MENU MENU 
+IDR_HTML_CONTEXT_MENU MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
@@ -321,7 +319,7 @@ BEGIN
     END
 END
 
-IDR_LANG_MENU MENU 
+IDR_LANG_MENU MENU
 BEGIN
     POPUP "A"
     BEGIN
@@ -386,7 +384,7 @@ END
 // Accelerator
 //
 
-IDR_MAINFRAME ACCELERATORS 
+IDR_MAINFRAME ACCELERATORS
 BEGIN
     "4",            ID_BATCHFORMAT,         VIRTKEY, CONTROL, NOINVERT
     "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
@@ -406,7 +404,7 @@ BEGIN
     "Y",            ID_EDIT_REDO,           VIRTKEY, CONTROL, NOINVERT
 END
 
-IDR_ACCEL_EDIT ACCELERATORS 
+IDR_ACCEL_EDIT ACCELERATORS
 BEGIN
     "W",            ID_FILE_CLOSE,          VIRTKEY, CONTROL, NOINVERT
     "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL, NOINVERT
@@ -426,7 +424,7 @@ BEGIN
     LTEXT           "无幻出品",IDC_STATIC_WUHUAN,7,105,69,8
     DEFPUSHBUTTON   "确定",IDOK,178,100,50,16,WS_GROUP
     PUSHBUTTON      "http://blog.csdn.net/akof1314",IDC_COMPANY_URL,55,104,119,14
-    CONTROL         196,IDC_STATIC,"Static",SS_BITMAP,21,21,46,46
+    CONTROL         IDB_BITMAP1,IDC_STATIC,"Static",SS_BITMAP,21,21,46,46
     LTEXT           "CoolFormat 版本 3.2       版权所有 (C) 2013",IDC_STATIC_VERSION,7,90,180,8,SS_NOPREFIX
     LTEXT           "静态",IDC_STATIC_ABOUT,84,24,142,57
 END
@@ -973,6 +971,17 @@ BEGIN
     CONTROL         "Endline on subquery",IDC_CHECK_SQL_ENDLINE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,135,23,99,10
 END
 
+IDD_SET_BASE DIALOGEX 0, 0, 440, 327
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
+CAPTION "Dialog"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDIT_VIEWFORMATTER,257,19,175,292,ES_MULTILINE | ES_AUTOHSCROLL | ES_WANTRETURN
+    GROUPBOX        "Indentation",IDC_STATIC,5,5,237,312
+    GROUPBOX        "预览",IDC_STATIC_VIEWFORMATTER,250,5,189,312
+    LTEXT           "Static",IDC_PROPLIST_LOCATION,15,17,219,292
+END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -1019,7 +1028,7 @@ END
 //
 
 #ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO 
+GUIDELINES DESIGNINFO
 BEGIN
     IDD_ABOUTBOX, DIALOG
     BEGIN
@@ -1191,6 +1200,14 @@ BEGIN
         TOPMARGIN, 7
         BOTTOMMARGIN, 320
     END
+
+    IDD_SET_BASE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 302
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 317
+    END
 END
 #endif    // APSTUDIO_INVOKED
 
@@ -1200,7 +1217,7 @@ END
 // Toolbar
 //
 
-IDR_MENU_IMAGES TOOLBAR  16, 16
+IDR_MENU_IMAGES TOOLBAR 16, 16
 BEGIN
     BUTTON      ID_MDI_NEW_HORZ_TAB_GROUP
     BUTTON      ID_MDI_NEW_VERT_GROUP
@@ -1646,7 +1663,7 @@ END
 // String Table
 //
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDR_MAINFRAME           "CoolFormat源代码格式化"
     IDR_CoolFormat3TYPE     "\nNewFile\nCoolFormat3\n\n\nCoolFormat3.Document\nCoolFormat3.Document"
@@ -1666,13 +1683,13 @@ BEGIN
     IDS_STRING_VERSION      "CoolFormat 版本 3.2       版权所有 (C) 2013"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     AFX_IDS_APP_TITLE       "CoolFormat3"
     AFX_IDS_IDLEMESSAGE     "就绪"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_INDICATOR_EXT        "EXT"
     ID_INDICATOR_CAPS       "CAP"
@@ -1682,7 +1699,7 @@ BEGIN
     ID_INDICATOR_REC        "REC"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_FILE_NEW             "创建新文档\n新建"
     ID_FILE_OPEN            "打开现有文档\n打开"
@@ -1696,13 +1713,13 @@ BEGIN
     ID_FILE_PRINT_PREVIEW   "打印前预览整个页面\n打印预览"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_APP_ABOUT            "显示程序信息、版本号和版权\n关于"
     ID_APP_EXIT             "退出应用程序；提示保存文档\n退出"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_FILE_MRU_FILE1       "打开此文档"
     ID_FILE_MRU_FILE2       "打开此文档"
@@ -1722,13 +1739,13 @@ BEGIN
     ID_FILE_MRU_FILE16      "打开此文档"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_NEXT_PANE            "切换到下一个窗格\n下一窗格"
     ID_PREV_PANE            "切换回上一个窗格\n上一窗格"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_WINDOW_NEW           "为活动文档打开另一个窗口\n新建窗口"
     ID_WINDOW_ARRANGE       "在窗口底部排列图标\n排列图标"
@@ -1738,7 +1755,7 @@ BEGIN
     ID_WINDOW_SPLIT         "将活动窗口拆分为多个窗格\n拆分"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_EDIT_CLEAR           "清除选定内容\n清除"
     ID_EDIT_CLEAR_ALL       "清除全部内容\n全部清除"
@@ -1753,13 +1770,13 @@ BEGIN
     ID_EDIT_REDO            "恢复上次撤消的操作\n重做"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_VIEW_TOOLBAR         "显示或隐藏工具栏\n切换工具栏"
     ID_VIEW_STATUS_BAR      "显示或隐藏状态栏\n切换状态栏"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     AFX_IDS_SCSIZE          "更改窗口大小"
     AFX_IDS_SCMOVE          "更改窗口位置"
@@ -1770,19 +1787,19 @@ BEGIN
     AFX_IDS_SCCLOSE         "关闭活动窗口并提示保存文档"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     AFX_IDS_SCRESTORE       "将窗口恢复到正常大小"
     AFX_IDS_SCTASKLIST      "激活任务列表"
     AFX_IDS_MDICHILD        "激活此窗口"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     AFX_IDS_PREVIEW_CLOSE   "关闭打印预览模式\n取消预览"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING96            "提交建议或BUG\nu"
     IDS_STRING97            "帮助主题\ni"
@@ -1802,7 +1819,7 @@ BEGIN
     IDS_DOC_UNSUPPORT       "您打开了不支持的文件类型！"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_VIEW_APPLOOK_2010_1  "使用 Office 2010 应用程序外观\nOffice 2010 外观 (Blue)"
     ID_VIEW_APPLOOK_2010_2  "使用 Office 2010 应用程序外观\nOffice 2010 外观 (Black)"
@@ -1810,30 +1827,30 @@ BEGIN
     ID_TOOLS_OPTIONS        "更改应用程序选项\n选项"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_STATUSBAR_PANE1      "作者"
     ID_STATUSBAR_PANE2      "联系方式"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_FASTFORMAT           "格式化当前文档\n快速格式化"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_LANG                 "当前文档语言\n语言"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_NOW_LANG             "当前文档语言\n当前语言"
     ID_COPY_HTMLSRC         "复制选定内容的HTML代码并将其放到剪贴板上\n复制HTML代码"
     ID_LANGEXT              "进行扩展名设置\n扩展名设置"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDOK                    "确定"
     IDCANLE                 "取消"
@@ -1852,7 +1869,7 @@ BEGIN
     IDS_TELLBUG_TITLE       "提交建议或BUG"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDC_BUTTON_DEFAULTEXT   "恢复默认值"
     IDS_IS_WANTSAVE         "是否保存对 %s 的更改？"
@@ -1861,18 +1878,18 @@ BEGIN
     IDS_LANGUAGEEXT         "扩展名(双击修改)"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDD_SYNEDIT_SET         "编辑器设置"
     IDD_SYNHTML_SET         "高亮设置"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDC_STATIC_EDITFONT     "字体："
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDC_STATIC_EDITSTYLE    "字形："
     IDC_STATIC_EDITSIZE     "字号："
@@ -1892,7 +1909,7 @@ BEGIN
     IDC_STATIC_COLOR_TYPE   "数据类型："
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDC_STATIC_COLOR_STRING "字符串："
     IDC_STATIC_COLOR_NUMBER "数字："
@@ -1907,7 +1924,7 @@ BEGIN
     IDC_CHECK_SHOW_ADDTITLE "附加标题"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_SETEDIT              "进行编辑器设置\n编辑器设置"
     ID_HTMLTOBLOG           "源代码网页高亮显示\n高亮到博客"
@@ -1920,7 +1937,7 @@ BEGIN
     ID_INDENT_ADD           "增加一个TAB位缩进\n增加缩进"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_BORDERSTYLE_DATA    "无;实线;虚线;点线;双线;槽状;脊状;凹陷;凸出;"
     IDC_STATIC_BORDER_WIDTH "边框宽度："
@@ -1932,7 +1949,7 @@ BEGIN
     IDC_STATIC_BASIC_SET    "基本设置："
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_TELLBUG_TEXT        "欢迎您提交建议或BUG，以便改进软件的功能。\n\n提交方式：\n①.邮箱：kof1234@sina.com\n②网站留言：http://blog.csdn.net/akof1314\n③QQ联系：307458053"
     IDS_STRING_SET_CPP      "C/C++"
@@ -1952,7 +1969,7 @@ BEGIN
     IDS_STRING_FILENAMES    "文件名"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_COMMENT_DO           "注释选中行\n注释选中行"
     ID_COMMENT_NOT          "取消行注释\n取消行注释"
@@ -1961,12 +1978,12 @@ BEGIN
     ID_BATCHFORMAT          "批量格式化指定文件\n批量格式化"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDD_TELL_BUG            "提交建议或BUG"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDC_STATIC_TELLBUG_TOP  "欢迎您提交建议或BUG，以便改进软件的功能。"
     IDC_STATIC_TELLBUG_TIJIAO "提交方式："
@@ -1978,7 +1995,7 @@ BEGIN
     IDS_QQ_TIP              "点击进行临时对话"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_TITLEFILE    "文件"
     IDS_STRING_TITLENEW     "新建(&N)"
@@ -1998,7 +2015,7 @@ BEGIN
     IDS_STRING_UAT_TAB      "制表"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_UAT_REP      "替换"
     IDS_STRING_UAT_COMM     "行注释"
@@ -2018,7 +2035,7 @@ BEGIN
     IDS_STRING63            "快速打印(&Q)"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING64            "打印预览(&V)"
     IDS_STRING65            "关闭(&C)"
@@ -2038,7 +2055,7 @@ BEGIN
     IDS_STRING79            "批量格式化\np"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING80            "风格"
     IDS_STRING81            "语言\ny"
@@ -2058,7 +2075,7 @@ BEGIN
     IDS_STRING95            "其他功能"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_COMMALL      "所有命令"
     IDS_STRING_SETFORMATTER "格式化设置"
@@ -2078,12 +2095,12 @@ BEGIN
     IDS_STRING_POPULARLANG  "语言设置："
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_COPYCODE     "复制代码"
 END
 
-#endif    // 中文(中华人民共和国) resources
+#endif    // 中文(简体，中国) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
@@ -2091,17 +2108,15 @@ END
 // 英语(美国) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
-#ifdef _WIN32
 LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 #pragma code_page(1252)
-#endif //_WIN32
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // Menu
 //
 
-IDR_EDIT_CONTEXT_MENU MENU 
+IDR_EDIT_CONTEXT_MENU MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
@@ -2123,7 +2138,7 @@ BEGIN
     END
 END
 
-IDR_HTML_CONTEXT_MENU MENU 
+IDR_HTML_CONTEXT_MENU MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
@@ -2134,7 +2149,7 @@ BEGIN
     END
 END
 
-IDR_POPUP_MDITABS MENU 
+IDR_POPUP_MDITABS MENU
 BEGIN
     POPUP "DUMMY"
     BEGIN
@@ -2152,7 +2167,7 @@ BEGIN
     END
 END
 
-IDR_POPUP_DROP_MDITABS MENU 
+IDR_POPUP_DROP_MDITABS MENU
 BEGIN
     POPUP "DUMMY"
     BEGIN
@@ -2165,7 +2180,7 @@ BEGIN
     END
 END
 
-IDR_WINDOWS_MENU MENU 
+IDR_WINDOWS_MENU MENU
 BEGIN
     MENUITEM "&New Window",                 ID_WINDOW_NEW
 END
@@ -2215,7 +2230,7 @@ END
 // String Table
 //
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDR_MAINFRAME           "CoolFormat Source Code Formatter"
     IDR_CoolFormat3TYPE     "\nNewFile\nCoolFormat3\n\n\nCoolFormat3.Document\nCoolFormat3.Document"
@@ -2236,13 +2251,13 @@ BEGIN
     IDS_STRING_VERSION      "CoolFormat Version 3.2   Copyright (C) 2013"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     AFX_IDS_APP_TITLE       "CoolFormat3"
     AFX_IDS_IDLEMESSAGE     "Ready"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_INDICATOR_EXT        "EXT"
     ID_INDICATOR_CAPS       "CAP"
@@ -2252,7 +2267,7 @@ BEGIN
     ID_INDICATOR_REC        "REC"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_FILE_NEW             "Create a new document\nNew"
     ID_FILE_OPEN            "Open an existing document\nOpen"
@@ -2266,13 +2281,13 @@ BEGIN
     ID_FILE_PRINT_PREVIEW   "Display full pages\nPrint Preview"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_APP_ABOUT            "Display program information, version number and copyright\nAbout"
     ID_APP_EXIT             "Quit the application; prompts to save documents\nExit"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_FILE_MRU_FILE1       "Open this document"
     ID_FILE_MRU_FILE2       "Open this document"
@@ -2292,13 +2307,13 @@ BEGIN
     ID_FILE_MRU_FILE16      "Open this document"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_NEXT_PANE            "Switch to the next window pane\nNext Pane"
     ID_PREV_PANE            "Switch back to the previous window pane\nPrevious Pane"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_WINDOW_NEW           "Open another window for the active document\nNew Window"
     ID_WINDOW_ARRANGE       "Arrange icons at the bottom of the window\nArrange Icons"
@@ -2308,7 +2323,7 @@ BEGIN
     ID_WINDOW_SPLIT         "Split the active window into panes\nSplit"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_EDIT_CLEAR           "Erase the selection\nErase"
     ID_EDIT_CLEAR_ALL       "Erase everything\nErase All"
@@ -2323,13 +2338,13 @@ BEGIN
     ID_EDIT_REDO            "Redo the previously undone action\nRedo"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_VIEW_TOOLBAR         "Show or hide the toolbar\nToggle ToolBar"
     ID_VIEW_STATUS_BAR      "Show or hide the status bar\nToggle StatusBar"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     AFX_IDS_SCSIZE          "Change the window size"
     AFX_IDS_SCMOVE          "Change the window position"
@@ -2340,19 +2355,19 @@ BEGIN
     AFX_IDS_SCCLOSE         "Close the active window and prompts to save the documents"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     AFX_IDS_SCRESTORE       "Restore the window to normal size"
     AFX_IDS_SCTASKLIST      "Activate Task List"
     AFX_IDS_MDICHILD        "Activate this window"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     AFX_IDS_PREVIEW_CLOSE   "Close print preview mode\nCancel Preview"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING96            "Submit Suggestions or BUG\nu"
     IDS_STRING97            "Help Topics\ni"
@@ -2372,7 +2387,7 @@ BEGIN
     IDS_DOC_UNSUPPORT       "You open a file type is not supported!"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_VIEW_APPLOOK_2010_1  "Activate Office 2010 application look\nOffice 2010 Look (Blue)"
     ID_VIEW_APPLOOK_2010_2  "Activate Office 2010 application look\nOffice 2010 Look (Black)"
@@ -2380,30 +2395,30 @@ BEGIN
     ID_TOOLS_OPTIONS        "Changes application options\nOptions"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_STATUSBAR_PANE1      "Author"
     ID_STATUSBAR_PANE2      "Contact"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_FASTFORMAT           "Format the current document\nQuick Format"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_LANG                 "Current document language\nLanguage"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_NOW_LANG             "Current document language\nLanguage"
     ID_COPY_HTMLSRC         "Copy the selected content HTML code and put it on the Clipboard\nCopy the HTML code"
     ID_LANGEXT              "For Extension Settings\nExtension Settings"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDOK                    "OK"
     IDCANLE                 "Cancel"
@@ -2422,7 +2437,7 @@ BEGIN
     IDS_TELLBUG_TITLE       "Submit suggestions or BUG"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDC_BUTTON_DEFAULTEXT   "Restore Defaults"
     IDS_IS_WANTSAVE         "Do you want to save changes to %s?"
@@ -2431,18 +2446,18 @@ BEGIN
     IDS_LANGUAGEEXT         "Extension(Double-click to modify)"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDD_SYNEDIT_SET         "Editor Settings"
     IDD_SYNHTML_SET         "Highlight Settings"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDC_STATIC_EDITFONT     "Name:"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDC_STATIC_EDITSTYLE    "Style:"
     IDC_STATIC_EDITSIZE     "Size:"
@@ -2462,7 +2477,7 @@ BEGIN
     IDC_STATIC_COLOR_TYPE   "Data Type:"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDC_STATIC_COLOR_STRING "Strings:"
     IDC_STATIC_COLOR_NUMBER "Number:"
@@ -2477,7 +2492,7 @@ BEGIN
     IDC_CHECK_SHOW_ADDTITLE "Add Title"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_SETEDIT              "For Editor Settings\nEditor Settings"
     ID_HTMLTOBLOG           "Highlighting of source code to a Web page\nBlog Highlight"
@@ -2490,7 +2505,7 @@ BEGIN
     ID_INDENT_ADD           "Increase a TAB indent\nIncrease Indent"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_BORDERSTYLE_DATA    "None;Solid;Dashed;Dotted;Double;Groove;Ridge;Inset;Outset;"
     IDC_STATIC_BORDER_WIDTH "   Width:"
@@ -2502,7 +2517,7 @@ BEGIN
     IDC_STATIC_BASIC_SET    "Basic Settings:"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_TELLBUG_TEXT        "nothing"
     IDS_STRING_SET_CPP      "C/C++"
@@ -2524,7 +2539,7 @@ BEGIN
     IDS_STRING_FILENAMES    "File Name"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     ID_COMMENT_DO           "Comment selected lines\nBlock Comment"
     ID_COMMENT_NOT          "Uncomment selected lines\nBlock Uncomment"
@@ -2533,12 +2548,12 @@ BEGIN
     ID_BATCHFORMAT          "Batch format the specified file\nBatch Format"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDD_TELL_BUG            "Submit Suggestions or BUG"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDC_STATIC_TELLBUG_TOP  "We welcome you to submit suggestions or BUG, in order to improve the functionality of the software."
     IDC_STATIC_TELLBUG_TIJIAO "Submitted By:"
@@ -2550,7 +2565,7 @@ BEGIN
     IDS_QQ_TIP              "Click to a temporary dialogue"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_TITLEFILE    "File"
     IDS_STRING_TITLENEW     "&New"
@@ -2570,7 +2585,7 @@ BEGIN
     IDS_STRING_UAT_TAB      "Tab"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_UAT_REP      "Replace"
     IDS_STRING_UAT_COMM     "Comment"
@@ -2590,7 +2605,7 @@ BEGIN
     IDS_STRING63            "&Quick Print"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING64            "Print Pre&view"
     IDS_STRING65            "&Close"
@@ -2610,7 +2625,7 @@ BEGIN
     IDS_STRING79            "Batch Format\np"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING80            "Style"
     IDS_STRING81            "Language\ny"
@@ -2630,7 +2645,7 @@ BEGIN
     IDS_STRING95            "Other Features"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_COMMALL      "All Commands"
     IDS_STRING_SETFORMATTER "Formatter Settings"
@@ -2650,7 +2665,7 @@ BEGIN
     IDS_STRING_POPULARLANG  "Language Settings:"
 END
 
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_STRING_COPYCODE     "Copy Code"
 END

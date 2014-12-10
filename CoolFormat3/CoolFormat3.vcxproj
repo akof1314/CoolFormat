@@ -151,6 +151,7 @@
     <ClCompile Include="RegConfig.cpp" />
     <ClCompile Include="SetEditDlg.cpp" />
     <ClCompile Include="SetHtmlDlg.cpp" />
+    <ClCompile Include="SetPageBase.cpp" />
     <ClCompile Include="SetPageCpp.cpp" />
     <ClCompile Include="SetPageCppFast.cpp" />
     <ClCompile Include="SetPageCppHigh.cpp" />
@@ -210,6 +211,7 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="SetEditDlg.h" />
     <ClInclude Include="SetHtmlDlg.h" />
+    <ClInclude Include="SetPageBase.h" />
     <ClInclude Include="SetPageCpp.h" />
     <ClInclude Include="SetPageCppFast.h" />
     <ClInclude Include="SetPageCppHigh.h" />
@@ -266,7 +268,7 @@
   </ImportGroup>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties RESOURCE_FILE="F:\MyCode\VC界面库\BCGSoft\BCGControlBarPro\BCGCBPro\Styles\BCGPStyle2010Black.rc" />
+      <UserProperties RESOURCE_FILE="" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
