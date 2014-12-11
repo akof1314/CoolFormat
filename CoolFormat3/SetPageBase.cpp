@@ -37,6 +37,9 @@ BOOL CSetPageBase::OnInitDialog()
 	BOOL bNameVaild = strTemp.LoadString(IDS_STR_VIEWFORMATTER);
 	ASSERT(bNameVaild);
 	SetDlgItemText(IDC_STATIC_VIEWFORMATTER, strTemp);
+	bNameVaild = strTemp.LoadString(IDS_STR_OPTIONFORMATTER);
+	ASSERT(bNameVaild);
+	SetDlgItemText(IDC_STATIC_OPTIONFORMATTER, strTemp);
 	GetDlgItem(IDC_EDIT_VIEWFORMATTER)->SetFont(&g_GlobalUtils.m_fontWidth);
 
 	CRect rectPropList;
@@ -45,9 +48,10 @@ BOOL CSetPageBase::OnInitDialog()
 	GetDlgItem(IDC_PROPLIST_LOCATION)->ShowWindow(SW_HIDE);
 
 	m_wndPropList.Create(WS_CHILD | WS_VISIBLE | WS_TABSTOP | WS_BORDER, rectPropList, this, (UINT)-1);
+	m_wndPropList.SetPreviewWnd(GetDlgItem(IDC_EDIT_VIEWFORMATTER));
 
 	m_wndPropList.EnableHeaderCtrl(FALSE);
-	m_wndPropList.EnableDesciptionArea();
+	m_wndPropList.EnableDesciptionArea(FALSE);
 	m_wndPropList.SetVSDotNetLook(TRUE);
 	m_wndPropList.MarkModifiedProperties(TRUE);
 	m_wndPropList.SetNameAlign(DT_LEFT);
@@ -56,30 +60,73 @@ BOOL CSetPageBase::OnInitDialog()
 	m_wndPropList.EnableToolBar(TRUE);
 	m_wndPropList.EnableSearchBox(TRUE);
 
-	CBCGPProp*			m_pGroupGeneral;
-	// Add general properties:
-	m_pGroupGeneral = new CBCGPProp(_T("General"));
-
-	m_pGroupGeneral->AddSubItem(new CBCGPProp(_T("Boolean"), (_variant_t)false, _T("Property with TRUE or FALSE values")));
-
-	CBCGPProp* pProp = new CBCGPProp(_T("Options"), _T("Option 1"), _T("Property with list of choises"));
-	pProp->AddOption(_T("Option 1"));
-	pProp->AddOption(_T("Option 2"));
-	pProp->AddOption(_T("Option 3"));
-	pProp->AddOption(_T("Option 4"));
-	pProp->AllowEdit(FALSE);
-
-	m_pGroupGeneral->AddSubItem(pProp);
-
-	m_pGroupGeneral->AddSubItem(new CBCGPProp(_T("Text"), (_variant_t)_T("My text"), _T("Text Property")));
-	m_pGroupGeneral->AddSubItem(new CBCGPProp(_T("Numeric"), (_variant_t)150l, _T("Numeric Property")));
-	m_wndPropList.AddProperty(m_pGroupGeneral);
+	InitPropList();
+	InitTidyConfig();
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 	// 异常:  OCX 属性页应返回 FALSE
 }
 
-void CSetPageBase::SetViewEdit(LPCTSTR lpszText)
+void CSetPageBase::SetTidyConfig(LPCTSTR lpszTidy)
 {
-	SetDlgItemText(IDC_EDIT_VIEWFORMATTER, lpszText);
+	int lenTidy = _tcsclen(lpszTidy);
+	if (lenTidy <= 0 || lpszTidy[0] != '-')
+	{
+		return;
+	}
+
+	int nOption = -1;
+	for (int i = 0; i < lenTidy; ++i)
+	{
+		if (lpszTidy[i] == '-')
+		{
+			if (-1 != nOption)
+			{
+				SetTidyControl(lpszTidy, nOption, i - nOption);
+			}
+			nOption = i;
+		}
+	}
+	SetTidyControl(lpszTidy, nOption, lenTidy - nOption);
+}
+
+void CSetPageBase::SetTidyControl(LPCTSTR lpszTidy, int nPos, int nSize)
+{
+	if (lpszTidy[nPos] != '-' || nSize < 2)
+	{
+		return;
+	}
+
+	int nNumValue = nSize;
+	for (int i = nPos + 1; i < nPos + nSize; ++i)
+	{
+		if (!_istalpha(lpszTidy[i]))
+		{
+			nNumValue = i - nPos;
+			break;
+		}
+	}
+	CString strParam(lpszTidy + nPos + 1, nNumValue - 1);
+	if (nNumValue != nSize)
+	{
+		CString strNum(lpszTidy + nPos + nNumValue, nSize - nNumValue);
+		nNumValue = _ttoi(strNum);
+	}
+	else
+	{
+		nNumValue = 0;
+	}
+	
+	SetTidyProp(strParam, nNumValue);
+}
+
+void CSetPageBase::GetTidyConfig(CString &strTidyValue)
+{
+	m_wndPropList.GetResultShorts(strTidyValue);
+}
+
+void CSetPageBase::OnOK()
+{
+	EndTidyConfig();
+	CBCGPPropertyPage::OnOK();
 }

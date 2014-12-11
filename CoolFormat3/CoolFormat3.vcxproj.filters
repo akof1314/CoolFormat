@@ -222,6 +222,12 @@
     <ClCompile Include="SetPageBase.cpp">
       <Filter>源文件\格式化设置</Filter>
     </ClCompile>
+    <ClCompile Include="MyBCGPPropList.cpp">
+      <Filter>源文件\源码扩展</Filter>
+    </ClCompile>
+    <ClCompile Include="MyBCGPProp.cpp">
+      <Filter>源文件\源码扩展</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FormatterHelp.h">
@@ -388,6 +394,12 @@
     </ClInclude>
     <ClInclude Include="SetPageBase.h">
       <Filter>头文件\格式化设置</Filter>
+    </ClInclude>
+    <ClInclude Include="MyBCGPPropList.h">
+      <Filter>头文件\源码扩展</Filter>
+    </ClInclude>
+    <ClInclude Include="MyBCGPProp.h">
+      <Filter>头文件\源码扩展</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

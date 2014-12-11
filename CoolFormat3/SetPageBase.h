@@ -1,4 +1,6 @@
 #pragma once
+#include "MyBCGPProp.h"
+#include "MyBCGPPropList.h"
 
 //////////////////////////////////////////////////////////////////////////
 // CSetPageBase 对话框
@@ -15,13 +17,22 @@ public:
 	enum { IDD = IDD_SET_BASE };
 
 protected:
-	CBCGPPropList m_wndPropList;
+	CMyBCGPPropList m_wndPropList;
 
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 支持
-	void SetViewEdit(LPCTSTR lpszText);
-
 	DECLARE_MESSAGE_MAP()
+
+	virtual void InitPropList() {}
+	virtual void InitTidyConfig() {}
+	virtual void EndTidyConfig() {}
+	virtual void SetTidyProp(LPCTSTR lpszParam, int nNumValue) {}
+
+	virtual void SetTidyConfig(LPCTSTR lpszTidy);
+	virtual void SetTidyControl(LPCTSTR lpszTidy, int nPos, int nSize);
+	virtual void GetTidyConfig(CString &strTidyValue);
+
 public:
 	virtual BOOL OnInitDialog();
+	virtual void OnOK();
 };

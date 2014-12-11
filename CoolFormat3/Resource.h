@@ -161,6 +161,7 @@
 #define IDS_STRING_VERSION              143
 #define IDS_STRING_COPYCODE             144
 #define IDS_STRING144                   144
+#define IDS_STR_OPTIONFORMATTER         145
 #define IDB_RIBBON_ICONS                154
 #define IDB_RIBBON_FILESMALL            155
 #define IDB_RIBBON_FILELARGE            156
@@ -603,6 +604,7 @@
 #define IDC_STATIC_WUHUAN               1272
 #define IDC_STATIC_VERSION              1273
 #define IDC_PROPLIST_LOCATION           1274
+#define IDC_STATIC_OPTIONFORMATTER      1275
 #define ID_VIEW_TOOLBARS                32771
 #define ID_WINDOW_MANAGER               32825
 #define ID_VIEW_APPLOOK_2000            32826
@@ -735,7 +737,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        199
 #define _APS_NEXT_COMMAND_VALUE         32977
-#define _APS_NEXT_CONTROL_VALUE         1275
+#define _APS_NEXT_CONTROL_VALUE         1276
 #define _APS_NEXT_SYMED_VALUE           108
 #endif
 #endif

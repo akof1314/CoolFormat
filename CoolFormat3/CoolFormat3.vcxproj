@@ -145,6 +145,8 @@
     <ClCompile Include="LangExtDlg.cpp" />
     <ClCompile Include="LangExtEditDlg.cpp" />
     <ClCompile Include="MainFrm.cpp" />
+    <ClCompile Include="MyBCGPProp.cpp" />
+    <ClCompile Include="MyBCGPPropList.cpp" />
     <ClCompile Include="OutputViewBar.cpp" />
     <ClCompile Include="PagePopular.cpp" />
     <ClCompile Include="PageResource.cpp" />
@@ -204,6 +206,8 @@
     <ClInclude Include="LangExtDlg.h" />
     <ClInclude Include="LangExtEditDlg.h" />
     <ClInclude Include="MainFrm.h" />
+    <ClInclude Include="MyBCGPProp.h" />
+    <ClInclude Include="MyBCGPPropList.h" />
     <ClInclude Include="OutputViewBar.h" />
     <ClInclude Include="PagePopular.h" />
     <ClInclude Include="PageResource.h" />
