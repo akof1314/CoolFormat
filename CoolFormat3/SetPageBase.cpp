@@ -9,10 +9,12 @@
 
 IMPLEMENT_DYNAMIC(CSetPageBase, CBCGPPropertyPage)
 
-CSetPageBase::CSetPageBase()
+CSetPageBase::CSetPageBase(LPCTSTR lpszTitle, CString& strTidy)
 	: CBCGPPropertyPage(CSetPageBase::IDD)
 {
-
+	m_psp.dwFlags |= PSP_USETITLE;
+	m_psp.pszTitle = lpszTitle;
+	m_strTidy = &strTidy;
 }
 
 CSetPageBase::~CSetPageBase()
@@ -67,6 +69,18 @@ BOOL CSetPageBase::OnInitDialog()
 	// 异常:  OCX 属性页应返回 FALSE
 }
 
+void CSetPageBase::InitTidyConfig()
+{
+	SetTidyConfig(*m_strTidy);
+}
+
+void CSetPageBase::EndTidyConfig()
+{
+	CString strTidy;
+	GetTidyConfig(strTidy);
+	*m_strTidy = strTidy;
+}
+
 void CSetPageBase::SetTidyConfig(LPCTSTR lpszTidy)
 {
 	int lenTidy = _tcsclen(lpszTidy);
@@ -114,10 +128,28 @@ void CSetPageBase::SetTidyControl(LPCTSTR lpszTidy, int nPos, int nSize)
 	}
 	else
 	{
-		nNumValue = 0;
+		nNumValue = INT_MIN;
 	}
 	
-	SetTidyProp(strParam, nNumValue);
+	if (!SetTidyProp(strParam, nNumValue))
+	{
+		strParam.AppendFormat(_T("%d"), nNumValue);
+		SetTidyProp(strParam, nNumValue);
+	}
+}
+
+BOOL CSetPageBase::SetTidyProp(LPCTSTR lpszParam, int nNumValue)
+{
+	CBCGPProp* pProp = m_wndPropList.FindItemByShort(lpszParam);
+	if (pProp)
+	{
+		CMyBCGPProp* pMyProp = DYNAMIC_DOWNCAST(CMyBCGPProp, pProp);
+		if (pMyProp)
+		{
+			pMyProp->SetValueByShort(lpszParam, nNumValue);
+		}
+	}
+	return pProp != NULL;
 }
 
 void CSetPageBase::GetTidyConfig(CString &strTidyValue)

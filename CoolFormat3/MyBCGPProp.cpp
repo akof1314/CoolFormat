@@ -69,7 +69,7 @@ LPCTSTR CMyBCGPProp::GetSelectedPreviewOption() const
 		return NULL;
 	}
 
-	if (m_dwFlags & PROP_HAS_LIST)
+	if (IsList())
 	{
 		POSITION pos = m_lstPreviewOptions.FindIndex(GetSelectedOption());
 		if (pos == NULL)
@@ -134,6 +134,33 @@ BOOL CMyBCGPProp::IsExistShort(LPCTSTR lpszShort)
 	return m_lstShortOptions.Find(lpszShort) != NULL;
 }
 
+void CMyBCGPProp::SetValueByShort(LPCTSTR lpszShort, const _variant_t& varValue)
+{
+	POSITION pos = m_lstShortOptions.Find(lpszShort);
+	if (pos == NULL)
+	{
+		return;
+	}
+
+	if (IsList())
+	{
+		int nIndex = 0;
+		for (POSITION pos = m_lstShortOptions.GetHeadPosition(); pos != NULL; nIndex++)
+		{
+			if (lpszShort == m_lstShortOptions.GetNext(pos))
+			{
+				break;
+			}
+		}
+
+		SetValue(GetOption(nIndex));
+	}
+	else
+	{
+		SetValue(varValue);
+	}
+}
+
 void CMyBCGPProp::GetSubResultShorts(CString& strValue)
 {
 	for (POSITION pos = m_lstSubItems.GetHeadPosition(); pos != NULL;)
@@ -159,7 +186,8 @@ void CMyBCGPProp::GetResultShort(CString& strValue)
 		return;
 	}
 
-	if (m_dwFlags & PROP_HAS_LIST)
+	CString strShort;
+	if (IsList())
 	{
 		POSITION pos = m_lstShortOptions.FindIndex(GetSelectedOption());
 		if (pos == NULL)
@@ -168,10 +196,23 @@ void CMyBCGPProp::GetResultShort(CString& strValue)
 			return;
 		}
 
-		strValue = m_lstShortOptions.GetAt(pos);
-		return;
+		strShort = m_lstShortOptions.GetAt(pos);
 	}
-	strValue = _T("-") + m_lstShortOptions.GetHead() + FormatProperty();
+	else
+	{
+		strShort = m_lstShortOptions.GetHead();
+
+	}
+
+	if (!strShort.IsEmpty())
+	{
+		strValue += _T("-") + strShort + ((m_dwFlags & PROP_HAS_LIST) ? _T("") : FormatProperty());
+	}
+}
+
+BOOL CMyBCGPProp::IsList() const
+{
+	return m_dwFlags & PROP_HAS_LIST;
 }
 
 

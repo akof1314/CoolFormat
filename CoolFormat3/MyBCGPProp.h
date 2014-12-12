@@ -76,6 +76,14 @@ public:
 	BOOL IsExistShort(LPCTSTR lpszShort);
 
 	/**
+	 * 设置值
+	 * @param LPCTSTR lpszShort 缩写词
+	 * @param const _variant_t & varValue
+	 * @return void 
+	 */
+	void SetValueByShort(LPCTSTR lpszShort, const _variant_t& varValue);
+
+	/**
 	 * 获取子项的所有缩写词结果
 	 * @param CString & strValue 
 	 * @return void 
@@ -88,6 +96,12 @@ public:
 	 * @return void 
 	 */
 	void GetResultShort(CString& strValue);
+
+	/**
+	 * 是否是列表
+	 * @return BOOL 
+	 */
+	BOOL IsList() const;
 
 protected:
 	CStringList	m_lstShortOptions;	// 缩写文本

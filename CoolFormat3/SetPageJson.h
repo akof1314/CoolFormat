@@ -7,12 +7,9 @@
 class CSetPageJson : public CSetPageBase
 {
 public:
-	CSetPageJson();
+	CSetPageJson(LPCTSTR lpszTitle, CString& strTidy);
 	virtual ~CSetPageJson();
 
 protected:
 	void InitPropList();
-	void InitTidyConfig();
-	void EndTidyConfig();
-	void SetTidyProp(LPCTSTR lpszParam, int nNumValue);
 };

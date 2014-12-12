@@ -57,7 +57,6 @@
 #include "GlobalTidy.h"
 #include <afx.h>
 #include <afxdlgs.h>
-#include <afxcontrolbars.h>
 
 
 

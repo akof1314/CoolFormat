@@ -49,7 +49,7 @@ void CMyBCGPPropList::PreviewSelProperty(CBCGPProp* pProp, BOOL bCheck/* = FALSE
 		return;
 	}
 
-	if (bCheck && !(pMyProp->m_dwFlags & 0x0001))
+	if (bCheck && !pMyProp->IsList())
 	{
 		return;
 	}
