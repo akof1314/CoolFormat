@@ -112,10 +112,10 @@ INT_PTR CSetSheet::DoModalAllPage()
 	CSetPageCpp pageCpp(SYN_CPP, IDS_STRING_SET_CPP);
 	CSetPageCpp pageJava(SYN_JAVA, IDS_STRING_SET_JAVA);
 	CSetPageCpp pageCs(SYN_CS, IDS_STRING_SET_CSHARP);
-	CSetPageJS pageJS(_T("JavaScript"), g_GlobalTidy.m_TidyJs);;
+	CSetPageJS pageJS(_T("JavaScript"), g_GlobalTidy.m_TidyJs);
 	CSetPageHtml pageHtml(SYN_HTML, IDS_STRING_SET_HTML);
 	CSetPageHtml pageXml(SYN_XML, IDS_STRING_SET_XML);
-	CSetPagePHP pagePHP;
+	CSetPagePHP pagePHP(_T("PHP"), g_GlobalTidy.m_TidyPhp);
 	CSetPageCSS pageCSS;
 	CSetPageJson pageJson(_T("JSON"), g_GlobalTidy.m_TidyJson);
 	CSetPageSql pageSql(_T("SQL"), g_GlobalTidy.m_TidySql);

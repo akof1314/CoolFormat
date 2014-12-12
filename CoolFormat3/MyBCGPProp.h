@@ -103,6 +103,10 @@ public:
 	 */
 	BOOL IsList() const;
 
+	void GetSubShortOptions(CStringList& lstValue);
+
+	void GetShortOptions(CStringList& lstValue);
+
 protected:
 	CStringList	m_lstShortOptions;	// 缩写文本
 	CStringList	m_lstPreviewOptions;	// 预览文本

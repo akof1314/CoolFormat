@@ -106,4 +106,35 @@ void CMyBCGPPropList::GetResultShorts(CString& strValue)
 	}
 }
 
+BOOL CMyBCGPPropList::ValidateShort()
+{
+	CStringList lstValue;
+	for (POSITION pos = m_lstProps.GetHeadPosition(); pos != NULL;)
+	{
+		CBCGPProp* pProp = m_lstProps.GetNext(pos);
+		ASSERT_VALID(pProp);
+
+		CMyBCGPProp* pMyProp = DYNAMIC_DOWNCAST(CMyBCGPProp, pProp);
+		if (pMyProp == NULL)
+		{
+			continue;
+		}
+
+		pMyProp->GetShortOptions(lstValue);
+		pMyProp->GetSubShortOptions(lstValue);
+	}
+
+	for (POSITION pos = lstValue.GetHeadPosition(); pos != NULL;)
+	{
+		CString str = lstValue.GetNext(pos);
+		if (!str.IsEmpty() && pos != NULL && lstValue.Find(str, pos) != NULL)
+		{
+			ASSERT(FALSE);
+			return FALSE;
+		}
+	}
+
+	return TRUE;
+}
+
 

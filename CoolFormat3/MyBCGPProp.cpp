@@ -35,6 +35,8 @@ BOOL CMyBCGPProp::AddComboOption(LPCTSTR lpszOption, LPCTSTR lpszShort, LPCTSTR 
 	AllowEdit(FALSE);
 	if (CBCGPProp::AddOption(lpszOption, bInsertUnique))
 	{
+		ASSERT(m_lstShortOptions.Find(lpszOption) == NULL);
+
 		m_lstShortOptions.AddTail(lpszShort);
 		m_lstPreviewOptions.AddTail(lpszPreview);
 		return TRUE;
@@ -213,6 +215,29 @@ void CMyBCGPProp::GetResultShort(CString& strValue)
 BOOL CMyBCGPProp::IsList() const
 {
 	return m_dwFlags & PROP_HAS_LIST;
+}
+
+void CMyBCGPProp::GetSubShortOptions(CStringList& lstValue)
+{
+	for (POSITION pos = m_lstSubItems.GetHeadPosition(); pos != NULL;)
+	{
+		CBCGPProp* pProp = m_lstSubItems.GetNext(pos);
+		ASSERT_VALID(pProp);
+
+		CMyBCGPProp* pMyProp = DYNAMIC_DOWNCAST(CMyBCGPProp, pProp);
+		if (pMyProp == NULL)
+		{
+			continue;
+		}
+
+		pMyProp->GetShortOptions(lstValue);
+		pMyProp->GetSubShortOptions(lstValue);
+	}
+}
+
+void CMyBCGPProp::GetShortOptions(CStringList& lstValue)
+{
+	lstValue.AddTail(&m_lstShortOptions);
 }
 
 

@@ -71,6 +71,8 @@ BOOL CSetPageBase::OnInitDialog()
 
 void CSetPageBase::InitTidyConfig()
 {
+	ASSERT(m_wndPropList.ValidateShort());
+
 	SetTidyConfig(*m_strTidy);
 }
 
