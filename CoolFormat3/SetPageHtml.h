@@ -2,7 +2,12 @@
 #include "SetPageCpp.h"
 #include "SetPageHtmlOne.h"
 #include "SetPageHtmlTwo.h"
-
+class CBCGPDlgTabWnd : public CBCGPTabWnd
+{
+	friend class CSetPageCpp;
+	friend class CSetPageHtml;
+	CBCGPDlgTabWnd();
+};
 //////////////////////////////////////////////////////////////////////////
 // CSetPageHtml ¶Ô»°¿ò
 

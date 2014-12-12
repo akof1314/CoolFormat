@@ -13,15 +13,15 @@
 IMPLEMENT_DYNAMIC(CMyBCGPProp, CBCGPProp)
 
 CMyBCGPProp::CMyBCGPProp(const CString& strGroupName, DWORD_PTR dwData /*= 0*/, BOOL bIsValueList /*= FALSE*/)
-	:CBCGPProp(strGroupName, dwData, bIsValueList)
+	:CBCGPProp(strGroupName, dwData, bIsValueList),
+	m_pBuddyProp(NULL)
 {
-
 }
 
 CMyBCGPProp::CMyBCGPProp(const CString& strName, const _variant_t& varValue, LPCTSTR lpszDescr /*= NULL*/, DWORD_PTR dwData /*= 0*/, LPCTSTR lpszEditMask /*= NULL*/, LPCTSTR lpszEditTemplate /*= NULL*/, LPCTSTR lpszValidChars /*= NULL*/)
-	:CBCGPProp(strName, varValue, lpszDescr, dwData, lpszEditMask, lpszEditTemplate, lpszValidChars)
+	:CBCGPProp(strName, varValue, lpszDescr, dwData, lpszEditMask, lpszEditTemplate, lpszValidChars),
+	m_pBuddyProp(NULL)
 {
-
 }
 
 CMyBCGPProp::~CMyBCGPProp()
@@ -44,13 +44,17 @@ BOOL CMyBCGPProp::AddComboOption(LPCTSTR lpszOption, LPCTSTR lpszShort, LPCTSTR 
 	return FALSE;
 }
 
-BOOL CMyBCGPProp::SetNumberSpin(int nMin, int nMax, LPCTSTR lpszShort, LPCTSTR lpszPreview)
+BOOL CMyBCGPProp::SetNumberSpin(int nMin, int nMax, LPCTSTR lpszShort, LPCTSTR lpszPreview, CMyBCGPProp* pBuddyToProp /*= NULL*/)
 {
 	EnableSpinControl(TRUE, nMin, nMax);
 	m_lstShortOptions.RemoveAll();
 	m_lstPreviewOptions.RemoveAll();
 	m_lstShortOptions.AddTail(lpszShort);
 	m_lstPreviewOptions.AddTail(lpszPreview);
+	if (pBuddyToProp)
+	{
+		pBuddyToProp->m_pBuddyProp = this;
+	}
 	return TRUE;
 }
 
@@ -156,6 +160,11 @@ void CMyBCGPProp::SetValueByShort(LPCTSTR lpszShort, const _variant_t& varValue)
 		}
 
 		SetValue(GetOption(nIndex));
+
+		if (m_pBuddyProp)
+		{
+			m_pBuddyProp->SetValue(varValue);
+		}
 	}
 	else
 	{
@@ -208,7 +217,12 @@ void CMyBCGPProp::GetResultShort(CString& strValue)
 
 	if (!strShort.IsEmpty())
 	{
-		strValue += _T("-") + strShort + ((m_dwFlags & PROP_HAS_LIST) ? _T("") : FormatProperty());
+		strValue += _T("-") + strShort + (IsList() ? _T("") : FormatProperty());
+	}
+
+	if (m_pBuddyProp)
+	{
+		strValue += m_pBuddyProp->FormatProperty();
 	}
 }
 

@@ -5,7 +5,11 @@
 #include "CoolFormat3.h"
 #include "SetPageHtml.h"
 
-
+CBCGPDlgTabWnd::CBCGPDlgTabWnd()
+{
+	m_bIsDlgControl = TRUE;
+	m_bVisualManagerStyle = TRUE;
+}
 // CSetPageHtml ¶Ô»°¿ò
 
 IMPLEMENT_DYNCREATE(CSetPageHtml, CBCGPPropertyPage)

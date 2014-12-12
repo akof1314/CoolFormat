@@ -74,6 +74,7 @@ void CSetPageBase::InitTidyConfig()
 	ASSERT(m_wndPropList.ValidateShort());
 
 	SetTidyConfig(*m_strTidy);
+	m_wndPropList.CommitModifiedValues(FALSE);
 }
 
 void CSetPageBase::EndTidyConfig()

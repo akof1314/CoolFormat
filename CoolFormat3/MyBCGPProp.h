@@ -43,9 +43,10 @@ public:
 	 * @param int nMax 最大值
 	 * @param LPCTSTR lpszShort 缩写词
 	 * @param LPCTSTR lpszPreview 预览文本
+	 * @param CMyBCGPProp* pBuddyToProp 绑定到关联的属性
 	 * @return BOOL 
 	 */
-	BOOL SetNumberSpin(int nMin, int nMax, LPCTSTR lpszShort, LPCTSTR lpszPreview);
+	BOOL SetNumberSpin(int nMin, int nMax, LPCTSTR lpszShort, LPCTSTR lpszPreview, CMyBCGPProp* pBuddyToProp = NULL);
 
 	/**
 	 * 增加编辑文本项
@@ -110,6 +111,7 @@ public:
 protected:
 	CStringList	m_lstShortOptions;	// 缩写文本
 	CStringList	m_lstPreviewOptions;	// 预览文本
+	CMyBCGPProp* m_pBuddyProp;	// 绑定的属性，一般用作编辑框绑定
 
 	/**
 	 * 重载以实现数字限定范围

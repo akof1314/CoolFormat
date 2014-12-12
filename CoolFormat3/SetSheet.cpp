@@ -1,5 +1,4 @@
 // SetSheet.cpp : 实现文件
-//
 
 #include "stdafx.h"
 #include "CoolFormat3.h"
@@ -109,9 +108,9 @@ INT_PTR CSetSheet::DoModalAllPage()
 	m_psh.dwFlags |= PSH_NOAPPLYNOW;
 	SetLook(CBCGPPropertySheet::PropSheetLook_List, 124);
 
-	CSetPageCpp pageCpp(SYN_CPP, IDS_STRING_SET_CPP);
-	CSetPageCpp pageJava(SYN_JAVA, IDS_STRING_SET_JAVA);
-	CSetPageCpp pageCs(SYN_CS, IDS_STRING_SET_CSHARP);
+	CSetPageCpp pageCpp(_T("C/C++"), g_GlobalTidy.m_TidyCpp);
+	CSetPageCpp pageJava(_T("Java"), g_GlobalTidy.m_TidyJava);
+	CSetPageCpp pageCs(_T("C#"), g_GlobalTidy.m_TidyCSharp);
 	CSetPageJS pageJS(_T("JavaScript"), g_GlobalTidy.m_TidyJs);
 	CSetPageHtml pageHtml(SYN_HTML, IDS_STRING_SET_HTML);
 	CSetPageHtml pageXml(SYN_XML, IDS_STRING_SET_XML);
