@@ -10,6 +10,9 @@
 #define PROP_HAS_BUTTON	0x0002
 #define PROP_HAS_SPIN	0x0004
 
+#define STR_SHORT_PREFIX _T("-")
+#define STR_SHORT_TEXT_FALG _T("#")
+
 IMPLEMENT_DYNAMIC(CMyBCGPProp, CBCGPProp)
 
 CMyBCGPProp::CMyBCGPProp(const CString& strGroupName, DWORD_PTR dwData /*= 0*/, BOOL bIsValueList /*= FALSE*/)
@@ -217,7 +220,9 @@ void CMyBCGPProp::GetResultShort(CString& strValue)
 
 	if (!strShort.IsEmpty())
 	{
-		strValue += _T("-") + strShort + (IsList() ? _T("") : FormatProperty());
+		strValue += STR_SHORT_PREFIX + strShort 
+			+ (IsText() ? STR_SHORT_TEXT_FALG : _T(""))
+			+ (IsList() ? _T("") : FormatProperty());
 	}
 
 	if (m_pBuddyProp)
@@ -229,6 +234,11 @@ void CMyBCGPProp::GetResultShort(CString& strValue)
 BOOL CMyBCGPProp::IsList() const
 {
 	return m_dwFlags & PROP_HAS_LIST;
+}
+
+BOOL CMyBCGPProp::IsText() const
+{
+	return (m_varValue.vt == VT_BSTR) && !IsList();
 }
 
 void CMyBCGPProp::GetSubShortOptions(CStringList& lstValue)

@@ -104,6 +104,12 @@ public:
 	 */
 	BOOL IsList() const;
 
+	/**
+	* 是否是文本
+	* @return BOOL
+	*/
+	BOOL IsText() const;
+
 	void GetSubShortOptions(CStringList& lstValue);
 
 	void GetShortOptions(CStringList& lstValue);

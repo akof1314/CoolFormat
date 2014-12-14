@@ -24,14 +24,14 @@ protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Ö§³Ö
 	DECLARE_MESSAGE_MAP()
 
-	virtual void InitPropList() {}
-
+	virtual void InitPropList();
 	virtual void InitTidyConfig();
 	virtual void EndTidyConfig();
 	virtual void SetTidyConfig(LPCTSTR lpszTidy);
 	virtual void SetTidyControl(LPCTSTR lpszTidy, int nPos, int nSize);
-	virtual BOOL SetTidyProp(LPCTSTR lpszParam, int nNumValue);
+	virtual BOOL SetTidyProp(LPCTSTR lpszParam, const _variant_t& varValue);
 	virtual void GetTidyConfig(CString& strTidyValue);
+	void EntityToSymbol(CString& value);
 
 public:
 	virtual BOOL OnInitDialog();

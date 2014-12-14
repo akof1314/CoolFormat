@@ -213,6 +213,8 @@
 #define IDD_DIALOG8                     198
 #define IDD_SET_ALL                     198
 #define IDD_SET_BASE                    198
+#define IDR_XML1                        199
+#define IDR_SETCONFIG_XML_JSON          199
 #define IDC_COMPANY_URL                 1041
 #define IDC_LINE                        1053
 #define IDC_LINETIP                     1054
@@ -735,7 +737,7 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        199
+#define _APS_NEXT_RESOURCE_VALUE        200
 #define _APS_NEXT_COMMAND_VALUE         32977
 #define _APS_NEXT_CONTROL_VALUE         1276
 #define _APS_NEXT_SYMED_VALUE           108

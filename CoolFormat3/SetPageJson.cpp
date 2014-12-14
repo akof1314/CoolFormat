@@ -18,6 +18,8 @@ CSetPageJson::~CSetPageJson()
 
 void CSetPageJson::InitPropList()
 {
+	CSetPageBase::InitPropList();
+	return;
 	CMyBCGPProp* pGrouIndentation = new CMyBCGPProp(_T("Indentation"));
 	CMyBCGPProp* pPropIndent = new CMyBCGPProp(_T("Indent number"), (_variant_t)3);
 	pPropIndent->SetNumberSpin(0, 100, _T("cn"), 
@@ -31,6 +33,5 @@ void CSetPageJson::InitPropList()
 		_T("\r\n    \"test\" : 123")
 		_T("\r\n}"));
 	pGrouIndentation->AddSubItem(pPropIndent);
-
 	m_wndPropList.AddProperty(pGrouIndentation);
 }

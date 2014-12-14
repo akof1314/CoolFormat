@@ -468,4 +468,7 @@
   <ItemGroup>
     <Text Include="ReadMe.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <Xml Include="res\SetConfig\JSON.xml" />
+  </ItemGroup>
 </Project>

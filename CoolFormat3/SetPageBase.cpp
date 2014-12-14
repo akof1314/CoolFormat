@@ -3,6 +3,9 @@
 #include "stdafx.h"
 #include "CoolFormat3.h"
 #include "SetPageBase.h"
+#include "BCGPTagManager.h"
+
+#define STR_SHORT_TEXT_FALG _T("#")
 
 //////////////////////////////////////////////////////////////////////////
 // CSetPageBase 对话框
@@ -69,6 +72,134 @@ BOOL CSetPageBase::OnInitDialog()
 	// 异常:  OCX 属性页应返回 FALSE
 }
 
+void CSetPageBase::InitPropList()
+{
+	CBCGPTagManager tm;
+	CString strRes(_T("IDR_SETCONFIG_XML_"));
+	strRes.Append(m_psp.pszTitle);
+	if (!tm.LoadFromResource(strRes.MakeUpper(), _T("XML")))
+	{
+		return;
+	}
+
+	CString strStyle;
+	if (!tm.ExcludeTag(_T("SETCONFIG"), strStyle))
+	{
+		return;
+	}
+	tm.SetBuffer(strStyle);
+
+	int nVersion;
+	tm.ReadInt(_T("VERSION"), nVersion);
+	if (nVersion != 1)
+	{
+		return;
+	}
+
+	CString strPropertys;
+	if (tm.ExcludeTag(_T("PROPERTYS"), strPropertys))
+	{
+		CBCGPTagManager tmPropertys(strPropertys);
+
+		CMyBCGPProp* pPropGroup = NULL;
+		CString strProperty;
+		while (tmPropertys.ExcludeTag(_T("PROPERTY"), strProperty))
+		{
+			CBCGPTagManager tmProperty(strProperty);
+			CString strName = _T("NO NAME");
+			tmProperty.ReadString(_T("NAME"), strName);
+
+			BOOL bGroup = FALSE;
+			if (tmProperty.ReadBool(_T("GROUP"), bGroup) && bGroup)
+			{
+				if (pPropGroup)
+				{
+					m_wndPropList.AddProperty(pPropGroup, FALSE, FALSE);
+					pPropGroup = NULL;
+				}
+
+				pPropGroup = new CMyBCGPProp(strName);
+			} 
+			else if (pPropGroup)
+			{
+				CString strType = _T("Combo");
+				tmProperty.ReadString(_T("TYPE"), strType);
+
+				if (strType.CompareNoCase(_T("Combo")) == 0)
+				{
+					CString strValue;
+					tmProperty.ReadString(_T("VALUE"), strValue);
+
+					CMyBCGPProp* pProp = new CMyBCGPProp(strName, (_variant_t)strValue);
+					
+					CString strItem;
+					while (tmProperty.ExcludeTag(_T("ITEM"), strItem))
+					{
+						CBCGPTagManager tmItem(strItem);
+						tmItem.ReadString(_T("VALUE"), strValue);
+
+						CString strShort, strPreview;
+						tmItem.ReadString(_T("SHORT"), strShort);
+						tmItem.ReadString(_T("PREVIEW"), strPreview);
+						EntityToSymbol(strPreview);
+
+						pProp->AddComboOption(strValue, strShort, strPreview);
+					}
+
+					pPropGroup->AddSubItem(pProp);
+				} 
+				else if (strType.CompareNoCase(_T("Number")) == 0)
+				{
+					int nValue;
+					tmProperty.ReadInt(_T("VALUE"), nValue);
+
+					CMyBCGPProp* pProp = new CMyBCGPProp(strName, (_variant_t)nValue);
+
+					CSize range;
+					tmProperty.ReadSize(_T("RANGE"), range);
+
+					BOOL bBuddy = FALSE;
+					tmProperty.ReadBool(_T("BUDDY"), bBuddy);
+					CMyBCGPProp* pPropBuddy = NULL;
+					if (bBuddy)
+					{
+						pPropBuddy = DYNAMIC_DOWNCAST(CMyBCGPProp, pPropGroup->GetSubItem(pPropGroup->GetSubItemsCount() - 1));
+					}
+
+					CString strShort, strPreview;
+					tmProperty.ReadString(_T("SHORT"), strShort);
+					tmProperty.ReadString(_T("PREVIEW"), strPreview);
+					EntityToSymbol(strPreview);
+
+					pProp->SetNumberSpin(range.cx, range.cy, strShort, strPreview, pPropBuddy);
+					pPropGroup->AddSubItem(pProp);
+				}
+				else if (strType.CompareNoCase(_T("Text")) == 0)
+				{
+					CString strValue;
+					tmProperty.ReadString(_T("VALUE"), strValue);
+
+					CMyBCGPProp* pProp = new CMyBCGPProp(strName, (_variant_t)strValue);
+
+					CString strShort, strPreview;
+					tmProperty.ReadString(_T("SHORT"), strShort);
+					tmProperty.ReadString(_T("PREVIEW"), strPreview);
+					EntityToSymbol(strPreview);
+
+					pProp->SetEditText(strShort, strPreview);
+					pPropGroup->AddSubItem(pProp);
+				}
+			}
+		}
+
+		if (pPropGroup)
+		{
+			m_wndPropList.AddProperty(pPropGroup, FALSE, FALSE);
+			pPropGroup = NULL;
+		}
+	}
+}
+
 void CSetPageBase::InitTidyConfig()
 {
 	ASSERT(m_wndPropList.ValidateShort());
@@ -114,6 +245,18 @@ void CSetPageBase::SetTidyControl(LPCTSTR lpszTidy, int nPos, int nSize)
 		return;
 	}
 
+	CString strTextParam(lpszTidy + nPos + 1, nSize - 1);
+	int nPosFlag = strTextParam.Find(STR_SHORT_TEXT_FALG);
+	if (nPosFlag > 0)
+	{
+		CString strBstrValue(strTextParam.Mid(nPosFlag + 1));
+		strTextParam = strTextParam.Left(nPosFlag);
+		if (SetTidyProp(strTextParam, (LPCTSTR)strBstrValue))
+		{
+			return;
+		}
+	}
+
 	int nNumValue = nSize;
 	for (int i = nPos + 1; i < nPos + nSize; ++i)
 	{
@@ -133,7 +276,7 @@ void CSetPageBase::SetTidyControl(LPCTSTR lpszTidy, int nPos, int nSize)
 	{
 		nNumValue = INT_MIN;
 	}
-	
+
 	if (!SetTidyProp(strParam, nNumValue))
 	{
 		strParam.AppendFormat(_T("%d"), nNumValue);
@@ -141,7 +284,7 @@ void CSetPageBase::SetTidyControl(LPCTSTR lpszTidy, int nPos, int nSize)
 	}
 }
 
-BOOL CSetPageBase::SetTidyProp(LPCTSTR lpszParam, int nNumValue)
+BOOL CSetPageBase::SetTidyProp(LPCTSTR lpszParam, const _variant_t& varValue)
 {
 	CBCGPProp* pProp = m_wndPropList.FindItemByShort(lpszParam);
 	if (pProp)
@@ -149,7 +292,7 @@ BOOL CSetPageBase::SetTidyProp(LPCTSTR lpszParam, int nNumValue)
 		CMyBCGPProp* pMyProp = DYNAMIC_DOWNCAST(CMyBCGPProp, pProp);
 		if (pMyProp)
 		{
-			pMyProp->SetValueByShort(lpszParam, nNumValue);
+			pMyProp->SetValueByShort(lpszParam, varValue);
 		}
 	}
 	return pProp != NULL;
@@ -158,6 +301,13 @@ BOOL CSetPageBase::SetTidyProp(LPCTSTR lpszParam, int nNumValue)
 void CSetPageBase::GetTidyConfig(CString &strTidyValue)
 {
 	m_wndPropList.GetResultShorts(strTidyValue);
+}
+
+void CSetPageBase::EntityToSymbol(CString& value)
+{
+	value.Replace(_T("\\t"), _T("\t"));
+	value.Replace(_T("\\n"), _T("\n"));
+	value.Replace(_T("\\r"), _T("\r"));
 }
 
 void CSetPageBase::OnOK()
