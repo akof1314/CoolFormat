@@ -207,14 +207,11 @@
 #define IDD_SET_CSS                     191
 #define IDD_SET_JSON                    193
 #define IDD_SET_SQL                     194
-#define IDB_BITMAP1                     196
 #define IDB_BITMAP_ABOUT                196
 #define IDR_ACCEL_EDIT                  197
 #define IDD_DIALOG8                     198
 #define IDD_SET_ALL                     198
 #define IDD_SET_BASE                    198
-#define IDR_XML1                        199
-#define IDR_SETCONFIG_XML_JSON          199
 #define IDC_COMPANY_URL                 1041
 #define IDC_LINE                        1053
 #define IDC_LINETIP                     1054

@@ -399,7 +399,7 @@ END
 STRINGTABLE
 BEGIN
 // Non-mac-targeting apps remove the two extra substrings
-    IDR_MAINFRAME           "MakeSetConfig\n\nMakeSetConfig\n\n\nMakeSetConfig.Document\nMakeSetConfig.Document"
+    IDR_MAINFRAME           "MakeSetConfig\n\nMakeSetConfig\nRC File(*.rc)\n.rc\nMakeSetConfig.Document\nMakeSetConfig.Document"
 
 END
 STRINGTABLE

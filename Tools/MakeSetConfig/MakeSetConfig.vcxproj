@@ -119,6 +119,7 @@
     <ClInclude Include="ClassView.h" />
     <ClInclude Include="FileView.h" />
     <ClInclude Include="MainFrm.h" />
+    <ClInclude Include="MainLogic.h" />
     <ClInclude Include="MakeSetConfig.h" />
     <ClInclude Include="MakeSetConfigDoc.h" />
     <ClInclude Include="MakeSetConfigView.h" />
@@ -132,6 +133,7 @@
     <ClCompile Include="ClassView.cpp" />
     <ClCompile Include="FileView.cpp" />
     <ClCompile Include="MainFrm.cpp" />
+    <ClCompile Include="MainLogic.cpp" />
     <ClCompile Include="MakeSetConfig.cpp" />
     <ClCompile Include="MakeSetConfigDoc.cpp" />
     <ClCompile Include="MakeSetConfigView.cpp" />

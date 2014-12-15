@@ -95,15 +95,28 @@ LPCTSTR CMyBCGPProp::GetSelectedPreviewOption() const
 BOOL CMyBCGPProp::TextToVar(const CString& strText)
 {
 	BOOL bRet = CBCGPProp::TextToVar(strText);
-	if (bRet && (m_dwFlags & PROP_HAS_SPIN) && m_varValue.vt == VT_INT)
+	if (bRet)
 	{
-		if (m_varValue.intVal < m_nMinValue)
+		if ((m_dwFlags & PROP_HAS_SPIN) && m_varValue.vt == VT_INT)
 		{
-			m_varValue.intVal = m_nMinValue;
+			if (m_varValue.intVal < m_nMinValue)
+			{
+				m_varValue.intVal = m_nMinValue;
+			}
+			if (m_varValue.intVal > m_nMaxValue)
+			{
+				m_varValue.intVal = m_nMaxValue;
+			}
 		}
-		if (m_varValue.intVal > m_nMaxValue)
+		else if (IsText())
 		{
-			m_varValue.intVal = m_nMaxValue;
+			if (strText.Find('-') != -1)
+			{
+				CString strNewText(strText);
+				strNewText.Replace('-', '_');
+
+				m_varValue = (LPCTSTR)strNewText;
+			}
 		}
 	}
 	return bRet;

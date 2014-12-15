@@ -19,6 +19,8 @@ class CFileView : public CDockablePane
 public:
 	CFileView();
 
+	void FillConfigView();
+
 	void AdjustLayout();
 	void OnChangeVisualStyle();
 

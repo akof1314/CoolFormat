@@ -77,7 +77,8 @@ void CSetPageBase::InitPropList()
 	CBCGPTagManager tm;
 	CString strRes(_T("IDR_SETCONFIG_XML_"));
 	strRes.Append(m_psp.pszTitle);
-	if (!tm.LoadFromResource(strRes.MakeUpper(), _T("XML")))
+	strRes.MakeUpper();
+	if (!tm.LoadFromResource(strRes, _T("XML")))
 	{
 		return;
 	}

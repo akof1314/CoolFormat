@@ -92,9 +92,9 @@ BOOL CMakeSetConfigApp::InitInstance()
 	// Change the registry key under which our settings are stored
 	// TODO: You should modify this string to be something appropriate
 	// such as the name of your company or organization
-	SetRegistryKey(_T("Local AppWizard-Generated Applications"));
+	SetRegistryKey(_T("CoolFormat"));
 	LoadStdProfileSettings(4);  // Load standard INI file options (including MRU)
-
+	SetRegistryBase(_T("Settings"));
 
 	InitContextMenuManager();
 
@@ -210,3 +210,12 @@ void CMakeSetConfigApp::SaveCustomState()
 
 
 
+
+
+CDocument* CMakeSetConfigApp::OpenDocumentFile(LPCTSTR lpszFileName)
+{
+	m_MainLogic.LoadRCFile(lpszFileName);
+	return NULL;
+
+	//return CWinAppEx::OpenDocumentFile(lpszFileName);
+}

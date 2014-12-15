@@ -19,6 +19,8 @@ public:
 
 // Operations
 public:
+	void RefreshConfigView();
+	CFileView* GetFileView() { return &m_wndFileView; }
 
 // Overrides
 public:

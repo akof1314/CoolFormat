@@ -4,6 +4,7 @@
 #include "FileView.h"
 #include "Resource.h"
 #include "MakeSetConfig.h"
+#include "MainLogic.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -76,7 +77,6 @@ int CFileView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_wndToolBar.SetRouteCommandsViaFrame(FALSE);
 
 	// Fill in some static tree view data (dummy code, nothing magic here)
-	FillFileView();
 	AdjustLayout();
 
 	return 0;
@@ -251,6 +251,22 @@ void CFileView::OnChangeVisualStyle()
 	m_FileViewImages.Add(&bmp, RGB(255, 0, 255));
 
 	m_wndFileView.SetImageList(&m_FileViewImages, TVSIL_NORMAL);
+}
+
+void CFileView::FillConfigView()
+{
+	m_wndFileView.DeleteAllItems();
+	HTREEITEM hRoot = m_wndFileView.InsertItem(_T("FakeApp files"), 0, 0);
+	m_wndFileView.SetItemState(hRoot, TVIS_BOLD, TVIS_BOLD);
+
+	HTREEITEM hSrc = m_wndFileView.InsertItem(_T("FakeApp Source Files"), 0, 0, hRoot);
+
+	m_wndFileView.InsertItem(_T("FakeApp.cpp"), 1, 1, hSrc);
+	m_wndFileView.InsertItem(_T("FakeApp.rc"), 1, 1, hSrc);
+	m_wndFileView.InsertItem(_T("FakeAppDoc.cpp"), 1, 1, hSrc);
+	m_wndFileView.InsertItem(_T("FakeAppView.cpp"), 1, 1, hSrc);
+	m_wndFileView.InsertItem(_T("MainFrm.cpp"), 1, 1, hSrc);
+	m_wndFileView.InsertItem(_T("StdAfx.cpp"), 1, 1, hSrc);
 }
 
 

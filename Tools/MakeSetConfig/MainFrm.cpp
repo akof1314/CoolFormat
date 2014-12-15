@@ -382,3 +382,8 @@ BOOL CMainFrame::LoadFrame(UINT nIDResource, DWORD dwDefaultStyle, CWnd* pParent
 	return TRUE;
 }
 
+void CMainFrame::RefreshConfigView()
+{
+	m_wndFileView.FillConfigView();
+}
+
