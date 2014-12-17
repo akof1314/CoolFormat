@@ -33,6 +33,8 @@ protected:
 
 protected:
 	void FillFileView();
+	void DestoryAllItemData();
+	void DestoryItemData(HTREEITEM hItem);
 
 // Implementation
 public:
@@ -51,7 +53,10 @@ protected:
 	afx_msg void OnEditClear();
 	afx_msg void OnPaint();
 	afx_msg void OnSetFocus(CWnd* pOldWnd);
+	void OnTreeTVNSelchanging(NMHDR *pNMHDR, LRESULT *pResult);
 
 	DECLARE_MESSAGE_MAP()
+public:
+	afx_msg void OnDestroy();
 };
 

@@ -27,8 +27,7 @@ protected:
 	CViewTree m_wndClassView;
 	CImageList m_ClassViewImages;
 	UINT m_nCurrSort;
-
-	void FillClassView();
+	CEdit m_wndEdit;
 
 // Overrides
 public:

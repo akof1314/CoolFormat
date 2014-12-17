@@ -15,6 +15,8 @@ static char THIS_FILE[]=__FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CFileView
 
+#define TREE_VIEW_ID 4
+
 CFileView::CFileView()
 {
 }
@@ -36,6 +38,8 @@ BEGIN_MESSAGE_MAP(CFileView, CDockablePane)
 	ON_COMMAND(ID_EDIT_CLEAR, OnEditClear)
 	ON_WM_PAINT()
 	ON_WM_SETFOCUS()
+	ON_WM_DESTROY()
+	ON_NOTIFY(TVN_SELCHANGING, TREE_VIEW_ID, OnTreeTVNSelchanging)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -52,7 +56,7 @@ int CFileView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	// Create view:
 	const DWORD dwViewStyle = WS_CHILD | WS_VISIBLE | TVS_HASLINES | TVS_LINESATROOT | TVS_HASBUTTONS;
 
-	if (!m_wndFileView.Create(dwViewStyle, rectDummy, this, 4))
+	if (!m_wndFileView.Create(dwViewStyle, rectDummy, this, TREE_VIEW_ID))
 	{
 		TRACE0("Failed to create file view\n");
 		return -1;      // fail to create
@@ -176,7 +180,21 @@ void CFileView::OnProperties()
 
 void CFileView::OnFileOpen()
 {
-	// TODO: Add your command handler code here
+	HTREEITEM hTreeItem = m_wndFileView.GetSelectedItem();
+	if (hTreeItem == NULL)
+	{
+		return;
+	}
+	if (m_wndFileView.ItemHasChildren(hTreeItem) || m_wndFileView.GetParentItem(hTreeItem) != NULL)
+	{
+		return;
+	}
+
+	CWaitCursor wait;
+	m_wndFileView.SetRedraw(FALSE);
+	theApp.m_MainLogic.OpenConfigFile(m_wndFileView.GetItemText(hTreeItem), &m_wndFileView);
+	m_wndFileView.Expand(hTreeItem, TVE_EXPAND);
+	m_wndFileView.SetRedraw(TRUE);
 }
 
 void CFileView::OnFileOpenWith()
@@ -255,18 +273,73 @@ void CFileView::OnChangeVisualStyle()
 
 void CFileView::FillConfigView()
 {
+	DestoryAllItemData();
 	m_wndFileView.DeleteAllItems();
-	HTREEITEM hRoot = m_wndFileView.InsertItem(_T("FakeApp files"), 0, 0);
-	m_wndFileView.SetItemState(hRoot, TVIS_BOLD, TVIS_BOLD);
 
-	HTREEITEM hSrc = m_wndFileView.InsertItem(_T("FakeApp Source Files"), 0, 0, hRoot);
-
-	m_wndFileView.InsertItem(_T("FakeApp.cpp"), 1, 1, hSrc);
-	m_wndFileView.InsertItem(_T("FakeApp.rc"), 1, 1, hSrc);
-	m_wndFileView.InsertItem(_T("FakeAppDoc.cpp"), 1, 1, hSrc);
-	m_wndFileView.InsertItem(_T("FakeAppView.cpp"), 1, 1, hSrc);
-	m_wndFileView.InsertItem(_T("MainFrm.cpp"), 1, 1, hSrc);
-	m_wndFileView.InsertItem(_T("StdAfx.cpp"), 1, 1, hSrc);
+	const CStringList* listConfigs = theApp.m_MainLogic.GetConfigs();
+	for (POSITION pos = listConfigs->GetHeadPosition(); pos != NULL;)
+	{
+		HTREEITEM hRoot = m_wndFileView.InsertItem(listConfigs->GetNext(pos), 0, 0);
+		m_wndFileView.SetItemState(hRoot, TVIS_BOLD, TVIS_BOLD);
+	}
 }
 
+void CFileView::DestoryAllItemData()
+{
+	DestoryItemData(m_wndFileView.GetRootItem());
+}
 
+void CFileView::DestoryItemData(HTREEITEM hItem)
+{
+	if (hItem == NULL)
+	{
+		return;
+	}
+
+	DWORD_PTR pData = m_wndFileView.GetItemData(hItem);
+	if (pData)
+	{
+		CMFCPropertyGridProperty *pProp = (CMFCPropertyGridProperty*)pData;
+		if (pProp)
+		{
+			delete pProp;
+		}
+	}
+
+	if (m_wndFileView.ItemHasChildren(hItem))
+	{
+		HTREEITEM hChildItem = m_wndFileView.GetChildItem(hItem);
+		while (hChildItem != NULL)
+		{
+			DestoryItemData(hChildItem);
+			hChildItem = m_wndFileView.GetNextItem(hChildItem, TVGN_NEXT);
+		}
+	}
+}
+
+void CFileView::OnDestroy()
+{
+	DestoryAllItemData();
+	CDockablePane::OnDestroy();
+}
+
+void CFileView::OnTreeTVNSelchanging(NMHDR *pNMHDR, LRESULT *pResult)
+{
+	LPNMTREEVIEW pnmtv = (LPNMTREEVIEW)pNMHDR;
+
+	DWORD_PTR pData = m_wndFileView.GetItemData(pnmtv->itemNew.hItem);
+	if (pData)
+	{
+		CMFCPropertyGridProperty *pProp = (CMFCPropertyGridProperty*)pData;
+		if (pProp)
+		{
+			((CMainFrame*)AfxGetMainWnd())->GetPropertiesWnd()->ShowItemProp(pProp);
+		}
+	}
+	else
+	{
+		((CMainFrame*)AfxGetMainWnd())->GetPropertiesWnd()->ShowItemProp(NULL);
+	}
+
+	*pResult = 0;
+}

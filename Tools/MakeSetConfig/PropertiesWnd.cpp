@@ -12,12 +12,46 @@ static char THIS_FILE[]=__FILE__;
 #define new DEBUG_NEW
 #endif
 
+void CMyMFCPropertyGridCtrl::RemoveAllPropertyNoDelete(bool bAll)
+{
+	if (m_pSel != NULL)
+	{
+		m_pSel->OnEndEdit();
+	}
+	m_lstProps.RemoveAll();
+
+	if (bAll)
+	{
+		RemoveAll();
+		AdjustLayout();
+	}
+}
+
+void CMyMFCPropertyGridCtrl::OnChangeSelection(CMFCPropertyGridProperty* pNewSel, CMFCPropertyGridProperty* pOldSel)
+{
+	CPropertiesWnd* pParentWnd = (CPropertiesWnd*)GetParent();
+	if (pParentWnd)
+	{
+		pParentWnd->ChangeSelection(pNewSel, pOldSel);
+	}
+}
+
+void CMyMFCPropertyGridCtrl::OnPropertyChanged(CMFCPropertyGridProperty* pProp) const
+{
+	CMFCPropertyGridCtrl::OnPropertyChanged(pProp);
+	CPropertiesWnd* pParentWnd = (CPropertiesWnd*)GetParent();
+	if (pParentWnd)
+	{
+		pParentWnd->PropertyChanged(pProp);
+	}
+}
+
+
 /////////////////////////////////////////////////////////////////////////////
 // CResourceViewBar
 
 CPropertiesWnd::CPropertiesWnd()
 {
-	m_nComboHeight = 0;
 }
 
 CPropertiesWnd::~CPropertiesWnd()
@@ -37,6 +71,17 @@ BEGIN_MESSAGE_MAP(CPropertiesWnd, CDockablePane)
 	ON_UPDATE_COMMAND_UI(ID_PROPERTIES2, OnUpdateProperties2)
 	ON_WM_SETFOCUS()
 	ON_WM_SETTINGCHANGE()
+	ON_WM_DESTROY()
+	ON_WM_CONTEXTMENU()
+	ON_COMMAND(ID_PROP_RESET, &CPropertiesWnd::OnPropReset)
+	ON_COMMAND(ID_PROP_ADDITEM, &CPropertiesWnd::OnPropAdditem)
+	ON_COMMAND(ID_PROP_DELITEM, &CPropertiesWnd::OnPropDelitem)
+	ON_UPDATE_COMMAND_UI(ID_PROP_ADDITEM, &CPropertiesWnd::OnUpdatePropAdditem)
+	ON_UPDATE_COMMAND_UI(ID_PROP_DELITEM, &CPropertiesWnd::OnUpdatePropDelitem)
+	ON_COMMAND(ID_PROP_UPITEM, &CPropertiesWnd::OnPropUpitem)
+	ON_COMMAND(ID_PROP_DOWNITEM, &CPropertiesWnd::OnPropDownitem)
+	ON_UPDATE_COMMAND_UI(ID_PROP_DOWNITEM, &CPropertiesWnd::OnUpdatePropDownitem)
+	ON_UPDATE_COMMAND_UI(ID_PROP_UPITEM, &CPropertiesWnd::OnUpdatePropUpitem)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -54,9 +99,8 @@ void CPropertiesWnd::AdjustLayout()
 
 	int cyTlb = m_wndToolBar.CalcFixedLayout(FALSE, TRUE).cy;
 
-	m_wndObjectCombo.SetWindowPos(NULL, rectClient.left, rectClient.top, rectClient.Width(), m_nComboHeight, SWP_NOACTIVATE | SWP_NOZORDER);
-	m_wndToolBar.SetWindowPos(NULL, rectClient.left, rectClient.top + m_nComboHeight, rectClient.Width(), cyTlb, SWP_NOACTIVATE | SWP_NOZORDER);
-	m_wndPropList.SetWindowPos(NULL, rectClient.left, rectClient.top + m_nComboHeight + cyTlb, rectClient.Width(), rectClient.Height() -(m_nComboHeight+cyTlb), SWP_NOACTIVATE | SWP_NOZORDER);
+	m_wndToolBar.SetWindowPos(NULL, rectClient.left, rectClient.top, rectClient.Width(), cyTlb, SWP_NOACTIVATE | SWP_NOZORDER);
+	m_wndPropList.SetWindowPos(NULL, rectClient.left, rectClient.top + cyTlb, rectClient.Width(), rectClient.Height() -(cyTlb), SWP_NOACTIVATE | SWP_NOZORDER);
 }
 
 int CPropertiesWnd::OnCreate(LPCREATESTRUCT lpCreateStruct)
@@ -70,20 +114,6 @@ int CPropertiesWnd::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	// Create combo:
 	const DWORD dwViewStyle = WS_CHILD | WS_VISIBLE | CBS_DROPDOWNLIST | WS_BORDER | CBS_SORT | WS_CLIPSIBLINGS | WS_CLIPCHILDREN;
 
-	if (!m_wndObjectCombo.Create(dwViewStyle, rectDummy, this, 1))
-	{
-		TRACE0("Failed to create Properties Combo \n");
-		return -1;      // fail to create
-	}
-
-	m_wndObjectCombo.AddString(_T("Application"));
-	m_wndObjectCombo.AddString(_T("Properties Window"));
-	m_wndObjectCombo.SetCurSel(0);
-
-	CRect rectCombo;
-	m_wndObjectCombo.GetClientRect (&rectCombo);
-
-	m_nComboHeight = rectCombo.Height();
 
 	if (!m_wndPropList.Create(WS_VISIBLE | WS_CHILD, rectDummy, this, 2))
 	{
@@ -156,12 +186,13 @@ void CPropertiesWnd::OnUpdateProperties2(CCmdUI* /*pCmdUI*/)
 
 void CPropertiesWnd::InitPropList()
 {
-	SetPropListFont();
+	//SetPropListFont();
 
 	m_wndPropList.EnableHeaderCtrl(FALSE);
-	m_wndPropList.EnableDescriptionArea();
+	m_wndPropList.EnableDescriptionArea(FALSE);
 	m_wndPropList.SetVSDotNetLook();
 	m_wndPropList.MarkModifiedProperties();
+	return;
 
 	CMFCPropertyGridProperty* pGroup1 = new CMFCPropertyGridProperty(_T("Appearance"));
 
@@ -246,7 +277,7 @@ void CPropertiesWnd::OnSetFocus(CWnd* pOldWnd)
 void CPropertiesWnd::OnSettingChange(UINT uFlags, LPCTSTR lpszSection)
 {
 	CDockablePane::OnSettingChange(uFlags, lpszSection);
-	SetPropListFont();
+	//SetPropListFont();
 }
 
 void CPropertiesWnd::SetPropListFont()
@@ -268,5 +299,299 @@ void CPropertiesWnd::SetPropListFont()
 	m_fntPropList.CreateFontIndirect(&lf);
 
 	m_wndPropList.SetFont(&m_fntPropList);
-	m_wndObjectCombo.SetFont(&m_fntPropList);
+}
+
+void CPropertiesWnd::ShowItemProp(CMFCPropertyGridProperty *pProp)
+{
+	m_wndPropList.RemoveAllPropertyNoDelete(TRUE);
+	if (pProp)
+	{
+		m_wndPropList.AddProperty(pProp);
+	}
+}
+
+void CPropertiesWnd::OnDestroy()
+{
+	m_wndPropList.RemoveAllPropertyNoDelete(FALSE);
+	CDockablePane::OnDestroy();
+}
+
+void CPropertiesWnd::OnContextMenu(CWnd* pWnd, CPoint point)
+{
+	CMyMFCPropertyGridCtrl* pWndPropList = (CMyMFCPropertyGridCtrl*)&m_wndPropList;
+	ASSERT_VALID(pWndPropList);
+
+	if (pWnd != pWndPropList)
+	{
+		CDockablePane::OnContextMenu(pWnd, point);
+		return;
+	}
+
+	pWndPropList->SetFocus();
+	theApp.GetContextMenuManager()->ShowPopupMenu(IDR_POPUP_PROPLIST, point.x, point.y, this, TRUE);
+}
+
+void CPropertiesWnd::OnPropReset()
+{
+	m_wndPropList.ResetOriginalValues(TRUE);
+}
+
+void CPropertiesWnd::OnPropAdditem()
+{
+	if (!IsComboType())
+	{
+		return;
+	}
+
+	CMFCPropertyGridProperty *pProp = m_wndPropList.FindItemByData(PROP_DATA_ITEMS);
+	if (pProp)
+	{
+		CMFCPropertyGridProperty* pPropItem = new CMFCPropertyGridProperty(_T("ITEM"), 0, TRUE);
+		pProp->AddSubItem(pPropItem);
+		pProp->Expand(TRUE);
+
+		CMFCPropertyGridProperty* pPropChild = new CMFCPropertyGridProperty(_T("VALUE"), (COleVariant)_T(""));
+		pPropItem->AddSubItem(pPropChild);
+
+		pPropChild = new CMFCPropertyGridProperty(_T("SHORT"), (COleVariant)_T(""));
+		pPropItem->AddSubItem(pPropChild);
+
+		pPropChild = new CMFCPropertyGridProperty(_T("PREVIEW"), (COleVariant)_T(""));
+		pPropItem->AddSubItem(pPropChild);
+		pPropItem->Expand(TRUE);
+	}
+}
+
+void CPropertiesWnd::OnPropDelitem()
+{
+	if (!IsComboType())
+	{
+		return;
+	}
+
+	CMFCPropertyGridProperty *pProp = m_wndPropList.GetCurSel();
+	if (pProp && pProp->IsGroup())
+	{
+		CString strName(pProp->GetName());
+		if (strName.CompareNoCase(_T("ITEM")) == 0 && AfxMessageBox(_T("Sure to delete it?"), MB_YESNO) == IDYES)
+		{
+			pProp->GetParent()->RemoveSubItem(pProp);
+			m_wndPropList.RedrawWindow();
+		}
+	}
+}
+
+void CPropertiesWnd::OnUpdatePropAdditem(CCmdUI *pCmdUI)
+{
+	pCmdUI->Enable(IsComboType());
+}
+
+void CPropertiesWnd::OnUpdatePropDelitem(CCmdUI *pCmdUI)
+{
+	pCmdUI->Enable(IsSelectComboItem());
+}
+
+BOOL CPropertiesWnd::IsComboType()
+{
+	CMFCPropertyGridProperty *pProp = m_wndPropList.FindItemByData(PROP_DATA_TYPE);
+	if (pProp)
+	{
+		CString strValue(pProp->GetValue());
+		return strValue.CompareNoCase(_T("Combo")) == 0;
+	}
+	return FALSE;
+}
+
+void CPropertiesWnd::OnPropUpitem()
+{
+	if (!IsComboType())
+	{
+		return;
+	}
+
+	CMFCPropertyGridProperty *pProp = m_wndPropList.GetCurSel();
+	if (pProp && pProp->IsGroup())
+	{
+		CString strName(pProp->GetName());
+		if (strName.CompareNoCase(_T("ITEM")) == 0)
+		{
+			CMFCPropertyGridProperty *pParentProp = pProp->GetParent();
+			if (pProp == pParentProp->GetSubItem(0))
+			{
+				return;
+			}
+
+			int nEnd = 0;
+			CList<CMFCPropertyGridProperty*, CMFCPropertyGridProperty*> lstSubItems;
+			for (int i = pParentProp->GetSubItemsCount() - 1; i >= nEnd; i--)
+			{
+				CMFCPropertyGridProperty *pChildProp = pParentProp->GetSubItem(i);
+				if (pChildProp)
+				{
+					if (pChildProp == pProp)
+					{
+						nEnd = i - 1;
+					}
+					else
+					{
+						lstSubItems.AddHead(pChildProp);
+					}
+					pParentProp->RemoveSubItem(pChildProp, FALSE);
+				}
+			}
+
+			pParentProp->AddSubItem(pProp);
+			for (POSITION pos = lstSubItems.GetHeadPosition(); pos != NULL;)
+			{
+				CMFCPropertyGridProperty* pProp = lstSubItems.GetNext(pos);
+				ASSERT_VALID(pProp);
+
+				pParentProp->AddSubItem(pProp);
+			}
+			m_wndPropList.AdjustLayout();
+		}
+	}
+}
+
+void CPropertiesWnd::OnPropDownitem()
+{
+	if (!IsComboType())
+	{
+		return;
+	}
+
+	CMFCPropertyGridProperty *pProp = m_wndPropList.GetCurSel();
+	if (pProp && pProp->IsGroup())
+	{
+		CString strName(pProp->GetName());
+		if (strName.CompareNoCase(_T("ITEM")) == 0)
+		{
+			CMFCPropertyGridProperty *pParentProp = pProp->GetParent();
+			if (pProp == pParentProp->GetSubItem(pParentProp->GetSubItemsCount() - 1))
+			{
+				return;
+			}
+
+			int nEnd = 0;
+			CList<CMFCPropertyGridProperty*, CMFCPropertyGridProperty*> lstSubItems;
+			for (int i = pParentProp->GetSubItemsCount() - 1; i >= nEnd; i--)
+			{
+				CMFCPropertyGridProperty *pChildProp = pParentProp->GetSubItem(i);
+				if (pChildProp)
+				{
+					if (pChildProp == pProp)
+					{
+						nEnd = i;
+						lstSubItems.InsertAfter(lstSubItems.GetHeadPosition(), pChildProp);
+					}
+					else
+					{
+						lstSubItems.AddHead(pChildProp);
+					}
+					pParentProp->RemoveSubItem(pChildProp, FALSE);
+				}
+			}
+
+			for (POSITION pos = lstSubItems.GetHeadPosition(); pos != NULL;)
+			{
+				CMFCPropertyGridProperty* pProp = lstSubItems.GetNext(pos);
+				ASSERT_VALID(pProp);
+
+				pParentProp->AddSubItem(pProp);
+			}
+			m_wndPropList.AdjustLayout();
+		}
+	}
+}
+
+void CPropertiesWnd::OnUpdatePropDownitem(CCmdUI *pCmdUI)
+{
+	pCmdUI->Enable(IsSelectComboItem());
+}
+
+void CPropertiesWnd::OnUpdatePropUpitem(CCmdUI *pCmdUI)
+{
+	pCmdUI->Enable(IsSelectComboItem());
+}
+
+BOOL CPropertiesWnd::IsSelectComboItem()
+{
+	if (IsComboType())
+	{
+		CMFCPropertyGridProperty *pProp = m_wndPropList.GetCurSel();
+		if (pProp && pProp->IsGroup())
+		{
+			CString strName(pProp->GetName());
+			return (strName.CompareNoCase(_T("ITEM")) == 0);
+		}
+	}
+	return FALSE;
+}
+
+void CPropertiesWnd::PropertyChanged(CMFCPropertyGridProperty* pProp)
+{
+	CString strName(pProp->GetName());
+	if (strName.CompareNoCase(_T("TYPE")) == 0)
+	{
+		CMFCPropertyGridProperty* pPropGroup = pProp->GetParent();
+		for (int i = pPropGroup->GetSubItemsCount() - 1; i >= 0; i--)
+		{
+			CMFCPropertyGridProperty* pChildProp = pPropGroup->GetSubItem(i);
+			if (pChildProp == pProp)
+			{
+				break;
+			}
+			pPropGroup->RemoveSubItem(pChildProp);
+		}
+
+		CString strType(pProp->GetValue());
+		if (strType.CompareNoCase(_T("Combo")) == 0)
+		{
+			CMFCPropertyGridProperty* pNewProp = new CMFCPropertyGridProperty(_T("VALUE"), (COleVariant)_T(""));
+			pPropGroup->AddSubItem(pNewProp);
+
+			pNewProp = new CMFCPropertyGridProperty(_T("ITEMS"), PROP_DATA_ITEMS, TRUE);
+			pPropGroup->AddSubItem(pNewProp);
+		}
+		else if (strType.CompareNoCase(_T("Number")) == 0)
+		{ 
+			CMFCPropertyGridProperty* pNewProp = new CMFCPropertyGridProperty(_T("VALUE"), (_variant_t)0, _T(""));
+			pPropGroup->AddSubItem(pNewProp);
+
+			pNewProp = new CMFCPropertyGridProperty(_T("RANGE MIN"), (_variant_t)0, _T(""));
+			pNewProp->EnableSpinControl(TRUE, -9999, 9999);
+			pPropGroup->AddSubItem(pNewProp);
+			pNewProp = new CMFCPropertyGridProperty(_T("RANGE MAX"), (_variant_t)100, _T(""));
+			pNewProp->EnableSpinControl(TRUE, -9999, 9999);
+			pPropGroup->AddSubItem(pNewProp);
+
+			BOOL bBuddy = FALSE;
+			pNewProp = new CMFCPropertyGridProperty(_T("BUDDY"), (_variant_t)(bBuddy == TRUE), _T(""));
+			pPropGroup->AddSubItem(pNewProp);
+
+			pNewProp = new CMFCPropertyGridProperty(_T("SHORT"), (_variant_t)_T(""), _T(""));
+			pPropGroup->AddSubItem(pNewProp);
+
+			pNewProp = new CMFCPropertyGridProperty(_T("PREVIEW"), (_variant_t)_T(""), _T(""));
+			pPropGroup->AddSubItem(pNewProp);
+		}
+		else if (strType.CompareNoCase(_T("Text")) == 0)
+		{
+			CMFCPropertyGridProperty* pNewProp = new CMFCPropertyGridProperty(_T("VALUE"), (COleVariant)_T(""));
+			pPropGroup->AddSubItem(pNewProp);
+
+			pNewProp = new CMFCPropertyGridProperty(_T("SHORT"), (COleVariant)_T(""));
+			pPropGroup->AddSubItem(pNewProp);
+
+			pNewProp = new CMFCPropertyGridProperty(_T("PREVIEW"), (COleVariant)_T(""));
+			pPropGroup->AddSubItem(pNewProp);
+		}
+
+		m_wndPropList.AdjustLayout();
+	}
+}
+
+void CPropertiesWnd::ChangeSelection(CMFCPropertyGridProperty* pNewSel, CMFCPropertyGridProperty* /*pOldSel*/)
+{
+
 }

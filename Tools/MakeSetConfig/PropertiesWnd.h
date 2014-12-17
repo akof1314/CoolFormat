@@ -12,11 +12,23 @@ public:
 	virtual BOOL AllowShowOnList() const { return FALSE; }
 };
 
+class CMyMFCPropertyGridCtrl : public CMFCPropertyGridCtrl
+{
+public:
+	void RemoveAllPropertyNoDelete(bool bAll);
+	void OnChangeSelection(CMFCPropertyGridProperty* /*pNewSel*/, CMFCPropertyGridProperty* /*pOldSel*/);
+	void OnPropertyChanged(CMFCPropertyGridProperty* pProp) const;
+};
+
 class CPropertiesWnd : public CDockablePane
 {
 // Construction
 public:
 	CPropertiesWnd();
+
+	void ShowItemProp(CMFCPropertyGridProperty *pProp);
+	void PropertyChanged(CMFCPropertyGridProperty* pProp);
+	void ChangeSelection(CMFCPropertyGridProperty* pNewSel, CMFCPropertyGridProperty* /*pOldSel*/);
 
 	void AdjustLayout();
 
@@ -30,9 +42,13 @@ public:
 
 protected:
 	CFont m_fntPropList;
-	CComboBox m_wndObjectCombo;
 	CPropertiesToolBar m_wndToolBar;
-	CMFCPropertyGridCtrl m_wndPropList;
+	CMyMFCPropertyGridCtrl m_wndPropList;
+
+	void InitPropList();
+	void SetPropListFont();
+	BOOL IsComboType();
+	BOOL IsSelectComboItem();
 
 // Implementation
 public:
@@ -54,9 +70,17 @@ protected:
 
 	DECLARE_MESSAGE_MAP()
 
-	void InitPropList();
-	void SetPropListFont();
-
-	int m_nComboHeight;
+public:
+	afx_msg void OnDestroy();
+	afx_msg void OnContextMenu(CWnd* /*pWnd*/, CPoint /*point*/);
+	afx_msg void OnPropReset();
+	afx_msg void OnPropAdditem();
+	afx_msg void OnPropDelitem();
+	afx_msg void OnUpdatePropAdditem(CCmdUI *pCmdUI);
+	afx_msg void OnUpdatePropDelitem(CCmdUI *pCmdUI);
+	afx_msg void OnPropUpitem();
+	afx_msg void OnPropDownitem();
+	afx_msg void OnUpdatePropDownitem(CCmdUI *pCmdUI);
+	afx_msg void OnUpdatePropUpitem(CCmdUI *pCmdUI);
 };
 

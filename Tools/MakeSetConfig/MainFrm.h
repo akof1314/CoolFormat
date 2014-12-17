@@ -21,6 +21,7 @@ public:
 public:
 	void RefreshConfigView();
 	CFileView* GetFileView() { return &m_wndFileView; }
+	CPropertiesWnd* GetPropertiesWnd() { return &m_wndProperties; }
 
 // Overrides
 public:
@@ -40,9 +41,9 @@ protected:  // control bar embedded members
 	CMFCToolBar       m_wndToolBar;
 	CMFCStatusBar     m_wndStatusBar;
 	CMFCToolBarImages m_UserImages;
+	CPropertiesWnd    m_wndProperties;
 	CFileView         m_wndFileView;
 	CClassView        m_wndClassView;
-	CPropertiesWnd    m_wndProperties;
 
 // Generated message map functions
 protected:
