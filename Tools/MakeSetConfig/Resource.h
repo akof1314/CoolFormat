@@ -5,6 +5,7 @@
 #define IDD_ABOUTBOX                    100
 #define IDP_OLE_INIT_FAILED             100
 #define IDS_PROPLIST                    101
+#define IDS_GROUP                       102
 #define IDR_POPUP_EDIT                  119
 #define ID_STATUSBAR_PANE1              120
 #define ID_STATUSBAR_PANE2              121
@@ -78,18 +79,28 @@
 #define IDS_EXPLORER                    305
 #define IDS_EDIT_MENU                   306
 #define IDR_POPUP_PROPLIST              310
+#define IDR_MENU_GROUP                  311
 #define ID_PROP_RESET                   32771
 #define ID_PROP_ADDITEM                 32772
 #define ID_PROP_DELITEM                 32773
 #define ID_PROP_UPITEM                  32774
 #define ID_PROP_DOWNITEM                32775
+#define ID_EXPLORER_SAVE                32786
+#define ID_EXPLORER_CLOSE               32787
+#define ID_EXPLORER_DELETE              32788
+#define ID_GROUP_ADDPROP                32789
+#define ID_GROUP_DELPROP                32790
+#define ID_GROUP_UPPROP                 32791
+#define ID_GROUP_DOWNPROP               32792
+#define ID_GROUP_ADDGROUP               32793
+#define ID_GROUP_DELGROUP               32794
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        311
-#define _APS_NEXT_COMMAND_VALUE         32776
+#define _APS_NEXT_RESOURCE_VALUE        312
+#define _APS_NEXT_COMMAND_VALUE         32795
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           310
 #endif

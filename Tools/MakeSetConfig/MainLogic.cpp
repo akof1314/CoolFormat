@@ -17,45 +17,10 @@ CMainLogic::~CMainLogic()
 
 void CMainLogic::LoadRCFile(LPCTSTR lpszFileName)
 {
-	CFile listFile;
-	CFileException fileException;
-	if (!listFile.Open(lpszFileName, CFile::modeRead, &fileException))
+	CString strText;
+	if (OpenFile(lpszFileName, strText))
 	{
-		TCHAR szErrorMsg[1024];
-		fileException.GetErrorMessage(szErrorMsg, 1024, NULL);
-		AfxMessageBox(szErrorMsg, MB_OK | MB_ICONERROR);
-		return;
-	}
-	try
-	{
-		CWaitCursor wait;
-		const DWORD dwFileSize = (const DWORD)listFile.GetLength();
-		if (dwFileSize == 0)
-		{
-			return;
-		}
-
-		LPSTR pszFileBuffer = new char[dwFileSize + 2];
-		ZeroMemory(pszFileBuffer, dwFileSize + 2);
-
-#if _MSC_VER >= 1300
-		listFile.Read(pszFileBuffer, dwFileSize);
-#else
-		listFile.ReadHuge(pszFileBuffer, dwFileSize);
-#endif
-		listFile.Close();
-
-		CString strText(pszFileBuffer);
-		delete[] pszFileBuffer;
-
 		ParseRCText(lpszFileName, strText);
-	}
-	catch (CException* e)
-	{
-		TCHAR szErrorMsg[1024];
-		e->GetErrorMessage(szErrorMsg, 1024, NULL);
-		e->Delete();
-		AfxMessageBox(szErrorMsg, MB_OK | MB_ICONERROR);
 	}
 }
 
@@ -126,6 +91,10 @@ void CMainLogic::OpenConfigFile(LPCTSTR lpszName, CTreeCtrl* pTreeCtrl)
 	{
 		return;
 	}
+
+	CString strText;
+	OpenFile(m_strFullConfigPath + lpszName, strText);
+	((CMainFrame*)AfxGetMainWnd())->SetConfigText(strText);
 
 	CString strStyle;
 	if (!tm.ExcludeTag(_T("SETCONFIG"), strStyle))
@@ -286,4 +255,50 @@ void CMainLogic::EntityToSymbol(CString& value)
 	value.Replace(_T("\\t"), _T("\t"));
 	value.Replace(_T("\\n"), _T("\n"));
 	value.Replace(_T("\\r"), _T("\r"));
+}
+
+BOOL CMainLogic::OpenFile(LPCTSTR lpszFileName, CString& value)
+{
+	CFile listFile;
+	CFileException fileException;
+	if (!listFile.Open(lpszFileName, CFile::modeRead, &fileException))
+	{
+		TCHAR szErrorMsg[1024];
+		fileException.GetErrorMessage(szErrorMsg, 1024, NULL);
+		AfxMessageBox(szErrorMsg, MB_OK | MB_ICONERROR);
+		return FALSE;
+	}
+	try
+	{
+		CWaitCursor wait;
+		const DWORD dwFileSize = (const DWORD)listFile.GetLength();
+		if (dwFileSize == 0)
+		{
+			return FALSE;
+		}
+
+		LPSTR pszFileBuffer = new char[dwFileSize + 2];
+		ZeroMemory(pszFileBuffer, dwFileSize + 2);
+
+#if _MSC_VER >= 1300
+		listFile.Read(pszFileBuffer, dwFileSize);
+#else
+		listFile.ReadHuge(pszFileBuffer, dwFileSize);
+#endif
+		listFile.Close();
+
+		CString strText(pszFileBuffer);
+		delete[] pszFileBuffer;
+
+		value = strText;
+		return TRUE;
+	}
+	catch (CException* e)
+	{
+		TCHAR szErrorMsg[1024];
+		e->GetErrorMessage(szErrorMsg, 1024, NULL);
+		e->Delete();
+		AfxMessageBox(szErrorMsg, MB_OK | MB_ICONERROR);
+	}
+	return FALSE;
 }

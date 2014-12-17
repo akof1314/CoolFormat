@@ -4,7 +4,7 @@
 
 #include "stdafx.h"
 #include "MakeSetConfig.h"
-
+#include "MakeSetConfigView.h"
 #include "MainFrm.h"
 
 #ifdef _DEBUG
@@ -386,5 +386,10 @@ void CMainFrame::RefreshConfigView()
 {
 	m_wndFileView.FillConfigView();
 	m_wndProperties.ShowItemProp(NULL);
+}
+
+void CMainFrame::SetConfigText(const CString& strText)
+{
+	((CMakeSetConfigView*)GetActiveView())->SetConfigText(strText);
 }
 

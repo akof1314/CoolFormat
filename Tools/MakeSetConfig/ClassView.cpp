@@ -5,40 +5,16 @@
 #include "Resource.h"
 #include "MakeSetConfig.h"
 
-class CClassViewMenuButton : public CMFCToolBarMenuButton
-{
-	friend class CClassView;
-
-	DECLARE_SERIAL(CClassViewMenuButton)
-
-public:
-	CClassViewMenuButton(HMENU hMenu = NULL) : CMFCToolBarMenuButton((UINT)-1, hMenu, -1)
-	{
-	}
-
-	virtual void OnDraw(CDC* pDC, const CRect& rect, CMFCToolBarImages* pImages, BOOL bHorz = TRUE,
-		BOOL bCustomizeMode = FALSE, BOOL bHighlight = FALSE, BOOL bDrawBorder = TRUE, BOOL bGrayDisabledButtons = TRUE)
-	{
-		pImages = CMFCToolBar::GetImages();
-
-		CAfxDrawState ds;
-		pImages->PrepareDrawImage(ds);
-
-		CMFCToolBarMenuButton::OnDraw(pDC, rect, pImages, bHorz, bCustomizeMode, bHighlight, bDrawBorder, bGrayDisabledButtons);
-
-		pImages->EndDrawImage(ds);
-	}
-};
-
-IMPLEMENT_SERIAL(CClassViewMenuButton, CMFCToolBarMenuButton, 1)
-
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
+#define EDIT_VIEW_ID 2
+
 CClassView::CClassView()
 {
 	m_nCurrSort = ID_SORTING_GROUPBYTYPE;
+	m_PreviewProp = NULL;
 }
 
 CClassView::~CClassView()
@@ -49,15 +25,10 @@ BEGIN_MESSAGE_MAP(CClassView, CDockablePane)
 	ON_WM_CREATE()
 	ON_WM_SIZE()
 	ON_WM_CONTEXTMENU()
-	ON_COMMAND(ID_CLASS_ADD_MEMBER_FUNCTION, OnClassAddMemberFunction)
-	ON_COMMAND(ID_CLASS_ADD_MEMBER_VARIABLE, OnClassAddMemberVariable)
-	ON_COMMAND(ID_CLASS_DEFINITION, OnClassDefinition)
-	ON_COMMAND(ID_CLASS_PROPERTIES, OnClassProperties)
 	ON_COMMAND(ID_NEW_FOLDER, OnNewFolder)
 	ON_WM_PAINT()
 	ON_WM_SETFOCUS()
-	ON_COMMAND_RANGE(ID_SORTING_GROUPBYTYPE, ID_SORTING_SORTBYACCESS, OnSort)
-	ON_UPDATE_COMMAND_UI_RANGE(ID_SORTING_GROUPBYTYPE, ID_SORTING_SORTBYACCESS, OnUpdateSort)
+	ON_EN_CHANGE(EDIT_VIEW_ID, OnChangeEdit)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -74,7 +45,7 @@ int CClassView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	// Create views:
 	const DWORD dwViewStyle = WS_CHILD | WS_VISIBLE | TVS_HASLINES | TVS_LINESATROOT | TVS_HASBUTTONS | WS_CLIPSIBLINGS | WS_CLIPCHILDREN;
 
-	if (!m_wndEdit.Create(dwViewStyle, rectDummy, this, 2))
+	if (!m_wndEdit.Create(dwViewStyle, rectDummy, this, EDIT_VIEW_ID))
 	{
 		TRACE0("Failed to create Class View\n");
 		return -1;      // fail to create
@@ -94,22 +65,7 @@ int CClassView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	// All commands will be routed via this control , not via the parent frame:
 	m_wndToolBar.SetRouteCommandsViaFrame(FALSE);
 
-	CMenu menuSort;
-	menuSort.LoadMenu(IDR_POPUP_SORT);
-
-	m_wndToolBar.ReplaceButton(ID_SORT_MENU, CClassViewMenuButton(menuSort.GetSubMenu(0)->GetSafeHmenu()));
-
-	CClassViewMenuButton* pButton =  DYNAMIC_DOWNCAST(CClassViewMenuButton, m_wndToolBar.GetButton(0));
-
-	if (pButton != NULL)
-	{
-		pButton->m_bText = FALSE;
-		pButton->m_bImage = TRUE;
-		pButton->SetImage(GetCmdMgr()->GetCmdImage(m_nCurrSort));
-		pButton->SetMessageWnd(this);
-	}
-
-
+	m_wndEdit.SetFont(&afxGlobalData.fontRegular);
 	return 0;
 }
 
@@ -145,53 +101,13 @@ BOOL CClassView::PreTranslateMessage(MSG* pMsg)
 	return CDockablePane::PreTranslateMessage(pMsg);
 }
 
-void CClassView::OnSort(UINT id)
-{
-	if (m_nCurrSort == id)
-	{
-		return;
-	}
-
-	m_nCurrSort = id;
-
-	CClassViewMenuButton* pButton =  DYNAMIC_DOWNCAST(CClassViewMenuButton, m_wndToolBar.GetButton(0));
-
-	if (pButton != NULL)
-	{
-		pButton->SetImage(GetCmdMgr()->GetCmdImage(id));
-		m_wndToolBar.Invalidate();
-		m_wndToolBar.UpdateWindow();
-	}
-}
-
-void CClassView::OnUpdateSort(CCmdUI* pCmdUI)
-{
-	pCmdUI->SetCheck(pCmdUI->m_nID == m_nCurrSort);
-}
-
-void CClassView::OnClassAddMemberFunction()
-{
-	AfxMessageBox(_T("Add member function..."));
-}
-
-void CClassView::OnClassAddMemberVariable()
-{
-	// TODO: Add your command handler code here
-}
-
-void CClassView::OnClassDefinition()
-{
-	// TODO: Add your command handler code here
-}
-
-void CClassView::OnClassProperties()
-{
-	// TODO: Add your command handler code here
-}
-
 void CClassView::OnNewFolder()
 {
-	AfxMessageBox(_T("New Folder..."));
+	if (m_PreviewProp)
+	{
+		m_PreviewProp->ResetOriginalValue();
+		m_wndEdit.SetWindowText(CString(m_PreviewProp->GetValue()));
+	}
 }
 
 void CClassView::OnPaint()
@@ -240,4 +156,54 @@ void CClassView::OnChangeVisualStyle()
 
 	m_wndToolBar.CleanUpLockedImages();
 	m_wndToolBar.LoadBitmap(theApp.m_bHiColorIcons ? IDB_SORT_24 : IDR_SORT, 0, 0, TRUE /* Locked */);
+}
+
+void CClassView::SetPreviewProp(CMFCPropertyGridProperty* pProp)
+{
+	if (m_PreviewProp == pProp)
+	{
+		return;
+	} 
+	else
+	{
+		m_PreviewProp = pProp;
+		if (m_PreviewProp)
+		{
+			m_wndEdit.SetWindowText(CString(m_PreviewProp->GetValue()));
+		}
+		else
+		{
+			m_wndEdit.SetWindowText(_T(""));
+		}
+	}
+}
+
+void CClassView::RefreshPreview()
+{
+	if (m_PreviewProp)
+	{
+		CString strValue;
+		m_wndEdit.GetWindowText(strValue);
+
+		CString strNewValue(m_PreviewProp->GetValue());
+		if (strNewValue.CompareNoCase(strValue) != 0)
+		{
+			m_wndEdit.SetWindowText(strNewValue);
+		}
+	}
+}
+
+void CClassView::OnChangeEdit()
+{
+	if (m_PreviewProp)
+	{
+		CString strValue;
+		m_wndEdit.GetWindowText(strValue);
+		m_PreviewProp->SetValue(strValue);
+
+		if (!m_PreviewProp->IsModified())
+		{
+			((CMainFrame*)AfxGetMainWnd())->GetPropertiesWnd()->SetPropModifiedFlag(m_PreviewProp);
+		}
+	}
 }

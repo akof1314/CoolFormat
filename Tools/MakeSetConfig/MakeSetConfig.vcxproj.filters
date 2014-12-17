@@ -45,9 +45,6 @@
     <ClInclude Include="ClassView.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="ViewTree.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="PropertiesWnd.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -75,9 +72,6 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="ClassView.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="ViewTree.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="PropertiesWnd.cpp">

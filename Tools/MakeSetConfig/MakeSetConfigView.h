@@ -4,7 +4,7 @@
 
 #pragma once
 
-
+class CMakeSetConfigDoc;
 class CMakeSetConfigView : public CEditView
 {
 protected: // create from serialization only
@@ -17,6 +17,7 @@ public:
 
 // Operations
 public:
+	void SetConfigText(const CString& strText);
 
 // Overrides
 public:
@@ -39,6 +40,9 @@ protected:
 	afx_msg void OnRButtonUp(UINT nFlags, CPoint point);
 	afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
 	DECLARE_MESSAGE_MAP()
+public:
+	virtual void OnInitialUpdate();
+	afx_msg void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
 };
 
 #ifndef _DEBUG  // debug version in MakeSetConfigView.cpp

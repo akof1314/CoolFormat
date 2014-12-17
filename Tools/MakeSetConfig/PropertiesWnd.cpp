@@ -308,6 +308,7 @@ void CPropertiesWnd::ShowItemProp(CMFCPropertyGridProperty *pProp)
 	{
 		m_wndPropList.AddProperty(pProp);
 	}
+	((CMainFrame*)AfxGetMainWnd())->GetClassView()->SetPreviewProp(NULL);
 }
 
 void CPropertiesWnd::OnDestroy()
@@ -589,9 +590,64 @@ void CPropertiesWnd::PropertyChanged(CMFCPropertyGridProperty* pProp)
 
 		m_wndPropList.AdjustLayout();
 	}
+	else if (strName.CompareNoCase(_T("PREVIEW")) == 0)
+	{
+		((CMainFrame*)AfxGetMainWnd())->GetClassView()->RefreshPreview();
+	}
 }
 
 void CPropertiesWnd::ChangeSelection(CMFCPropertyGridProperty* pNewSel, CMFCPropertyGridProperty* /*pOldSel*/)
 {
+	if (pNewSel == NULL)
+	{
+		((CMainFrame*)AfxGetMainWnd())->GetClassView()->SetPreviewProp(NULL);
+		return;
+	}
 
+	CString strPreview;
+	if (IsComboType())
+	{
+		if (pNewSel->IsGroup())
+		{
+			CString strName(pNewSel->GetName());
+			if (strName.CompareNoCase(_T("ITEM")) == 0)
+			{
+				CMFCPropertyGridProperty* pPreviewProp = pNewSel->GetSubItem(pNewSel->GetSubItemsCount() - 1);
+				((CMainFrame*)AfxGetMainWnd())->GetClassView()->SetPreviewProp(pPreviewProp);
+				return;
+			}
+		}
+		else
+		{
+			CMFCPropertyGridProperty* pGroupProp = pNewSel->GetParent();
+			CString strName(pGroupProp->GetName());
+			if (strName.CompareNoCase(_T("ITEM")) == 0)
+			{
+				CMFCPropertyGridProperty* pPreviewProp = pGroupProp->GetSubItem(pGroupProp->GetSubItemsCount() - 1);
+				((CMainFrame*)AfxGetMainWnd())->GetClassView()->SetPreviewProp(pPreviewProp);
+				return;
+			}
+		}
+		((CMainFrame*)AfxGetMainWnd())->GetClassView()->SetPreviewProp(NULL);
+	}
+	else
+	{
+		// the last is preview
+		CMFCPropertyGridProperty* pGroupProp = pNewSel;
+		if (!pNewSel->IsGroup())
+		{
+			pGroupProp = pNewSel->GetParent();
+		}
+
+		CMFCPropertyGridProperty* pPreviewProp = pGroupProp->GetSubItem(pGroupProp->GetSubItemsCount() - 1);
+		((CMainFrame*)AfxGetMainWnd())->GetClassView()->SetPreviewProp(pPreviewProp);		
+	}
+}
+
+void CPropertiesWnd::SetPropModifiedFlag(CMFCPropertyGridProperty* pProp)
+{
+	if (pProp)
+	{
+		m_wndPropList.OnPropertyChanged(pProp);
+	}
 }

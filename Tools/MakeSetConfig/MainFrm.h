@@ -22,6 +22,8 @@ public:
 	void RefreshConfigView();
 	CFileView* GetFileView() { return &m_wndFileView; }
 	CPropertiesWnd* GetPropertiesWnd() { return &m_wndProperties; }
+	CClassView* GetClassView() { return &m_wndClassView; }
+	void SetConfigText(const CString& strText);
 
 // Overrides
 public:

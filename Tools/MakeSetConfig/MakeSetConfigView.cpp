@@ -24,6 +24,7 @@ IMPLEMENT_DYNCREATE(CMakeSetConfigView, CEditView)
 BEGIN_MESSAGE_MAP(CMakeSetConfigView, CEditView)
 	ON_WM_CONTEXTMENU()
 	ON_WM_RBUTTONUP()
+	ON_WM_CHAR()
 END_MESSAGE_MAP()
 
 // CMakeSetConfigView construction/destruction
@@ -85,3 +86,26 @@ CMakeSetConfigDoc* CMakeSetConfigView::GetDocument() const // non-debug version 
 
 
 // CMakeSetConfigView message handlers
+
+
+void CMakeSetConfigView::OnInitialUpdate()
+{
+	CEditView::OnInitialUpdate();
+
+	SetFont(&afxGlobalData.fontRegular);
+
+	//GetEditCtrl().SetReadOnly(TRUE);
+}
+
+void CMakeSetConfigView::SetConfigText(const CString& strText)
+{
+	GetEditCtrl().SetWindowText(strText);
+}
+
+
+void CMakeSetConfigView::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
+{
+	// TODO:  在此添加消息处理程序代码和/或调用默认值
+
+	//CEditView::OnChar(nChar, nRepCnt, nFlags);
+}

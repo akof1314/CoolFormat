@@ -29,6 +29,7 @@ public:
 	void ShowItemProp(CMFCPropertyGridProperty *pProp);
 	void PropertyChanged(CMFCPropertyGridProperty* pProp);
 	void ChangeSelection(CMFCPropertyGridProperty* pNewSel, CMFCPropertyGridProperty* /*pOldSel*/);
+	void SetPropModifiedFlag(CMFCPropertyGridProperty* pProp);
 
 	void AdjustLayout();
 

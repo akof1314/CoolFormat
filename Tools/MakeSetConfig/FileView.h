@@ -1,7 +1,4 @@
-
 #pragma once
-
-#include "ViewTree.h"
 
 class CFileViewToolBar : public CMFCToolBar
 {
@@ -27,7 +24,7 @@ public:
 // Attributes
 protected:
 
-	CViewTree m_wndFileView;
+	CTreeCtrl m_wndFileView;
 	CImageList m_FileViewImages;
 	CFileViewToolBar m_wndToolBar;
 
@@ -35,6 +32,10 @@ protected:
 	void FillFileView();
 	void DestoryAllItemData();
 	void DestoryItemData(HTREEITEM hItem);
+	BOOL IsSelectItemOpened();
+	BOOL IsSelectItemGroup();
+	CMFCPropertyGridProperty* GetSelectItemProp();
+	HTREEITEM GetSelectItemGroup();
 
 // Implementation
 public:
@@ -46,11 +47,6 @@ protected:
 	afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
 	afx_msg void OnProperties();
 	afx_msg void OnFileOpen();
-	afx_msg void OnFileOpenWith();
-	afx_msg void OnDummyCompile();
-	afx_msg void OnEditCut();
-	afx_msg void OnEditCopy();
-	afx_msg void OnEditClear();
 	afx_msg void OnPaint();
 	afx_msg void OnSetFocus(CWnd* pOldWnd);
 	void OnTreeTVNSelchanging(NMHDR *pNMHDR, LRESULT *pResult);
@@ -58,5 +54,23 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	afx_msg void OnDestroy();
+	afx_msg void OnExplorerSave();
+	afx_msg void OnExplorerClose();
+	afx_msg void OnExplorerDelete();
+	afx_msg void OnGroupAddprop();
+	afx_msg void OnGroupDelprop();
+	afx_msg void OnGroupUpprop();
+	afx_msg void OnGroupDownprop();
+	afx_msg void OnUpdateGroupDelprop(CCmdUI *pCmdUI);
+	afx_msg void OnUpdateGroupUpprop(CCmdUI *pCmdUI);
+	afx_msg void OnUpdateGroupDownprop(CCmdUI *pCmdUI);
+	afx_msg void OnUpdateOpen(CCmdUI *pCmdUI);
+	afx_msg void OnUpdateExplorerSave(CCmdUI *pCmdUI);
+	afx_msg void OnUpdateExplorerClose(CCmdUI *pCmdUI);
+	afx_msg void OnUpdateExplorerDelete(CCmdUI *pCmdUI);
+	afx_msg void OnGroupAddgroup();
+	afx_msg void OnUpdateGroupAddgroup(CCmdUI *pCmdUI);
+	afx_msg void OnGroupDelgroup();
+	afx_msg void OnUpdateGroupDelgroup(CCmdUI *pCmdUI);
 };
 

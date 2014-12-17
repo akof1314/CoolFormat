@@ -1,7 +1,4 @@
-
 #pragma once
-
-#include "ViewTree.h"
 
 class CClassToolBar : public CMFCToolBar
 {
@@ -19,15 +16,19 @@ public:
 	CClassView();
 	virtual ~CClassView();
 
+	void SetPreviewProp(CMFCPropertyGridProperty* pProp);
+	void RefreshPreview();
+
 	void AdjustLayout();
 	void OnChangeVisualStyle();
 
 protected:
 	CClassToolBar m_wndToolBar;
-	CViewTree m_wndClassView;
 	CImageList m_ClassViewImages;
 	UINT m_nCurrSort;
 	CEdit m_wndEdit;
+	CString m_strOriginalPreview;
+	CMFCPropertyGridProperty* m_PreviewProp;
 
 // Overrides
 public:
@@ -37,16 +38,11 @@ protected:
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	afx_msg void OnSize(UINT nType, int cx, int cy);
 	afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
-	afx_msg void OnClassAddMemberFunction();
-	afx_msg void OnClassAddMemberVariable();
-	afx_msg void OnClassDefinition();
-	afx_msg void OnClassProperties();
 	afx_msg void OnNewFolder();
 	afx_msg void OnPaint();
 	afx_msg void OnSetFocus(CWnd* pOldWnd);
 	afx_msg LRESULT OnChangeActiveTab(WPARAM, LPARAM);
-	afx_msg void OnSort(UINT id);
-	afx_msg void OnUpdateSort(CCmdUI* pCmdUI);
+	afx_msg void OnChangeEdit();
 
 	DECLARE_MESSAGE_MAP()
 };

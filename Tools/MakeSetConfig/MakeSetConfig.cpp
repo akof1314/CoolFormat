@@ -199,6 +199,9 @@ void CMakeSetConfigApp::PreLoadState()
 	bNameValid = strName.LoadString(IDS_PROPLIST);
 	ASSERT(bNameValid);
 	GetContextMenuManager()->AddMenu(strName, IDR_POPUP_PROPLIST);
+	bNameValid = strName.LoadString(IDS_GROUP);
+	ASSERT(bNameValid);
+	GetContextMenuManager()->AddMenu(strName, IDR_MENU_GROUP);
 }
 
 void CMakeSetConfigApp::LoadCustomState()

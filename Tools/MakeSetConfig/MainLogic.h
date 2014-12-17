@@ -17,6 +17,7 @@ public:
 private:
 	BOOL ParseRCText(LPCTSTR lpszFileName, const CString& strText);
 	void EntityToSymbol(CString& value);
+	BOOL OpenFile(LPCTSTR lpszFileName, CString& value);
 
 private:
 	CString m_strRCFileName;
