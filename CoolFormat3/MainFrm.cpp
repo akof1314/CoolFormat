@@ -6,8 +6,8 @@
 
 #include "MainFrm.h"
 #include "SynBCGPEditView.h"
-#include "BCGEX\MyBCGPRibbonLabel.h"
-#include "BCGEX\OptionsPropSheet.h"
+#include "MyBCGPRibbonLabel.h"
+#include "OptionsPropSheet.h"
 #include "PagePopular.h"
 #include "PageResource.h"
 

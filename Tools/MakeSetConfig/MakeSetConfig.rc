@@ -74,10 +74,10 @@ IDR_POPUP_PROPLIST MENU
 BEGIN
     POPUP "Prop"
     BEGIN
-        MENUITEM "&Reset",                      ID_PROP_RESET
-        MENUITEM SEPARATOR
         MENUITEM "&Add Item",                   ID_PROP_ADDITEM
         MENUITEM "&Del Item",                   ID_PROP_DELITEM
+        MENUITEM SEPARATOR
+        MENUITEM "&Reset",                      ID_PROP_RESET
         MENUITEM SEPARATOR
         MENUITEM "Up Item",                     ID_PROP_UPITEM
         MENUITEM "Down Item",                   ID_PROP_DOWNITEM

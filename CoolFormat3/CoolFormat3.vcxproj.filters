@@ -96,9 +96,6 @@
     <ClCompile Include="kofColorButton.cpp">
       <Filter>源文件\源码扩展</Filter>
     </ClCompile>
-    <ClCompile Include="BCGEX\MyBCGPRibbonLabel.cpp">
-      <Filter>源文件\源码扩展</Filter>
-    </ClCompile>
     <ClCompile Include="ChildFrm.cpp">
       <Filter>源文件\主框架</Filter>
     </ClCompile>
@@ -154,9 +151,6 @@
       <Filter>源文件\弹出对话框</Filter>
     </ClCompile>
     <ClCompile Include="LangExtEditDlg.cpp">
-      <Filter>源文件\弹出对话框</Filter>
-    </ClCompile>
-    <ClCompile Include="BCGEX\OptionsPropSheet.cpp">
       <Filter>源文件\弹出对话框</Filter>
     </ClCompile>
     <ClCompile Include="PagePopular.cpp">
@@ -228,6 +222,12 @@
     <ClCompile Include="MyBCGPProp.cpp">
       <Filter>源文件\源码扩展</Filter>
     </ClCompile>
+    <ClCompile Include="OptionsPropSheet.cpp">
+      <Filter>源文件\弹出对话框</Filter>
+    </ClCompile>
+    <ClCompile Include="MyBCGPRibbonLabel.cpp">
+      <Filter>源文件\源码扩展</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FormatterHelp.h">
@@ -249,9 +249,6 @@
       <Filter>头文件\源码扩展</Filter>
     </ClInclude>
     <ClInclude Include="kofColorButton.h">
-      <Filter>头文件\源码扩展</Filter>
-    </ClInclude>
-    <ClInclude Include="BCGEX\MyBCGPRibbonLabel.h">
       <Filter>头文件\源码扩展</Filter>
     </ClInclude>
     <ClInclude Include="ChildFrm.h">
@@ -309,9 +306,6 @@
       <Filter>头文件\弹出对话框</Filter>
     </ClInclude>
     <ClInclude Include="LangExtEditDlg.h">
-      <Filter>头文件\弹出对话框</Filter>
-    </ClInclude>
-    <ClInclude Include="BCGEX\OptionsPropSheet.h">
       <Filter>头文件\弹出对话框</Filter>
     </ClInclude>
     <ClInclude Include="PagePopular.h">
@@ -399,6 +393,12 @@
       <Filter>头文件\源码扩展</Filter>
     </ClInclude>
     <ClInclude Include="MyBCGPProp.h">
+      <Filter>头文件\源码扩展</Filter>
+    </ClInclude>
+    <ClInclude Include="OptionsPropSheet.h">
+      <Filter>头文件\弹出对话框</Filter>
+    </ClInclude>
+    <ClInclude Include="MyBCGPRibbonLabel.h">
       <Filter>头文件\源码扩展</Filter>
     </ClInclude>
   </ItemGroup>

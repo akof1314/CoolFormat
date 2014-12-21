@@ -29,6 +29,8 @@ protected:
 	CEdit m_wndEdit;
 	CString m_strOriginalPreview;
 	CMFCPropertyGridProperty* m_PreviewProp;
+	HACCEL m_hAccel;
+	CFont m_fntEdit;
 
 // Overrides
 public:
@@ -45,5 +47,11 @@ protected:
 	afx_msg void OnChangeEdit();
 
 	DECLARE_MESSAGE_MAP()
+public:
+	afx_msg void OnEditSelectAll();
+	afx_msg void OnEditCut();
+	afx_msg void OnEditPaste();
+	afx_msg void OnEditUndo();
+	afx_msg void OnEditCopy();
 };
 

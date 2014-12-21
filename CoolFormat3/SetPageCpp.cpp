@@ -8,7 +8,7 @@
 // CSetPageCpp ¶Ô»°¿ò
 
 CSetPageCpp::CSetPageCpp(LPCTSTR lpszTitle, CString& strTidy)
-	: CSetPageBase(lpszTitle, strTidy)
+	: CSetPageBase(lpszTitle, _T(""), strTidy)
 {
 }
 

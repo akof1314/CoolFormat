@@ -432,11 +432,29 @@ void CFileView::OnGroupAddprop()
 	pProp->AllowEdit(FALSE);
 	pPropGroup->AddSubItem(pProp);
 
-	pProp = new CMFCPropertyGridProperty(_T("VALUE"), (COleVariant)_T(""));
+	pProp = new CMFCPropertyGridProperty(_T("VALUE"), (COleVariant)_T("No"));
 	pPropGroup->AddSubItem(pProp);
 
 	pProp = new CMFCPropertyGridProperty(_T("ITEMS"), PROP_DATA_ITEMS, TRUE);
 	pPropGroup->AddSubItem(pProp);
+
+	CString strValues[2] = { _T("Yes"), _T("No") };
+	for (int i = 0; i < 2; i++)
+	{
+		CMFCPropertyGridProperty* pPropItem = new CMFCPropertyGridProperty(_T("ITEM"), 0, TRUE);
+		pProp->AddSubItem(pPropItem);
+		pProp->Expand(TRUE);
+
+		CMFCPropertyGridProperty* pPropChild = new CMFCPropertyGridProperty(_T("VALUE"), (COleVariant)strValues[i]);
+		pPropItem->AddSubItem(pPropChild);
+
+		pPropChild = new CMFCPropertyGridProperty(_T("SHORT"), (COleVariant)_T(""));
+		pPropItem->AddSubItem(pPropChild);
+
+		pPropChild = new CMFCPropertyGridProperty(_T("PREVIEW"), (COleVariant)_T(""));
+		pPropItem->AddSubItem(pPropChild);
+		pPropItem->Expand(TRUE);
+	}
 
 	HTREEITEM hItem = m_wndFileView.InsertItem(_T("New"), 2, 2, hGroupItem);
 	m_wndFileView.SetItemData(hItem, (DWORD_PTR)pPropGroup);

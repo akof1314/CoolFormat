@@ -12,11 +12,12 @@
 
 IMPLEMENT_DYNAMIC(CSetPageBase, CBCGPPropertyPage)
 
-CSetPageBase::CSetPageBase(LPCTSTR lpszTitle, CString& strTidy)
+CSetPageBase::CSetPageBase(LPCTSTR lpszTitle, LPCTSTR lpszConfigName, CString& strTidy)
 	: CBCGPPropertyPage(CSetPageBase::IDD)
 {
 	m_psp.dwFlags |= PSP_USETITLE;
 	m_psp.pszTitle = lpszTitle;
+	m_strConfigName = lpszConfigName;
 	m_strTidy = &strTidy;
 }
 
@@ -75,9 +76,7 @@ BOOL CSetPageBase::OnInitDialog()
 void CSetPageBase::InitPropList()
 {
 	CBCGPTagManager tm;
-	CString strRes(_T("IDR_SETCONFIG_XML_"));
-	strRes.Append(m_psp.pszTitle);
-	strRes.MakeUpper();
+	CString strRes(_T("IDR_SETCONFIG_XML_") + m_strConfigName.MakeUpper());
 	if (!tm.LoadFromResource(strRes, _T("XML")))
 	{
 		return;

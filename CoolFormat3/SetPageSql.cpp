@@ -8,7 +8,7 @@
 // CSetPageSql ¶Ô»°¿ò
 
 CSetPageSql::CSetPageSql(LPCTSTR lpszTitle, CString& strTidy)
-	: CSetPageBase(lpszTitle, strTidy)
+: CSetPageBase(lpszTitle, _T(""), strTidy)
 {
 }
 

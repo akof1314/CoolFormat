@@ -9,7 +9,7 @@
 #include "CoolFormat3Doc.h"
 #include "CoolFormat3View.h"
 #include "GotoLineDlg.h"
-#include "BCGEX\MyBCGPRibbonLabel.h"
+#include "MyBCGPRibbonLabel.h"
 #include "SynHtmlView.h"
 
 

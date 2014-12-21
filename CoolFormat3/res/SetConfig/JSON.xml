@@ -1,62 +1,17 @@
 <SETCONFIG>
 	<VERSION>1</VERSION>
-	<DESCRIPTION>JSON</DESCRIPTION>
 	<PROPERTYS>
 		<PROPERTY>
 			<NAME>Indentation</NAME>
 			<GROUP>TRUE</GROUP>
 		</PROPERTY>
 		<PROPERTY>
-			<NAME>Inden2323t number</NAME>
-			<TYPE>Number</TYPE>
-			<VALUE>3334</VALUE>
-			<RANGE>1, 100</RANGE>
-			<SHORT>cn</SHORT>
-			<PREVIEW>//indent_number3\r\n{\r\n   \"test\" : 123\r\n}\r\n\r\n//indent_number4\r\n{\r\n    \"test\" : 123\r\n}</PREVIEW>
-		</PROPERTY>
-		<PROPERTY>
-			<NAME>In2dent number</NAME>
-			<TYPE>Combo</TYPE>
-			<VALUE>NO</VALUE>
-			<ITEM>
-				<VALUE>YES</VALUE>
-				<SHORT>cz</SHORT>
-				<PREVIEW>//indent_number3\r\n{\r\n   \"test\" : 123\r\n}\r\n\r\n//indent_number4\r\n{\r\n    \"test\" : 123\r\n}</PREVIEW>
-			</ITEM>
-			<ITEM>
-				<VALUE>NO</VALUE>
-				<PREVIEW>//indent_number3\r\n{\r\n   \"test\" : 123\r\n}\r\n\r\n//indent_number4\r\n{\r\n    \"test\" : 123\r\n}</PREVIEW>
-			</ITEM>
-		</PROPERTY>
-		<PROPERTY>
-			<NAME>In2d3ent number</NAME>
-			<TYPE>Text</TYPE>
-			<VALUE>YES</VALUE>
-			<SHORT>cu</SHORT>
-			<PREVIEW>//indent_number3\r\n{\r\n   \"test\" : 123\r\n}\r\n\r\n//indent_number4\r\n{\r\n    \"test\" : 123\r\n}</PREVIEW>
-		</PROPERTY>
-		<PROPERTY>
-			<NAME>1In232dent number</NAME>
-			<TYPE>Combo</TYPE>
-			<VALUE>NO</VALUE>
-			<ITEM>
-				<VALUE>YES</VALUE>
-				<SHORT>cq</SHORT>
-				<PREVIEW>//indent_number3\r\n{\r\n   \"test\" : 123\r\n}\r\n\r\n//indent_number4\r\n{\r\n    \"test\" : 123\r\n}</PREVIEW>
-			</ITEM>
-			<ITEM>
-				<VALUE>NO</VALUE>
-				<SHORT>cw</SHORT>
-				<PREVIEW>//indent_number3\r\n{\r\n   \"test\" : 123\r\n}\r\n\r\n//indent_number4\r\n{\r\n    \"test\" : 123\r\n}</PREVIEW>
-			</ITEM>
-		</PROPERTY>
-		<PROPERTY>
-			<NAME>I234ndent number</NAME>
+			<NAME>Indent number</NAME>
 			<TYPE>Number</TYPE>
 			<VALUE>3</VALUE>
 			<RANGE>0, 100</RANGE>
-			<BUDDY>TRUE</BUDDY>
-			<PREVIEW>//indent_number3\r\n{\r\n   \"test\" : 123\r\n}\r\n\r\n//indent_number4\r\n{\r\n    \"test\" : 123\r\n}</PREVIEW>
+			<SHORT>cn</SHORT>
+			<PREVIEW>//indent_number3\r\n{\r\n   "test" : 123\r\n}\r\n\r\n//indent_number4\r\n{\r\n    "test" : 123\r\n}</PREVIEW>
 		</PROPERTY>
 	</PROPERTYS>
 </SETCONFIG>

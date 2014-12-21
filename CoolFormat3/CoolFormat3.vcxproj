@@ -127,8 +127,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BatchFormat.cpp" />
-    <ClCompile Include="BCGEX\MyBCGPRibbonLabel.cpp" />
-    <ClCompile Include="BCGEX\OptionsPropSheet.cpp" />
+    <ClCompile Include="MyBCGPRibbonLabel.cpp" />
+    <ClCompile Include="OptionsPropSheet.cpp" />
     <ClCompile Include="ChildFrm.cpp" />
     <ClCompile Include="CoolFormat3.cpp" />
     <ClCompile Include="CoolFormat3Doc.cpp" />
@@ -183,8 +183,8 @@
   <ItemGroup>
     <ClInclude Include="..\..\BCGControlBarPro\BCGCBPro\bcgprores.h" />
     <ClInclude Include="BatchFormat.h" />
-    <ClInclude Include="BCGEX\MyBCGPRibbonLabel.h" />
-    <ClInclude Include="BCGEX\OptionsPropSheet.h" />
+    <ClInclude Include="MyBCGPRibbonLabel.h" />
+    <ClInclude Include="OptionsPropSheet.h" />
     <ClInclude Include="ChildFrm.h" />
     <ClInclude Include="CoolFormat3.h" />
     <ClInclude Include="CoolFormat3Doc.h" />

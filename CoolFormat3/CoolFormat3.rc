@@ -1665,6 +1665,10 @@ END
 
 
 IDR_SETCONFIG_XML_JSON  XML                     "res\\SetConfig\\JSON.xml"
+IDR_SETCONFIG_XML_SQL  XML                      "res\\SetConfig\\SQL.xml"
+IDR_SETCONFIG_XML_JAVASCRIPT  XML               "res\\SetConfig\\JavaScript.xml"
+IDR_SETCONFIG_XML_PHP  XML                      "res\\SetConfig\\PHP.xml"
+IDR_SETCONFIG_XML_CPP  XML                      "res\\SetConfig\\Cpp.xml"
 
 /////////////////////////////////////////////////////////////////////////////
 //

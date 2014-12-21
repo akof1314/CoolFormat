@@ -1,0 +1,50 @@
+<SETCONFIG>
+	<VERSION>1</VERSION>
+	<PROPERTYS>
+		<PROPERTY>
+			<NAME>Bracket</NAME>
+			<GROUP>TRUE</GROUP>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Bracket style</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>Attach</VALUE>
+			<ITEM>
+				<VALUE>Attach</VALUE>
+				<PREVIEW>if ('this_is' == /an_example/) {\r\n    of_beautifer();\r\n} else {\r\n    var a = b ? (c % d) : e[f];\r\n}</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>Break</VALUE>
+				<SHORT>nb</SHORT>
+				<PREVIEW>if ('this_is' == /an_example/)\r\n{\r\n    of_beautifer();\r\n}\r\nelse\r\n{\r\n    var a = b ? (c % d) : e[f];\r\n}</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Indentation</NAME>
+			<GROUP>TRUE</GROUP>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Indent using</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>Spaces</VALUE>
+			<ITEM>
+				<VALUE>Spaces</VALUE>
+				<SHORT>ci0</SHORT>
+				<PREVIEW>if ('this_is' == /an_example/) {\r\n****of_beautifer();\r\n} else {\r\n****var a = b ? (c % d) : e[f];\r\n}</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>Tab</VALUE>
+				<SHORT>ci1</SHORT>
+				<PREVIEW>if ('this_is' == /an_example/) {\r\n--->of_beautifer();\r\n} else {\r\n--->var a = b ? (c % d) : e[f];\r\n}</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Indent number</NAME>
+			<TYPE>Number</TYPE>
+			<VALUE>4</VALUE>
+			<RANGE>0, 100</RANGE>
+			<SHORT>cn</SHORT>
+			<PREVIEW>//indent_number4\r\nif ('this_is' == /an_example/) {\r\n    of_beautifer();\r\n} else {\r\n    var a = b ? (c % d) : e[f];\r\n}\r\n\r\n//indent_number5\r\nif ('this_is' == /an_example/) {\r\n     of_beautifer();\r\n} else {\r\n     var a = b ? (c % d) : e[f];\r\n}</PREVIEW>
+		</PROPERTY>
+	</PROPERTYS>
+</SETCONFIG>

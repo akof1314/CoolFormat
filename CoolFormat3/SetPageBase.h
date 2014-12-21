@@ -10,7 +10,7 @@ class CSetPageBase : public CBCGPPropertyPage
 	DECLARE_DYNAMIC(CSetPageBase)
 
 public:
-	CSetPageBase(LPCTSTR lpszTitle, CString& strTidy);
+	CSetPageBase(LPCTSTR lpszTitle, LPCTSTR lpszConfigName, CString& strTidy);
 	virtual ~CSetPageBase();
 
 // 对话框数据
@@ -19,6 +19,7 @@ public:
 protected:
 	CMyBCGPPropList m_wndPropList;
 	CString* m_strTidy;
+	CString m_strConfigName;
 
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 支持

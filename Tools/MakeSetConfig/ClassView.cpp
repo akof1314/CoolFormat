@@ -29,6 +29,11 @@ BEGIN_MESSAGE_MAP(CClassView, CDockablePane)
 	ON_WM_PAINT()
 	ON_WM_SETFOCUS()
 	ON_EN_CHANGE(EDIT_VIEW_ID, OnChangeEdit)
+	ON_COMMAND(ID_EDIT_SELECT_ALL, &CClassView::OnEditSelectAll)
+	ON_COMMAND(ID_EDIT_CUT, &CClassView::OnEditCut)
+	ON_COMMAND(ID_EDIT_PASTE, &CClassView::OnEditPaste)
+	ON_COMMAND(ID_EDIT_UNDO, &CClassView::OnEditUndo)
+	ON_COMMAND(ID_EDIT_COPY, &CClassView::OnEditCopy)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -43,7 +48,7 @@ int CClassView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	rectDummy.SetRectEmpty();
 
 	// Create views:
-	const DWORD dwViewStyle = WS_CHILD | WS_VISIBLE | TVS_HASLINES | TVS_LINESATROOT | TVS_HASBUTTONS | WS_CLIPSIBLINGS | WS_CLIPCHILDREN;
+	const DWORD dwViewStyle = WS_CHILD | WS_VISIBLE | ES_MULTILINE | ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL;
 
 	if (!m_wndEdit.Create(dwViewStyle, rectDummy, this, EDIT_VIEW_ID))
 	{
@@ -65,7 +70,21 @@ int CClassView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	// All commands will be routed via this control , not via the parent frame:
 	m_wndToolBar.SetRouteCommandsViaFrame(FALSE);
 
-	m_wndEdit.SetFont(&afxGlobalData.fontRegular);
+	m_hAccel = LoadAccelerators(AfxGetInstanceHandle(), MAKEINTRESOURCE(IDR_MAINFRAME));
+
+	LOGFONT lf;
+	afxGlobalData.fontRegular.GetLogFont(&lf);
+	if (afxGlobalData.bIsWindows7)
+	{
+		lstrcpy(lf.lfFaceName, _T("Consolas"));
+	}
+	else
+	{
+		lstrcpy(lf.lfFaceName, _T("Courier New"));
+	}
+	m_fntEdit.CreateFontIndirect(&lf);
+	m_wndEdit.SetFont(&m_fntEdit);
+	m_wndEdit.SetLimitText(UINT_MAX);
 	return 0;
 }
 
@@ -98,6 +117,13 @@ void CClassView::AdjustLayout()
 
 BOOL CClassView::PreTranslateMessage(MSG* pMsg)
 {
+	if (pMsg->message == WM_KEYDOWN)
+	{
+		if (TranslateAccelerator(m_hWnd, m_hAccel, pMsg))
+		{
+			return TRUE;
+		}
+	}
 	return CDockablePane::PreTranslateMessage(pMsg);
 }
 
@@ -206,4 +232,34 @@ void CClassView::OnChangeEdit()
 			((CMainFrame*)AfxGetMainWnd())->GetPropertiesWnd()->SetPropModifiedFlag(m_PreviewProp);
 		}
 	}
+}
+
+
+void CClassView::OnEditSelectAll()
+{
+	m_wndEdit.SetSel(0, -1);
+}
+
+
+void CClassView::OnEditCut()
+{
+	m_wndEdit.Cut();
+}
+
+
+void CClassView::OnEditPaste()
+{
+	m_wndEdit.Paste();
+}
+
+
+void CClassView::OnEditUndo()
+{
+	m_wndEdit.Undo();
+}
+
+
+void CClassView::OnEditCopy()
+{
+	m_wndEdit.Copy();
 }

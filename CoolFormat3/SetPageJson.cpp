@@ -8,7 +8,7 @@
 // CSetPageJson ¶Ô»°¿ò
 
 CSetPageJson::CSetPageJson(LPCTSTR lpszTitle, CString& strTidy)
-	: CSetPageBase(lpszTitle, strTidy)
+: CSetPageBase(lpszTitle, _T(""), strTidy)
 {
 }
 

@@ -1,0 +1,225 @@
+<SETCONFIG>
+	<VERSION>1</VERSION>
+	<PROPERTYS>
+		<PROPERTY>
+			<NAME>Bracket</NAME>
+			<GROUP>TRUE</GROUP>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Bracket style</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>None</VALUE>
+			<ITEM>
+				<VALUE>allman/ansi/bsd/break</VALUE>
+				<SHORT>A1</SHORT>
+				<PREVIEW>int Foo(bool isBar)\r\n{\r\n     if (isBar)\r\n     { \r\n          bar();\r\n          return 1;\r\n     }\r\n     else\r\n          return 0;\r\n}</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>java/attach</VALUE>
+				<SHORT>A2</SHORT>
+				<PREVIEW>int Foo(bool isBar) {\r\n    if (isBar) {\r\n        bar();\r\n        return 1;\r\n    } else\r\n        return 0;\r\n}</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>kr</VALUE>
+				<SHORT>A3</SHORT>
+				<PREVIEW>int Foo(bool isBar)\r\n{\r\n    if (isBar) {\r\n        bar();\r\n        return 1;\r\n    } else\r\n        return 0;\r\n}</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>stroustrup</VALUE>
+				<SHORT>A4</SHORT>
+				<PREVIEW>int Foo(bool isBar)\r\n{\r\n     if (isBar) {\r\n          bar();\r\n          return 1;\r\n     } else\r\n          return 0;\r\n}</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>whitesmith</VALUE>
+				<SHORT>A5</SHORT>
+				<PREVIEW>int Foo(bool isBar)\r\n    {\r\n    if (isBar)\r\n        {\r\n        bar();\r\n        return 1;\r\n        }\r\n    else\r\n        return 0;\r\n    }</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>banner</VALUE>
+				<SHORT>A6</SHORT>
+				<PREVIEW>int Foo(bool isBar) {\r\n    if (isBar) {\r\n        bar();\r\n        return 1;\r\n        }\r\n    else\r\n        return 0;\r\n    }</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>gnu</VALUE>
+				<SHORT>A7</SHORT>
+				<PREVIEW>int Foo(bool isBar)\r\n{\r\n  if (isBar)\r\n    {\r\n      bar();\r\n      return 1;\r\n    }\r\n  else\r\n    return 0;\r\n}</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>linux</VALUE>
+				<SHORT>A8</SHORT>
+				<PREVIEW>int Foo(bool isBar)\r\n{\r\n        if (isBar) {\r\n                bar();\r\n                return 1;\r\n        } else\r\n                return 0;\r\n}</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>horstmann</VALUE>
+				<SHORT>A9</SHORT>
+				<PREVIEW>int Foo(bool isBar)\r\n{  if (isBar)\r\n   {  bar();\r\n      return 1;\r\n   }\r\n   else\r\n      return 0;\r\n}</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>1tbs/otbs</VALUE>
+				<SHORT>A10</SHORT>
+				<PREVIEW>int Foo(bool isBar)\r\n{\r\n    if (isBar) {\r\n        bar();\r\n        return 1;\r\n    } else {\r\n        return 0;\r\n    }\r\n}</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>pico</VALUE>
+				<SHORT>A11</SHORT>
+				<PREVIEW>int Foo(bool isBar)\r\n{  if (isBar)\r\n   {  bar();\r\n      return 1; }\r\n        return 1;\r\n    else\r\n      return 0; }</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>lisp/python</VALUE>
+				<SHORT>A12</SHORT>
+				<PREVIEW>int Foo(bool isBar) {\r\n    if (isBar) {\r\n        bar()\r\n        return 1; }\r\n    else\r\n        return 0; }</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>None</VALUE>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Indentation</NAME>
+			<GROUP>TRUE</GROUP>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Indent using</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>Spaces</VALUE>
+			<ITEM>
+				<VALUE>Spaces</VALUE>
+				<SHORT>s</SHORT>
+				<PREVIEW>int*Foo(bool*isBar)\r\n{\r\n****if*(isBar)*{\r\n********bar();\r\n****}\r\n****else*{\r\n********bar(arg1,\r\n************arg2,\r\n************arg3);\r\n****}\r\n}</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>Tab</VALUE>
+				<SHORT>t</SHORT>
+				<PREVIEW>int*Foo(bool*isBar)\r\n{\r\n--->if*(isBar)*{\r\n--->--->bar();\r\n--->}\r\n--->else*{\r\n--->--->bar(arg1,\r\n--->--->****arg2,\r\n--->--->****arg3);\r\n--->}\r\n}</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>Force tab</VALUE>
+				<SHORT>T</SHORT>
+				<PREVIEW>int*Foo(bool*isBar)\r\n{\r\n--->if*(isBar)*{\r\n--->--->bar();\r\n--->}\r\n--->else*{\r\n--->--->bar(arg1,\r\n--->--->--->arg2,\r\n--->--->--->arg3);\r\n--->}\r\n}</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Indent number</NAME>
+			<TYPE>Number</TYPE>
+			<VALUE>4</VALUE>
+			<RANGE>0, 20</RANGE>
+			<BUDDY>TRUE</BUDDY>
+			<PREVIEW>//indent_number4\r\nint Foo(bool isBar)\r\n{\r\n    bar();\r\n}\r\n\r\n//indent_number5\r\nint Foo(bool isBar)\r\n{\r\n     bar();\r\n}</PREVIEW>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Indent classes</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>C</SHORT>
+				<PREVIEW>class Foo\r\n{\r\n    public:\r\n        Foo();\r\n        virtual ~Foo();\r\n};</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>class Foo\r\n{\r\npublic:\r\n    Foo();\r\n    virtual ~Foo();\r\n};</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Indent switches</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>S</SHORT>
+				<PREVIEW>switch (foo)\r\n{\r\n    case 1:\r\n        a += 1;\r\n        break;\r\n\r\n    case 2:\r\n    {\r\n        a += 2;\r\n        break;\r\n    }\r\n}</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>switch (foo)\r\n{\r\ncase 1:\r\n    a += 1;\r\n    break;\r\n\r\ncase 2:\r\n{\r\n    a += 2;\r\n    break;\r\n}\r\n}</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Indent cases</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>K</SHORT>
+				<PREVIEW>switch (foo)\r\n{\r\n    case 1:\r\n        a += 1;\r\n        break;\r\n\r\n    case 2:\r\n        {\r\n            a += 2;\r\n            break;\r\n        }\r\n}</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>switch (foo)\r\n{\r\n    case 1:\r\n        a += 1;\r\n        break;\r\n\r\n    case 2:\r\n    {\r\n        a += 2;\r\n        break;\r\n    }\r\n}</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Indent namespaces</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>N</SHORT>
+				<PREVIEW>namespace foospace\r\n{\r\n    class Foo\r\n    {\r\n        public:\r\n            Foo();\r\n            virtual ~Foo();\r\n    };\r\n}</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>namespace foospace\r\n{\r\nclass Foo\r\n{\r\n    public:\r\n        Foo();\r\n        virtual ~Foo();\r\n};\r\n}</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Indent labels</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>L</SHORT>
+				<PREVIEW>void Foo() {\r\n    while (isFoo) {\r\n        if (isFoo)\r\n            goto error;\r\n        ... \r\n    error:\r\n        ...\r\n    }        \r\n}</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>void Foo() {\r\n    while (isFoo) {\r\n        if (isFoo)\r\n            goto error;\r\n        ...\r\nerror:\r\n        ...\r\n    }\r\n}</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Indent preprocessor</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>w</SHORT>
+				<PREVIEW>#define Is_Bar(arg,a,b) \\r\n    (Is_Foo((arg), (a)) \\r\n     || Is_Foo((arg), (b)))</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>#define Is_Bar(arg,a,b) \\r\n(Is_Foo((arg), (a)) \\r\n|| Is_Foo((arg), (b)))</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Indent col1 comments</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>Y</SHORT>
+				<PREVIEW>void Foo()\r\n{\r\n    // comment\r\n    if (isFoo)\r\n        bar();\r\n}</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>void Foo()\r\n{\r\n// comment\r\n    if (isFoo)\r\n        bar();\r\n}</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Padding</NAME>
+			<GROUP>TRUE</GROUP>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Break blocks</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>f</SHORT>
+				<PREVIEW>isFoo = true;\r\n\r\nif (isFoo) {\r\n    bar();\r\n} else {\r\n    anotherBar();\r\n}\r\n\r\nisBar = false;</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>isFoo = true;\r\nif (isFoo) {\r\n    bar();\r\n} else {\r\n    anotherBar();\r\n}\r\nisBar = false;</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+	</PROPERTYS>
+</SETCONFIG>
