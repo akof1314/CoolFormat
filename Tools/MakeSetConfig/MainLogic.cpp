@@ -3,13 +3,15 @@
 #include "MainFrm.h"
 #include "MainLogic.h"
 #include "afxtagmanager.h"
+#include "MyTagManager.h"
 
 #define STR_XML_NAME_BEGIN _T("IDR_SETCONFIG_XML_")
+#define STR_RC_BEGIN_FIND_XML _T("// XML\r\n//\r\n\r\n")
+#define STR_RES_CONFIG_PATH _T("res\\\\SetConfig\\\\")
 
 CMainLogic::CMainLogic()
 {
 }
-
 
 CMainLogic::~CMainLogic()
 {
@@ -26,7 +28,7 @@ void CMainLogic::LoadRCFile(LPCTSTR lpszFileName)
 
 BOOL CMainLogic::ParseRCText(LPCTSTR lpszFileName, const CString& strText)
 {
-	int nPosXml = strText.Find(_T("// XML\r\n//\r\n\r\n"));
+	int nPosXml = strText.Find(STR_RC_BEGIN_FIND_XML);
 	if (nPosXml == -1)
 	{
 		AfxMessageBox(_T("Could not find the xml"), MB_OK | MB_ICONERROR);
@@ -36,6 +38,7 @@ BOOL CMainLogic::ParseRCText(LPCTSTR lpszFileName, const CString& strText)
 	m_strRCFileName = lpszFileName;
 	m_strConfigPath.Empty();
 	m_lstConfigs.RemoveAll();
+	AfxGetApp()->AddToRecentFileList(m_strRCFileName);
 
 	int nPosConfigBegin = strText.Find(STR_XML_NAME_BEGIN, nPosXml);
 	while (nPosConfigBegin != -1)
@@ -73,7 +76,7 @@ BOOL CMainLogic::ParseRCText(LPCTSTR lpszFileName, const CString& strText)
 	return TRUE;
 }
 
-void CMainLogic::OpenConfigFile(LPCTSTR lpszName, CTreeCtrl* pTreeCtrl)
+void CMainLogic::OpenConfigFile(CTreeCtrl* pTreeCtrl)
 {
 	HTREEITEM hTreeItem = pTreeCtrl->GetSelectedItem();
 	if (hTreeItem == NULL)
@@ -81,19 +84,21 @@ void CMainLogic::OpenConfigFile(LPCTSTR lpszName, CTreeCtrl* pTreeCtrl)
 		return;
 	}
 
-	if (m_lstConfigs.Find(lpszName) == NULL)
+	CString strFileName = pTreeCtrl->GetItemText(hTreeItem);
+	if (m_lstConfigs.Find(strFileName) == NULL)
 	{
 		return;
 	}
 
+	strFileName = m_strFullConfigPath + strFileName;
 	CTagManager tm;
-	if (!tm.LoadFromFile(m_strFullConfigPath + lpszName))
+	if (!tm.LoadFromFile(strFileName))
 	{
 		return;
 	}
 
 	CString strText;
-	OpenFile(m_strFullConfigPath + lpszName, strText);
+	OpenFile(strFileName, strText);
 	((CMainFrame*)AfxGetMainWnd())->SetConfigText(strText);
 
 	CString strStyle;
@@ -257,6 +262,15 @@ void CMainLogic::EntityToSymbol(CString& value)
 	value.Replace(_T("\\r"), _T("\r"));
 }
 
+CString CMainLogic::SymbolToEntity(const CString& value)
+{
+	CString strValue(value);
+	strValue.Replace(_T("\t"), _T("\\t"));
+	strValue.Replace(_T("\n"), _T("\\n"));
+	strValue.Replace(_T("\r"), _T("\\r"));
+	return strValue;
+}
+
 BOOL CMainLogic::OpenFile(LPCTSTR lpszFileName, CString& value)
 {
 	CFile listFile;
@@ -301,4 +315,181 @@ BOOL CMainLogic::OpenFile(LPCTSTR lpszFileName, CString& value)
 		AfxMessageBox(szErrorMsg, MB_OK | MB_ICONERROR);
 	}
 	return FALSE;
+}
+
+BOOL CMainLogic::SaveConfigFile(CTreeCtrl* pTreeCtrl)
+{
+	HTREEITEM hTreeItem = pTreeCtrl->GetSelectedItem();
+	if (hTreeItem == NULL)
+	{
+		return FALSE;
+	}
+
+	CString strFileName = pTreeCtrl->GetItemText(hTreeItem);
+	if (strFileName.GetAt(strFileName.GetLength() - 1) == '*')
+	{
+		strFileName.Delete(strFileName.GetLength() - 1);
+	}
+
+	if (m_lstConfigs.Find(strFileName) == NULL)
+	{
+		ModifyRCFile(strFileName, NULL);
+	}
+
+	strFileName = m_strFullConfigPath + strFileName;
+
+	CString strData;
+	CMyTagManager::WriteTag(strData, CMyTagManager::WriteInt(_T("VERSION"), 1, 0));
+
+	CString strPropertys;
+	HTREEITEM hChildItem = pTreeCtrl->GetChildItem(hTreeItem);
+	while (hChildItem)
+	{
+		DWORD_PTR dwChildData = pTreeCtrl->GetItemData(hChildItem);
+		if (dwChildData)
+		{
+			CString strProperty;
+			CMyTagManager::WriteTag(strProperty, CMyTagManager::WriteString(_T("NAME"), pTreeCtrl->GetItemText(hChildItem)));
+			CMyTagManager::WriteTag(strProperty, CMyTagManager::WriteBool(_T("GROUP"), TRUE, FALSE));
+			CMyTagManager::WriteItem(strPropertys, _T("PROPERTY"), strProperty);
+
+			HTREEITEM hPropItem = pTreeCtrl->GetChildItem(hChildItem);
+			while (hPropItem)
+			{
+				DWORD_PTR dwPropData = pTreeCtrl->GetItemData(hPropItem);
+				if (dwPropData)
+				{
+					CMFCPropertyGridProperty* pGroupProp = (CMFCPropertyGridProperty*)dwPropData;
+					if (pGroupProp)
+					{
+						strProperty.Empty();
+						CMyTagManager::WriteTag(strProperty, CMyTagManager::WriteString(_T("NAME"), pGroupProp->GetSubItem(0)->GetValue()));
+						CMyTagManager::WriteTag(strProperty, CMyTagManager::WriteString(_T("TYPE"), pGroupProp->GetSubItem(1)->GetValue()));
+						CMyTagManager::WriteTag(strProperty, CMyTagManager::WriteString(_T("VALUE"), pGroupProp->GetSubItem(2)->GetValue()));
+						
+						CString strType(pGroupProp->GetSubItem(1)->GetValue());
+						if (strType.CompareNoCase(_T("Combo")) == 0)
+						{
+							CMFCPropertyGridProperty* pItemsProp = pGroupProp->GetSubItem(3);
+							for (int i = 0; i < pItemsProp->GetSubItemsCount(); i++)
+							{
+								CMFCPropertyGridProperty* pItemProp = pItemsProp->GetSubItem(i);
+
+								CString strItem;
+								CMyTagManager::WriteTag(strItem, CMyTagManager::WriteString(_T("VALUE"), pItemProp->GetSubItem(0)->GetValue()));
+								CMyTagManager::WriteTag(strItem, CMyTagManager::WriteString(_T("SHORT"), pItemProp->GetSubItem(1)->GetValue()));
+								CMyTagManager::WriteTag(strItem, CMyTagManager::WriteString(_T("PREVIEW"), SymbolToEntity(pItemProp->GetSubItem(2)->GetValue())));
+								
+								CMyTagManager::WriteItem(strProperty, _T("ITEM"), strItem);
+							}
+						}
+						else if (strType.CompareNoCase(_T("Number")) == 0)
+						{
+							CMyTagManager::WriteTag(strProperty, CMyTagManager::WriteSize(_T("RANGE"), 
+								CSize(pGroupProp->GetSubItem(3)->GetValue().intVal, pGroupProp->GetSubItem(4)->GetValue().intVal), CSize(-999, 9999)));
+							CMyTagManager::WriteTag(strProperty, CMyTagManager::WriteBool(_T("BUDDY"), pGroupProp->GetSubItem(5)->GetValue().boolVal, FALSE));
+							CMyTagManager::WriteTag(strProperty, CMyTagManager::WriteString(_T("SHORT"), pGroupProp->GetSubItem(6)->GetValue()));
+							CMyTagManager::WriteTag(strProperty, CMyTagManager::WriteString(_T("PREVIEW"), SymbolToEntity(pGroupProp->GetSubItem(7)->GetValue())));
+						}
+						else if (strType.CompareNoCase(_T("Text")) == 0)
+						{
+							CMyTagManager::WriteTag(strProperty, CMyTagManager::WriteString(_T("SHORT"), pGroupProp->GetSubItem(3)->GetValue()));
+							CMyTagManager::WriteTag(strProperty, CMyTagManager::WriteString(_T("PREVIEW"), SymbolToEntity(pGroupProp->GetSubItem(4)->GetValue())));
+						}
+						CMyTagManager::WriteItem(strPropertys, _T("PROPERTY"), strProperty);
+					}
+				}
+				hPropItem = pTreeCtrl->GetNextItem(hPropItem, TVGN_NEXT);
+			}
+		}
+		hChildItem = pTreeCtrl->GetNextItem(hChildItem, TVGN_NEXT);
+	}
+	CMyTagManager::WriteItem(strData, _T("PROPERTYS"), strPropertys);
+
+	CString strTag;
+	CMyTagManager::WriteItem(strTag, _T("SETCONFIG"), strData);
+
+	CFile listFile;
+	CFileException fileException;
+	if (!listFile.Open(strFileName, CFile::modeWrite | CFile::modeCreate, &fileException))
+	{
+		TCHAR szErrorMsg[1024];
+		fileException.GetErrorMessage(szErrorMsg, 1024, NULL);
+		AfxMessageBox(szErrorMsg, MB_OK | MB_ICONERROR);
+		return FALSE;
+	}
+	CStringA strListA(strTag);
+	listFile.Write(strListA, strListA.GetLength());
+	listFile.Close();
+	return TRUE;
+}
+
+void CMainLogic::ModifyRCFile(LPCTSTR lpszAddConfig, LPCTSTR lpszDelConfig)
+{
+	CString strText;
+	if (!OpenFile(m_strRCFileName, strText))
+	{
+		AfxMessageBox(_T("Could not open RC file"), MB_OK | MB_ICONERROR);
+		return;
+	}
+	int nPosXml = strText.Find(STR_RC_BEGIN_FIND_XML);
+	if (nPosXml == -1)
+	{
+		AfxMessageBox(_T("Could not find the xml"), MB_OK | MB_ICONERROR);
+		return;
+	}	
+
+	if (lpszAddConfig)
+	{
+		int nPosLineBegin = strText.Find(_T("\r\n\r\n"), nPosXml + CString(STR_RC_BEGIN_FIND_XML).GetLength());
+		if (nPosLineBegin != -1)
+		{
+			CString strName(lpszAddConfig);
+			CString strUpper(strName.Left(strName.GetLength() - 4).MakeUpper());
+			CString strLine = STR_XML_NAME_BEGIN + strUpper +
+				_T("  XML") + CString(' ', max(0, 25 - strUpper.GetLength())) + _T("\"") + STR_RES_CONFIG_PATH + lpszAddConfig + _T("\"\r\n");
+			strText.Insert(nPosLineBegin + 2, strLine);
+		}
+		m_lstConfigs.AddTail(lpszAddConfig);
+	}
+	if (lpszDelConfig)
+	{
+		CFileFind find;
+		if (find.FindFile(m_strFullConfigPath + lpszDelConfig))
+		{
+			CFile::Remove(m_strFullConfigPath + lpszDelConfig);
+		}
+		find.Close();
+
+		POSITION pos = m_lstConfigs.Find(lpszDelConfig);
+		if (pos == NULL)
+		{
+			return;
+		}
+
+		CString strName(lpszDelConfig);
+		int nPosLineBegin = strText.Find(STR_XML_NAME_BEGIN + strName.Left(strName.GetLength() - 4).MakeUpper(), nPosXml);
+		if (nPosLineBegin != -1)
+		{
+			int nPosLineEnd = strText.Find(_T('\n'), nPosLineBegin);
+			if (nPosLineEnd != -1)
+			{
+				strText.Delete(nPosLineBegin, nPosLineEnd - nPosLineBegin + 1);
+			}
+		}
+		m_lstConfigs.RemoveAt(pos);
+	}
+
+	CFile listFile;
+	CFileException fileException;
+	if (!listFile.Open(m_strRCFileName, CFile::modeWrite | CFile::modeCreate, &fileException))
+	{
+		TCHAR szErrorMsg[1024];
+		fileException.GetErrorMessage(szErrorMsg, 1024, NULL);
+		AfxMessageBox(szErrorMsg, MB_OK | MB_ICONERROR);
+		return;
+	}
+	CStringA strListA(strText);
+	listFile.Write(strListA, strListA.GetLength());
+	listFile.Close();
 }

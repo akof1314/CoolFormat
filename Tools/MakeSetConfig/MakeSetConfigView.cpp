@@ -45,7 +45,7 @@ BOOL CMakeSetConfigView::PreCreateWindow(CREATESTRUCT& cs)
 	//  the CREATESTRUCT cs
 
 	BOOL bPreCreated = CEditView::PreCreateWindow(cs);
-	cs.style &= ~(ES_AUTOHSCROLL|WS_HSCROLL);	// Enable word-wrapping
+	//cs.style &= ~(ES_AUTOHSCROLL|WS_HSCROLL);	// Enable word-wrapping
 
 	return bPreCreated;
 }

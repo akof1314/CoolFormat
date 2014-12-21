@@ -19,6 +19,7 @@ static char THIS_FILE[]=__FILE__;
 
 CFileView::CFileView()
 {
+	m_bModifiedFlag = FALSE;
 }
 
 CFileView::~CFileView()
@@ -35,6 +36,7 @@ BEGIN_MESSAGE_MAP(CFileView, CDockablePane)
 	ON_WM_SETFOCUS()
 	ON_WM_DESTROY()
 	ON_NOTIFY(TVN_SELCHANGING, TREE_VIEW_ID, OnTreeTVNSelchanging)
+	ON_NOTIFY(TVN_ENDLABELEDIT, TREE_VIEW_ID, OnTreeTVNEndlabeledit)
 	ON_COMMAND(ID_EXPLORER_SAVE, &CFileView::OnExplorerSave)
 	ON_COMMAND(ID_EXPLORER_CLOSE, &CFileView::OnExplorerClose)
 	ON_COMMAND(ID_EXPLORER_DELETE, &CFileView::OnExplorerDelete)
@@ -67,7 +69,7 @@ int CFileView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	rectDummy.SetRectEmpty();
 
 	// Create view:
-	const DWORD dwViewStyle = WS_CHILD | WS_VISIBLE | TVS_HASLINES | TVS_LINESATROOT | TVS_HASBUTTONS;
+	const DWORD dwViewStyle = WS_CHILD | WS_VISIBLE | TVS_HASLINES | TVS_LINESATROOT | TVS_HASBUTTONS | TVS_SHOWSELALWAYS;
 
 	if (!m_wndFileView.Create(dwViewStyle, rectDummy, this, TREE_VIEW_ID))
 	{
@@ -116,6 +118,7 @@ void CFileView::OnContextMenu(CWnd* pWnd, CPoint point)
 		return;
 	}
 
+	pWndTree->SetFocus();
 	UINT uID = IDR_POPUP_EXPLORER;
 	if (point != CPoint(-1, -1))
 	{
@@ -132,11 +135,9 @@ void CFileView::OnContextMenu(CWnd* pWnd, CPoint point)
 			{
 				uID = IDR_MENU_GROUP;
 			}
+			theApp.GetContextMenuManager()->ShowPopupMenu(uID, point.x, point.y, this, TRUE);
 		}
 	}
-
-	pWndTree->SetFocus();
-	theApp.GetContextMenuManager()->ShowPopupMenu(uID, point.x, point.y, this, TRUE);
 }
 
 void CFileView::AdjustLayout()
@@ -157,11 +158,35 @@ void CFileView::AdjustLayout()
 
 void CFileView::OnProperties()
 {
-	AfxMessageBox(_T("Properties...."));
+	if (IsOtherNoClosed())
+	{
+		return;
+	}
+
+	HTREEITEM hRoot = m_wndFileView.InsertItem(_T("New.xml"), 0, 0);
+	m_wndFileView.SetItemState(hRoot, TVIS_BOLD, TVIS_BOLD);
+
+	CMFCPropertyGridProperty* pPropGroup = new CMFCPropertyGridProperty(_T("PROPERTY"));
+	CMFCPropertyGridProperty* pProp = new CMFCPropertyGridProperty(_T("NAME"), (COleVariant)_T("New Group"));
+	pPropGroup->AddSubItem(pProp);
+
+	pProp = new CMFCPropertyGridProperty(_T("GROUP"), (_variant_t)true, _T(""));
+	pPropGroup->AddSubItem(pProp);
+
+	HTREEITEM hGroupItem = m_wndFileView.InsertItem(_T("New Group"), 1, 1, hRoot);
+	m_wndFileView.SetItemData(hGroupItem, (DWORD_PTR)pPropGroup);
+	m_wndFileView.Expand(hRoot, TVE_EXPAND);
+
+	m_wndFileView.ModifyStyle(0, TVS_EDITLABELS);
+	m_wndFileView.EditLabel(hRoot);
 }
 
 void CFileView::OnFileOpen()
 {
+	if (IsOtherNoClosed())
+	{
+		return;
+	}
 	HTREEITEM hTreeItem = m_wndFileView.GetSelectedItem();
 	if (hTreeItem == NULL)
 	{
@@ -174,7 +199,7 @@ void CFileView::OnFileOpen()
 
 	CWaitCursor wait;
 	m_wndFileView.SetRedraw(FALSE);
-	theApp.m_MainLogic.OpenConfigFile(m_wndFileView.GetItemText(hTreeItem), &m_wndFileView);
+	theApp.m_MainLogic.OpenConfigFile(&m_wndFileView);
 	m_wndFileView.Expand(hTreeItem, TVE_EXPAND);
 	m_wndFileView.SetRedraw(TRUE);
 }
@@ -243,7 +268,12 @@ void CFileView::FillConfigView()
 
 void CFileView::DestoryAllItemData()
 {
-	DestoryItemData(m_wndFileView.GetRootItem());
+	HTREEITEM hChildItem = m_wndFileView.GetRootItem();
+	while (hChildItem != NULL)
+	{
+		DestoryItemData(hChildItem);
+		hChildItem = m_wndFileView.GetNextItem(hChildItem, TVGN_NEXT);
+	}
 }
 
 void CFileView::DestoryItemData(HTREEITEM hItem)
@@ -301,15 +331,64 @@ void CFileView::OnTreeTVNSelchanging(NMHDR *pNMHDR, LRESULT *pResult)
 	*pResult = 0;
 }
 
+void CFileView::OnTreeTVNEndlabeledit(NMHDR *pNMHDR, LRESULT *pResult)
+{
+	TV_DISPINFO* pTVDispInfo = (TV_DISPINFO*)pNMHDR;
+	
+	CString strName;
+	m_wndFileView.GetEditControl()->GetWindowText(strName);
+	if (strName.Right(4).CompareNoCase(_T(".xml")) != 0)
+	{
+		strName.Append(_T(".xml"));
+	}
+	if (strName.CompareNoCase(_T(".xml")) == 0)
+	{
+		m_wndFileView.EditLabel(pTVDispInfo->item.hItem);
+		return;
+	}
+
+	HTREEITEM hChildItem = m_wndFileView.GetRootItem();
+	while (hChildItem != NULL)
+	{
+		if (pTVDispInfo->item.hItem != hChildItem)
+		{
+			if (m_wndFileView.GetItemText(hChildItem).CompareNoCase(strName) == 0)
+			{
+				m_wndFileView.EditLabel(pTVDispInfo->item.hItem);
+				return;
+			}
+		}
+		hChildItem = m_wndFileView.GetNextItem(hChildItem, TVGN_NEXT);
+	}
+
+	m_wndFileView.SetItemText(pTVDispInfo->item.hItem, strName);
+	m_wndFileView.ModifyStyle(TVS_EDITLABELS, 0);
+	*pResult = FALSE;
+}
+
 
 void CFileView::OnExplorerSave()
 {
-	// TODO:  在此添加命令处理程序代码
+	if (theApp.m_MainLogic.SaveConfigFile(&m_wndFileView))
+	{
+		SetFileModifiedFlag(FALSE);
+
+		OnExplorerClose();
+		OnFileOpen();
+	}
 }
 
 
 void CFileView::OnExplorerClose()
 {
+	if (m_bModifiedFlag)
+	{
+		if (AfxMessageBox(_T("Do you want to save before close?"), MB_YESNO) == IDYES)
+		{
+			OnExplorerSave();
+		}
+	}
+	SetFileModifiedFlag(FALSE);
 	HTREEITEM hItem = m_wndFileView.GetSelectedItem();
 	DestoryItemData(hItem);
 	while (m_wndFileView.ItemHasChildren(hItem))
@@ -330,6 +409,7 @@ void CFileView::OnExplorerDelete()
 
 	if (AfxMessageBox(_T("Sure to delete it?"), MB_YESNO) == IDYES)
 	{
+		theApp.m_MainLogic.ModifyRCFile(NULL, m_wndFileView.GetItemText(hItem));
 		DestoryItemData(hItem);
 		m_wndFileView.DeleteItem(hItem);
 	}
@@ -591,4 +671,56 @@ HTREEITEM CFileView::GetSelectItemGroup()
 		}
 	}
 	return hItem;
+}
+
+void CFileView::RefreshPropName(CMFCPropertyGridProperty* pProp)
+{
+	CMFCPropertyGridProperty* pGroupProp = GetSelectItemProp();
+	if (pGroupProp && pGroupProp->GetSubItemsCount() > 0 && pGroupProp->GetSubItem(0) == pProp)
+	{
+		HTREEITEM hItem = m_wndFileView.GetSelectedItem();
+		m_wndFileView.SetItemText(hItem, (CString)pProp->GetValue());
+	}
+}
+
+void CFileView::SetFileModifiedFlag(BOOL bFlag)
+{
+	if (m_bModifiedFlag == bFlag)
+	{
+		return;
+	}
+
+	m_bModifiedFlag = bFlag;
+	HTREEITEM hItem = m_wndFileView.GetSelectedItem();
+	HTREEITEM hParentItem = hItem;
+	while (m_wndFileView.GetParentItem(hParentItem))
+	{
+		hParentItem = m_wndFileView.GetParentItem(hParentItem);
+	}
+	CString strText = m_wndFileView.GetItemText(hParentItem);
+
+	if (bFlag)
+	{
+		strText.AppendChar('*');
+	} 
+	else
+	{
+		strText.Delete(strText.GetLength() - 1);
+	}
+	m_wndFileView.SetItemText(hParentItem, strText);
+}
+
+BOOL CFileView::IsOtherNoClosed()
+{
+	HTREEITEM hChildItem = m_wndFileView.GetRootItem();
+	while (hChildItem != NULL)
+	{
+		if (m_wndFileView.ItemHasChildren(hChildItem))
+		{
+			AfxMessageBox(_T("First close the other!"));
+			return TRUE;
+		}
+		hChildItem = m_wndFileView.GetNextItem(hChildItem, TVGN_NEXT);
+	}
+	return FALSE;
 }

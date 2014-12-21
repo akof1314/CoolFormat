@@ -17,6 +17,8 @@ public:
 	CFileView();
 
 	void FillConfigView();
+	void RefreshPropName(CMFCPropertyGridProperty* pProp);
+	void SetFileModifiedFlag(BOOL bFlag);
 
 	void AdjustLayout();
 	void OnChangeVisualStyle();
@@ -27,6 +29,7 @@ protected:
 	CTreeCtrl m_wndFileView;
 	CImageList m_FileViewImages;
 	CFileViewToolBar m_wndToolBar;
+	BOOL m_bModifiedFlag;
 
 protected:
 	void FillFileView();
@@ -36,6 +39,7 @@ protected:
 	BOOL IsSelectItemGroup();
 	CMFCPropertyGridProperty* GetSelectItemProp();
 	HTREEITEM GetSelectItemGroup();
+	BOOL IsOtherNoClosed();
 
 // Implementation
 public:
@@ -50,6 +54,7 @@ protected:
 	afx_msg void OnPaint();
 	afx_msg void OnSetFocus(CWnd* pOldWnd);
 	void OnTreeTVNSelchanging(NMHDR *pNMHDR, LRESULT *pResult);
+	void OnTreeTVNEndlabeledit(NMHDR *pNMHDR, LRESULT *pResult);
 
 	DECLARE_MESSAGE_MAP()
 public:

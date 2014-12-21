@@ -133,6 +133,14 @@ BOOL CMakeSetConfigApp::InitInstance()
 	// The one and only window has been initialized, so show and update it
 	m_pMainWnd->ShowWindow(SW_SHOW);
 	m_pMainWnd->UpdateWindow();
+
+	if (m_pRecentFileList && m_pRecentFileList->GetSize() > 0)
+	{
+		if (!m_pRecentFileList->m_arrNames[0].IsEmpty())
+		{
+			OpenDocumentFile(m_pRecentFileList->m_arrNames[0]);
+		}
+	}
 	return TRUE;
 }
 

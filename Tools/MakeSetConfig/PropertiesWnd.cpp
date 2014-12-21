@@ -594,6 +594,11 @@ void CPropertiesWnd::PropertyChanged(CMFCPropertyGridProperty* pProp)
 	{
 		((CMainFrame*)AfxGetMainWnd())->GetClassView()->RefreshPreview();
 	}
+	else if (strName.CompareNoCase(_T("NAME")) == 0)
+	{
+		((CMainFrame*)AfxGetMainWnd())->GetFileView()->RefreshPropName(pProp);
+	}
+	((CMainFrame*)AfxGetMainWnd())->GetFileView()->SetFileModifiedFlag(TRUE);
 }
 
 void CPropertiesWnd::ChangeSelection(CMFCPropertyGridProperty* pNewSel, CMFCPropertyGridProperty* /*pOldSel*/)
@@ -639,8 +644,11 @@ void CPropertiesWnd::ChangeSelection(CMFCPropertyGridProperty* pNewSel, CMFCProp
 			pGroupProp = pNewSel->GetParent();
 		}
 
-		CMFCPropertyGridProperty* pPreviewProp = pGroupProp->GetSubItem(pGroupProp->GetSubItemsCount() - 1);
-		((CMainFrame*)AfxGetMainWnd())->GetClassView()->SetPreviewProp(pPreviewProp);		
+		if (pGroupProp->GetSubItemsCount() > 2)
+		{
+			CMFCPropertyGridProperty* pPreviewProp = pGroupProp->GetSubItem(pGroupProp->GetSubItemsCount() - 1);
+			((CMainFrame*)AfxGetMainWnd())->GetClassView()->SetPreviewProp(pPreviewProp);
+		}
 	}
 }
 

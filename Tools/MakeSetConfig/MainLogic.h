@@ -10,13 +10,16 @@ public:
 	~CMainLogic();
 
 	void LoadRCFile(LPCTSTR lpszFileName);
-	void OpenConfigFile(LPCTSTR lpszName, CTreeCtrl* pTreeCtrl);
+	void OpenConfigFile(CTreeCtrl* pTreeCtrl);
+	BOOL SaveConfigFile(CTreeCtrl* pTreeCtrl);
+	void ModifyRCFile(LPCTSTR lpszAddConfig, LPCTSTR lpszDelConfig);
 
 	const CStringList* GetConfigs() { return &m_lstConfigs; }
 
 private:
 	BOOL ParseRCText(LPCTSTR lpszFileName, const CString& strText);
 	void EntityToSymbol(CString& value);
+	CString SymbolToEntity(const CString& value);
 	BOOL OpenFile(LPCTSTR lpszFileName, CString& value);
 
 private:

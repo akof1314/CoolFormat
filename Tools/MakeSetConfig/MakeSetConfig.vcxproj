@@ -123,6 +123,7 @@
     <ClInclude Include="MakeSetConfig.h" />
     <ClInclude Include="MakeSetConfigDoc.h" />
     <ClInclude Include="MakeSetConfigView.h" />
+    <ClInclude Include="MyTagManager.h" />
     <ClInclude Include="PropertiesWnd.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
@@ -136,6 +137,7 @@
     <ClCompile Include="MakeSetConfig.cpp" />
     <ClCompile Include="MakeSetConfigDoc.cpp" />
     <ClCompile Include="MakeSetConfigView.cpp" />
+    <ClCompile Include="MyTagManager.cpp" />
     <ClCompile Include="PropertiesWnd.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
