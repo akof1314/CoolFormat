@@ -8,6 +8,42 @@
 #define STR_SHORT_TEXT_FALG _T("#")
 
 //////////////////////////////////////////////////////////////////////////
+
+struct XEntity
+{
+	LPCTSTR szCode;
+	LPCTSTR szSymbol;
+};
+
+static const XEntity s_EntityText[] =
+{
+	{ _T("&amp;"), _T("&") },
+	{ _T("&lt;"), _T("<") },
+	{ _T("&gt;"), _T(">") },
+	{ _T("&quot;"), _T("\"") },
+	{ _T("&apos;"), _T("\'") },
+	//{ _T("&circ;"), _T("^") },
+	//{ _T("&tilde;"), _T("~") },
+	//{ _T("&#09;"), _T("\t") },
+	//{ _T("&#0A;"), _T("\r") },
+	//{ _T("&#0D;"), _T("\n") },
+	{ NULL, NULL }
+};
+
+static void Entity_Backward(CString& value, const XEntity* entity)
+{
+	while (entity->szCode != NULL)
+	{
+		if (value.Find(entity->szCode) != -1)
+		{
+			value.Replace(entity->szCode, entity->szSymbol);
+		}
+
+		entity++;
+	}
+}
+
+//////////////////////////////////////////////////////////////////////////
 // CSetPageBase ¶Ô»°¿ò
 
 IMPLEMENT_DYNAMIC(CSetPageBase, CBCGPPropertyPage)
@@ -141,6 +177,7 @@ void CSetPageBase::InitPropList()
 						CString strShort, strPreview;
 						tmItem.ReadString(_T("SHORT"), strShort);
 						tmItem.ReadString(_T("PREVIEW"), strPreview);
+						Entity_Backward(strPreview, s_EntityText);
 						EntityToSymbol(strPreview);
 
 						pProp->AddComboOption(strValue, strShort, strPreview);
@@ -169,6 +206,7 @@ void CSetPageBase::InitPropList()
 					CString strShort, strPreview;
 					tmProperty.ReadString(_T("SHORT"), strShort);
 					tmProperty.ReadString(_T("PREVIEW"), strPreview);
+					Entity_Backward(strPreview, s_EntityText);
 					EntityToSymbol(strPreview);
 
 					pProp->SetNumberSpin(range.cx, range.cy, strShort, strPreview, pPropBuddy);
@@ -184,6 +222,7 @@ void CSetPageBase::InitPropList()
 					CString strShort, strPreview;
 					tmProperty.ReadString(_T("SHORT"), strShort);
 					tmProperty.ReadString(_T("PREVIEW"), strPreview);
+					Entity_Backward(strPreview, s_EntityText);
 					EntityToSymbol(strPreview);
 
 					pProp->SetEditText(strShort, strPreview);

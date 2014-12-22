@@ -124,7 +124,7 @@ void CMainLogic::OpenConfigFile(CTreeCtrl* pTreeCtrl)
 		CString strProperty;
 		while (tmPropertys.ExcludeTag(_T("PROPERTY"), strProperty))
 		{
-			CTagManager tmProperty(strProperty);
+			CMyTagManager tmProperty(strProperty);
 			CString strName = _T("NO NAME");
 			tmProperty.ExcludeTag(_T("NAME"), strName);
 			CMFCPropertyGridProperty* pPropGroup = new CMFCPropertyGridProperty(_T("PROPERTY"));
@@ -169,7 +169,7 @@ void CMainLogic::OpenConfigFile(CTreeCtrl* pTreeCtrl)
 						pProp->AddSubItem(pPropItem);
 						pProp->Expand(TRUE);
 
-						CTagManager tmItem(strItem);
+						CMyTagManager tmItem(strItem);
 						tmItem.ExcludeTag(_T("VALUE"), strValue);
 						CMFCPropertyGridProperty* pPropChild = new CMFCPropertyGridProperty(_T("VALUE"), (COleVariant)strValue);
 						pPropItem->AddSubItem(pPropChild);
@@ -179,7 +179,7 @@ void CMainLogic::OpenConfigFile(CTreeCtrl* pTreeCtrl)
 						pPropChild = new CMFCPropertyGridProperty(_T("SHORT"), (COleVariant)strShort);
 						pPropItem->AddSubItem(pPropChild);
 
-						tmItem.ExcludeTag(_T("PREVIEW"), strPreview);
+						tmItem.ReadEntityString(_T("PREVIEW"), strPreview);
 						EntityToSymbol(strPreview);
 						pPropChild = new CMFCPropertyGridProperty(_T("PREVIEW"), (COleVariant)strPreview);
 						pPropItem->AddSubItem(pPropChild);
@@ -216,7 +216,7 @@ void CMainLogic::OpenConfigFile(CTreeCtrl* pTreeCtrl)
 					pProp = new CMFCPropertyGridProperty(_T("SHORT"), (_variant_t)strShort, _T(""));
 					pPropGroup->AddSubItem(pProp);
 
-					tmProperty.ExcludeTag(_T("PREVIEW"), strPreview);
+					tmProperty.ReadEntityString(_T("PREVIEW"), strPreview);
 					EntityToSymbol(strPreview);
 					pProp = new CMFCPropertyGridProperty(_T("PREVIEW"), (_variant_t)strPreview, _T(""));
 					pPropGroup->AddSubItem(pProp);
@@ -237,7 +237,7 @@ void CMainLogic::OpenConfigFile(CTreeCtrl* pTreeCtrl)
 					pProp = new CMFCPropertyGridProperty(_T("SHORT"), (COleVariant)strShort);
 					pPropGroup->AddSubItem(pProp);
 
-					tmProperty.ExcludeTag(_T("PREVIEW"), strPreview);
+					tmProperty.ReadEntityString(_T("PREVIEW"), strPreview);
 					EntityToSymbol(strPreview);
 					pProp = new CMFCPropertyGridProperty(_T("PREVIEW"), (COleVariant)strPreview);
 					pPropGroup->AddSubItem(pProp);
@@ -378,7 +378,7 @@ BOOL CMainLogic::SaveConfigFile(CTreeCtrl* pTreeCtrl)
 								CString strItem;
 								CMyTagManager::WriteTag(strItem, CMyTagManager::WriteString(_T("VALUE"), pItemProp->GetSubItem(0)->GetValue()));
 								CMyTagManager::WriteTag(strItem, CMyTagManager::WriteString(_T("SHORT"), pItemProp->GetSubItem(1)->GetValue()));
-								CMyTagManager::WriteTag(strItem, CMyTagManager::WriteString(_T("PREVIEW"), SymbolToEntity(pItemProp->GetSubItem(2)->GetValue())));
+								CMyTagManager::WriteTag(strItem, CMyTagManager::WriteEntityString(_T("PREVIEW"), SymbolToEntity(pItemProp->GetSubItem(2)->GetValue())));
 								
 								CMyTagManager::WriteItem(strProperty, _T("ITEM"), strItem);
 							}
@@ -389,12 +389,12 @@ BOOL CMainLogic::SaveConfigFile(CTreeCtrl* pTreeCtrl)
 								CSize(pGroupProp->GetSubItem(3)->GetValue().intVal, pGroupProp->GetSubItem(4)->GetValue().intVal), CSize(-999, 9999)));
 							CMyTagManager::WriteTag(strProperty, CMyTagManager::WriteBool(_T("BUDDY"), pGroupProp->GetSubItem(5)->GetValue().boolVal, FALSE));
 							CMyTagManager::WriteTag(strProperty, CMyTagManager::WriteString(_T("SHORT"), pGroupProp->GetSubItem(6)->GetValue()));
-							CMyTagManager::WriteTag(strProperty, CMyTagManager::WriteString(_T("PREVIEW"), SymbolToEntity(pGroupProp->GetSubItem(7)->GetValue())));
+							CMyTagManager::WriteTag(strProperty, CMyTagManager::WriteEntityString(_T("PREVIEW"), SymbolToEntity(pGroupProp->GetSubItem(7)->GetValue())));
 						}
 						else if (strType.CompareNoCase(_T("Text")) == 0)
 						{
 							CMyTagManager::WriteTag(strProperty, CMyTagManager::WriteString(_T("SHORT"), pGroupProp->GetSubItem(3)->GetValue()));
-							CMyTagManager::WriteTag(strProperty, CMyTagManager::WriteString(_T("PREVIEW"), SymbolToEntity(pGroupProp->GetSubItem(4)->GetValue())));
+							CMyTagManager::WriteTag(strProperty, CMyTagManager::WriteEntityString(_T("PREVIEW"), SymbolToEntity(pGroupProp->GetSubItem(4)->GetValue())));
 						}
 						CMyTagManager::WriteItem(strPropertys, _T("PROPERTY"), strProperty);
 					}
