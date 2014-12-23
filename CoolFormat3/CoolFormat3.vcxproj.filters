@@ -470,5 +470,10 @@
   </ItemGroup>
   <ItemGroup>
     <Xml Include="res\SetConfig\JSON.xml" />
+    <Xml Include="res\SetConfig\SQL.xml" />
+    <Xml Include="res\SetConfig\JavaScript.xml" />
+    <Xml Include="res\SetConfig\PHP.xml" />
+    <Xml Include="res\SetConfig\Cpp.xml" />
+    <Xml Include="res\SetConfig\HTML.xml" />
   </ItemGroup>
 </Project>

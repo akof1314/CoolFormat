@@ -424,7 +424,9 @@ BEGIN
     LTEXT           "无幻出品",IDC_STATIC_WUHUAN,7,105,69,8
     DEFPUSHBUTTON   "确定",IDOK,178,100,50,16,WS_GROUP
     PUSHBUTTON      "http://blog.csdn.net/akof1314",IDC_COMPANY_URL,55,104,119,14
-	CONTROL         IDB_BITMAP_ABOUT, IDC_STATIC, "Static", SS_BITMAP, 21, 21, 46, 46
+	//CONTROL         IDB_BITMAP_ABOUT, IDC_STATIC, 21, 21, 46, 46, NOT WS_GROUP
+	//CONTROL         IDB_BITMAP_ABOUT, IDC_STATIC, "Static", SS_BITMAP, 21, 21, 46, 46, NOT WS_GROUP
+	CONTROL         IDB_BITMAP_ABOUT, IDC_STATIC, "Static", SS_BITMAP, 21, 21, 46, 46, NOT WS_GROUP
     LTEXT           "CoolFormat 版本 3.2       版权所有 (C) 2013",IDC_STATIC_VERSION,7,90,180,8,SS_NOPREFIX
     LTEXT           "静态",IDC_STATIC_ABOUT,84,24,142,57
 END
@@ -971,14 +973,14 @@ BEGIN
     CONTROL         "Endline on subquery",IDC_CHECK_SQL_ENDLINE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,135,23,99,10
 END
 
-IDD_SET_BASE DIALOGEX 0, 0, 440, 327
+IDD_SET_BASE DIALOGEX 0, 0, 441, 328
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
 CAPTION "Dialog"
-FONT 8, "MS Shell Dlg", 400, 0, 0x1
+FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
     EDITTEXT        IDC_EDIT_VIEWFORMATTER,257,19,175,292,ES_MULTILINE | ES_AUTOHSCROLL | ES_WANTRETURN | WS_HSCROLL
-    GROUPBOX        "Indentation",IDC_STATIC_OPTIONFORMATTER,5,5,237,312
-    GROUPBOX        "预览",IDC_STATIC_VIEWFORMATTER,250,5,189,312
+    GROUPBOX        "Indentation",IDC_STATIC_OPTIONFORMATTER,5,7,237,311
+    GROUPBOX        "预览",IDC_STATIC_VIEWFORMATTER,250,7,189,311
     LTEXT           "Static",IDC_PROPLIST_LOCATION,15,19,219,292
 END
 
@@ -1204,9 +1206,9 @@ BEGIN
     IDD_SET_BASE, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 302
+        RIGHTMARGIN, 303
         TOPMARGIN, 7
-        BOTTOMMARGIN, 317
+        BOTTOMMARGIN, 318
     END
 END
 #endif    // APSTUDIO_INVOKED
@@ -1663,12 +1665,12 @@ END
 // XML
 //
 
-
 IDR_SETCONFIG_XML_JSON  XML                     "res\\SetConfig\\JSON.xml"
-IDR_SETCONFIG_XML_SQL  XML                      "res\\SetConfig\\SQL.xml"
-IDR_SETCONFIG_XML_JAVASCRIPT  XML               "res\\SetConfig\\JavaScript.xml"
-IDR_SETCONFIG_XML_PHP  XML                      "res\\SetConfig\\PHP.xml"
-IDR_SETCONFIG_XML_CPP  XML                      "res\\SetConfig\\Cpp.xml"
+IDR_SETCONFIG_XML_SQL   XML                     "res\\SetConfig\\SQL.xml"
+IDR_SETCONFIG_XML_JAVASCRIPT XML                     "res\\SetConfig\\JavaScript.xml"
+IDR_SETCONFIG_XML_PHP   XML                     "res\\SetConfig\\PHP.xml"
+IDR_SETCONFIG_XML_CPP   XML                     "res\\SetConfig\\Cpp.xml"
+IDR_SETCONFIG_XML_HTML  XML                     "res\\SetConfig\\HTML.xml"
 
 /////////////////////////////////////////////////////////////////////////////
 //

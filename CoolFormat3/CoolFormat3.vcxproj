@@ -268,7 +268,12 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Xml Include="res\SetConfig\Cpp.xml" />
+    <Xml Include="res\SetConfig\HTML.xml" />
+    <Xml Include="res\SetConfig\JavaScript.xml" />
     <Xml Include="res\SetConfig\JSON.xml" />
+    <Xml Include="res\SetConfig\PHP.xml" />
+    <Xml Include="res\SetConfig\SQL.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

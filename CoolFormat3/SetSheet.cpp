@@ -4,13 +4,6 @@
 #include "CoolFormat3.h"
 #include "SetSheet.h"
 
-#include "SetPageCpp.h"
-#include "SetPageJS.h"
-#include "SetPageHtml.h"
-#include "SetPagePHP.h"
-#include "SetPageCSS.h"
-#include "SetPageJson.h"
-#include "SetPageSql.h"
 #include "SetPageBase.h"
 
 #define  IDC_SETSHEET_DEFAULT 501
@@ -109,13 +102,13 @@ INT_PTR CSetSheet::DoModalAllPage()
 	SetLook(CBCGPPropertySheet::PropSheetLook_List, 124);
 
 	CSetPageBase pageCpp(_T("C/C++"), _T("CPP"), g_GlobalTidy.m_TidyCpp);
-	CSetPageCpp pageJava(_T("Java"), g_GlobalTidy.m_TidyJava);
-	CSetPageCpp pageCs(_T("C#"), g_GlobalTidy.m_TidyCSharp);
+	CSetPageBase pageJava(_T("Java"), _T("CPP"), g_GlobalTidy.m_TidyJava);
+	CSetPageBase pageCs(_T("C#"), _T("CPP"), g_GlobalTidy.m_TidyCSharp);
 	CSetPageBase pageJS(_T("JavaScript"), _T("JavaScript"), g_GlobalTidy.m_TidyJs);
-	CSetPageHtml pageHtml(SYN_HTML, IDS_STRING_SET_HTML);
-	CSetPageHtml pageXml(SYN_XML, IDS_STRING_SET_XML);
+	CSetPageBase pageHtml(_T("HTML"), _T("HTML"), g_GlobalTidy.m_TidyHtml);
+	CSetPageBase pageXml(_T("XML"), _T("HTML"), g_GlobalTidy.m_TidyXml);
 	CSetPageBase pagePHP(_T("PHP"), _T("PHP"), g_GlobalTidy.m_TidyPhp);
-	CSetPageCSS pageCSS;
+	CSetPageBase pageCSS(_T("CSS"), _T("CSS"), g_GlobalTidy.m_TidyCss);
 	CSetPageBase pageJson(_T("JSON"), _T("JSON"), g_GlobalTidy.m_TidyJson);
 	CSetPageBase pageSql(_T("SQL"), _T("SQL"), g_GlobalTidy.m_TidySql);
 	AddPage(&pageCpp);
