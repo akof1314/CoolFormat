@@ -228,14 +228,23 @@ void CMyBCGPProp::GetResultShort(CString& strValue)
 	else
 	{
 		strShort = m_lstShortOptions.GetHead();
-
 	}
 
 	if (!strShort.IsEmpty())
 	{
-		strValue += STR_SHORT_PREFIX + strShort 
-			+ (IsText() ? STR_SHORT_TEXT_FALG : _T(""))
-			+ (IsList() ? _T("") : FormatProperty());
+		CString strFormatProperty = FormatProperty();
+		if (IsText())
+		{
+			if (!strFormatProperty.IsEmpty())
+			{
+				strValue += STR_SHORT_PREFIX + strShort + STR_SHORT_TEXT_FALG + strFormatProperty;
+			}
+		} 
+		else
+		{
+			strValue += STR_SHORT_PREFIX + strShort
+				+ (IsList() ? _T("") : FormatProperty());
+		}
 	}
 
 	if (m_pBuddyProp)

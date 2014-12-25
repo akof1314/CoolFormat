@@ -94,7 +94,7 @@ BOOL CFormatterHelp::FormatterJava( const char *pTextIn, CString &strTextOut )
 BOOL CFormatterHelp::FormatterHtml( const char *pTextIn, CString &strTextOut, CString &strMsgOut )
 {
 	HTidyInterface htidy;
-	if (htidy.formatSource(pTextIn, strTextOut, strMsgOut))
+	if (htidy.formatSource(pTextIn, g_GlobalTidy.m_TidyHtml, strTextOut, strMsgOut))
 	{
 		return TRUE;
 	}
@@ -103,8 +103,8 @@ BOOL CFormatterHelp::FormatterHtml( const char *pTextIn, CString &strTextOut, CS
 
 BOOL CFormatterHelp::FormatterXml( const char *pTextIn, CString &strTextOut, CString &strMsgOut )
 {
-	HTidyInterface htidy(SYN_XML);
-	if (htidy.formatSource(pTextIn, strTextOut, strMsgOut))
+	HTidyInterface htidy;
+	if (htidy.formatSource(pTextIn, g_GlobalTidy.m_TidyXml, strTextOut, strMsgOut))
 	{
 		return TRUE;
 	}

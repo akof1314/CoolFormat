@@ -76,6 +76,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
     </Filter>
+    <Filter Include="配置文件">
+      <UniqueIdentifier>{29673e21-007f-45c1-8bde-9f9fb32ff5f5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FormatterHelp.cpp">
@@ -469,11 +472,23 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Xml Include="res\SetConfig\JSON.xml" />
-    <Xml Include="res\SetConfig\SQL.xml" />
-    <Xml Include="res\SetConfig\JavaScript.xml" />
-    <Xml Include="res\SetConfig\PHP.xml" />
-    <Xml Include="res\SetConfig\Cpp.xml" />
-    <Xml Include="res\SetConfig\HTML.xml" />
+    <Xml Include="res\SetConfig\Cpp.xml">
+      <Filter>配置文件</Filter>
+    </Xml>
+    <Xml Include="res\SetConfig\HTML.xml">
+      <Filter>配置文件</Filter>
+    </Xml>
+    <Xml Include="res\SetConfig\JavaScript.xml">
+      <Filter>配置文件</Filter>
+    </Xml>
+    <Xml Include="res\SetConfig\JSON.xml">
+      <Filter>配置文件</Filter>
+    </Xml>
+    <Xml Include="res\SetConfig\PHP.xml">
+      <Filter>配置文件</Filter>
+    </Xml>
+    <Xml Include="res\SetConfig\SQL.xml">
+      <Filter>配置文件</Filter>
+    </Xml>
   </ItemGroup>
 </Project>

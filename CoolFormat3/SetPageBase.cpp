@@ -290,36 +290,35 @@ void CSetPageBase::SetTidyControl(LPCTSTR lpszTidy, int nPos, int nSize)
 	{
 		CString strBstrValue(strTextParam.Mid(nPosFlag + 1));
 		strTextParam = strTextParam.Left(nPosFlag);
-		if (SetTidyProp(strTextParam, (LPCTSTR)strBstrValue))
-		{
-			return;
-		}
-	}
-
-	int nNumValue = nSize;
-	for (int i = nPos + 1; i < nPos + nSize; ++i)
-	{
-		if (!_istalpha(lpszTidy[i]))
-		{
-			nNumValue = i - nPos;
-			break;
-		}
-	}
-	CString strParam(lpszTidy + nPos + 1, nNumValue - 1);
-	if (nNumValue != nSize)
-	{
-		CString strNum(lpszTidy + nPos + nNumValue, nSize - nNumValue);
-		nNumValue = _ttoi(strNum);
+		SetTidyProp(strTextParam, (LPCTSTR)strBstrValue);
 	}
 	else
 	{
-		nNumValue = INT_MIN;
-	}
+		int nNumValue = nSize;
+		for (int i = nPos + 1; i < nPos + nSize; ++i)
+		{
+			if (!_istalpha(lpszTidy[i]))
+			{
+				nNumValue = i - nPos;
+				break;
+			}
+		}
+		CString strParam(lpszTidy + nPos + 1, nNumValue - 1);
+		if (nNumValue != nSize)
+		{
+			CString strNum(lpszTidy + nPos + nNumValue, nSize - nNumValue);
+			nNumValue = _ttoi(strNum);
+		}
+		else
+		{
+			nNumValue = INT_MIN;
+		}
 
-	if (!SetTidyProp(strParam, nNumValue))
-	{
-		strParam.AppendFormat(_T("%d"), nNumValue);
-		SetTidyProp(strParam, nNumValue);
+		if (!SetTidyProp(strParam, nNumValue))
+		{
+			strParam.AppendFormat(_T("%d"), nNumValue);
+			SetTidyProp(strParam, nNumValue);
+		}
 	}
 }
 

@@ -1671,6 +1671,7 @@ IDR_SETCONFIG_XML_JAVASCRIPT XML                     "res\\SetConfig\\JavaScript
 IDR_SETCONFIG_XML_PHP   XML                     "res\\SetConfig\\PHP.xml"
 IDR_SETCONFIG_XML_CPP   XML                     "res\\SetConfig\\Cpp.xml"
 IDR_SETCONFIG_XML_HTML  XML                     "res\\SetConfig\\HTML.xml"
+IDR_SETCONFIG_XML_CSS  XML                      "res\\SetConfig\\CSS.xml"
 
 /////////////////////////////////////////////////////////////////////////////
 //

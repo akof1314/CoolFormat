@@ -9,14 +9,13 @@
 class HTidyInterface
 {
 public:
-	HTidyInterface(UINT nLangID = SYN_HTML);
+	HTidyInterface();
 	~HTidyInterface(void);
 
-	bool formatSource(const char* textIn, CString &strTidy, CString &strMsg);
+	bool formatSource(const char* textIn, const CString &strTidy, CString &strTextOut, CString &strMsg);
 
 private:
-	UINT m_onlyHtmlXml;
-	void SetTidyConfig(TidyDoc tdoc);
+	void SetTidyConfig(TidyDoc tdoc, const CString &strTidy);
 	void SetTidyControl(TidyDoc tdoc, LPCTSTR lpszTidy, int nPos, int nSize);
 	LPCSTR GetEncodeByIndex(int nIndex);
 	void InitTidyDefault(TidyDoc tdoc);

@@ -2,8 +2,7 @@
 #include "HTidyInterface.h"
 #include "buffio.h"
 
-HTidyInterface::HTidyInterface(UINT nLangID)
-:m_onlyHtmlXml(nLangID)
+HTidyInterface::HTidyInterface()
 {
 }
 
@@ -11,7 +10,7 @@ HTidyInterface::~HTidyInterface(void)
 {
 }
 
-bool HTidyInterface::formatSource( const char* textIn, CString &strTidy, CString &strMsg )
+bool HTidyInterface::formatSource(const char* textIn, const CString &strTidy, CString &strTextOut, CString &strMsg)
 {
 	TidyBuffer output;
 	TidyBuffer errbuf;	
@@ -23,7 +22,7 @@ bool HTidyInterface::formatSource( const char* textIn, CString &strTidy, CString
 	tidyBufInit(&errbuf);
 
 	InitTidyDefault(tdoc);
-	SetTidyConfig(tdoc);
+	SetTidyConfig(tdoc, strTidy);
 
 	if ( ok )
 		rc = tidySetErrorBuffer(tdoc, &errbuf);      // Capture diagnostics
@@ -40,7 +39,7 @@ bool HTidyInterface::formatSource( const char* textIn, CString &strTidy, CString
 
 	if ( rc >= 0 )
 	{		
-		strTidy = reinterpret_cast< char const* >(output.bp);
+		strTextOut = reinterpret_cast< char const* >(output.bp);
 	}
 
 	strMsg = reinterpret_cast< char const* >(errbuf.bp);
@@ -55,18 +54,8 @@ bool HTidyInterface::formatSource( const char* textIn, CString &strTidy, CString
 	return true;
 }
 
-void HTidyInterface::SetTidyConfig( TidyDoc tdoc )
+void HTidyInterface::SetTidyConfig(TidyDoc tdoc, const CString &strTidy)
 {
-	CString strTidy;
-	if (SYN_HTML == m_onlyHtmlXml)
-	{
-		strTidy = g_GlobalTidy.m_TidyHtml;
-	}
-	else
-	{
-		strTidy = g_GlobalTidy.m_TidyXml;
-	}
-
 	int lenTidy = strTidy.GetLength();
 	if (lenTidy <= 0 || strTidy[0] != '-')
 	{
@@ -95,30 +84,44 @@ void HTidyInterface::SetTidyControl( TidyDoc tdoc, LPCTSTR lpszTidy, int nPos, i
 		return;
 	}
 
-	int nNumValue = nSize;
-	for (int i = nPos + 1; i < nPos + nSize; ++i)
+	#define STR_SHORT_TEXT_FALG _T("#")
+
+	CString strParam;
+	CString strNumValue;
+	CString strBstrValue;
+	int nNumValue = 0;
+
+	CString strTextParam(lpszTidy + nPos + 1, nSize - 1);
+	int nPosFlag = strTextParam.Find(STR_SHORT_TEXT_FALG);
+	if (nPosFlag > 0)
 	{
-		if (!_istalpha(lpszTidy[i]))
-		{
-			nNumValue = i - nPos;
-			break;
-		}
-	}
-	CString strParam(lpszTidy + nPos + 1, nNumValue - 1);
-	if (nNumValue != nSize)
-	{
-		CString strNum(lpszTidy + nPos + nNumValue, nSize - nNumValue);
-		nNumValue = _ttoi(strNum);
+		strBstrValue = strTextParam.Mid(nPosFlag + 1);
+		strParam = strTextParam.Left(nPosFlag);
 	}
 	else
 	{
-		nNumValue = 0;
+		nNumValue = nSize;
+		for (int i = nPos + 1; i < nPos + nSize; ++i)
+		{
+			if (!_istalpha(lpszTidy[i]))
+			{
+				nNumValue = i - nPos;
+				break;
+			}
+		}
+		strParam = CString(lpszTidy + nPos + 1, nNumValue - 1);
+		if (nNumValue != nSize)
+		{
+			CString strNum(lpszTidy + nPos + nNumValue, nSize - nNumValue);
+			nNumValue = _ttoi(strNum);
+		}
+		else
+		{
+			nNumValue = 0;
+		}
+		strNumValue.Format(_T("%d"), nNumValue);
 	}
-	CString strNumValue;
-	strNumValue.Format(_T("%d"), nNumValue);
 
-	CString strNothing;
-	strNothing.Empty();
 	if (_T("axd") == strParam)
 	{
 		tidyOptSetBool(tdoc, TidyXmlDecl, yes);
@@ -385,27 +388,27 @@ void HTidyInterface::SetTidyControl( TidyDoc tdoc, LPCTSTR lpszTidy, int nPos, i
 	}
 	else if (_T("at") == strParam)
 	{
-		tidyOptSetValue(tdoc, TidyAltText, CT2A(m_onlyHtmlXml == SYN_HTML?g_GlobalTidy.m_TidyHtml_at:strNothing));
+		tidyOptSetValue(tdoc, TidyAltText, CT2A(strBstrValue));
 	}
 	else if (_T("cp") == strParam)
 	{
-		tidyOptSetValue(tdoc, TidyCSSPrefix, CT2A(m_onlyHtmlXml == SYN_HTML?g_GlobalTidy.m_TidyHtml_cp:strNothing));
+		tidyOptSetValue(tdoc, TidyCSSPrefix, CT2A(strBstrValue));
 	}
 	else if (_T("nbt") == strParam)
 	{
-		tidyOptSetValue(tdoc, TidyBlockTags, CT2A(m_onlyHtmlXml == SYN_HTML?g_GlobalTidy.m_TidyHtml_nbt:strNothing));
+		tidyOptSetValue(tdoc, TidyBlockTags, CT2A(strBstrValue));
 	}
 	else if (_T("net") == strParam)
 	{
-		tidyOptSetValue(tdoc, TidyEmptyTags, CT2A(m_onlyHtmlXml == SYN_HTML?g_GlobalTidy.m_TidyHtml_net:strNothing));
+		tidyOptSetValue(tdoc, TidyEmptyTags, CT2A(strBstrValue));
 	}
 	else if (_T("nit") == strParam)
 	{
-		tidyOptSetValue(tdoc, TidyInlineTags, CT2A(m_onlyHtmlXml == SYN_HTML?g_GlobalTidy.m_TidyHtml_nit:strNothing));
+		tidyOptSetValue(tdoc, TidyInlineTags, CT2A(strBstrValue));
 	}
 	else if (_T("npt") == strParam)
 	{
-		tidyOptSetValue(tdoc, TidyPreTags, CT2A(m_onlyHtmlXml == SYN_HTML?g_GlobalTidy.m_TidyHtml_npt:strNothing));
+		tidyOptSetValue(tdoc, TidyPreTags, CT2A(strBstrValue));
 	}
 }
 
