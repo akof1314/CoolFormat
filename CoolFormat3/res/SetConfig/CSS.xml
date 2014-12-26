@@ -239,14 +239,20 @@
 		<PROPERTY>
 			<NAME>Case for properties</NAME>
 			<TYPE>Combo</TYPE>
-			<VALUE>Lowercase</VALUE>
+			<VALUE>None</VALUE>
+			<ITEM>
+				<VALUE>None</VALUE>
+				<SHORT>cfp0</SHORT>
+				<PREVIEW>h1{COLor:red;}</PREVIEW>
+			</ITEM>
 			<ITEM>
 				<VALUE>Lowercase</VALUE>
-				<SHORT>cfp</SHORT>
+				<SHORT>cfp1</SHORT>
 				<PREVIEW>h1{color:red;}</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>Uppercase</VALUE>
+				<SHORT>cfp2</SHORT>
 				<PREVIEW>h1{COLOR:red;}</PREVIEW>
 			</ITEM>
 		</PROPERTY>

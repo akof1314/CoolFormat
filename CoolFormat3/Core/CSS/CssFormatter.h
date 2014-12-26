@@ -23,6 +23,13 @@ namespace CssFormatterTidy{
 		 * @return bool 
 		 */
 		bool CssTidyMain(const char* pSourceIn, const char *pOptions, string &strOut, string &strErr);
+
+	private:
+		void InitFromOptions(const char* pOptions, void* pTidy);
+		void SetTidyOption(const char* pOption, int nPos, int nSize);
+		void SetTidyProp(const string& strParam, const string& strNumValue, const string& strTextValue);
+
+		void* tidy;
 	};
 }
 /*

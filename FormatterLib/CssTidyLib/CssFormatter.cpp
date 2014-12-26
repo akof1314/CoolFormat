@@ -75,29 +75,11 @@ bool CssFormatterTidy::CssFormatter::CssTidyMain( const char* pSourceIn, const c
 	}
 
 	csstidy csst;
-	int nOptionsLen = strlen(pOptions);
-	if (nOptionsLen < 21)
+	for (map<string, int>::iterator j = csst.settings.begin(); j != csst.settings.end(); ++j)
 	{
-		return true;
+		csst.settings[j->first] = 0;
 	}
-	int i = 0;
-	for(map<string,int>::iterator j = csst.settings.begin(); j != csst.settings.end(); ++j )
-	{
-		csst.settings[j->first] = pOptions[i] - 48;		
-		i++;
-	}
-	string css_Options = trim(pOptions);
-	csst.css_level = strtoupper(css_Options.substr(15, 6));
-	string template_value = css_Options.substr(21);
-	if(template_value == "high" || template_value == "highest" || template_value == "low")
-	{
-		csst.csstemplate = predefined_templates[template_value];
-	}
-	else if(template_value != "default")
-	{
-		vector<string> tpl_arr = explode("|",template_value,true);
-		csst.csstemplate = tpl_arr;		
-	}
+	InitFromOptions(pOptions, &csst);
 
 	if (csst.csstemplate.size() < 14)
 	{
@@ -139,4 +121,161 @@ bool CssFormatterTidy::CssFormatter::CssTidyMain( const char* pSourceIn, const c
 	}
 	strErr = oss.str();	
 	return true;
+}
+
+void CssFormatterTidy::CssFormatter::InitFromOptions(const char* pOptions, void* pTidy)
+{
+	if (NULL == pOptions)
+	{
+		return;
+	}
+	tidy = pTidy;
+
+	int lenTidy = strlen(pOptions);
+	if (lenTidy <= 0 || pOptions[0] != '-')
+	{
+		return;
+	}
+
+	int nOption = -1;
+	for (int i = 0; i < lenTidy; ++i)
+	{
+		if (pOptions[i] == '-')
+		{
+			if (-1 != nOption)
+			{
+				SetTidyOption(pOptions, nOption, i - nOption);
+			}
+			nOption = i;
+		}
+	}
+	SetTidyOption(pOptions, nOption, lenTidy - nOption);
+}
+
+void CssFormatterTidy::CssFormatter::SetTidyOption(const char *pOption, int nPos, int nSize)
+{
+	if (pOption[nPos] != '-' || nSize < 2)
+	{
+		return;
+	}
+
+	#define STR_SHORT_TEXT_FALG "#"
+
+	string strParam;
+	string strNumValue;
+	string strBstrValue;
+
+	string strTextParam(pOption + nPos + 1, nSize - 1);
+	string::size_type nPosFlag = strTextParam.find(STR_SHORT_TEXT_FALG);
+	if (nPosFlag != string::npos)
+	{
+		strBstrValue = strTextParam.substr(nPosFlag + 1);
+		strParam = strTextParam.substr(0, nPosFlag);
+	}
+	else
+	{
+		auto it = std::find_if(strTextParam.begin(), strTextParam.end(), isdigit);
+		if (it != strTextParam.end())
+		{
+			strParam.assign(strTextParam.begin(), it);
+			strNumValue.assign(it, strTextParam.end());
+		}
+		else
+		{
+			strParam.assign(strTextParam);
+		}
+	}
+
+	SetTidyProp(strParam, strNumValue, strBstrValue);
+}
+
+void CssFormatterTidy::CssFormatter::SetTidyProp(const string& strParam, const string& strNumValue, const string& strTextValue)
+{
+	int nNumValue = strNumValue.empty() ? 0 : std::stoi(strNumValue);
+
+	csstidy* formatter = (csstidy*)tidy;
+	if ("c" == strParam)
+	{
+		switch (nNumValue)
+		{
+		case 0:formatter->csstemplate = predefined_templates["highest"];	 break;
+		case 1:formatter->csstemplate = predefined_templates["high"]; break;
+		case 2:break;
+		case 3:formatter->csstemplate = predefined_templates["low"];	 break;
+		case 4:formatter->csstemplate.clear(); break;
+		}
+	}
+	else if ("ct" == strParam)
+	{
+		if (formatter->csstemplate.size() == 0)
+		{
+			vector<string> tpl_arr = explode("|", strTextValue, true);
+			formatter->csstemplate = tpl_arr;
+		}
+	}
+	else if ("pc" == strParam)
+	{
+		formatter->settings["preserve_css"] = 1;
+	}
+	else if ("ss" == strParam)
+	{
+		formatter->settings["sort_selectors"] = 1;
+	}
+	else if ("sp" == strParam)
+	{
+		formatter->settings["sort_properties"] = 1;
+	}
+	else if ("rl" == strParam)
+	{
+		formatter->settings["remove_last_;"] = 1;
+	}
+	else if ("rub" == strParam)
+	{
+		formatter->settings["remove_bslash"] = 1;
+	}
+	else if ("dip" == strParam)
+	{
+		formatter->settings["discard_invalid_properties"] = 1;
+	}
+	else if ("cl" == strParam)
+	{
+		switch (nNumValue)
+		{
+		case 0:formatter->css_level = "CSS2.1"; break;
+		case 1:formatter->css_level = "CSS2.0"; break;
+		case 2:formatter->css_level = "CSS1.0"; break;
+		}
+	}
+	else if ("s" == strParam)
+	{
+		formatter->settings["silent"] = 1;
+	}
+	else if ("os" == strParam)
+	{
+		formatter->settings["optimise_shorthands"] = nNumValue;
+	}
+	else if ("cc" == strParam)
+	{
+		formatter->settings["compress_colors"] = 1;
+	}
+	else if ("cf" == strParam)
+	{
+		formatter->settings["compress_font-weight"] = 1;
+	}
+	else if ("ls" == strParam)
+	{
+		formatter->settings["lowercase_s"] = 1;
+	}
+	else if ("at" == strParam)
+	{
+		formatter->settings["timestamp"] = 1;
+	}
+	else if ("cfp" == strParam)
+	{
+		formatter->settings["case_properties"] = nNumValue;
+	}
+	else if ("rs" == strParam)
+	{
+		formatter->settings["merge_selectors"] = nNumValue;
+	}
 }

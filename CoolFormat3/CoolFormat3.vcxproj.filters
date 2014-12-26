@@ -231,6 +231,9 @@
     <ClCompile Include="MyBCGPRibbonLabel.cpp">
       <Filter>源文件\源码扩展</Filter>
     </ClCompile>
+    <ClCompile Include="MulTextEditDlg.cpp">
+      <Filter>源文件\弹出对话框</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FormatterHelp.h">
@@ -404,6 +407,9 @@
     <ClInclude Include="MyBCGPRibbonLabel.h">
       <Filter>头文件\源码扩展</Filter>
     </ClInclude>
+    <ClInclude Include="MulTextEditDlg.h">
+      <Filter>头文件\弹出对话框</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\aboutmain.bmp">
@@ -488,6 +494,9 @@
       <Filter>配置文件</Filter>
     </Xml>
     <Xml Include="res\SetConfig\SQL.xml">
+      <Filter>配置文件</Filter>
+    </Xml>
+    <Xml Include="res\SetConfig\CSS.xml">
       <Filter>配置文件</Filter>
     </Xml>
   </ItemGroup>

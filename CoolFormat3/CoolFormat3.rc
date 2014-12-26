@@ -424,9 +424,7 @@ BEGIN
     LTEXT           "无幻出品",IDC_STATIC_WUHUAN,7,105,69,8
     DEFPUSHBUTTON   "确定",IDOK,178,100,50,16,WS_GROUP
     PUSHBUTTON      "http://blog.csdn.net/akof1314",IDC_COMPANY_URL,55,104,119,14
-	//CONTROL         IDB_BITMAP_ABOUT, IDC_STATIC, 21, 21, 46, 46, NOT WS_GROUP
-	//CONTROL         IDB_BITMAP_ABOUT, IDC_STATIC, "Static", SS_BITMAP, 21, 21, 46, 46, NOT WS_GROUP
-	CONTROL         IDB_BITMAP_ABOUT, IDC_STATIC, "Static", SS_BITMAP, 21, 21, 46, 46, NOT WS_GROUP
+    CONTROL         IDB_BITMAP_ABOUT,IDC_STATIC,"Static",SS_BITMAP,21,21,46,46
     LTEXT           "CoolFormat 版本 3.2       版权所有 (C) 2013",IDC_STATIC_VERSION,7,90,180,8,SS_NOPREFIX
     LTEXT           "静态",IDC_STATIC_ABOUT,84,24,142,57
 END
@@ -974,14 +972,24 @@ BEGIN
 END
 
 IDD_SET_BASE DIALOGEX 0, 0, 441, 328
-STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
+STYLE DS_SETFONT | WS_CHILD | WS_CAPTION
 CAPTION "Dialog"
 FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
-    EDITTEXT        IDC_EDIT_VIEWFORMATTER,257,19,175,292,ES_MULTILINE | ES_AUTOHSCROLL | ES_WANTRETURN | WS_HSCROLL
+    LTEXT           "Static",IDC_PROPLIST_LOCATION,15,19,219,292
+    EDITTEXT        IDC_EDIT_VIEWFORMATTER,257,19,175,292,ES_MULTILINE | ES_AUTOHSCROLL | ES_WANTRETURN | WS_HSCROLL | NOT WS_TABSTOP
     GROUPBOX        "Indentation",IDC_STATIC_OPTIONFORMATTER,5,7,237,311
     GROUPBOX        "预览",IDC_STATIC_VIEWFORMATTER,250,7,189,311
-    LTEXT           "Static",IDC_PROPLIST_LOCATION,15,19,219,292
+END
+
+IDD_MULTEXT_EDIT_DLG DIALOGEX 0, 0, 295, 178
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "文本编辑"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_LINE,7,7,281,145,ES_MULTILINE | ES_AUTOVSCROLL | ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
+    DEFPUSHBUTTON   "确定",IDOK,185,157,50,14
+    PUSHBUTTON      "取消",IDCANCEL,239,157,50,14
 END
 
 
@@ -1034,181 +1042,138 @@ GUIDELINES DESIGNINFO
 BEGIN
     IDD_ABOUTBOX, DIALOG
     BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 228
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 115
+        , 50
+        , 4521984
     END
 
     IDD_GOTO_LINE, DIALOG
     BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 187
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 64
+        , 50
+        , 4521984
     END
 
     IDD_OPTIONS_PAGE_POPULAR_PAGE, DIALOG
     BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 309
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 176
+        , 50
+        , 4521984
     END
 
     IDD_OPTIONS_PAGE_RESOURCE, DIALOG
     BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 391
-        VERTGUIDE, 8
-        VERTGUIDE, 311
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 176
+        , 50
+        , 4521984
     END
 
     IDD_LANG_EXT, DIALOG
     BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 326
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 222
+        , 50
+        , 4521984
     END
 
     IDD_LANG_EXT_EDIT, DIALOG
     BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 278
-        VERTGUIDE, 50
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 62
+        , 50
+        , 4521984
     END
 
     IDD_SYNEDIT_SET, DIALOG
     BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 326
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 222
+        , 50
+        , 4521984
     END
 
     IDD_SYNHTML_SET, DIALOG
     BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 326
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 222
+        , 50
+        , 4521984
     END
 
     IDD_SET_CPP, DIALOG
     BEGIN
-        LEFTMARGIN, 4
-        RIGHTMARGIN, 434
-        TOPMARGIN, 3
-        BOTTOMMARGIN, 322
+        , 50
+        , 4521984
     END
 
     IDD_SET_JS, DIALOG
     BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 433
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 320
+        , 50
+        , 4521984
     END
 
     IDD_SET_CPP_FAST, DIALOG
     BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 178
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 294
+        , 50
+        , 4521984
     END
 
     IDD_TELL_BUG, DIALOG
     BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 278
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 158
+        , 50
+        , 4521984
     END
 
     IDD_SET_CPP_HIGH, DIALOG
     BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 232
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 302
+        , 50
+        , 4521984
     END
 
     IDD_SET_HTML, DIALOG
     BEGIN
-        LEFTMARGIN, 4
-        RIGHTMARGIN, 438
-        TOPMARGIN, 3
-        BOTTOMMARGIN, 315
+        , 50
+        , 4521984
     END
 
     IDD_SET_HTML_ONE, DIALOG
     BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 443
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 202
+        , 50
+        , 4521984
     END
 
     IDD_SET_HTML_TWO, DIALOG
     BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 443
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 210
+        , 50
+        , 4521984
     END
 
     IDD_BATCHFORMAT, DIALOG
     BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 433
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 315
+        , 50
+        , 4521984
     END
 
     IDD_SET_PHP, DIALOG
     BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 434
-        TOPMARGIN, 3
-        BOTTOMMARGIN, 322
+        , 50
+        , 4521984
     END
 
     IDD_SET_CSS, DIALOG
     BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 433
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 320
+        , 50
+        , 4521984
     END
 
     IDD_SET_JSON, DIALOG
     BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 433
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 320
+        , 50
+        , 4521984
     END
 
     IDD_SET_SQL, DIALOG
     BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 433
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 320
+        , 50
+        , 4521984
     END
 
     IDD_SET_BASE, DIALOG
     BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 303
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 318
+        , 50
+        , 4521984
+    END
+
+    IDD_MULTEXT_EDIT_DLG, DIALOG
+    BEGIN
     END
 END
 #endif    // APSTUDIO_INVOKED
@@ -1671,7 +1636,7 @@ IDR_SETCONFIG_XML_JAVASCRIPT XML                     "res\\SetConfig\\JavaScript
 IDR_SETCONFIG_XML_PHP   XML                     "res\\SetConfig\\PHP.xml"
 IDR_SETCONFIG_XML_CPP   XML                     "res\\SetConfig\\Cpp.xml"
 IDR_SETCONFIG_XML_HTML  XML                     "res\\SetConfig\\HTML.xml"
-IDR_SETCONFIG_XML_CSS  XML                      "res\\SetConfig\\CSS.xml"
+IDR_SETCONFIG_XML_CSS   XML                     "res\\SetConfig\\CSS.xml"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -2114,6 +2079,7 @@ STRINGTABLE
 BEGIN
     IDS_STRING_COPYCODE     "复制代码"
     IDS_STR_OPTIONFORMATTER "选项："
+    IDS_MULTEXT_EDIT_DLG    "文本编辑"
 END
 
 #endif    // 中文(简体，中国) resources
@@ -2685,6 +2651,7 @@ STRINGTABLE
 BEGIN
     IDS_STRING_COPYCODE     "Copy Code"
     IDS_STR_OPTIONFORMATTER "Options:"
+    IDS_MULTEXT_EDIT_DLG    "Text Edit"
 END
 
 #endif    // 英语(美国) resources

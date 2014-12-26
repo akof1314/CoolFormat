@@ -125,6 +125,8 @@ protected:
 	 * @return BOOL 
 	 */
 	virtual BOOL TextToVar(const CString& strText);
+
+	virtual void OnClickButton(CPoint point);
 };
 
 

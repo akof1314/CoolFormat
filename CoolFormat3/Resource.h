@@ -162,6 +162,7 @@
 #define IDS_STRING_COPYCODE             144
 #define IDS_STRING144                   144
 #define IDS_STR_OPTIONFORMATTER         145
+#define IDS_MULTEXT_EDIT_DLG            146
 #define IDB_RIBBON_ICONS                154
 #define IDB_RIBBON_FILESMALL            155
 #define IDB_RIBBON_FILELARGE            156
@@ -212,6 +213,7 @@
 #define IDD_DIALOG8                     198
 #define IDD_SET_ALL                     198
 #define IDD_SET_BASE                    198
+#define IDD_MULTEXT_EDIT_DLG            199
 #define IDC_COMPANY_URL                 1041
 #define IDC_LINE                        1053
 #define IDC_LINETIP                     1054

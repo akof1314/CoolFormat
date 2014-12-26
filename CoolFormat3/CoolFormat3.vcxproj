@@ -127,6 +127,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BatchFormat.cpp" />
+    <ClCompile Include="MulTextEditDlg.cpp" />
     <ClCompile Include="MyBCGPRibbonLabel.cpp" />
     <ClCompile Include="OptionsPropSheet.cpp" />
     <ClCompile Include="ChildFrm.cpp" />
@@ -183,6 +184,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\BCGControlBarPro\BCGCBPro\bcgprores.h" />
     <ClInclude Include="BatchFormat.h" />
+    <ClInclude Include="MulTextEditDlg.h" />
     <ClInclude Include="MyBCGPRibbonLabel.h" />
     <ClInclude Include="OptionsPropSheet.h" />
     <ClInclude Include="ChildFrm.h" />
@@ -269,6 +271,7 @@
   </ItemGroup>
   <ItemGroup>
     <Xml Include="res\SetConfig\Cpp.xml" />
+    <Xml Include="res\SetConfig\CSS.xml" />
     <Xml Include="res\SetConfig\HTML.xml" />
     <Xml Include="res\SetConfig\JavaScript.xml" />
     <Xml Include="res\SetConfig\JSON.xml" />

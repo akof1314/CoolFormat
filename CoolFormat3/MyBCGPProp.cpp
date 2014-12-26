@@ -2,6 +2,8 @@
 
 #include "stdafx.h"
 #include "MyBCGPProp.h"
+#include "CoolFormat3.h"
+#include "MulTextEditDlg.h"
 
 //////////////////////////////////////////////////////////////////////////
 // CMyBCGPProp
@@ -68,6 +70,7 @@ BOOL CMyBCGPProp::SetEditText(LPCTSTR lpszShort, LPCTSTR lpszPreview)
 	m_lstPreviewOptions.RemoveAll();
 	m_lstShortOptions.AddTail(lpszShort);
 	m_lstPreviewOptions.AddTail(lpszPreview);
+	m_dwFlags |= PROP_HAS_BUTTON;
 	return TRUE;
 }
 
@@ -286,4 +289,51 @@ void CMyBCGPProp::GetShortOptions(CStringList& lstValue)
 	lstValue.AddTail(&m_lstShortOptions);
 }
 
+void CMyBCGPProp::OnClickButton(CPoint point)
+{
+	CBCGPProp::OnClickButton(point);
+	if (IsText())
+	{
+		ASSERT_VALID(this);
+		ASSERT_VALID(m_pWndList);
+		ASSERT_VALID(m_pWndInPlace);
+		ASSERT(::IsWindow(m_pWndInPlace->GetSafeHwnd()));
 
+		m_bButtonIsDown = TRUE;
+		m_bButtonIsHighlighted = FALSE;
+		Redraw();
+
+		CString strPath = (LPCTSTR)(_bstr_t)m_varValue;
+		BOOL bUpdate = FALSE;
+
+		CMulTextEditDlg dlg;
+		dlg.SetText(strPath);
+		if (dlg.DoModal() == IDOK)
+		{
+			bUpdate = TRUE;
+			strPath = dlg.GetText();
+		}
+
+		if (bUpdate)
+		{
+			if (m_pWndInPlace != NULL)
+			{
+				m_pWndInPlace->SetWindowText(strPath);
+			}
+
+			m_varValue = (LPCTSTR)strPath;
+		}
+
+		m_bButtonIsDown = FALSE;
+		Redraw();
+
+		if (m_pWndInPlace != NULL)
+		{
+			m_pWndInPlace->SetFocus();
+		}
+		else
+		{
+			m_pWndList->SetFocus();
+		}
+	}
+}
