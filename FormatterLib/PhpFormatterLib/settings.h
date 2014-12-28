@@ -83,9 +83,6 @@ class CSettings {
         CSettings(void);
         ~CSettings(void);
 
-        void InitFromOptions(const char *pOptions);
-        void SetTidyOption(const char *pOption, int nPos, int nSize);
-        
         /* STRUCTURES */
         
         /* space after structures */

@@ -64,7 +64,8 @@
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
     </Lib>
     <PostBuildEvent>
-      <Command>echo D | xcopy "$(TargetPath)" "$(SolutionDir)Lib" /y</Command>
+      <Command>echo D | xcopy "$(TargetPath)" "$(SolutionDir)Lib" /y
+echo D | xcopy "$(ProjectDir)CFJsonTidy.h" "$(SolutionDir)Include" /y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -81,11 +82,12 @@
       <DebugInformationFormat />
     </ClCompile>
     <PostBuildEvent>
-      <Command>echo D | xcopy "$(TargetPath)" "$(SolutionDir)Lib" /y</Command>
+      <Command>echo D | xcopy "$(TargetPath)" "$(SolutionDir)Lib" /y
+echo D | xcopy "$(ProjectDir)CFJsonTidy.h" "$(SolutionDir)Include" /y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="JsonTidy.cpp" />
+    <ClCompile Include="CFJsonTidy.cpp" />
     <ClCompile Include="json_reader.cpp" />
     <ClCompile Include="json_value.cpp" />
     <ClCompile Include="json_writer.cpp" />
@@ -96,7 +98,7 @@
     <ClInclude Include="features.h" />
     <ClInclude Include="forwards.h" />
     <ClInclude Include="json.h" />
-    <ClInclude Include="JsonTidy.h" />
+    <ClInclude Include="CFJsonTidy.h" />
     <ClInclude Include="json_batchallocator.h" />
     <ClInclude Include="json_tool.h" />
     <ClInclude Include="reader.h" />

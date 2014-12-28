@@ -1,13 +1,13 @@
-#include "CssFormatter.h"
+#include "CFCssTidy.h"
 #include "csspp_globals.hpp"
 #include "prepare.hpp"
 
-CssFormatterTidy::CssFormatter::CssFormatter( void )
+CCFCssTidy::CCFCssTidy( void )
 {
 
 }
 
-CssFormatterTidy::CssFormatter::~CssFormatter( void )
+CCFCssTidy::~CCFCssTidy( void )
 {
 
 }
@@ -15,7 +15,7 @@ CssFormatterTidy::CssFormatter::~CssFormatter( void )
 map< string, vector<string> > predefined_templates;
 bool bFirstTidy = true;
 
-bool CssFormatterTidy::CssFormatter::CssTidyMain( const char* pSourceIn, const char *pOptions, string &strOut, string &strErr )
+bool CCFCssTidy::TidyMain(const char* pSourceIn, const char *pOptions, string &strOut, string &strErr)
 {
 	if (bFirstTidy)
 	{
@@ -75,11 +75,7 @@ bool CssFormatterTidy::CssFormatter::CssTidyMain( const char* pSourceIn, const c
 	}
 
 	csstidy csst;
-	for (map<string, int>::iterator j = csst.settings.begin(); j != csst.settings.end(); ++j)
-	{
-		csst.settings[j->first] = 0;
-	}
-	InitFromOptions(pOptions, &csst);
+	TidyOptionsSet(&csst, pOptions);
 
 	if (csst.csstemplate.size() < 14)
 	{
@@ -123,76 +119,17 @@ bool CssFormatterTidy::CssFormatter::CssTidyMain( const char* pSourceIn, const c
 	return true;
 }
 
-void CssFormatterTidy::CssFormatter::InitFromOptions(const char* pOptions, void* pTidy)
+void CCFCssTidy::InitTidyDefault()
 {
-	if (NULL == pOptions)
+	csstidy* formatter = (csstidy*)tidy;
+	for (map<string, int>::iterator j = formatter->settings.begin(); j != formatter->settings.end(); ++j)
 	{
-		return;
+		formatter->settings[j->first] = 0;
 	}
-	tidy = pTidy;
-
-	int lenTidy = strlen(pOptions);
-	if (lenTidy <= 0 || pOptions[0] != '-')
-	{
-		return;
-	}
-
-	int nOption = -1;
-	for (int i = 0; i < lenTidy; ++i)
-	{
-		if (pOptions[i] == '-')
-		{
-			if (-1 != nOption)
-			{
-				SetTidyOption(pOptions, nOption, i - nOption);
-			}
-			nOption = i;
-		}
-	}
-	SetTidyOption(pOptions, nOption, lenTidy - nOption);
 }
 
-void CssFormatterTidy::CssFormatter::SetTidyOption(const char *pOption, int nPos, int nSize)
+void CCFCssTidy::SetTidyProp(const string& strParam, int nNumValue, const string& /*strNumValue*/, const string& strTextValue)
 {
-	if (pOption[nPos] != '-' || nSize < 2)
-	{
-		return;
-	}
-
-	#define STR_SHORT_TEXT_FALG "#"
-
-	string strParam;
-	string strNumValue;
-	string strBstrValue;
-
-	string strTextParam(pOption + nPos + 1, nSize - 1);
-	string::size_type nPosFlag = strTextParam.find(STR_SHORT_TEXT_FALG);
-	if (nPosFlag != string::npos)
-	{
-		strBstrValue = strTextParam.substr(nPosFlag + 1);
-		strParam = strTextParam.substr(0, nPosFlag);
-	}
-	else
-	{
-		auto it = std::find_if(strTextParam.begin(), strTextParam.end(), isdigit);
-		if (it != strTextParam.end())
-		{
-			strParam.assign(strTextParam.begin(), it);
-			strNumValue.assign(it, strTextParam.end());
-		}
-		else
-		{
-			strParam.assign(strTextParam);
-		}
-	}
-
-	SetTidyProp(strParam, strNumValue, strBstrValue);
-}
-
-void CssFormatterTidy::CssFormatter::SetTidyProp(const string& strParam, const string& strNumValue, const string& strTextValue)
-{
-	int nNumValue = strNumValue.empty() ? 0 : std::stoi(strNumValue);
-
 	csstidy* formatter = (csstidy*)tidy;
 	if ("c" == strParam)
 	{

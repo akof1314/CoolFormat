@@ -3,13 +3,14 @@
 
 class SQLFormatter2 {
 
-  private :
+public:
     int  _maxLookahead;
     int  _indent;
     int  _minSubqueryLength;
     bool _endLineOnSubQuery;
     char _indentationChar;
 
+private:
     bool _isSqlToken(const char *start, const char *end);
     void _output(const char *start, const char *end, bool endLine);
     void _formatSql(char *start, char *end, char *dest, int indent, bool lastWasToken);

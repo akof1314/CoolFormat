@@ -134,8 +134,6 @@
     <ClCompile Include="CoolFormat3.cpp" />
     <ClCompile Include="CoolFormat3Doc.cpp" />
     <ClCompile Include="CoolFormat3View.cpp" />
-    <ClCompile Include="Core\Cpp\AStyleInterface.cpp" />
-    <ClCompile Include="Core\Html\HTidyInterface.cpp" />
     <ClCompile Include="FormatterHelp.cpp" />
     <ClCompile Include="GlobalTidy.cpp" />
     <ClCompile Include="GlobalUtils.cpp" />
@@ -191,13 +189,6 @@
     <ClInclude Include="CoolFormat3.h" />
     <ClInclude Include="CoolFormat3Doc.h" />
     <ClInclude Include="CoolFormat3View.h" />
-    <ClInclude Include="Core\Cpp\AStyleInterface.h" />
-    <ClInclude Include="Core\CSS\CssFormatter.h" />
-    <ClInclude Include="Core\Html\HTidyInterface.h" />
-    <ClInclude Include="Core\Json\JsonTidy.h" />
-    <ClInclude Include="Core\Js\JsTidy.h" />
-    <ClInclude Include="Core\PHP\PhpTidy.h" />
-    <ClInclude Include="Core\SQL\SqlTidy.h" />
     <ClInclude Include="FormatterHelp.h" />
     <ClInclude Include="GlobalTidy.h" />
     <ClInclude Include="GlobalUtils.h" />

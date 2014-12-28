@@ -21,9 +21,6 @@
     <ClCompile Include="conversions.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="CssFormatter.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="cssopt.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -51,15 +48,18 @@
     <ClCompile Include="trim.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="CFBaseTidy.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CFCssTidy.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="background.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="conversions.hpp">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="CssFormatter.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="cssopt.hpp">
@@ -93,6 +93,12 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="umap.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CFBaseTidy.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CFCssTidy.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

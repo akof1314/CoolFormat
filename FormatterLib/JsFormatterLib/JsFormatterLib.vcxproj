@@ -64,7 +64,8 @@
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
     </Lib>
     <PostBuildEvent>
-      <Command>echo D | xcopy "$(TargetPath)" "$(SolutionDir)Lib" /y</Command>
+      <Command>echo D | xcopy "$(TargetPath)" "$(SolutionDir)Lib" /y
+echo D | xcopy "$(ProjectDir)CFJsTidy.h" "$(SolutionDir)Include" /y </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -81,19 +82,20 @@
       <DebugInformationFormat />
     </ClCompile>
     <PostBuildEvent>
-      <Command>echo D | xcopy "$(TargetPath)" "$(SolutionDir)Lib" /y</Command>
+      <Command>echo D | xcopy "$(TargetPath)" "$(SolutionDir)Lib" /y
+echo D | xcopy "$(ProjectDir)CFJsTidy.h" "$(SolutionDir)Include" /y </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="jsformatString.cpp" />
     <ClCompile Include="jsparser.cpp" />
-    <ClCompile Include="JsTidy.cpp" />
+    <ClCompile Include="CFJsTidy.cpp" />
     <ClCompile Include="realjsformatter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="jsformatString.h" />
     <ClInclude Include="jsparser.h" />
-    <ClInclude Include="JsTidy.h" />
+    <ClInclude Include="CFJsTidy.h" />
     <ClInclude Include="realjsformatter.h" />
   </ItemGroup>
   <ItemGroup>

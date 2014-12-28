@@ -21,10 +21,10 @@
     <ClCompile Include="jsparser.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="JsTidy.cpp">
+    <ClCompile Include="realjsformatter.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="realjsformatter.cpp">
+    <ClCompile Include="CFJsTidy.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -35,10 +35,10 @@
     <ClInclude Include="jsparser.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="JsTidy.h">
+    <ClInclude Include="realjsformatter.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="realjsformatter.h">
+    <ClInclude Include="CFJsTidy.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

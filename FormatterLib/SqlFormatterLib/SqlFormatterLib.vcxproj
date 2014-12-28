@@ -64,7 +64,8 @@
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
     </Lib>
     <PostBuildEvent>
-      <Command>echo D | xcopy "$(TargetPath)" "$(SolutionDir)Lib" /y</Command>
+      <Command>echo D | xcopy "$(TargetPath)" "$(SolutionDir)Lib" /y
+echo D | xcopy "$(ProjectDir)CFSqlTidy.h" "$(SolutionDir)Include" /y </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -81,16 +82,17 @@
       <DebugInformationFormat />
     </ClCompile>
     <PostBuildEvent>
-      <Command>echo D | xcopy "$(TargetPath)" "$(SolutionDir)Lib" /y</Command>
+      <Command>echo D | xcopy "$(TargetPath)" "$(SolutionDir)Lib" /y
+echo D | xcopy "$(ProjectDir)CFSqlTidy.h" "$(SolutionDir)Include" /y </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="SQLFormatter2.cpp" />
-    <ClCompile Include="SqlTidy.cpp" />
+    <ClCompile Include="CFSqlTidy.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SQLFormatter2.h" />
-    <ClInclude Include="SqlTidy.h" />
+    <ClInclude Include="CFSqlTidy.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

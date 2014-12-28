@@ -98,7 +98,8 @@
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
     </Lib>
     <PostBuildEvent>
-      <Command>echo D | xcopy "$(TargetPath)" "$(SolutionDir)Lib" /y</Command>
+      <Command>echo D | xcopy "$(TargetPath)" "$(SolutionDir)Lib" /y
+echo D | xcopy "$(ProjectDir)..\..\..\src\CFCppTidy.h" "$(SolutionDir)Include" /y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -137,7 +138,8 @@
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
     </Lib>
     <PostBuildEvent>
-      <Command>echo D | xcopy "$(TargetPath)" "$(SolutionDir)Lib" /y</Command>
+      <Command>echo D | xcopy "$(TargetPath)" "$(SolutionDir)Lib" /y
+echo D | xcopy "$(ProjectDir)..\..\..\src\CFCppTidy.h" "$(SolutionDir)Include" /y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -166,10 +168,12 @@
     <ClCompile Include="..\..\..\src\ASFormatter.cpp" />
     <ClCompile Include="..\..\..\src\ASResource.cpp" />
     <ClCompile Include="..\..\..\src\astyle_main.cpp" />
+    <ClCompile Include="..\..\..\src\CFCppTidy.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src\astyle.h" />
     <ClInclude Include="..\..\..\src\astyle_main.h" />
+    <ClInclude Include="..\..\..\src\CFCppTidy.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

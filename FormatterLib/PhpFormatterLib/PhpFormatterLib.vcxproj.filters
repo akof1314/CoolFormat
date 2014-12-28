@@ -30,9 +30,6 @@
     <ClCompile Include="parser.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="PhpTidy.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="scanner.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -40,6 +37,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="str.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CFPhpTidy.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -62,9 +62,6 @@
     <ClInclude Include="parser.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="PhpTidy.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="scanner.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -75,6 +72,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="tokens.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CFPhpTidy.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

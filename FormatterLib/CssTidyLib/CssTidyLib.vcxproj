@@ -64,7 +64,8 @@
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
     </Lib>
     <PostBuildEvent>
-      <Command>echo D | xcopy "$(TargetPath)" "$(SolutionDir)Lib" /y</Command>
+      <Command>echo D | xcopy "$(TargetPath)" "$(SolutionDir)Lib" /y
+echo D | xcopy "$(ProjectDir)CFCssTidy.h" "$(SolutionDir)Include" /y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -81,13 +82,15 @@
       <DebugInformationFormat />
     </ClCompile>
     <PostBuildEvent>
-      <Command>echo D | xcopy "$(TargetPath)" "$(SolutionDir)Lib" /y</Command>
+      <Command>echo D | xcopy "$(TargetPath)" "$(SolutionDir)Lib" /y
+echo D | xcopy "$(ProjectDir)CFCssTidy.h" "$(SolutionDir)Include" /y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="background.cpp" />
+    <ClCompile Include="CFBaseTidy.cpp" />
     <ClCompile Include="conversions.cpp" />
-    <ClCompile Include="CssFormatter.cpp" />
+    <ClCompile Include="CFCssTidy.cpp" />
     <ClCompile Include="cssopt.cpp" />
     <ClCompile Include="csspp_globals.cpp" />
     <ClCompile Include="csstidy.cpp" />
@@ -100,8 +103,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="background.hpp" />
+    <ClInclude Include="CFBaseTidy.h" />
     <ClInclude Include="conversions.hpp" />
-    <ClInclude Include="CssFormatter.h" />
+    <ClInclude Include="CFCssTidy.h" />
     <ClInclude Include="cssopt.hpp" />
     <ClInclude Include="csspp_globals.hpp" />
     <ClInclude Include="csspp_private.h" />

@@ -80,7 +80,8 @@
       <OutputFile>.\Release/tidylib.bsc</OutputFile>
     </Bscmake>
     <PostBuildEvent>
-      <Command>echo D | xcopy "$(TargetPath)" "$(SolutionDir)Lib" /y</Command>
+      <Command>echo D | xcopy "$(TargetPath)" "$(SolutionDir)Lib" /y
+echo D | xcopy "$(ProjectDir)..\..\src\CFHtmlTidy.h" "$(SolutionDir)Include" /y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -114,7 +115,8 @@
       <OutputFile>.\Debug/tidylib.bsc</OutputFile>
     </Bscmake>
     <PostBuildEvent>
-      <Command>echo D | xcopy "$(TargetPath)" "$(SolutionDir)Lib" /y</Command>
+      <Command>echo D | xcopy "$(TargetPath)" "$(SolutionDir)Lib" /y
+echo D | xcopy "$(ProjectDir)..\..\src\CFHtmlTidy.h" "$(SolutionDir)Include" /y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -125,6 +127,7 @@
     <ClCompile Include="..\..\src\attrget.c" />
     <ClCompile Include="..\..\src\attrs.c" />
     <ClCompile Include="..\..\src\buffio.c" />
+    <ClCompile Include="..\..\src\CFHtmlTidy.cpp" />
     <ClCompile Include="..\..\src\clean.c" />
     <ClCompile Include="..\..\src\config.c" />
     <ClCompile Include="..\..\src\entities.c" />
@@ -153,6 +156,7 @@
     <ClInclude Include="..\..\src\access.h" />
     <ClInclude Include="..\..\src\attrdict.h" />
     <ClInclude Include="..\..\src\attrs.h" />
+    <ClInclude Include="..\..\src\CFHtmlTidy.h" />
     <ClInclude Include="..\..\src\clean.h" />
     <ClInclude Include="..\..\src\config.h" />
     <ClInclude Include="..\..\src\entities.h" />

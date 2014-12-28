@@ -37,3 +37,4 @@
 *.aps
 Tools/MakeSetConfig/ipch/
 Tools/MakeSetConfig/Temp/
+Include/

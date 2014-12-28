@@ -24,7 +24,7 @@
     <ClCompile Include="json_writer.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="JsonTidy.cpp">
+    <ClCompile Include="CFJsonTidy.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -50,9 +50,6 @@
     <ClInclude Include="json_tool.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="JsonTidy.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="reader.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -60,6 +57,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="writer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CFJsonTidy.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
