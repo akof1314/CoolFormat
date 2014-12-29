@@ -731,6 +731,7 @@
 #define ID_OUTPUT_BAR                   32951
 #define ID_32952                        32952
 #define ID_BATCHFORMAT                  32953
+#define IDS_BCGBARRES_EDITCTRL_LINKTOOLTIP		30000
 
 // Next default values for new objects
 // 

@@ -350,6 +350,9 @@
     <ClInclude Include="MulTextEditDlg.h">
       <Filter>头文件\弹出对话框</Filter>
     </ClInclude>
+    <ClInclude Include="CFBaseTidy.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\aboutmain.bmp">
