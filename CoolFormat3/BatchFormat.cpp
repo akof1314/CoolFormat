@@ -618,9 +618,8 @@ void CBatchFormat::DoThreadFormatter()
 				break;
 			}
 	
-			CStringA strTextIn(strText);
 			strTextOut.Empty();
-			if (formatterSP.DoFormatter(nSynIndex, strTextIn, strTextOut, strMsgOut))
+			if (formatterSP.DoFormatter(nSynIndex, strText, strTextOut, strMsgOut, m_File.GetCodepage()))
 			{
 				m_File.SaveFile(strName, strTextOut);
 			}

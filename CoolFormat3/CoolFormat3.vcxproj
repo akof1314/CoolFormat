@@ -177,6 +177,110 @@
     <ClCompile Include="SynLanguage.cpp" />
     <ClCompile Include="SynStyle.cpp" />
     <ClCompile Include="TellBug.cpp" />
+    <ClCompile Include="uchardet\CharDistribution.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug Static|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release Static|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="uchardet\JpCntx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug Static|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release Static|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="uchardet\LangBulgarianModel.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug Static|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release Static|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="uchardet\LangCyrillicModel.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug Static|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release Static|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="uchardet\LangGreekModel.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug Static|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release Static|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="uchardet\LangHebrewModel.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug Static|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release Static|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="uchardet\LangHungarianModel.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug Static|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release Static|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="uchardet\LangThaiModel.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug Static|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release Static|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="uchardet\nsBig5Prober.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug Static|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release Static|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="uchardet\nsCharSetProber.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug Static|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release Static|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="uchardet\nsEscCharsetProber.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug Static|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release Static|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="uchardet\nsEscSM.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug Static|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release Static|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="uchardet\nsEUCJPProber.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug Static|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release Static|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="uchardet\nsEUCKRProber.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug Static|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release Static|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="uchardet\nsEUCTWProber.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug Static|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release Static|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="uchardet\nsGB2312Prober.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug Static|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release Static|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="uchardet\nsHebrewProber.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug Static|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release Static|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="uchardet\nsLatin1Prober.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug Static|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release Static|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="uchardet\nsMBCSGroupProber.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug Static|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release Static|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="uchardet\nsMBCSSM.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug Static|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release Static|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="uchardet\nsSBCharSetProber.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug Static|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release Static|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="uchardet\nsSBCSGroupProber.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug Static|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release Static|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="uchardet\nsSJISProber.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug Static|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release Static|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="uchardet\nsUniversalDetector.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug Static|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release Static|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="uchardet\nsUTF8Prober.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug Static|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release Static|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="uchardet\uchardet.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug Static|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release Static|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="XmlOutlineParser.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -231,6 +335,28 @@
     <ClInclude Include="SynLanguage.h" />
     <ClInclude Include="SynStyle.h" />
     <ClInclude Include="TellBug.h" />
+    <ClInclude Include="uchardet\CharDistribution.h" />
+    <ClInclude Include="uchardet\JpCntx.h" />
+    <ClInclude Include="uchardet\nsBig5Prober.h" />
+    <ClInclude Include="uchardet\nsCharSetProber.h" />
+    <ClInclude Include="uchardet\nsCodingStateMachine.h" />
+    <ClInclude Include="uchardet\nscore.h" />
+    <ClInclude Include="uchardet\nsEscCharsetProber.h" />
+    <ClInclude Include="uchardet\nsEUCJPProber.h" />
+    <ClInclude Include="uchardet\nsEUCKRProber.h" />
+    <ClInclude Include="uchardet\nsEUCTWProber.h" />
+    <ClInclude Include="uchardet\nsGB2312Prober.h" />
+    <ClInclude Include="uchardet\nsHebrewProber.h" />
+    <ClInclude Include="uchardet\nsLatin1Prober.h" />
+    <ClInclude Include="uchardet\nsMBCSGroupProber.h" />
+    <ClInclude Include="uchardet\nsPkgInt.h" />
+    <ClInclude Include="uchardet\nsSBCharSetProber.h" />
+    <ClInclude Include="uchardet\nsSBCSGroupProber.h" />
+    <ClInclude Include="uchardet\nsSJISProber.h" />
+    <ClInclude Include="uchardet\nsUniversalDetector.h" />
+    <ClInclude Include="uchardet\nsUTF8Prober.h" />
+    <ClInclude Include="uchardet\prmem.h" />
+    <ClInclude Include="uchardet\uchardet.h" />
     <ClInclude Include="XmlOutlineParser.h" />
   </ItemGroup>
   <ItemGroup>
@@ -257,9 +383,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="res\CoolFormat3.rc2" />
+    <None Include="uchardet\Big5Freq.tab" />
+    <None Include="uchardet\EUCKRFreq.tab" />
+    <None Include="uchardet\EUCTWFreq.tab" />
+    <None Include="uchardet\GB2312Freq.tab" />
+    <None Include="uchardet\JISFreq.tab" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
+    <Text Include="uchardet\README.TXT" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="res\SetConfig\Cpp.xml" />

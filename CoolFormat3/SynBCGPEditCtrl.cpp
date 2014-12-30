@@ -426,13 +426,6 @@ BOOL CSynBCGPEditCtrl::OpenFileEx( const CString& strFileName )
 	CString strText;
 	if (m_File.OpenFile(strFileName, strText))
 	{
-		if (!globalData.bIsWindowsVista) //XP的时候
-		{
-			if (theApp.m_bChangedLang)
-			{
-				strText = CA2T(CT2A(strText), GetACP());
-			}
-		}
 		SetWindowText(strText);
 		return TRUE;
 	} 
@@ -946,21 +939,12 @@ void CSynBCGPEditCtrl::ReplaceTextToFormatter( BOOL bAllText /*= TRUE*/ )
 		return;
 	}
 
-
-	CT2A strTextIn(strSelText, GetACP());	
 	CString strTextOut, strMsgOut;
 	CFormatterHelp formatterSP;
-	if (formatterSP.DoFormatter(m_SynLanguage.GetCurLanguage(), strTextIn, strTextOut, strMsgOut))
+	if (formatterSP.DoFormatter(m_SynLanguage.GetCurLanguage(), strSelText, strTextOut, strMsgOut, m_File.GetCodepage()))
 	{
 		SetLastUndoReason(g_dwUATFormatter);
 		DeleteSelectedText (FALSE, FALSE, TRUE);
-		if (!globalData.bIsWindowsVista) //XP的时候
-		{
-			if (theApp.m_bChangedLang)
-			{
-				strTextOut = CA2T(CT2A(strTextOut), GetACP());
-			}
-		}
 		InsertText (strTextOut, m_nCurrOffset, FALSE);
 		if (bAllText)
 		{

@@ -46,6 +46,9 @@
     <Filter Include="配置文件">
       <UniqueIdentifier>{29673e21-007f-45c1-8bde-9f9fb32ff5f5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="uchardet">
+      <UniqueIdentifier>{c3fb3e7f-3256-470d-ae35-280340505c58}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FormatterHelp.cpp">
@@ -194,6 +197,84 @@
     </ClCompile>
     <ClCompile Include="MulTextEditDlg.cpp">
       <Filter>源文件\弹出对话框</Filter>
+    </ClCompile>
+    <ClCompile Include="uchardet\CharDistribution.cpp">
+      <Filter>uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="uchardet\JpCntx.cpp">
+      <Filter>uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="uchardet\LangBulgarianModel.cpp">
+      <Filter>uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="uchardet\LangCyrillicModel.cpp">
+      <Filter>uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="uchardet\LangGreekModel.cpp">
+      <Filter>uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="uchardet\LangHebrewModel.cpp">
+      <Filter>uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="uchardet\LangHungarianModel.cpp">
+      <Filter>uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="uchardet\LangThaiModel.cpp">
+      <Filter>uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="uchardet\nsBig5Prober.cpp">
+      <Filter>uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="uchardet\nsCharSetProber.cpp">
+      <Filter>uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="uchardet\nsEscCharsetProber.cpp">
+      <Filter>uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="uchardet\nsEscSM.cpp">
+      <Filter>uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="uchardet\nsEUCJPProber.cpp">
+      <Filter>uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="uchardet\nsEUCKRProber.cpp">
+      <Filter>uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="uchardet\nsEUCTWProber.cpp">
+      <Filter>uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="uchardet\nsGB2312Prober.cpp">
+      <Filter>uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="uchardet\nsHebrewProber.cpp">
+      <Filter>uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="uchardet\nsLatin1Prober.cpp">
+      <Filter>uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="uchardet\nsMBCSGroupProber.cpp">
+      <Filter>uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="uchardet\nsMBCSSM.cpp">
+      <Filter>uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="uchardet\nsSBCharSetProber.cpp">
+      <Filter>uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="uchardet\nsSBCSGroupProber.cpp">
+      <Filter>uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="uchardet\nsSJISProber.cpp">
+      <Filter>uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="uchardet\nsUniversalDetector.cpp">
+      <Filter>uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="uchardet\nsUTF8Prober.cpp">
+      <Filter>uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="uchardet\uchardet.cpp">
+      <Filter>uchardet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -353,6 +434,72 @@
     <ClInclude Include="CFBaseTidy.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="uchardet\CharDistribution.h">
+      <Filter>uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="uchardet\JpCntx.h">
+      <Filter>uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="uchardet\nsBig5Prober.h">
+      <Filter>uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="uchardet\nsCharSetProber.h">
+      <Filter>uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="uchardet\nsCodingStateMachine.h">
+      <Filter>uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="uchardet\nscore.h">
+      <Filter>uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="uchardet\nsEscCharsetProber.h">
+      <Filter>uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="uchardet\nsEUCJPProber.h">
+      <Filter>uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="uchardet\nsEUCKRProber.h">
+      <Filter>uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="uchardet\nsEUCTWProber.h">
+      <Filter>uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="uchardet\nsGB2312Prober.h">
+      <Filter>uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="uchardet\nsHebrewProber.h">
+      <Filter>uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="uchardet\nsLatin1Prober.h">
+      <Filter>uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="uchardet\nsMBCSGroupProber.h">
+      <Filter>uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="uchardet\nsPkgInt.h">
+      <Filter>uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="uchardet\nsSBCharSetProber.h">
+      <Filter>uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="uchardet\nsSBCSGroupProber.h">
+      <Filter>uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="uchardet\nsSJISProber.h">
+      <Filter>uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="uchardet\nsUniversalDetector.h">
+      <Filter>uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="uchardet\nsUTF8Prober.h">
+      <Filter>uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="uchardet\prmem.h">
+      <Filter>uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="uchardet\uchardet.h">
+      <Filter>uchardet</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\aboutmain.bmp">
@@ -416,9 +563,27 @@
     <None Include="res\CoolFormat3.rc2">
       <Filter>资源文件</Filter>
     </None>
+    <None Include="uchardet\Big5Freq.tab">
+      <Filter>uchardet</Filter>
+    </None>
+    <None Include="uchardet\EUCKRFreq.tab">
+      <Filter>uchardet</Filter>
+    </None>
+    <None Include="uchardet\EUCTWFreq.tab">
+      <Filter>uchardet</Filter>
+    </None>
+    <None Include="uchardet\GB2312Freq.tab">
+      <Filter>uchardet</Filter>
+    </None>
+    <None Include="uchardet\JISFreq.tab">
+      <Filter>uchardet</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
+    <Text Include="uchardet\README.TXT">
+      <Filter>uchardet</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <Xml Include="res\SetConfig\Cpp.xml">

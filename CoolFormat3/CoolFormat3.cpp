@@ -276,7 +276,6 @@ void CCoolFormat3App::RunLang()
 	LANGID langENG = MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_US);
 	if (0 == m_nAppLanguageID)
 	{
-
 		if (langNowID == langCHS)
 		{
 			m_nAppLanguageID = 1;
@@ -382,9 +381,8 @@ BOOL CCoolFormat3App::IsCmdLine()
 			return TRUE;
 		}
 
-		CStringA strTextIn(strText);
 		strTextOut.Empty();
-		if (formatterSP.DoFormatter(nSynIndex, strTextIn, strTextOut, strMsgOut))
+		if (formatterSP.DoFormatter(nSynIndex, strText, strTextOut, strMsgOut, m_File.GetCodepage()))
 		{
 			m_File.SaveFile(strName, strTextOut);
 		}
@@ -421,6 +419,7 @@ BOOL CCoolFormat3App::IsCmdLine()
 	
 	return FALSE;
 }
+
 BOOL CAboutDlg::OnInitDialog()
 {
 	CBCGPDialog::OnInitDialog();

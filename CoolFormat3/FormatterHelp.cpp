@@ -1,4 +1,5 @@
 #include "StdAfx.h"
+#include "CoolFormat3.h"
 #include "FormatterHelp.h"
 #include "CFCssTidy.h"
 #include "CFSqlTidy.h"
@@ -34,7 +35,7 @@ CFormatterHelp::~CFormatterHelp(void)
 {
 }
 
-BOOL CFormatterHelp::DoFormatter( UINT nLanguage, const char *pTextIn, CString &strTextOut, CString &strMsgOut )
+BOOL CFormatterHelp::DoFormatter(UINT nLanguage, const CString &strTextIn, CString &strTextOut, CString &strMsgOut, UINT uCodepage)
 {
 	CCFBaseTidy* pTidy = NULL;
 	std::string strTidy;
@@ -115,8 +116,8 @@ BOOL CFormatterHelp::DoFormatter( UINT nLanguage, const char *pTextIn, CString &
 	}
 	
 	std::string strOut, strErr;
-	bool bTidyOk = pTidy->TidyMain(pTextIn, strTidy.c_str(), strOut, strErr);
-	strTextOut = strOut.c_str();
+	bool bTidyOk = pTidy->TidyMain(CT2A(strTextIn, uCodepage), strTidy.c_str(), strOut, strErr);
+	strTextOut = CA2T(strOut.c_str(), uCodepage);
 	strMsgOut = strErr.c_str();
 	delete pTidy;
 	return bTidyOk;

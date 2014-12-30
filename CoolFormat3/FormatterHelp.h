@@ -13,5 +13,5 @@ public:
 	CFormatterHelp(void);
 	~CFormatterHelp(void);
 
-	BOOL DoFormatter(UINT nLanguage, const char *pTextIn, CString &strTextOut, CString &strMsgOut);
+	BOOL DoFormatter(UINT nLanguage, const CString &strTextIn, CString &strTextOut, CString &strMsgOut, UINT uCodepage);
 };
