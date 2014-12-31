@@ -1042,134 +1042,90 @@ GUIDELINES DESIGNINFO
 BEGIN
     IDD_ABOUTBOX, DIALOG
     BEGIN
-        , 50
-        , 4521984
     END
 
     IDD_GOTO_LINE, DIALOG
     BEGIN
-        , 50
-        , 4521984
     END
 
     IDD_OPTIONS_PAGE_POPULAR_PAGE, DIALOG
     BEGIN
-        , 50
-        , 4521984
     END
 
     IDD_OPTIONS_PAGE_RESOURCE, DIALOG
     BEGIN
-        , 50
-        , 4521984
     END
 
     IDD_LANG_EXT, DIALOG
     BEGIN
-        , 50
-        , 4521984
     END
 
     IDD_LANG_EXT_EDIT, DIALOG
     BEGIN
-        , 50
-        , 4521984
     END
 
     IDD_SYNEDIT_SET, DIALOG
     BEGIN
-        , 50
-        , 4521984
     END
 
     IDD_SYNHTML_SET, DIALOG
     BEGIN
-        , 50
-        , 4521984
     END
 
     IDD_SET_CPP, DIALOG
     BEGIN
-        , 50
-        , 4521984
     END
 
     IDD_SET_JS, DIALOG
     BEGIN
-        , 50
-        , 4521984
     END
 
     IDD_SET_CPP_FAST, DIALOG
     BEGIN
-        , 50
-        , 4521984
     END
 
     IDD_TELL_BUG, DIALOG
     BEGIN
-        , 50
-        , 4521984
     END
 
     IDD_SET_CPP_HIGH, DIALOG
     BEGIN
-        , 50
-        , 4521984
     END
 
     IDD_SET_HTML, DIALOG
     BEGIN
-        , 50
-        , 4521984
     END
 
     IDD_SET_HTML_ONE, DIALOG
     BEGIN
-        , 50
-        , 4521984
     END
 
     IDD_SET_HTML_TWO, DIALOG
     BEGIN
-        , 50
-        , 4521984
     END
 
     IDD_BATCHFORMAT, DIALOG
     BEGIN
-        , 50
-        , 4521984
     END
 
     IDD_SET_PHP, DIALOG
     BEGIN
-        , 50
-        , 4521984
     END
 
     IDD_SET_CSS, DIALOG
     BEGIN
-        , 50
-        , 4521984
     END
 
     IDD_SET_JSON, DIALOG
     BEGIN
-        , 50
-        , 4521984
     END
 
     IDD_SET_SQL, DIALOG
     BEGIN
-        , 50
-        , 4521984
     END
 
     IDD_SET_BASE, DIALOG
     BEGIN
-        , 50
-        , 4521984
     END
 
     IDD_MULTEXT_EDIT_DLG, DIALOG
@@ -2080,6 +2036,7 @@ BEGIN
     IDS_STRING_COPYCODE     "复制代码"
     IDS_STR_OPTIONFORMATTER "选项："
     IDS_MULTEXT_EDIT_DLG    "文本编辑"
+    IDS_STRING_POPULARCOMLANG "中文;English;"
 END
 
 #endif    // 中文(简体，中国) resources
@@ -2652,6 +2609,7 @@ BEGIN
     IDS_STRING_COPYCODE     "Copy Code"
     IDS_STR_OPTIONFORMATTER "Options:"
     IDS_MULTEXT_EDIT_DLG    "Text Edit"
+    IDS_STRING_POPULARCOMLANG "Chinese;English;"
 END
 
 #endif    // 英语(美国) resources

@@ -41,7 +41,6 @@ public:
 	UINT m_nAppLanguageID;
 	UINT m_nSynLanguage;
 	UINT m_nBatchSyn;	//批量格式化语言选择
-	BOOL m_bChangedLang;//XP下更改了线程
 
 // Implementation
 	afx_msg void OnAppAbout();

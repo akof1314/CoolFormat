@@ -163,6 +163,7 @@
 #define IDS_STRING144                   144
 #define IDS_STR_OPTIONFORMATTER         145
 #define IDS_MULTEXT_EDIT_DLG            146
+#define IDS_STRING_POPULARCOMLANG       147
 #define IDB_RIBBON_ICONS                154
 #define IDB_RIBBON_FILESMALL            155
 #define IDB_RIBBON_FILELARGE            156
@@ -606,6 +607,7 @@
 #define IDC_STATIC_VERSION              1273
 #define IDC_PROPLIST_LOCATION           1274
 #define IDC_STATIC_OPTIONFORMATTER      1275
+#define IDS_BCGBARRES_EDITCTRL_LINKTOOLTIP 30000
 #define ID_VIEW_TOOLBARS                32771
 #define ID_WINDOW_MANAGER               32825
 #define ID_VIEW_APPLOOK_2000            32826
@@ -731,7 +733,6 @@
 #define ID_OUTPUT_BAR                   32951
 #define ID_32952                        32952
 #define ID_BATCHFORMAT                  32953
-#define IDS_BCGBARRES_EDITCTRL_LINKTOOLTIP		30000
 
 // Next default values for new objects
 // 

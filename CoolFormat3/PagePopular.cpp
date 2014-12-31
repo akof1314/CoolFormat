@@ -146,4 +146,17 @@ void CPagePopular::InitLang()
 		nStart = nEnd + 1;
 		nEnd = strTemp.Find(_T(";"), nStart);
 	}
+
+	bNameVaild = strTemp.LoadString(IDS_STRING_POPULARCOMLANG);
+	ASSERT(bNameVaild);
+	pStyleColor = ((CComboBox *)GetDlgItem(IDC_COMBO_LANG));
+	pStyleColor->ResetContent();
+	nStart = 0;
+	nEnd = strTemp.Find(_T(";"), nStart);
+	while (nEnd != -1)
+	{
+		pStyleColor->AddString(strTemp.Mid(nStart, nEnd - nStart));
+		nStart = nEnd + 1;
+		nEnd = strTemp.Find(_T(";"), nStart);
+	}
 }

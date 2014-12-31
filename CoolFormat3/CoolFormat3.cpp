@@ -35,7 +35,6 @@ END_MESSAGE_MAP()
 CCoolFormat3App::CCoolFormat3App() :
 	CBCGPWorkspace (TRUE /* m_bResourceSmartUpdate */)
 {
-	m_bChangedLang = FALSE;
 }
 
 
@@ -271,7 +270,7 @@ void CCoolFormat3App::RunLang()
 	g_GlobalUtils.InitGlobalUtils();
 	//0表示第一次启动程序，判断操作系统语言
 	//1表示中文，2表示英文
-	LANGID langNowID = GetSystemDefaultLangID();
+	LANGID langNowID = GetUserDefaultLangID();
 	LANGID langCHS = MAKELANGID(LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED);
 	LANGID langENG = MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_US);
 	if (0 == m_nAppLanguageID)
@@ -310,7 +309,6 @@ void CCoolFormat3App::RunLang()
 	}
 	else
 	{
-		LCID nOldId = GetThreadLocale();
 		if (1 == m_nAppLanguageID)
 		{
 			if (langNowID != langCHS)
@@ -325,7 +323,6 @@ void CCoolFormat3App::RunLang()
 				SetThreadLocale(MAKELCID(langENG, SORT_DEFAULT));
 			}
 		}
-		m_bChangedLang = nOldId != GetThreadLocale();
 	}
 }
 
