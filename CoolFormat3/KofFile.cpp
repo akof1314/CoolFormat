@@ -23,6 +23,7 @@ CKofFile::CKofFile(void)
 	m_EncodeType = ANSI_ENCODE;
 	m_nSkip = 0;
 	ZeroMemory(m_szErrorMsg, MAX_ERROR_MSG);
+	m_nCodepage = _AtlGetConversionACP();
 }
 
 CKofFile::~CKofFile(void)
