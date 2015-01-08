@@ -28,6 +28,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CssTidyLib", "FormatterLib\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "JsonCppLib", "FormatterLib\JsonCppLib\JsonCppLib.vcxproj", "{F726E5CC-2920-4FA9-B4CB-291CD798C1AB}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CoolFormatUnitTest", "Tools\CoolFormatUnitTest\CoolFormatUnitTest.vcxproj", "{DE8B9158-115D-4877-9238-4BAD385A5EEA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug Static|Win32 = Debug Static|Win32
@@ -86,6 +88,12 @@ Global
 		{F726E5CC-2920-4FA9-B4CB-291CD798C1AB}.Release Static|Win32.ActiveCfg = Release|Win32
 		{F726E5CC-2920-4FA9-B4CB-291CD798C1AB}.Release Static|Win32.Build.0 = Release|Win32
 		{F726E5CC-2920-4FA9-B4CB-291CD798C1AB}.Release Static|x64.ActiveCfg = Release|Win32
+		{DE8B9158-115D-4877-9238-4BAD385A5EEA}.Debug Static|Win32.ActiveCfg = Debug Static|Win32
+		{DE8B9158-115D-4877-9238-4BAD385A5EEA}.Debug Static|Win32.Build.0 = Debug Static|Win32
+		{DE8B9158-115D-4877-9238-4BAD385A5EEA}.Debug Static|x64.ActiveCfg = Debug Static|Win32
+		{DE8B9158-115D-4877-9238-4BAD385A5EEA}.Release Static|Win32.ActiveCfg = Release Static|Win32
+		{DE8B9158-115D-4877-9238-4BAD385A5EEA}.Release Static|Win32.Build.0 = Release Static|Win32
+		{DE8B9158-115D-4877-9238-4BAD385A5EEA}.Release Static|x64.ActiveCfg = Release Static|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

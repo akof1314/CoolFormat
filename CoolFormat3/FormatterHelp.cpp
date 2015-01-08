@@ -1,5 +1,4 @@
 #include "StdAfx.h"
-#include "CoolFormat3.h"
 #include "FormatterHelp.h"
 #include "CFCssTidy.h"
 #include "CFSqlTidy.h"

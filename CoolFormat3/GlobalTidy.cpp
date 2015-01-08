@@ -1,5 +1,4 @@
 #include "StdAfx.h"
-#include "CoolFormat3.h"
 #include "GlobalTidy.h"
 
 TidyDeafult GlobalTidy::m_TidyNames[MAX_SYN_LANG] = {
@@ -68,7 +67,7 @@ void GlobalTidy::InitGlobalTidy()
 
 	CString strTidy;
 	LPCTSTR lpszSubSection = _T("SynTidy");
-	CString strSection = theApp.GetRegSectionPath(lpszSubSection);
+	CString strSection = GetWorkspace()->GetRegSectionPath(lpszSubSection);
 
 	CBCGPRegistrySP regSP;
 	CBCGPRegistry& reg = regSP.Create (FALSE, TRUE);
