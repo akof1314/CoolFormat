@@ -23,7 +23,7 @@ bool CCFJsTidy::TidyMain(const char* pSourceIn, const char* pOptions, std::strin
 
 	try
 	{
-		JSFormatString jsformat(pSourceIn, &strOut, tidyOptions.chIndent, tidyOptions.nChPerInd, true, tidyOptions.bNLBracket);
+		JSFormatString jsformat(pSourceIn, &strOut, tidyOptions.chIndent, tidyOptions.nChPerInd, false, tidyOptions.bNLBracket);
 		jsformat.Go();
 	}
 	catch (std::exception ex)
