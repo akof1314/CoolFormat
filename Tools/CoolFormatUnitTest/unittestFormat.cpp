@@ -15,7 +15,7 @@ public:
 		CString strTextOut, strMsgOut;
 		g_GlobalTidy.m_TidyCpp = pOptions;
 		formatterSP.DoFormatter(SYN_CPP, strTextIn, strTextOut, strMsgOut, _AtlGetConversionACP());
-		Assert::AreEqual(strTextNeedOut.Compare(strTextOut), 0);
+		Assert::AreEqual(strTextNeedOut.GetString(), strTextOut.GetString());
 	}
 
 	TEST_METHOD(StyleDefaultCpp)
@@ -117,7 +117,7 @@ public:
 		CString strTextOut, strMsgOut;
 		g_GlobalTidy.m_TidyJs = pOptions;
 		formatterSP.DoFormatter(SYN_JAVASCRIPT, strTextIn, strTextOut, strMsgOut, _AtlGetConversionACP());
-		Assert::AreEqual(strTextNeedOut.Compare(strTextOut), 0);
+		Assert::AreEqual(strTextNeedOut.GetString(), strTextOut.GetString());
 	}
 
 	TEST_METHOD(Indent)
@@ -147,7 +147,7 @@ public:
 		CString strTextOut, strMsgOut;
 		g_GlobalTidy.m_TidyJson = pOptions;
 		formatterSP.DoFormatter(SYN_JSON, strTextIn, strTextOut, strMsgOut, _AtlGetConversionACP());
-		Assert::AreEqual(strTextNeedOut.Compare(strTextOut), 0);
+		Assert::AreEqual(strTextNeedOut.GetString(), strTextOut.GetString());
 	}
 
 	TEST_METHOD(Indent)
@@ -161,5 +161,57 @@ public:
 			"    \"test\" : 123\n"
 			"}");
 		DoFormatterAssert("-cn4", strTextIn, strTextOut);
+	}
+};
+
+TEST_CLASS(UnitTestHTML)
+{
+public:
+	void DoFormatterAssert(const char *pOptions, const CString &strTextIn, const CString &strTextNeedOut)
+	{
+		CFormatterHelp formatterSP;
+		CString strTextOut, strMsgOut;
+		g_GlobalTidy.m_TidyHtml = pOptions;
+		formatterSP.DoFormatter(SYN_HTML, strTextIn, strTextOut, strMsgOut, _AtlGetConversionACP());
+		Assert::AreEqual(strTextNeedOut.GetString(), strTextOut.GetString());
+	}
+
+	TEST_METHOD(Indent)
+	{
+		CString strTextIn(
+			"<ol>\n"
+			"<li>Coffee</li>\n"
+			"</ol>");
+		CString strTextOut(
+			"<ol>\n"
+			"  <li>Coffee</li>\n"
+			"</ol>");
+		DoFormatterAssert("-i0", strTextIn, strTextOut);
+	}
+};
+
+TEST_CLASS(UnitTestXML)
+{
+public:
+	void DoFormatterAssert(const char *pOptions, const CString &strTextIn, const CString &strTextNeedOut)
+	{
+		CFormatterHelp formatterSP;
+		CString strTextOut, strMsgOut;
+		g_GlobalTidy.m_TidyXml = pOptions;
+		formatterSP.DoFormatter(SYN_XML, strTextIn, strTextOut, strMsgOut, _AtlGetConversionACP());
+		Assert::AreEqual(strTextNeedOut.GetString(), strTextOut.GetString());
+	}
+
+	TEST_METHOD(Indent)
+	{
+		CString strTextIn(
+			"<ol>\n"
+			"<li>Coffee</li>\n"
+			"</ol>");
+		CString strTextOut(
+			"<ol>\n"
+			"  <li>Coffee</li>\n"
+			"</ol>");
+		DoFormatterAssert("-i0", strTextIn, strTextOut);
 	}
 };
