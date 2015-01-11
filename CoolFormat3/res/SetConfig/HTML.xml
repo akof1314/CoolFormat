@@ -12,9 +12,11 @@
 			<ITEM>
 				<VALUE>Yes</VALUE>
 				<SHORT>axd</SHORT>
+				<PREVIEW>&lt;?xml version=&quot;1.0&quot;?&gt;\r\n&lt;note&gt;\r\n  &lt;to&gt;George&lt;/to&gt;\r\n  &lt;from&gt;John&lt;/from&gt;\r\n&lt;/note&gt;</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>No</VALUE>
+				<PREVIEW>&lt;note&gt;\r\n  &lt;to&gt;George&lt;/to&gt;\r\n  &lt;from&gt;John&lt;/from&gt;\r\n&lt;/note&gt;</PREVIEW>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
@@ -24,15 +26,18 @@
 			<ITEM>
 				<VALUE>Yes</VALUE>
 				<SHORT>axs</SHORT>
+				<PREVIEW>// with Output xml\r\n\r\n&lt;pre xml:space=&quot;preserve&quot;&gt;\r\nGeorge\r\nJohn\r\nGeorge      John\r\n&lt;/pre&gt;</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>No</VALUE>
+				<PREVIEW>&lt;pre&gt;\r\nGeorge\r\nJohn\r\nGeorge      John\r\n&lt;/pre&gt;</PREVIEW>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
 			<NAME>Alt text</NAME>
 			<TYPE>Text</TYPE>
 			<SHORT>at</SHORT>
+			<PREVIEW>Alt text=Missing\r\n\r\n&lt;img src=&quot;/i/eg_tulip.jpg&quot; /&gt;\r\n==&gt;\r\n&lt;img src=&quot;/i/eg_tulip.jpg&quot; alt=&quot;Missing&quot; /&gt;</PREVIEW>
 		</PROPERTY>
 		<PROPERTY>
 			<NAME>Anchor as name</NAME>
@@ -41,9 +46,11 @@
 			<ITEM>
 				<VALUE>Yes</VALUE>
 				<SHORT>aan</SHORT>
+				<PREVIEW>&lt;a id=&quot;tips&quot; name=&quot;tips&quot;&gt;John&lt;/a&gt;</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>No</VALUE>
+				<PREVIEW>&lt;a id=&quot;tips&quot;&gt;John&lt;/a&gt;</PREVIEW>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
@@ -53,9 +60,11 @@
 			<ITEM>
 				<VALUE>Yes</VALUE>
 				<SHORT>axp</SHORT>
+				<PREVIEW>Change the parsing of processing instructions to require ?&gt; as the terminator rather than &gt;</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>No</VALUE>
+				<PREVIEW>No change the parsing of processing instructions to require ?&gt; as the terminator rather than &gt;</PREVIEW>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
@@ -65,9 +74,11 @@
 			<ITEM>
 				<VALUE>Yes</VALUE>
 				<SHORT>b</SHORT>
+				<PREVIEW>Strip Microsoft specific HTML from Word 2000 documents</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>No</VALUE>
+				<PREVIEW>No strip Microsoft specific HTML from Word 2000 documents</PREVIEW>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
@@ -77,15 +88,18 @@
 			<ITEM>
 				<VALUE>Yes</VALUE>
 				<SHORT>c</SHORT>
+				<PREVIEW>Strip out surplus presentational tags and attributes replacing them by style rules and structural markup as appropriate</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>No</VALUE>
+				<PREVIEW>No strip out surplus presentational tags and attributes replacing them by style rules and structural markup as appropriate</PREVIEW>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
 			<NAME>CSS-prefix</NAME>
 			<TYPE>Text</TYPE>
 			<SHORT>cp</SHORT>
+			<PREVIEW>Specifies the prefix that Tidy uses for styles rules</PREVIEW>
 		</PROPERTY>
 		<PROPERTY>
 			<NAME>Decorate inferred ul</NAME>
@@ -94,9 +108,11 @@
 			<ITEM>
 				<VALUE>Yes</VALUE>
 				<SHORT>diu</SHORT>
+				<PREVIEW>Specifies if Tidy should decorate inferred UL elements with some CSS markup to avoid indentation to the right</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>No</VALUE>
+				<PREVIEW>No specifies if Tidy should decorate inferred UL elements with some CSS markup to avoid indentation to the right</PREVIEW>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
@@ -106,23 +122,34 @@
 			<ITEM>
 				<VALUE>Omit</VALUE>
 				<SHORT>d0</SHORT>
+				<PREVIEW>&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>Auto</VALUE>
 				<SHORT>d1</SHORT>
+				<PREVIEW>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot;\r\n    &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;\r\n\r\n&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>Strict</VALUE>
 				<SHORT>d2</SHORT>
+				<PREVIEW>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Strict//EN&quot;\r\n    &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd&quot;&gt;\r\n\r\n&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>Transitional</VALUE>
 				<SHORT>d3</SHORT>
+				<PREVIEW>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot;\r\n    &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;\r\n\r\n&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>User</VALUE>
 				<SHORT>d4</SHORT>
+				<PREVIEW>use Doctype User</PREVIEW>
 			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Doctype User</NAME>
+			<TYPE>Text</TYPE>
+			<SHORT>du</SHORT>
+			<PREVIEW>&quot;-//ACME//DTD HTML 3.14159//EN&quot;</PREVIEW>
 		</PROPERTY>
 		<PROPERTY>
 			<NAME>Drop empty paras</NAME>
@@ -131,9 +158,11 @@
 			<ITEM>
 				<VALUE>Yes</VALUE>
 				<SHORT>dep</SHORT>
+				<PREVIEW>&lt;p&gt;This is some text&lt;/p&gt;</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>No</VALUE>
+				<PREVIEW>&lt;p&gt;This is some text&lt;/p&gt;\r\n&lt;p&gt;&lt;/p&gt;</PREVIEW>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
@@ -143,9 +172,11 @@
 			<ITEM>
 				<VALUE>Yes</VALUE>
 				<SHORT>dft</SHORT>
+				<PREVIEW>This is some text!This is some text!&lt;br /&gt;</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>No</VALUE>
+				<PREVIEW>&lt;font size=&quot;3&quot; color=&quot;red&quot;&gt;This is some text!&lt;/font&gt;\r\n&lt;center&gt;This is some text!&lt;/center&gt;</PREVIEW>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
@@ -155,9 +186,11 @@
 			<ITEM>
 				<VALUE>Yes</VALUE>
 				<SHORT>dpa</SHORT>
+				<PREVIEW>Strip out proprietary attributes</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>No</VALUE>
+				<PREVIEW>No strip out proprietary attributes</PREVIEW>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
@@ -167,9 +200,11 @@
 			<ITEM>
 				<VALUE>Yes</VALUE>
 				<SHORT>ebt</SHORT>
+				<PREVIEW>&lt;p&gt;This is some text!&lt;/p&gt;</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>No</VALUE>
+				<PREVIEW>This is some text!</PREVIEW>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
@@ -179,9 +214,11 @@
 			<ITEM>
 				<VALUE>Yes</VALUE>
 				<SHORT>et</SHORT>
+				<PREVIEW>&lt;p&gt;This is some text!&lt;/p&gt;</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>No</VALUE>
+				<PREVIEW>This is some text!</PREVIEW>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
@@ -191,9 +228,11 @@
 			<ITEM>
 				<VALUE>Yes</VALUE>
 				<SHORT>ec</SHORT>
+				<PREVIEW>&lt;note&gt;This is some text&lt;/note&gt;</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>No</VALUE>
+				<PREVIEW>&lt;note&gt;\r\n  &lt;![CDATA[This is some text]]&gt;\r\n&lt;/note&gt;</PREVIEW>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
@@ -203,9 +242,11 @@
 			<ITEM>
 				<VALUE>Yes</VALUE>
 				<SHORT>fb</SHORT>
+				<PREVIEW>&lt;img src=&quot;/i/eg_tulip.jpg&quot; /&gt;</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>No</VALUE>
+				<PREVIEW>&lt;img src=&quot;\i\eg_tulip.jpg&quot; /&gt;</PREVIEW>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
@@ -215,9 +256,11 @@
 			<ITEM>
 				<VALUE>Yes</VALUE>
 				<SHORT>fbc</SHORT>
+				<PREVIEW>Replace unexpected hyphens with &quot;=&quot; characters when it comes across adjacent hyphens</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>No</VALUE>
+				<PREVIEW>No replace unexpected hyphens with &quot;=&quot; characters when it comes across adjacent hyphens</PREVIEW>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
@@ -227,9 +270,11 @@
 			<ITEM>
 				<VALUE>Yes</VALUE>
 				<SHORT>fu</SHORT>
+				<PREVIEW>&lt;img src=&quot;/i/eg%20tulip.jpg&quot; /&gt;</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>No</VALUE>
+				<PREVIEW>&lt;img src=&quot;/i/eg tulip.jpg&quot; /&gt;</PREVIEW>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
@@ -239,9 +284,11 @@
 			<ITEM>
 				<VALUE>Yes</VALUE>
 				<SHORT>hc</SHORT>
+				<PREVIEW>&lt;note&gt;abc&lt;/note&gt;</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>No</VALUE>
+				<PREVIEW>&lt;!-- This is some text --&gt;\r\n&lt;note&gt;abc&lt;/note&gt;</PREVIEW>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
@@ -251,9 +298,11 @@
 			<ITEM>
 				<VALUE>Yes</VALUE>
 				<SHORT>he</SHORT>
+				<PREVIEW>Omit optional end-tags when generating the pretty printed markup</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>No</VALUE>
+				<PREVIEW>No omit optional end-tags when generating the pretty printed markup</PREVIEW>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
@@ -263,9 +312,11 @@
 			<ITEM>
 				<VALUE>Yes</VALUE>
 				<SHORT>ic</SHORT>
+				<PREVIEW>Indent &lt;![CDATA[]]&gt; sections</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>No</VALUE>
+				<PREVIEW>No indent &lt;![CDATA[]]&gt; sections</PREVIEW>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
@@ -275,9 +326,11 @@
 			<ITEM>
 				<VALUE>Yes</VALUE>
 				<SHORT>ix</SHORT>
+				<PREVIEW>Use the XML parser</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>No</VALUE>
+				<PREVIEW>No use the XML parser</PREVIEW>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
@@ -287,9 +340,11 @@
 			<ITEM>
 				<VALUE>Yes</VALUE>
 				<SHORT>jc</SHORT>
+				<PREVIEW>&lt;h1 class=&quot;intro important&quot;&gt;Header 1&lt;/h1&gt;</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>No</VALUE>
+				<PREVIEW>&lt;h1 class=&quot;intro&quot; class=&quot;important&quot;&gt;Header 1&lt;/h1&gt;</PREVIEW>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
@@ -299,9 +354,11 @@
 			<ITEM>
 				<VALUE>Yes</VALUE>
 				<SHORT>js</SHORT>
+				<PREVIEW>&lt;h1 style=&quot;color:red; text-align:center;&quot;&gt;This is a header&lt;/h1&gt;</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>No</VALUE>
+				<PREVIEW>&lt;h1 style=&quot;color:red;&quot; style=&quot;text-align:center;&quot;&gt;This is a header&lt;/h1&gt;</PREVIEW>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
@@ -311,9 +368,11 @@
 			<ITEM>
 				<VALUE>Yes</VALUE>
 				<SHORT>la</SHORT>
+				<PREVIEW>&lt;h1 style=&quot;color:red;    text-align:center;&quot;&gt;This is a header&lt;/h1&gt;</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>No</VALUE>
+				<PREVIEW>&lt;h1 style=&quot;color:red; text-align:center;&quot;&gt;This is a header&lt;/h1&gt;</PREVIEW>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
@@ -323,9 +382,11 @@
 			<ITEM>
 				<VALUE>Yes</VALUE>
 				<SHORT>le</SHORT>
+				<PREVIEW>&lt;strong&gt;This is some text&lt;/strong&gt; \r\n&lt;em&gt;This is some text&lt;/em&gt;</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>No</VALUE>
+				<PREVIEW>&lt;b&gt;This is some text&lt;/b&gt;\r\n&lt;i&gt;This is some text&lt;/i&gt;</PREVIEW>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
@@ -335,9 +396,11 @@
 			<ITEM>
 				<VALUE>Yes</VALUE>
 				<SHORT>ll</SHORT>
+				<PREVIEW>&lt;p align=&quot;right&quot;&gt;This is some text&lt;/p&gt;</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>No</VALUE>
+				<PREVIEW>&lt;p align=&quot;Right&quot;&gt;This is some text&lt;/p&gt;</PREVIEW>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
@@ -347,14 +410,17 @@
 			<ITEM>
 				<VALUE>Auto</VALUE>
 				<SHORT>md0</SHORT>
+				<PREVIEW>&lt;div&gt;\r\n  This is some text\r\n&lt;/div&gt;</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>Yes</VALUE>
 				<SHORT>md1</SHORT>
+				<PREVIEW>&lt;div&gt;\r\n  This is some text\r\n&lt;/div&gt;</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>No</VALUE>
 				<SHORT>md2</SHORT>
+				<PREVIEW>&lt;div&gt;\r\n  &lt;div&gt;\r\n    This is some text\r\n  &lt;/div&gt;\r\n&lt;/div&gt;</PREVIEW>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
@@ -364,14 +430,17 @@
 			<ITEM>
 				<VALUE>Auto</VALUE>
 				<SHORT>ms0</SHORT>
+				<PREVIEW>&lt;span&gt;\r\n  This is some text\r\n&lt;/span&gt;</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>Yes</VALUE>
 				<SHORT>ms1</SHORT>
+				<PREVIEW>&lt;span&gt;\r\n  This is some text\r\n&lt;/span&gt;</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>No</VALUE>
 				<SHORT>ms2</SHORT>
+				<PREVIEW>&lt;span&gt;\r\n  &lt;span&gt;\r\n    This is some text\r\n  &lt;/span&gt;\r\n&lt;/span&gt;</PREVIEW>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
@@ -381,30 +450,36 @@
 			<ITEM>
 				<VALUE>Yes</VALUE>
 				<SHORT>n</SHORT>
+				<PREVIEW>Allow numeric character references</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>No</VALUE>
+				<PREVIEW>No allow numeric character references</PREVIEW>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
 			<NAME>New blocklevel tags</NAME>
 			<TYPE>Text</TYPE>
 			<SHORT>nbt</SHORT>
+			<PREVIEW>// ql we\r\n\r\n&lt;ql&gt;\r\n  &lt;we&gt;This is some text&lt;/we&gt;\r\n&lt;/ql&gt;</PREVIEW>
 		</PROPERTY>
 		<PROPERTY>
 			<NAME>New empty tags</NAME>
 			<TYPE>Text</TYPE>
 			<SHORT>net</SHORT>
+			<PREVIEW>// ql\r\n\r\n&lt;ql /&gt;</PREVIEW>
 		</PROPERTY>
 		<PROPERTY>
 			<NAME>New inline tags</NAME>
 			<TYPE>Text</TYPE>
 			<SHORT>nit</SHORT>
+			<PREVIEW>// ql\r\n\r\n&lt;ql&gt;&lt;/ql&gt;</PREVIEW>
 		</PROPERTY>
 		<PROPERTY>
 			<NAME>New pre tags</NAME>
 			<TYPE>Text</TYPE>
 			<SHORT>npt</SHORT>
+			<PREVIEW>// ql\r\n\r\n&lt;ql&gt;\r\nThis is some text\r\n&lt;/ql&gt;</PREVIEW>
 		</PROPERTY>
 		<PROPERTY>
 			<NAME>Numeric entities</NAME>
@@ -413,9 +488,11 @@
 			<ITEM>
 				<VALUE>Yes</VALUE>
 				<SHORT>ne</SHORT>
+				<PREVIEW>&lt;q&gt;&amp;#192;&lt;/q&gt;</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>No</VALUE>
+				<PREVIEW>&lt;q&gt;&amp;Agrave;&lt;/q&gt;</PREVIEW>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
@@ -425,6 +502,7 @@
 			<ITEM>
 				<VALUE>Yes</VALUE>
 				<SHORT>oh</SHORT>
+				<PREVIEW>Generate pretty printed output, writing it as HTML</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>No</VALUE>
@@ -437,6 +515,7 @@
 			<ITEM>
 				<VALUE>Yes</VALUE>
 				<SHORT>ox</SHORT>
+				<PREVIEW>Generate pretty printed output, writing it as extensible HTML</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>No</VALUE>
@@ -449,6 +528,7 @@
 			<ITEM>
 				<VALUE>Yes</VALUE>
 				<SHORT>oxm</SHORT>
+				<PREVIEW>Pretty print output, writing it as well-formed XML</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>No</VALUE>
@@ -461,9 +541,11 @@
 			<ITEM>
 				<VALUE>Yes</VALUE>
 				<SHORT>pe</SHORT>
+				<PREVIEW>&lt;q&gt;&amp;Agrave;&lt;/q&gt;</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>No</VALUE>
+				<PREVIEW>// with Numeric entities\r\n\r\n&lt;q&gt;&amp;#192;&lt;/q&gt;</PREVIEW>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
@@ -473,9 +555,11 @@
 			<ITEM>
 				<VALUE>Yes</VALUE>
 				<SHORT>qa</SHORT>
+				<PREVIEW>&lt;q&gt;&amp;amp;&lt;/q&gt;</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>No</VALUE>
+				<PREVIEW>&lt;q&gt;&amp;&lt;/q&gt;</PREVIEW>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
@@ -485,9 +569,11 @@
 			<ITEM>
 				<VALUE>Yes</VALUE>
 				<SHORT>qm</SHORT>
+				<PREVIEW>&lt;q&gt;&amp;#39;&amp;#39;&quot;&quot;&lt;/q&gt;</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>No</VALUE>
+				<PREVIEW>&lt;q&gt;&apos;&apos;&quot;&quot;&lt;/q&gt;</PREVIEW>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
@@ -497,9 +583,11 @@
 			<ITEM>
 				<VALUE>Yes</VALUE>
 				<SHORT>qn</SHORT>
+				<PREVIEW>&lt;p&gt;&amp;nbsp;&lt;/p&gt;</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>No</VALUE>
+				<PREVIEW>&lt;p&gt; &lt;/p&gt;</PREVIEW>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
@@ -509,10 +597,12 @@
 			<ITEM>
 				<VALUE>Keep first</VALUE>
 				<SHORT>ra0</SHORT>
+				<PREVIEW>&lt;h1 style=&quot;color:red;&quot; style=&quot;color:blue;&quot;&gt;This is a header&lt;/h1&gt;\r\n=&gt;\r\n&lt;h1 style=&quot;color:red;&quot;&gt;This is a header&lt;/h1&gt;</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>Keep last</VALUE>
 				<SHORT>ra1</SHORT>
+				<PREVIEW>&lt;h1 style=&quot;color:red;&quot; style=&quot;color:blue;&quot;&gt;This is a header&lt;/h1&gt;\r\n=&gt;\r\n&lt;h1 style=&quot;color:blue;&quot;&gt;This is a header&lt;/h1&gt;</PREVIEW>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
@@ -522,9 +612,11 @@
 			<ITEM>
 				<VALUE>Yes</VALUE>
 				<SHORT>rc</SHORT>
+				<PREVIEW>&lt;font color=&quot;white&quot;&gt;This is some text!&lt;/font&gt;</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>No</VALUE>
+				<PREVIEW>&lt;font color=&quot;#FFFFFF&quot;&gt;This is some text!&lt;/font&gt;</PREVIEW>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
@@ -534,14 +626,17 @@
 			<ITEM>
 				<VALUE>Auto</VALUE>
 				<SHORT>sbo0</SHORT>
+				<PREVIEW>// this is performed only if the body tag has been inferred\r\n\r\n&lt;p&gt;This is some text!&lt;/p&gt;</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>Yes</VALUE>
 				<SHORT>sbo1</SHORT>
+				<PREVIEW>&lt;p&gt;This is some text!&lt;/p&gt;</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>No</VALUE>
 				<SHORT>sbo2</SHORT>
+				<PREVIEW>&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;\r\n&lt;head&gt;\r\n  &lt;title&gt;&lt;/title&gt;\r\n&lt;/head&gt;\r\n\r\n&lt;body&gt;\r\n  &lt;p&gt;This is some text!&lt;/p&gt;\r\n&lt;/body&gt;\r\n&lt;/html&gt;</PREVIEW>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
@@ -551,9 +646,11 @@
 			<ITEM>
 				<VALUE>Yes</VALUE>
 				<SHORT>ua</SHORT>
+				<PREVIEW>&lt;p STYLE=&quot;color:red&quot;&gt;This is a paragraph.&lt;/p&gt;</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>No</VALUE>
+				<PREVIEW>&lt;p style=&quot;color:red&quot;&gt;This is a paragraph.&lt;/p&gt;</PREVIEW>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
@@ -563,9 +660,11 @@
 			<ITEM>
 				<VALUE>Yes</VALUE>
 				<SHORT>ut</SHORT>
+				<PREVIEW>&lt;P style=&quot;color:red&quot;&gt;This is a paragraph.&lt;/P&gt;</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>No</VALUE>
+				<PREVIEW>&lt;p style=&quot;color:red&quot;&gt;This is a paragraph.&lt;/p&gt;</PREVIEW>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
@@ -575,11 +674,12 @@
 			<ITEM>
 				<VALUE>Yes</VALUE>
 				<SHORT>wo</SHORT>
+				<PREVIEW>Go to great pains to strip out all the surplus stuff Microsoft Word 2000 inserts when you save Word documents as &quot;Web pages&quot;</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>No</VALUE>
 			</ITEM>
-		</PROPERTY>
+		</PROPERTY>		
 		<PROPERTY>
 			<NAME>Pretty Print</NAME>
 			<GROUP>TRUE</GROUP>
@@ -591,9 +691,11 @@
 			<ITEM>
 				<VALUE>Yes</VALUE>
 				<SHORT>bbb</SHORT>
+				<PREVIEW>123\r\n&lt;br /&gt;\r\n123\r\n&lt;br /&gt;</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>No</VALUE>
+				<PREVIEW>123&lt;br /&gt;\r\n123&lt;br /&gt;</PREVIEW>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
@@ -603,14 +705,17 @@
 			<ITEM>
 				<VALUE>Auto</VALUE>
 				<SHORT>i0</SHORT>
+				<PREVIEW>&lt;ol&gt;\r\n  &lt;li&gt;Coffee&lt;/li&gt;\r\n\r\n  &lt;li&gt;Tea&lt;/li&gt;\r\n\r\n  &lt;li&gt;Milk&lt;/li&gt;\r\n&lt;/ol&gt;</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>Yes</VALUE>
 				<SHORT>i1</SHORT>
+				<PREVIEW>&lt;ol&gt;\r\n  &lt;li&gt;Coffee\r\n  &lt;/li&gt;\r\n  &lt;li&gt;Tea\r\n  &lt;/li&gt;\r\n  &lt;li&gt;Milk\r\n  &lt;/li&gt;\r\n&lt;/ol&gt;</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>No</VALUE>
 				<SHORT>i2</SHORT>
+				<PREVIEW>&lt;ol&gt;\r\n&lt;li&gt;Coffee&lt;/li&gt;\r\n&lt;li&gt;Tea&lt;/li&gt;\r\n&lt;li&gt;Milk&lt;/li&gt;\r\n&lt;/ol&gt;</PREVIEW>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
@@ -620,9 +725,11 @@
 			<ITEM>
 				<VALUE>Yes</VALUE>
 				<SHORT>ia</SHORT>
+				<PREVIEW>&lt;font size=&quot;3&quot;\r\n      color=&quot;red&quot;&gt;This is some text!&lt;/font&gt;</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>No</VALUE>
+				<PREVIEW>&lt;font size=&quot;3&quot; color=&quot;red&quot;&gt;This is some text!&lt;/font&gt;</PREVIEW>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
@@ -631,6 +738,7 @@
 			<VALUE>2</VALUE>
 			<RANGE>0, 100</RANGE>
 			<SHORT>is</SHORT>
+			<PREVIEW>//Indent spaces 3\r\n&lt;ol&gt;\r\n   &lt;li&gt;Coffee&lt;/li&gt;\r\n&lt;/ol&gt;\r\n\r\n//Indent spaces 2\r\n&lt;ol&gt;\r\n  &lt;li&gt;Coffee&lt;/li&gt;\r\n&lt;/ol&gt;</PREVIEW>
 		</PROPERTY>
 		<PROPERTY>
 			<NAME>Markup</NAME>
@@ -639,6 +747,7 @@
 			<ITEM>
 				<VALUE>Yes</VALUE>
 				<SHORT>m</SHORT>
+				<PREVIEW>Generate a pretty printed version of the markup</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>No</VALUE>
@@ -651,9 +760,11 @@
 			<ITEM>
 				<VALUE>Yes</VALUE>
 				<SHORT>pw</SHORT>
+				<PREVIEW>Line wrap after some Unicode or Chinese punctuation characters</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>No</VALUE>
+				<PREVIEW>No line wrap after some Unicode or Chinese punctuation characters</PREVIEW>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
@@ -663,10 +774,12 @@
 			<ITEM>
 				<VALUE>None</VALUE>
 				<SHORT>sa0</SHORT>
+				<PREVIEW>&lt;font size=&quot;3&quot; color=&quot;red&quot;&gt;This is some text!&lt;/font&gt;</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>Alpha</VALUE>
 				<SHORT>sa1</SHORT>
+				<PREVIEW>&lt;font color=&quot;red&quot; size=&quot;3&quot;&gt;This is some text!&lt;/font&gt;</PREVIEW>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
@@ -675,6 +788,7 @@
 			<VALUE>8</VALUE>
 			<RANGE>0, 100</RANGE>
 			<SHORT>ts</SHORT>
+			<PREVIEW>Specifies the number of columns that Tidy uses between successive tab stops</PREVIEW>
 		</PROPERTY>
 		<PROPERTY>
 			<NAME>Vertical space</NAME>
@@ -683,9 +797,11 @@
 			<ITEM>
 				<VALUE>Yes</VALUE>
 				<SHORT>vs</SHORT>
+				<PREVIEW>&lt;p&gt;This is some text&lt;/p&gt;\r\n\r\n\r\n&lt;p&gt;This is some text&lt;/p&gt;</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>No</VALUE>
+				<PREVIEW>&lt;p&gt;This is some text&lt;/p&gt;\r\n\r\n&lt;p&gt;This is some text&lt;/p&gt;</PREVIEW>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
@@ -694,6 +810,7 @@
 			<VALUE>68</VALUE>
 			<RANGE>0, 100</RANGE>
 			<SHORT>w</SHORT>
+			<PREVIEW>//Wrap 10\r\n\r\n&lt;p&gt;This\r\nis some\r\ntext&lt;/p&gt;\r\n\r\n//Wrap 0\r\n&lt;p&gt;This is some text&lt;/p&gt;</PREVIEW>
 		</PROPERTY>
 		<PROPERTY>
 			<NAME>Wrap asp</NAME>
@@ -702,9 +819,11 @@
 			<ITEM>
 				<VALUE>Yes</VALUE>
 				<SHORT>wa</SHORT>
+				<PREVIEW>Line wrap text contained within ASP pseudo elements, which look like: &lt;% ... %&gt;</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>No</VALUE>
+				<PREVIEW>No line wrap text contained within ASP pseudo elements, which look like: &lt;% ... %&gt;</PREVIEW>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
@@ -714,9 +833,11 @@
 			<ITEM>
 				<VALUE>Yes</VALUE>
 				<SHORT>wat</SHORT>
+				<PREVIEW>Line wrap attribute values, for easier editing</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>No</VALUE>
+				<PREVIEW>No line wrap attribute values, for easier editing</PREVIEW>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
@@ -726,9 +847,11 @@
 			<ITEM>
 				<VALUE>Yes</VALUE>
 				<SHORT>wj</SHORT>
+				<PREVIEW>Line wrap text contained within JSTE pseudo elements, which look like: &lt;# ... #&gt;</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>No</VALUE>
+				<PREVIEW>No line wrap text contained within JSTE pseudo elements, which look like: &lt;# ... #&gt;</PREVIEW>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
@@ -738,9 +861,11 @@
 			<ITEM>
 				<VALUE>Yes</VALUE>
 				<SHORT>wp</SHORT>
+				<PREVIEW>Line wrap text contained within PHP pseudo elements, which look like: &lt;?php ... ?&gt;</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>No</VALUE>
+				<PREVIEW>No line wrap text contained within PHP pseudo elements, which look like: &lt;?php ... ?&gt;</PREVIEW>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
@@ -750,9 +875,11 @@
 			<ITEM>
 				<VALUE>Yes</VALUE>
 				<SHORT>wsl</SHORT>
+				<PREVIEW>Line wrap string literals that appear in script attributes</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>No</VALUE>
+				<PREVIEW>No line wrap string literals that appear in script attributes</PREVIEW>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
@@ -762,9 +889,11 @@
 			<ITEM>
 				<VALUE>Yes</VALUE>
 				<SHORT>ws</SHORT>
+				<PREVIEW>Line wrap text contained within &lt;![ ... ]&gt; section tags</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>No</VALUE>
+				<PREVIEW>No line wrap text contained within &lt;![ ... ]&gt; section tags</PREVIEW>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
@@ -778,6 +907,7 @@
 			<ITEM>
 				<VALUE>Yes</VALUE>
 				<SHORT>ac</SHORT>
+				<PREVIEW>Can be used to modify behavior of -c (--clean yes) option. If set to &quot;yes&quot; when using -c, &amp;emdash;, &amp;rdquo;, and other named character entities are downgraded to their closest ascii equivalents</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>No</VALUE>
@@ -790,10 +920,12 @@
 			<ITEM>
 				<VALUE>Raw</VALUE>
 				<SHORT>ce0</SHORT>
+				<PREVIEW>Tidy will output values above 127 without translating them into entities</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>Ascii</VALUE>
 				<SHORT>ce1</SHORT>
+				<PREVIEW>Tidy will accept Latin-1 (ISO-8859-1) character values, but will use entities for all characters whose value &gt; 127</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>latin0</VALUE>
@@ -802,10 +934,12 @@
 			<ITEM>
 				<VALUE>latin1</VALUE>
 				<SHORT>ce3</SHORT>
+				<PREVIEW>Characters above 255 will be written as entities</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>utf8</VALUE>
 				<SHORT>ce4</SHORT>
+				<PREVIEW>Tidy assumes that both input and output is encoded as UTF-8</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>iso2022</VALUE>
@@ -851,10 +985,12 @@
 			<ITEM>
 				<VALUE>Raw</VALUE>
 				<SHORT>ie0</SHORT>
+				<PREVIEW>Tidy will output values above 127 without translating them into entities</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>Ascii</VALUE>
 				<SHORT>ie1</SHORT>
+				<PREVIEW>Tidy will accept Latin-1 (ISO-8859-1) character values, but will use entities for all characters whose value &gt; 127</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>latin0</VALUE>
@@ -863,10 +999,12 @@
 			<ITEM>
 				<VALUE>latin1</VALUE>
 				<SHORT>ie3</SHORT>
+				<PREVIEW>Characters above 255 will be written as entities</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>utf8</VALUE>
 				<SHORT>ie4</SHORT>
+				<PREVIEW>Tidy assumes that both input and output is encoded as UTF-8</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>iso2022</VALUE>
@@ -912,10 +1050,12 @@
 			<ITEM>
 				<VALUE>Raw</VALUE>
 				<SHORT>oe0</SHORT>
+				<PREVIEW>Tidy will output values above 127 without translating them into entities</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>Ascii</VALUE>
 				<SHORT>oe1</SHORT>
+				<PREVIEW>Tidy will accept Latin-1 (ISO-8859-1) character values, but will use entities for all characters whose value &gt; 127</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>latin0</VALUE>
@@ -924,10 +1064,12 @@
 			<ITEM>
 				<VALUE>latin1</VALUE>
 				<SHORT>oe3</SHORT>
+				<PREVIEW>Characters above 255 will be written as entities</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>utf8</VALUE>
 				<SHORT>oe4</SHORT>
+				<PREVIEW>Tidy assumes that both input and output is encoded as UTF-8</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>iso2022</VALUE>
@@ -977,9 +1119,11 @@
 			<ITEM>
 				<VALUE>Yes</VALUE>
 				<SHORT>sw</SHORT>
+				<PREVIEW>Specifies if Tidy should suppress warnings</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>No</VALUE>
+				<PREVIEW>No specifies if Tidy should suppress warnings</PREVIEW>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
@@ -988,6 +1132,7 @@
 			<VALUE>6</VALUE>
 			<RANGE>0, 100</RANGE>
 			<SHORT>se</SHORT>
+			<PREVIEW>Specifies the number Tidy uses to determine if further errors should be shown</PREVIEW>
 		</PROPERTY>
 		<PROPERTY>
 			<NAME>Miscellaneous</NAME>
@@ -1000,9 +1145,11 @@
 			<ITEM>
 				<VALUE>Yes</VALUE>
 				<SHORT>fo</SHORT>
+				<PREVIEW>Specifies if Tidy should produce output even if errors are encountered</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>No</VALUE>
+				<PREVIEW>No specifies if Tidy should produce output even if errors are encountered</PREVIEW>
 			</ITEM>
 		</PROPERTY>
 	</PROPERTYS>

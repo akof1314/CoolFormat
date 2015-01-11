@@ -68,8 +68,10 @@ void COutputViewBar::AddMsgToEdit( LPCTSTR lpszMsg )
 {
 	if (m_edtOutput.GetSafeHwnd())
 	{
-		m_edtOutput.SetWindowText(lpszMsg);
-		int nLen = _tcsclen(lpszMsg);
+		CString strMsg(lpszMsg);
+		strMsg.TrimRight();
+		m_edtOutput.SetWindowText(strMsg);
+		int nLen = strMsg.GetLength();
 		if (nLen > 0)
 		{
 			ShowControlBar(TRUE, FALSE, FALSE);

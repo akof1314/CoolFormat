@@ -16,7 +16,7 @@ TidyDeafult GlobalTidy::m_TidyNames[MAX_SYN_LANG] = {
 	{_T("D"),					_T("*.d;"),																					SYN_D},
 	{_T("Fortran"),				_T("*.f;*.for;*.f90;*.f95;*.f2k;"),															SYN_FORTRAN},
 	{_T("Haskell"),				_T("*.hs;*.lhs;*.las;"),																	SYN_HASKELL},
-	{_T("HTML"),				_T("-aan-dep-fb-fbc-fu-js-ll-n-ox-pe-qa-qn-m-wa-wj-wp-ws-sw-fo-i0-d1-ce0-ie0-oe0-w0"),		SYN_HTML},
+	{_T("HTML"),				_T("-aan-dep-fb-fbc-fu-js-ll-n-ox-pe-qa-qn-m-wa-wj-wp-ws-sw-fo-i0-d1-ce0-ie0-oe0-w0-sbo0"),		SYN_HTML},
 	{_T("INI"),					_T("*.ini;*.inf;*.reg;*.url;"),																SYN_INI},
 	{_T("Java"),				_T("-A1-p-N-Y-k3"),																			SYN_JAVA},
 	{_T("JavaScript"),			_T("-nb-cn4"),																				SYN_JAVASCRIPT},

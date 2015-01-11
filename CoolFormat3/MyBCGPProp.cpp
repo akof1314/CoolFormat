@@ -316,6 +316,11 @@ void CMyBCGPProp::OnClickButton(CPoint point)
 
 		if (bUpdate)
 		{
+			if (strPath.Find('-') != -1)
+			{
+				strPath.Replace('-', '_');
+			}
+
 			if (m_pWndInPlace != NULL)
 			{
 				m_pWndInPlace->SetWindowText(strPath);

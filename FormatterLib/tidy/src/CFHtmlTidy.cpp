@@ -38,7 +38,10 @@ bool CCFHtmlTidy::TidyMain(const char* pSourceIn, const char* pOptions, std::str
 
 	if (rc >= 0)
 	{
-		strOut = reinterpret_cast<char const*>(output.bp);
+		if (output.bp)
+		{
+			strOut = reinterpret_cast<char const*>(output.bp);
+		}
 	}
 
 	strErr = reinterpret_cast<char const*>(errbuf.bp);
@@ -305,6 +308,10 @@ void CCFHtmlTidy::SetTidyProp(const std::string& strParam, int nNumValue, const 
 	else if ("d" == strParam)
 	{
 		tidyOptSetInt(formatter, TidyDoctypeMode, nNumValue % 5);
+	}
+	else if ("du" == strParam)
+	{
+		tidyOptSetValue(formatter, TidyDoctype, strTextValue.c_str());
 	}
 	else if ("ra" == strParam)
 	{

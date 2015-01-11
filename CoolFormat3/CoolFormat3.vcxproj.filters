@@ -156,19 +156,7 @@
     <ClCompile Include="SetPageCSS.cpp">
       <Filter>源文件\格式化设置</Filter>
     </ClCompile>
-    <ClCompile Include="SetPageHtml.cpp">
-      <Filter>源文件\格式化设置</Filter>
-    </ClCompile>
-    <ClCompile Include="SetPageHtmlOne.cpp">
-      <Filter>源文件\格式化设置</Filter>
-    </ClCompile>
-    <ClCompile Include="SetPageHtmlTwo.cpp">
-      <Filter>源文件\格式化设置</Filter>
-    </ClCompile>
     <ClCompile Include="SetPageJS.cpp">
-      <Filter>源文件\格式化设置</Filter>
-    </ClCompile>
-    <ClCompile Include="SetPageJson.cpp">
       <Filter>源文件\格式化设置</Filter>
     </ClCompile>
     <ClCompile Include="SetPagePHP.cpp">
@@ -386,19 +374,7 @@
     <ClInclude Include="SetPageCSS.h">
       <Filter>头文件\格式化设置</Filter>
     </ClInclude>
-    <ClInclude Include="SetPageHtml.h">
-      <Filter>头文件\格式化设置</Filter>
-    </ClInclude>
-    <ClInclude Include="SetPageHtmlOne.h">
-      <Filter>头文件\格式化设置</Filter>
-    </ClInclude>
-    <ClInclude Include="SetPageHtmlTwo.h">
-      <Filter>头文件\格式化设置</Filter>
-    </ClInclude>
     <ClInclude Include="SetPageJS.h">
-      <Filter>头文件\格式化设置</Filter>
-    </ClInclude>
-    <ClInclude Include="SetPageJson.h">
       <Filter>头文件\格式化设置</Filter>
     </ClInclude>
     <ClInclude Include="SetPagePHP.h">

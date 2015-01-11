@@ -157,11 +157,7 @@
     <ClCompile Include="SetPageCppFast.cpp" />
     <ClCompile Include="SetPageCppHigh.cpp" />
     <ClCompile Include="SetPageCSS.cpp" />
-    <ClCompile Include="SetPageHtml.cpp" />
-    <ClCompile Include="SetPageHtmlOne.cpp" />
-    <ClCompile Include="SetPageHtmlTwo.cpp" />
     <ClCompile Include="SetPageJS.cpp" />
-    <ClCompile Include="SetPageJson.cpp" />
     <ClCompile Include="SetPagePHP.cpp" />
     <ClCompile Include="SetPageSql.cpp" />
     <ClCompile Include="SetSheet.cpp" />
@@ -318,11 +314,7 @@
     <ClInclude Include="SetPageCppFast.h" />
     <ClInclude Include="SetPageCppHigh.h" />
     <ClInclude Include="SetPageCSS.h" />
-    <ClInclude Include="SetPageHtml.h" />
-    <ClInclude Include="SetPageHtmlOne.h" />
-    <ClInclude Include="SetPageHtmlTwo.h" />
     <ClInclude Include="SetPageJS.h" />
-    <ClInclude Include="SetPageJson.h" />
     <ClInclude Include="SetPagePHP.h" />
     <ClInclude Include="SetPageSql.h" />
     <ClInclude Include="SetSheet.h" />
