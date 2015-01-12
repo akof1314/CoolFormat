@@ -70,6 +70,9 @@ void COutputViewBar::AddMsgToEdit( LPCTSTR lpszMsg )
 	{
 		CString strMsg(lpszMsg);
 		strMsg.TrimRight();
+		strMsg.Remove('\r');
+		strMsg.Replace(_T("\n"), _T("\r\n"));
+
 		m_edtOutput.SetWindowText(strMsg);
 		int nLen = strMsg.GetLength();
 		if (nLen > 0)

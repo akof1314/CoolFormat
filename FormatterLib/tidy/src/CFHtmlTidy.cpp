@@ -45,7 +45,7 @@ bool CCFHtmlTidy::TidyMain(const char* pSourceIn, const char* pOptions, std::str
 	}
 
 	strErr = reinterpret_cast<char const*>(errbuf.bp);
-	std::string strEmpty = "No warnings or errors were found.\r\n\r\n";
+	std::string strEmpty = "No warnings or errors were found.\n\n";
 	if (0 == strEmpty.compare(strErr))
 	{
 		strErr.clear();
@@ -76,6 +76,7 @@ void CCFHtmlTidy::InitTidyDefault()
 	tidyOptSetBool(formatter, TidyJoinStyles, no);
 	tidyOptSetBool(formatter, TidyNCR, no);
 	tidyOptSetBool(formatter, TidyAnchorAsName, no);
+	tidyOptSetInt(formatter, TidyNewline, 0);
 }
 
 void CCFHtmlTidy::SetTidyProp(const std::string& strParam, int nNumValue, const std::string& /*strNumValue*/, const std::string& strTextValue)

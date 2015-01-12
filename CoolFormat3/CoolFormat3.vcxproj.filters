@@ -144,27 +144,6 @@
     <ClCompile Include="KofFile.cpp">
       <Filter>源文件\自己实现</Filter>
     </ClCompile>
-    <ClCompile Include="SetPageCpp.cpp">
-      <Filter>源文件\格式化设置</Filter>
-    </ClCompile>
-    <ClCompile Include="SetPageCppFast.cpp">
-      <Filter>源文件\格式化设置</Filter>
-    </ClCompile>
-    <ClCompile Include="SetPageCppHigh.cpp">
-      <Filter>源文件\格式化设置</Filter>
-    </ClCompile>
-    <ClCompile Include="SetPageCSS.cpp">
-      <Filter>源文件\格式化设置</Filter>
-    </ClCompile>
-    <ClCompile Include="SetPageJS.cpp">
-      <Filter>源文件\格式化设置</Filter>
-    </ClCompile>
-    <ClCompile Include="SetPagePHP.cpp">
-      <Filter>源文件\格式化设置</Filter>
-    </ClCompile>
-    <ClCompile Include="SetPageSql.cpp">
-      <Filter>源文件\格式化设置</Filter>
-    </ClCompile>
     <ClCompile Include="SetSheet.cpp">
       <Filter>源文件\格式化设置</Filter>
     </ClCompile>
@@ -361,27 +340,6 @@
     </ClInclude>
     <ClInclude Include="KofFile.h">
       <Filter>头文件\自己实现</Filter>
-    </ClInclude>
-    <ClInclude Include="SetPageCpp.h">
-      <Filter>头文件\格式化设置</Filter>
-    </ClInclude>
-    <ClInclude Include="SetPageCppFast.h">
-      <Filter>头文件\格式化设置</Filter>
-    </ClInclude>
-    <ClInclude Include="SetPageCppHigh.h">
-      <Filter>头文件\格式化设置</Filter>
-    </ClInclude>
-    <ClInclude Include="SetPageCSS.h">
-      <Filter>头文件\格式化设置</Filter>
-    </ClInclude>
-    <ClInclude Include="SetPageJS.h">
-      <Filter>头文件\格式化设置</Filter>
-    </ClInclude>
-    <ClInclude Include="SetPagePHP.h">
-      <Filter>头文件\格式化设置</Filter>
-    </ClInclude>
-    <ClInclude Include="SetPageSql.h">
-      <Filter>头文件\格式化设置</Filter>
     </ClInclude>
     <ClInclude Include="SetSheet.h">
       <Filter>头文件\格式化设置</Filter>

@@ -153,13 +153,6 @@
     <ClCompile Include="SetEditDlg.cpp" />
     <ClCompile Include="SetHtmlDlg.cpp" />
     <ClCompile Include="SetPageBase.cpp" />
-    <ClCompile Include="SetPageCpp.cpp" />
-    <ClCompile Include="SetPageCppFast.cpp" />
-    <ClCompile Include="SetPageCppHigh.cpp" />
-    <ClCompile Include="SetPageCSS.cpp" />
-    <ClCompile Include="SetPageJS.cpp" />
-    <ClCompile Include="SetPagePHP.cpp" />
-    <ClCompile Include="SetPageSql.cpp" />
     <ClCompile Include="SetSheet.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug Static|Win32'">Create</PrecompiledHeader>
@@ -310,13 +303,6 @@
     <ClInclude Include="SetEditDlg.h" />
     <ClInclude Include="SetHtmlDlg.h" />
     <ClInclude Include="SetPageBase.h" />
-    <ClInclude Include="SetPageCpp.h" />
-    <ClInclude Include="SetPageCppFast.h" />
-    <ClInclude Include="SetPageCppHigh.h" />
-    <ClInclude Include="SetPageCSS.h" />
-    <ClInclude Include="SetPageJS.h" />
-    <ClInclude Include="SetPagePHP.h" />
-    <ClInclude Include="SetPageSql.h" />
     <ClInclude Include="SetSheet.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="SynBCGPEditCtrl.h" />

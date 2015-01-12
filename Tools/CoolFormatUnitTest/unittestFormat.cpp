@@ -136,6 +136,26 @@ public:
 			"}\n");
 		DoFormatterAssert("-cn5", strTextIn, strTextOut);
 	}
+
+	TEST_METHOD(IndentStyle)
+	{
+		CString strTextIn(
+			"if ('this_is' == /an_example/) {\n"
+			"    of_beautifer();\n"
+			"} else {\n"
+			"    var a = b ? (c % d) : e[f];\n"
+			"}\n");
+		CString strTextOut(
+			"if ('this_is' == /an_example/)\n"
+			"{\n"
+			"     of_beautifer();\n"
+			"}\n"
+			"else\n"
+			"{\n"
+			"     var a = b ? (c % d) : e[f];\n"
+			"}\n");
+		DoFormatterAssert("-cn5-nb", strTextIn, strTextOut);
+	}
 };
 
 TEST_CLASS(UnitTestJson)
@@ -181,12 +201,12 @@ public:
 		CString strTextIn(
 			"<ol>\n"
 			"<li>Coffee</li>\n"
-			"</ol>");
+			"</ol>\n");
 		CString strTextOut(
 			"<ol>\n"
 			"  <li>Coffee</li>\n"
-			"</ol>");
-		DoFormatterAssert("-i0", strTextIn, strTextOut);
+			"</ol>\n");
+		DoFormatterAssert("-m-ox-sbo0-i0", strTextIn, strTextOut);
 	}
 };
 
@@ -205,13 +225,165 @@ public:
 	TEST_METHOD(Indent)
 	{
 		CString strTextIn(
-			"<ol>\n"
-			"<li>Coffee</li>\n"
-			"</ol>");
+			"<note>\n"
+			"<to>George</to>\n"
+			"<from>John</from>\n"
+			"</note>\n");
 		CString strTextOut(
-			"<ol>\n"
-			"  <li>Coffee</li>\n"
-			"</ol>");
-		DoFormatterAssert("-i0", strTextIn, strTextOut);
+			"<note>\n"
+			"  <to>George</to>\n"
+			"  <from>John</from>\n"
+			"</note>\n");
+		DoFormatterAssert("-m-ix-sbo0-i0", strTextIn, strTextOut);
+	}
+};
+
+TEST_CLASS(UnitTestSQL)
+{
+public:
+	void DoFormatterAssert(const char *pOptions, const CString &strTextIn, const CString &strTextNeedOut)
+	{
+		CFormatterHelp formatterSP;
+		CString strTextOut, strMsgOut;
+		g_GlobalTidy.m_TidySql = pOptions;
+		formatterSP.DoFormatter(SYN_SQL, strTextIn, strTextOut, strMsgOut, _AtlGetConversionACP());
+		Assert::AreEqual(strTextNeedOut.GetString(), strTextOut.GetString());
+	}
+
+	TEST_METHOD(Indent)
+	{
+		CString strTextIn(
+			"select\n"
+			"  id\n"
+			"from\n"
+			"  a\n"
+			"where\n"
+			"  a.id = 1");
+		CString strTextOut(
+			"select\n"
+			"    id\n"
+			"from\n"
+			"    a\n"
+			"where\n"
+			"    a.id = 1");
+		DoFormatterAssert("-cn4", strTextIn, strTextOut);
+	}
+
+	TEST_METHOD(IndentTab)
+	{
+		CString strTextIn(
+			"select\n"
+			"  id\n"
+			"from\n"
+			"  a\n"
+			"where\n"
+			"  a.id = 1");
+		CString strTextOut(
+			"select\n"
+			"		id\n"
+			"from\n"
+			"		a\n"
+			"where\n"
+			"		a.id = 1");
+		DoFormatterAssert("-ci1-cn2", strTextIn, strTextOut);
+	}
+};
+
+TEST_CLASS(UnitTestPHP)
+{
+public:
+	void DoFormatterAssert(const char *pOptions, const CString &strTextIn, const CString &strTextNeedOut)
+	{
+		CFormatterHelp formatterSP;
+		CString strTextOut, strMsgOut;
+		g_GlobalTidy.m_TidyPhp = pOptions;
+		formatterSP.DoFormatter(SYN_PHP, strTextIn, strTextOut, strMsgOut, _AtlGetConversionACP());
+		Assert::AreEqual(strTextNeedOut.GetString(), strTextOut.GetString());
+	}
+
+	TEST_METHOD(Indent)
+	{
+		CString strTextIn(
+			"<?php\n"
+			"function foo()\n"
+			"{\n"
+			"    echo \"a is bigger than b\";\n"
+			"}\n"
+			"?>");
+		CString strTextOut(
+			"<?php\n"
+			"function foo()\n"
+			"{\n"
+			"     echo \"a is bigger than b\";\n"
+			"}\n"
+			"?>");
+		DoFormatterAssert("-in5", strTextIn, strTextOut);
+	}
+
+	TEST_METHOD(IndentTab)
+	{
+		CString strTextIn(
+			"<?php\n"
+			"function foo()\n"
+			"{\n"
+			"    echo \"a is bigger than b\";\n"
+			"}\n"
+			"?>");
+		CString strTextOut(
+			"<?php\n"
+			"function foo()\n"
+			"{\n"
+			"		echo \"a is bigger than b\";\n"
+			"}\n"
+			"?>");
+		DoFormatterAssert("-in2-ich1", strTextIn, strTextOut);
+	}
+};
+
+TEST_CLASS(UnitTestCSS)
+{
+public:
+	void DoFormatterAssert(const char *pOptions, const CString &strTextIn, const CString &strTextNeedOut)
+	{
+		CFormatterHelp formatterSP;
+		CString strTextOut, strMsgOut;
+		g_GlobalTidy.m_TidyCss = pOptions;
+		formatterSP.DoFormatter(SYN_CSS, strTextIn, strTextOut, strMsgOut, _AtlGetConversionACP());
+		Assert::AreEqual(strTextNeedOut.GetString(), strTextOut.GetString());
+	}
+
+	TEST_METHOD(Indent)
+	{
+		CString strTextIn(
+			"h1{color:red;}h2{color:black;}");
+		CString strTextOut(
+			"h1\n"
+			"{\n"
+			"	color:red;\n"
+			"}\n"
+			"\n"
+			"h2\n"
+			"{\n"
+			"	color:black;\n"
+			"}");
+		DoFormatterAssert("-c3", strTextIn, strTextOut);
+	}
+
+	TEST_METHOD(IndentSort)
+	{
+		CString strTextIn(
+			"h2{color:black;}\n"
+			"h1{color:red;}");
+		CString strTextOut(
+			"h1\n"
+			"{\n"
+			"	color:red;\n"
+			"}\n"
+			"\n"
+			"h2\n"
+			"{\n"
+			"	color:black;\n"
+			"}");
+		DoFormatterAssert("-c3-ss", strTextIn, strTextOut);
 	}
 };
