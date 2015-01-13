@@ -120,6 +120,7 @@ void CChildFrame::OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDeact
 		if (pSynView != NULL)
 		{
 			pSynView->ReSetLangLabel();
+			pSynView->ReSetEncodingLabel();
 		}
 	}
 }

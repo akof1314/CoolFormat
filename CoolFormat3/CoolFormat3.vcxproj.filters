@@ -243,6 +243,9 @@
     <ClCompile Include="uchardet\uchardet.cpp">
       <Filter>uchardet</Filter>
     </ClCompile>
+    <ClCompile Include="MyBCGPRibbonStatusBarPane.cpp">
+      <Filter>源文件\源码扩展</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FormatterHelp.h">
@@ -433,6 +436,9 @@
     </ClInclude>
     <ClInclude Include="uchardet\uchardet.h">
       <Filter>uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="MyBCGPRibbonStatusBarPane.h">
+      <Filter>头文件\源码扩展</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

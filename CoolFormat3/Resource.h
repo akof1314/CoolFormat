@@ -164,6 +164,7 @@
 #define IDS_STR_OPTIONFORMATTER         145
 #define IDS_MULTEXT_EDIT_DLG            146
 #define IDS_STRING_POPULARCOMLANG       147
+#define IDS_STATUS_ENCODING             148
 #define IDB_RIBBON_ICONS                154
 #define IDB_RIBBON_FILESMALL            155
 #define IDB_RIBBON_FILELARGE            156
@@ -204,6 +205,7 @@
 #define IDD_SET_ALL                     198
 #define IDD_SET_BASE                    198
 #define IDD_MULTEXT_EDIT_DLG            199
+#define IDR_ENCODING_MENU               200
 #define IDC_COMPANY_URL                 1041
 #define IDC_LINE                        1053
 #define IDC_LINETIP                     1054
@@ -541,13 +543,33 @@
 #define ID_OUTPUT_BAR                   32951
 #define ID_32952                        32952
 #define ID_BATCHFORMAT                  32953
+#define ID_ENCODING_UTF                 32977
+#define ID_UTF                          32978
+#define ID_ENCODING_UTF8BOM             32979
+#define ID_ENCODING_UTF8NB              32980
+#define ID_ENCODING_UTF8                32981
+#define ID_BIG5                         32982
+#define ID_ENCODING_BIG5                32983
+#define ID_UTF32984                     32984
+#define ID_ENCODING_UTF16LE             32985
+#define ID_UTF32986                     32986
+#define ID_ENCODING_UTF16BE             32987
+#define ID_CHINESE_GB2312               32988
+#define ID_JAPANESE                     32989
+#define ID_JAPANESE_SHIFT               32990
+#define ID_ENCODING_GB2312              32991
+#define ID_ENCODING_SHIFTJIS            32992
+#define ID_ENCODING_EUCKR               32993
+#define ID_ANSI                         32994
+#define ID_ENCODING_ANSI                32995
+#define ID_NOW_ENCODING                 32996
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        200
-#define _APS_NEXT_COMMAND_VALUE         32977
+#define _APS_NEXT_RESOURCE_VALUE        201
+#define _APS_NEXT_COMMAND_VALUE         32997
 #define _APS_NEXT_CONTROL_VALUE         1276
 #define _APS_NEXT_SYMED_VALUE           108
 #endif

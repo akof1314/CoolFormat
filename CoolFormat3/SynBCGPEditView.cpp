@@ -10,9 +10,8 @@
 #include "CoolFormat3View.h"
 #include "GotoLineDlg.h"
 #include "MyBCGPRibbonLabel.h"
+#include "MyBCGPRibbonStatusBarPane.h"
 #include "SynHtmlView.h"
-
-
 
 //////////////////////////////////////////////////////////////////////////
 // CSynBCGPEditView
@@ -89,6 +88,15 @@ BEGIN_MESSAGE_MAP(CSynBCGPEditView, CBCGPEditView)
 	ON_COMMAND(ID_COMMENT_NOT, &CSynBCGPEditView::OnCommentNot)
 	ON_COMMAND(ID_SELFORMAT, &CSynBCGPEditView::OnSelformat)
 	ON_WM_SIZE()
+	ON_COMMAND(ID_ENCODING_ANSI, &CSynBCGPEditView::OnEncodingAnsi)
+	ON_COMMAND(ID_ENCODING_UTF8, &CSynBCGPEditView::OnEncodingUtf8)
+	ON_COMMAND(ID_ENCODING_UTF8NB, &CSynBCGPEditView::OnEncodingUtf8nb)
+	ON_COMMAND(ID_ENCODING_UTF16LE, &CSynBCGPEditView::OnEncodingUtf16le)
+	ON_COMMAND(ID_ENCODING_UTF16BE, &CSynBCGPEditView::OnEncodingUtf16be)
+	ON_COMMAND(ID_ENCODING_BIG5, &CSynBCGPEditView::OnEncodingBig5)
+	ON_COMMAND(ID_ENCODING_GB2312, &CSynBCGPEditView::OnEncodingGb2312)
+	ON_COMMAND(ID_ENCODING_SHIFTJIS, &CSynBCGPEditView::OnEncodingShiftjis)
+	ON_COMMAND(ID_ENCODING_EUCKR, &CSynBCGPEditView::OnEncodingEuckr)
 END_MESSAGE_MAP()
 
 
@@ -728,6 +736,20 @@ void CSynBCGPEditView::ReSetLangLabel()
 	}
 }
 
+void CSynBCGPEditView::ReSetEncodingLabel()
+{
+	CBCGPRibbonStatusBar *pRibbonBar = ((CMainFrame*)GetTopLevelFrame())->GetRibbonStatusBar();
+	ASSERT_VALID(pRibbonBar);
+
+	CMyBCGPRibbonStatusBarPane *pRibbonLabel = DYNAMIC_DOWNCAST(CMyBCGPRibbonStatusBarPane, pRibbonBar->FindByID(ID_NOW_ENCODING));
+	if (pRibbonLabel)
+	{
+		CString strLabelText(m_pEdit->GetSelectEncodingString());
+		pRibbonLabel->SetText(strLabelText);
+		pRibbonLabel->Redraw();
+	}
+}
+
 void CSynBCGPEditView::OnFilePrintPreview()
 {
 	CWnd *pWnd = GetParent();
@@ -859,4 +881,58 @@ void CSynBCGPEditView::OnSize(UINT nType, int cx, int cy)
 			}
 		}
 	}
+}
+
+void CSynBCGPEditView::OnEncodingAnsi()
+{
+	m_pEdit->SelectEncoding(99999);
+	ReSetEncodingLabel();
+}
+
+void CSynBCGPEditView::OnEncodingUtf8()
+{
+	m_pEdit->SelectEncoding(65001);
+	ReSetEncodingLabel();
+}
+
+void CSynBCGPEditView::OnEncodingUtf8nb()
+{
+	m_pEdit->SelectEncoding(65002);
+	ReSetEncodingLabel();
+}
+
+void CSynBCGPEditView::OnEncodingUtf16le()
+{
+	m_pEdit->SelectEncoding(1200);
+	ReSetEncodingLabel();
+}
+
+void CSynBCGPEditView::OnEncodingUtf16be()
+{
+	m_pEdit->SelectEncoding(1201);
+	ReSetEncodingLabel();
+}
+
+void CSynBCGPEditView::OnEncodingBig5()
+{
+	m_pEdit->SelectEncoding(950);
+	ReSetEncodingLabel();
+}
+
+void CSynBCGPEditView::OnEncodingGb2312()
+{
+	m_pEdit->SelectEncoding(936);
+	ReSetEncodingLabel();
+}
+
+void CSynBCGPEditView::OnEncodingShiftjis()
+{
+	m_pEdit->SelectEncoding(932);
+	ReSetEncodingLabel();
+}
+
+void CSynBCGPEditView::OnEncodingEuckr()
+{
+	m_pEdit->SelectEncoding(51949);
+	ReSetEncodingLabel();
 }

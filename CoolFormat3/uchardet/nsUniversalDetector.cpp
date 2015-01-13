@@ -96,7 +96,7 @@ nsUniversalDetector::Reset()
 
 //---------------------------------------------------------------------
 #define SHORTCUT_THRESHOLD      (float)0.95
-#define MINIMUM_THRESHOLD      (float)0.20
+#define MINIMUM_THRESHOLD      (float)0.60
 
 nsresult nsUniversalDetector::HandleData(const char* aBuf, PRUint32 aLen)
 {

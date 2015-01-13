@@ -1042,3 +1042,36 @@ void CSynBCGPEditCtrl::OnLButtonDown(UINT nFlags, CPoint point)
 		RedrawWindow ();
 	}
 }
+
+void CSynBCGPEditCtrl::SelectEncoding(UINT nCodepage)
+{
+	FileEncodeType encodeType = m_File.GetFileEncodeTypeByCodepage(nCodepage);
+	if (encodeType != END_ENCODE)
+	{
+		if (encodeType != m_File.GetFileEncodeType())
+		{
+			m_File.ChangeFileEncodeType(encodeType);
+			SetModified(TRUE);
+		}
+	}
+	else
+	{
+		if (nCodepage != m_File.GetCodepage())
+		{
+			if (ANSI_ENCODE == m_File.GetFileEncodeType())
+			{
+				CString strBuffer(m_strBuffer);
+				strBuffer.Replace(_T("\n"), _T("\r\n"));
+				if (m_File.ChangeCodepage(nCodepage, strBuffer))
+				{
+					SetWindowText(strBuffer);
+				}
+			} 
+		}
+	}
+}
+
+LPCTSTR CSynBCGPEditCtrl::GetSelectEncodingString()
+{
+	return m_File.GetCodepageString();
+}

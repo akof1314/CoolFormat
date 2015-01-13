@@ -7,6 +7,7 @@
 #include "MainFrm.h"
 #include "SynBCGPEditView.h"
 #include "MyBCGPRibbonLabel.h"
+#include "MyBCGPRibbonStatusBarPane.h"
 #include "OptionsPropSheet.h"
 #include "PagePopular.h"
 #include "PageResource.h"
@@ -53,6 +54,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CBCGPMDIFrameWnd)
 	ON_COMMAND(ID_FILE_PATH, &CMainFrame::OnFilePath)
 	ON_COMMAND(ID_FILEDIR_OPEN, &CMainFrame::OnFiledirOpen)
 	ON_COMMAND(ID_STATUSBAR_PANE4, OnAdminUrl)
+	ON_COMMAND(ID_NOW_ENCODING, OnAdminUrl)
 	ON_REGISTERED_MESSAGE(BCGM_ON_BEFORE_SHOW_RIBBON_ITEM_MENU, OnShowRibbonItemMenu)
 	ON_COMMAND(ID_EXPORTREG, &CMainFrame::OnExportreg)
 	ON_COMMAND(ID_LANGEXT, &CMainFrame::OnLangext)
@@ -115,16 +117,17 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_wndStatusBar.AddExtendedElement(new CBCGPRibbonStatusBarPane(
 		ID_STATUSBAR_PANE3, strTemp, TRUE, NULL, strTemp3), strTemp2);	
 	
-	bNameValid = strTemp.LoadString(IDS_STATUS_QQ);
+	strTemp = _T("GB2312");
+	bNameValid = strTemp2.LoadString(IDS_STATUS_ENCODING);
 	ASSERT(bNameValid);
-	bNameValid = strTemp2.LoadString(IDS_STATUS_CONTACT);
-	ASSERT(bNameValid);
-	m_wndStatusBar.AddExtendedElement (new CBCGPRibbonStatusBarPane (
-		ID_STATUSBAR_PANE2, strTemp, TRUE), strTemp2);
+	CBCGPRibbonStatusBarPane* pPaneCodepage = new CMyBCGPRibbonStatusBarPane(
+		ID_STATUSBAR_PANE2, strTemp, FALSE);
+	pPaneCodepage->SetMenu(IDR_ENCODING_MENU);
+	pPaneCodepage->SetID(ID_NOW_ENCODING);
+	m_wndStatusBar.AddExtendedElement(pPaneCodepage, strTemp2);
 
 
 	EnableDocking(CBRS_ALIGN_ANY);
-
 
 	// Enable windows manager:
 	EnableWindowsDialog (ID_WINDOW_MANAGER, IDS_WINDOWS_MANAGER, TRUE);

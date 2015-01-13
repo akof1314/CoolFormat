@@ -129,6 +129,7 @@
     <ClCompile Include="BatchFormat.cpp" />
     <ClCompile Include="MulTextEditDlg.cpp" />
     <ClCompile Include="MyBCGPRibbonLabel.cpp" />
+    <ClCompile Include="MyBCGPRibbonStatusBarPane.cpp" />
     <ClCompile Include="OptionsPropSheet.cpp" />
     <ClCompile Include="ChildFrm.cpp" />
     <ClCompile Include="CoolFormat3.cpp" />
@@ -278,6 +279,7 @@
     <ClInclude Include="CFBaseTidy.h" />
     <ClInclude Include="MulTextEditDlg.h" />
     <ClInclude Include="MyBCGPRibbonLabel.h" />
+    <ClInclude Include="MyBCGPRibbonStatusBarPane.h" />
     <ClInclude Include="OptionsPropSheet.h" />
     <ClInclude Include="ChildFrm.h" />
     <ClInclude Include="CoolFormat3.h" />

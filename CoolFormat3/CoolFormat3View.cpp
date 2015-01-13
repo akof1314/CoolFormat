@@ -127,6 +127,7 @@ void CCoolFormat3View::OnInitialUpdate()
 		pCodeView->GetEditCtrl()->SelectLanguageByExt(strExt);
 		pCodeView->GetEditCtrl()->OpenFileEx(strFileName);
 		pCodeView->ReSetLangLabel();
+		pCodeView->ReSetEncodingLabel();
 		GetDocument()->SetModifiedFlag(FALSE);
 
 		// 2)加载文件图标
@@ -140,6 +141,7 @@ void CCoolFormat3View::OnInitialUpdate()
 	{
 		pCodeView->GetEditCtrl()->SelectLanguage(theApp.m_nSynLanguage);
 		pCodeView->ReSetLangLabel();
+		pCodeView->ReSetEncodingLabel();
 	}
 }
 
@@ -160,6 +162,7 @@ CSynBCGPEditView * CCoolFormat3View::GetSynView()
 	}
 	return pView;
 }
+
 BOOL CCoolFormat3View::PreTranslateMessage(MSG* pMsg)
 {
 	if (pMsg->message == WM_KEYDOWN)

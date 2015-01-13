@@ -466,3 +466,84 @@ UINT CKofFile::GetEncodingFromString(const char *encodingAlias)
 	}
 	return _AtlGetConversionACP();
 }
+
+void CKofFile::SetCodepage(UINT nCodePage)
+{
+	m_nCodepage = nCodePage;
+}
+
+FileEncodeType CKofFile::GetFileEncodeTypeByCodepage(UINT nCodePage)
+{
+	switch (nCodePage)
+	{
+	case 65001:
+		return UTF8_ENCODE;
+	case 65002:
+		return UTF8NB_ENCODE;
+	case 1200:
+		return UTF16LE_ENCODE;
+	case 1201:
+		return UTF16BE_ENCODE;
+	case 99999:
+		return ANSI_ENCODE;
+	}
+	return END_ENCODE;
+}
+
+BOOL CKofFile::ChangeFileEncodeType(FileEncodeType encodeType)
+{
+	m_EncodeType = encodeType;
+	return TRUE;
+}
+
+BOOL CKofFile::ChangeCodepage(UINT nCodePage, CString &strFileText)
+{
+	if (m_EncodeType == ANSI_ENCODE && m_nCodepage != nCodePage)
+	{
+		CT2A lpszNewFileText(strFileText, m_nCodepage);
+		strFileText = CA2T(lpszNewFileText, nCodePage);
+		m_nCodepage = nCodePage;
+		return TRUE;
+	}
+	return FALSE;
+}
+
+LPCTSTR CKofFile::GetCodepageString()
+{
+	switch (m_EncodeType)
+	{
+	case ANSI_ENCODE:
+	{
+		switch (m_nCodepage)
+		{
+		case 936:
+			return _T("GB2312");
+		case 950:
+			return _T("Big5");
+		case 932:
+			return _T("Shift-JIS");
+		case 51949:
+			return _T("EUC-KR");
+		default:
+			return _T("ANSI");
+			break;
+		}
+	}
+		break;
+	case UTF8_ENCODE:
+		return _T("UTF-8");
+		break;
+	case UTF8NB_ENCODE:
+		return _T("UTF-8 No BOM");
+		break;
+	case UTF16BE_ENCODE:
+		return _T("UTF-16 BE");
+		break;
+	case UTF16LE_ENCODE:
+		return _T("UTF-16 LE");
+		break;
+	default:
+		break;
+	}
+	return _T("ANSI");
+}

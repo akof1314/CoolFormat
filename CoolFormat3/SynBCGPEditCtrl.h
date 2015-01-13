@@ -36,7 +36,6 @@ public:
 	/**
 	 * 根据后缀名选定语言
 	 * @param CString strExt 后缀名
-	 * @return void 
 	 */
 	void SelectLanguageByExt(CString strExt);
 	
@@ -45,6 +44,18 @@ public:
 	 * @return LPCTSTR 
 	 */
 	LPCTSTR GetSelectLangString();
+
+	/**
+	* 设置代码页
+	* @param UINT nCodepage 代码页
+	*/
+	void SelectEncoding(UINT nCodepage);
+
+	/**
+	* 获取代码页描述字符串
+	* @return LPCTSTR
+	*/
+	LPCTSTR GetSelectEncodingString();
 
 	COLORREF m_clrSyn;		//语法颜色
 	COLORREF m_clrType;		//类型颜色

@@ -378,6 +378,29 @@ BEGIN
     MENUITEM "XML",                         ID_XML
 END
 
+IDR_ENCODING_MENU MENU
+BEGIN
+    MENUITEM "ANSI",                        ID_ENCODING_ANSI
+    MENUITEM "UTF-8",                       ID_ENCODING_UTF8
+    MENUITEM "UTF-8 No BOM",                ID_ENCODING_UTF8NB
+    MENUITEM "UTF-16 LE",                   ID_ENCODING_UTF16LE
+    MENUITEM "UTF-16 BE",                   ID_ENCODING_UTF16BE
+    MENUITEM SEPARATOR
+    POPUP "中文"
+    BEGIN
+        MENUITEM "Big5 (繁体)",                   ID_ENCODING_BIG5
+        MENUITEM "GB2312 (简体)",                 ID_ENCODING_GB2312
+    END
+    POPUP "日文"
+    BEGIN
+        MENUITEM "Shift-JIS",                   ID_ENCODING_SHIFTJIS
+    END
+    POPUP "韩文"
+    BEGIN
+        MENUITEM "EUC-KR",                      32993
+    END
+END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -1090,7 +1113,12 @@ END
 STRINGTABLE
 BEGIN
     ID_STATUSBAR_PANE1      "作者"
-    ID_STATUSBAR_PANE2      "联系方式"
+    ID_STATUSBAR_PANE2      "编码格式"
+END
+
+STRINGTABLE
+BEGIN
+    ID_NOW_ENCODING         "编码格式"
 END
 
 STRINGTABLE
@@ -1361,6 +1389,7 @@ BEGIN
     IDS_STR_OPTIONFORMATTER "选项："
     IDS_MULTEXT_EDIT_DLG    "文本编辑"
     IDS_STRING_POPULARCOMLANG "中文;English;"
+    IDS_STATUS_ENCODING     "编码格式"
 END
 
 #endif    // 中文(简体，中国) resources
@@ -1446,6 +1475,29 @@ END
 IDR_WINDOWS_MENU MENU
 BEGIN
     MENUITEM "&New Window",                 ID_WINDOW_NEW
+END
+
+IDR_ENCODING_MENU MENU
+BEGIN
+    MENUITEM "ANSI",                        ID_ENCODING_ANSI
+    MENUITEM "UTF-8",                       ID_ENCODING_UTF8
+    MENUITEM "UTF-8 No BOM",                ID_ENCODING_UTF8NB
+    MENUITEM "UTF-16 LE",                   ID_ENCODING_UTF16LE
+    MENUITEM "UTF-16 BE",                   ID_ENCODING_UTF16BE
+    MENUITEM SEPARATOR
+    POPUP "Chinese"
+    BEGIN
+        MENUITEM "Big5 (Traditional)",          ID_ENCODING_BIG5
+        MENUITEM "GB2312 (Simplified)",         ID_ENCODING_GB2312
+    END
+    POPUP "Japanese"
+    BEGIN
+        MENUITEM "Shift-JIS",                   ID_ENCODING_SHIFTJIS
+    END
+    POPUP "Korean"
+    BEGIN
+        MENUITEM "EUC-KR",                      32993
+    END
 END
 
 
@@ -1661,7 +1713,12 @@ END
 STRINGTABLE
 BEGIN
     ID_STATUSBAR_PANE1      "Author"
-    ID_STATUSBAR_PANE2      "Contact"
+    ID_STATUSBAR_PANE2      "Encoding"
+END
+
+STRINGTABLE
+BEGIN
+    ID_NOW_ENCODING         "Encoding"
 END
 
 STRINGTABLE
@@ -1934,6 +1991,7 @@ BEGIN
     IDS_STR_OPTIONFORMATTER "Options:"
     IDS_MULTEXT_EDIT_DLG    "Text Edit"
     IDS_STRING_POPULARCOMLANG "Chinese;English;"
+    IDS_STATUS_ENCODING     "Encoding"
 END
 
 #endif    // 英语(美国) resources
