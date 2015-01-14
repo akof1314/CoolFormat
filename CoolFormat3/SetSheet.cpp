@@ -1,4 +1,4 @@
-// SetSheet.cpp :  µœ÷Œƒº˛
+Ôªø// SetSheet.cpp : ÂÆûÁé∞Êñá‰ª∂
 
 #include "stdafx.h"
 #include "CoolFormat3.h"
@@ -32,7 +32,7 @@ BEGIN_MESSAGE_MAP(CSetSheet, CBCGPPropertySheet)
 END_MESSAGE_MAP()
 
 
-// CSetSheet œ˚œ¢¥¶¿Ì≥Ã–Ú
+// CSetSheet Ê∂àÊÅØÂ§ÑÁêÜÁ®ãÂ∫è
 
 BOOL CSetSheet::OnInitDialog()
 {
@@ -75,6 +75,7 @@ BOOL CSetSheet::PreTranslateMessage(MSG* pMsg)
 				g_GlobalTidy.m_TidyCpp = g_GlobalTidy.m_TidyNames[SYN_CPP].tidyName;
 				g_GlobalTidy.m_TidyJava = g_GlobalTidy.m_TidyNames[SYN_JAVA].tidyName;
 				g_GlobalTidy.m_TidyCSharp = g_GlobalTidy.m_TidyNames[SYN_CS].tidyName;
+				g_GlobalTidy.m_TidyObjectiveC = g_GlobalTidy.m_TidyNames[SYN_OBJECTIVEC].tidyName;
 				g_GlobalTidy.m_TidyHtml = g_GlobalTidy.m_TidyNames[SYN_HTML].tidyName;
 				g_GlobalTidy.m_TidyXml = g_GlobalTidy.m_TidyNames[SYN_XML].tidyName;
 				g_GlobalTidy.m_TidyPhp = g_GlobalTidy.m_TidyNames[SYN_PHP].tidyName;
@@ -104,6 +105,7 @@ INT_PTR CSetSheet::DoModalAllPage()
 	CSetPageBase pageCpp(_T("C/C++"), _T("CPP"), g_GlobalTidy.m_TidyCpp);
 	CSetPageBase pageJava(_T("Java"), _T("CPP"), g_GlobalTidy.m_TidyJava);
 	CSetPageBase pageCs(_T("C#"), _T("CPP"), g_GlobalTidy.m_TidyCSharp);
+	CSetPageBase pageObjc(_T("Objective‚ÄëC"), _T("CPP"), g_GlobalTidy.m_TidyObjectiveC);
 	CSetPageBase pageJS(_T("JavaScript"), _T("JavaScript"), g_GlobalTidy.m_TidyJs);
 	CSetPageBase pageHtml(_T("HTML"), _T("HTML"), g_GlobalTidy.m_TidyHtml);
 	CSetPageBase pageXml(_T("XML"), _T("HTML"), g_GlobalTidy.m_TidyXml);
@@ -118,6 +120,7 @@ INT_PTR CSetSheet::DoModalAllPage()
 	AddPage(&pageJava);
 	AddPage(&pageJS);
 	AddPage(&pageJson);
+	AddPage(&pageObjc);
 	AddPage(&pagePHP);
 	AddPage(&pageSql);
 	AddPage(&pageXml);
@@ -153,6 +156,10 @@ void CSetSheet::SaveTidyToReg()
 			bRegVaild = FALSE;
 		}
 		if (!reg.Write(g_GlobalTidy.m_TidyNames[SYN_CS].langName, g_GlobalTidy.m_TidyCSharp))
+		{
+			bRegVaild = FALSE;
+		}
+		if (!reg.Write(g_GlobalTidy.m_TidyNames[SYN_OBJECTIVEC].langName, g_GlobalTidy.m_TidyObjectiveC))
 		{
 			bRegVaild = FALSE;
 		}

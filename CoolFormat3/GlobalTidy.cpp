@@ -16,7 +16,7 @@ TidyDeafult GlobalTidy::m_TidyNames[MAX_SYN_LANG] = {
 	{_T("D"),					_T("*.d;"),																					SYN_D},
 	{_T("Fortran"),				_T("*.f;*.for;*.f90;*.f95;*.f2k;"),															SYN_FORTRAN},
 	{_T("Haskell"),				_T("*.hs;*.lhs;*.las;"),																	SYN_HASKELL},
-	{_T("HTML"),				_T("-aan-dep-fb-fbc-fu-js-ll-n-ox-pe-qa-qn-m-wa-wj-wp-ws-sw-fo-i0-d1-ce0-ie0-oe0-w0-sbo0"),		SYN_HTML},
+	{_T("HTML"),				_T("-aan-dep-fb-fbc-fu-js-ll-n-ox-pe-qa-qn-m-wa-wj-wp-ws-sw-fo-i0-d1-ce0-ie0-oe0-w0-sbo0"),	SYN_HTML},
 	{_T("INI"),					_T("*.ini;*.inf;*.reg;*.url;"),																SYN_INI},
 	{_T("Java"),				_T("-A1-p-N-Y-k3"),																			SYN_JAVA},
 	{_T("JavaScript"),			_T("-nb-cn4"),																				SYN_JAVASCRIPT},
@@ -25,7 +25,7 @@ TidyDeafult GlobalTidy::m_TidyNames[MAX_SYN_LANG] = {
 	{_T("LISP"),				_T("*.lsp;*.lisp;"),																		SYN_LISP},
 	{_T("LUA"),					_T("*.lua;"),																				SYN_LUA},
 	{_T("NormalText"),			_T("*.txt;"),																				SYN_NORMALTEXT},
-	{_T("Objective-C"),			_T("*.h;*.m;*.mm;"),																		SYN_OBJECTIVEC},
+	{_T("Objective-C"),			_T("-A1-p-N-Y-k3"),																			SYN_OBJECTIVEC},
 	{_T("Pascal"),				_T("*.dpr;*.dpk;*.pas;*.dfm;*.inc;*.pp;"),													SYN_PASCAL},
 	{_T("Perl"),				_T("*.pl;*.pm;*.plx;"),																		SYN_PERL},
 	{_T("PHP"),					_T("-sas-icd-samt-salo-saeo-saro-sabo-saao-samp-aas-rsl-iel-rpc-rst-st"),					SYN_PHP},
@@ -57,6 +57,7 @@ void GlobalTidy::InitGlobalTidy()
 	m_bTidySyn[SYN_CPP] = TRUE;
 	m_bTidySyn[SYN_CS] = TRUE;
 	m_bTidySyn[SYN_JAVA] = TRUE;
+	m_bTidySyn[SYN_OBJECTIVEC] = TRUE;
 	m_bTidySyn[SYN_HTML] = TRUE;
 	m_bTidySyn[SYN_XML] = TRUE;
 	m_bTidySyn[SYN_PHP] = TRUE;
@@ -91,6 +92,12 @@ void GlobalTidy::InitGlobalTidy()
 			strTidy = m_TidyNames[SYN_CS].tidyName;
 		}
 		m_TidyCSharp = strTidy;
+
+		if (!reg.Read(m_TidyNames[SYN_OBJECTIVEC].langName, strTidy))
+		{
+			strTidy = m_TidyNames[SYN_OBJECTIVEC].tidyName;
+		}
+		m_TidyObjectiveC = strTidy;
 
 		if (!reg.Read(m_TidyNames[SYN_HTML].langName, strTidy))
 		{
@@ -175,6 +182,7 @@ void GlobalTidy::InitGlobalTidy()
 		m_TidyCpp = m_TidyNames[SYN_CPP].tidyName;
 		m_TidyJava = m_TidyNames[SYN_JAVA].tidyName;
 		m_TidyCSharp = m_TidyNames[SYN_CS].tidyName;
+		m_TidyObjectiveC = m_TidyNames[SYN_OBJECTIVEC].tidyName;
 		m_TidyHtml = m_TidyNames[SYN_HTML].tidyName;
 		m_TidyXml = m_TidyNames[SYN_XML].tidyName;
 		m_TidyPhp = m_TidyNames[SYN_PHP].tidyName;

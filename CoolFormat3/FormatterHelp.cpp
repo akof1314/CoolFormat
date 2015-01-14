@@ -68,6 +68,15 @@ BOOL CFormatterHelp::DoFormatter(UINT nLanguage, const CString &strTextIn, CStri
 		strTidy.append(" --mode=java");
 	}
 	break;
+	case SYN_OBJECTIVEC:
+	{
+		pTidy = new CCFCppTidy();
+		CString strNewTidy(g_GlobalTidy.m_TidyObjectiveC);
+		strNewTidy.Replace(_T("-"), _T(" -"));
+		strTidy = CT2A(strNewTidy);
+		strTidy.append(" --mode=c");
+	}
+	break;
 	case SYN_HTML:
 	{
 		pTidy = new CCFHtmlTidy();

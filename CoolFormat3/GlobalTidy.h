@@ -32,6 +32,7 @@ public:
 	CString m_TidyCpp;
 	CString m_TidyJava;
 	CString m_TidyCSharp;
+	CString m_TidyObjectiveC;
 
 	/** Tidy选项类 MIT协议 */
 	CString m_TidyHtml;
