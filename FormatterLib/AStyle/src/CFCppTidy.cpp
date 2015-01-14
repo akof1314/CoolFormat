@@ -1,5 +1,6 @@
 #include "CFCppTidy.h"
 #include "astyle.h"
+#include "astyle_main.h"
 
 CCFCppTidy::CCFCppTidy(void)
 {
