@@ -879,7 +879,8 @@ void CSynBCGPEditCtrl::InsertComment(BOOL bForward)
 
 		SetLastUndoReason(g_dwUATComment);
 		ReplaceSel(strSelText, TRUE);
-	} 
+		SetSel2(nFirstSelRow, m_nCurrOffset, TRUE);
+	}
 	else
 	{
 		int nCommentLen = strComment.GetLength();
@@ -923,20 +924,61 @@ void CSynBCGPEditCtrl::InsertComment(BOOL bForward)
 		{
 			SetLastUndoReason(g_dwUATUncomment);
 			ReplaceSel(strSelText, TRUE);
+			SetSel2(nFirstSelRow, m_nCurrOffset, TRUE);
 		}
 	}
 }
 //////////////////////////////////////////////////////////////////////////
 void CSynBCGPEditCtrl::ReplaceTextToFormatter( BOOL bAllText /*= TRUE*/ )
 {
+	int nFirstSelRow;
 	if (bAllText)
 	{
 		SetSel2(0, -1, TRUE, FALSE);
 	}
+	else
+	{
+		int iStartSel = min(m_iStartSel, m_iEndSel);
+		int iEndSel = max(m_iStartSel, m_iEndSel);
+		int nLastSelRow;
+		if (iStartSel == -1 || iEndSel == -1)
+		{
+			nFirstSelRow = GetCurrRowStart(FALSE);
+			nLastSelRow = GetCurrRowEnd(FALSE);
+		}
+		else
+		{
+			int nEndRowOffset = GetRowStartByOffset(iEndSel, TRUE);
+
+			if (nEndRowOffset == iEndSel)
+			{
+				iEndSel--;
+			}
+
+			nFirstSelRow = GetRowStartByOffset(iStartSel, TRUE);
+			nLastSelRow = max(iEndSel, GetRowEndByOffset(iEndSel, TRUE));
+		}
+		
+		SetSel2(nFirstSelRow, nLastSelRow + 1, TRUE, FALSE);
+	}
+
 	CString strSelText(GetSelText());
 	if (strSelText.IsEmpty())
 	{
 		return;
+	}
+
+	CString strInitIndent;
+	if (!bAllText)
+	{
+		for (int i = 0; i < strSelText.GetLength(); ++i)
+		{
+			if (strSelText[i] != ' ' && strSelText[i] != '\t')
+			{
+				break;
+			}
+			strInitIndent.AppendChar(strSelText[i]);
+		}
 	}
 
 	CString strTextOut, strMsgOut;
@@ -944,15 +986,31 @@ void CSynBCGPEditCtrl::ReplaceTextToFormatter( BOOL bAllText /*= TRUE*/ )
 	if (formatterSP.DoFormatter(m_SynLanguage.GetCurLanguage(), strSelText, strTextOut, strMsgOut, m_File.GetCodepage()))
 	{
 		SetLastUndoReason(g_dwUATFormatter);
-		DeleteSelectedText (FALSE, FALSE, TRUE);
-		InsertText (strTextOut, m_nCurrOffset, FALSE);
+		
 		if (bAllText)
 		{
+			DeleteSelectedText(FALSE, FALSE, TRUE);
+			InsertText(strTextOut, m_nCurrOffset, FALSE);
 			SetSel2(0, 0, FALSE);
 		}
 		else
 		{
-			RedrawWindow ();
+			int nInitIndentLen = strInitIndent.GetLength();
+			int nPos = nInitIndentLen;
+			strTextOut.Insert(0, strInitIndent);
+			nPos = strTextOut.Find(g_chEOL, nPos);
+			while (nPos != -1)
+			{
+				if (nPos == strTextOut.GetLength() - 1)
+				{
+					break;
+				}
+				strTextOut.Insert(nPos + 1, strInitIndent);
+				nPos = strTextOut.Find(g_chEOL, nPos + nInitIndentLen + 1);
+			}
+
+			ReplaceSel(strTextOut, TRUE);
+			SetSel2(nFirstSelRow, m_nCurrOffset, TRUE);
 		}
 	}
 	else
@@ -969,6 +1027,7 @@ void CSynBCGPEditCtrl::ReplaceTextToFormatter( BOOL bAllText /*= TRUE*/ )
 		pFrame->AddOutputMsg(strMsgOut);
 	}
 }
+//////////////////////////////////////////////////////////////////////////
 void CSynBCGPEditCtrl::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	const BOOL bShift = ::GetAsyncKeyState (VK_SHIFT) & 0x8000;
