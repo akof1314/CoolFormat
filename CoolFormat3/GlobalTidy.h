@@ -36,12 +36,6 @@ public:
 
 	/** Tidy选项类 MIT协议 */
 	CString m_TidyHtml;
-	CString m_TidyHtml_at;
-	CString m_TidyHtml_cp;
-	CString m_TidyHtml_nbt;
-	CString m_TidyHtml_net;
-	CString m_TidyHtml_nit;
-	CString m_TidyHtml_npt;
 
 	/** XML选项类 */
 	CString m_TidyXml;

@@ -83,12 +83,6 @@ BOOL CSetSheet::PreTranslateMessage(MSG* pMsg)
 				g_GlobalTidy.m_TidyCss = g_GlobalTidy.m_TidyNames[SYN_CSS].tidyName;
 				g_GlobalTidy.m_TidyJson = g_GlobalTidy.m_TidyNames[SYN_JSON].tidyName;
 				g_GlobalTidy.m_TidySql = g_GlobalTidy.m_TidyNames[SYN_SQL].tidyName;
-				g_GlobalTidy.m_TidyHtml_at.Empty();
-				g_GlobalTidy.m_TidyHtml_cp.Empty();
-				g_GlobalTidy.m_TidyHtml_nbt.Empty();
-				g_GlobalTidy.m_TidyHtml_net.Empty();
-				g_GlobalTidy.m_TidyHtml_nit.Empty();
-				g_GlobalTidy.m_TidyHtml_npt.Empty();
 				EndDialog(IDOK);
 			}
 			return TRUE;
@@ -188,31 +182,6 @@ void CSetSheet::SaveTidyToReg()
 			bRegVaild = FALSE;
 		}
 		if (!reg.Write(g_GlobalTidy.m_TidyNames[SYN_SQL].langName, g_GlobalTidy.m_TidySql))
-		{
-			bRegVaild = FALSE;
-		}
-
-		if (!reg.Write(_T("HTMLat"), g_GlobalTidy.m_TidyHtml_at))
-		{
-			bRegVaild = FALSE;
-		}
-		if (!reg.Write(_T("HTMLcp"), g_GlobalTidy.m_TidyHtml_cp))
-		{
-			bRegVaild = FALSE;
-		}
-		if (!reg.Write(_T("HTMLnbt"), g_GlobalTidy.m_TidyHtml_nbt))
-		{
-			bRegVaild = FALSE;
-		}
-		if (!reg.Write(_T("HTMLnet"), g_GlobalTidy.m_TidyHtml_net))
-		{
-			bRegVaild = FALSE;
-		}
-		if (!reg.Write(_T("HTMLnit"), g_GlobalTidy.m_TidyHtml_nit))
-		{
-			bRegVaild = FALSE;
-		}
-		if (!reg.Write(_T("HTMLnpt"), g_GlobalTidy.m_TidyHtml_npt))
 		{
 			bRegVaild = FALSE;
 		}

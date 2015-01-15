@@ -140,42 +140,6 @@ void GlobalTidy::InitGlobalTidy()
 			strTidy = m_TidyNames[SYN_SQL].tidyName;
 		}
 		m_TidySql = strTidy;
-
-		if (!reg.Read(_T("HTMLat"), strTidy))
-		{
-			strTidy.Empty();
-		}
-		m_TidyHtml_at = strTidy;
-
-		if (!reg.Read(_T("HTMLcp"), strTidy))
-		{
-			strTidy.Empty();
-		}
-		m_TidyHtml_cp = strTidy;
-
-		if (!reg.Read(_T("HTMLnbt"), strTidy))
-		{
-			strTidy.Empty();
-		}
-		m_TidyHtml_nbt  = strTidy;
-
-		if (!reg.Read(_T("HTMLnet"), strTidy))
-		{
-			strTidy.Empty();
-		}
-		m_TidyHtml_net = strTidy;
-
-		if (!reg.Read(_T("HTMLnit"), strTidy))
-		{
-			strTidy.Empty();
-		}
-		m_TidyHtml_nit = strTidy;
-
-		if (!reg.Read(_T("HTMLnpt"), strTidy))
-		{
-			strTidy.Empty();
-		}
-		m_TidyHtml_npt = strTidy;
 	}
 	else
 	{
