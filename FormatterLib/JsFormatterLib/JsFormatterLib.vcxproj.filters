@@ -27,6 +27,12 @@
     <ClCompile Include="CFJsTidy.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="jsmin.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="jsminCharArray.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="jsformatString.h">
@@ -39,6 +45,12 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="CFJsTidy.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="jsmin.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="jsminCharArray.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

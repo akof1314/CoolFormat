@@ -11,12 +11,12 @@
 			<VALUE>Attach</VALUE>
 			<ITEM>
 				<VALUE>Attach</VALUE>
-				<PREVIEW>if ('this_is' == /an_example/) {\r\n    of_beautifer();\r\n} else {\r\n    var a = b ? (c % d) : e[f];\r\n}</PREVIEW>
+				<PREVIEW>if (&apos;this_is&apos; == /an_example/) {\r\n    of_beautifer();\r\n} else {\r\n    var a = b ? (c % d) : e[f];\r\n}</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>Break</VALUE>
 				<SHORT>nb</SHORT>
-				<PREVIEW>if ('this_is' == /an_example/)\r\n{\r\n    of_beautifer();\r\n}\r\nelse\r\n{\r\n    var a = b ? (c % d) : e[f];\r\n}</PREVIEW>
+				<PREVIEW>if (&apos;this_is&apos; == /an_example/)\r\n{\r\n    of_beautifer();\r\n}\r\nelse\r\n{\r\n    var a = b ? (c % d) : e[f];\r\n}</PREVIEW>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
@@ -30,12 +30,12 @@
 			<ITEM>
 				<VALUE>Spaces</VALUE>
 				<SHORT>ci0</SHORT>
-				<PREVIEW>if ('this_is' == /an_example/) {\r\n****of_beautifer();\r\n} else {\r\n****var a = b ? (c % d) : e[f];\r\n}</PREVIEW>
+				<PREVIEW>if (&apos;this_is&apos; == /an_example/) {\r\n****of_beautifer();\r\n} else {\r\n****var a = b ? (c % d) : e[f];\r\n}</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>Tab</VALUE>
 				<SHORT>ci1</SHORT>
-				<PREVIEW>if ('this_is' == /an_example/) {\r\n--->of_beautifer();\r\n} else {\r\n--->var a = b ? (c % d) : e[f];\r\n}</PREVIEW>
+				<PREVIEW>if (&apos;this_is&apos; == /an_example/) {\r\n---&gt;of_beautifer();\r\n} else {\r\n---&gt;var a = b ? (c % d) : e[f];\r\n}</PREVIEW>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
@@ -44,7 +44,53 @@
 			<VALUE>4</VALUE>
 			<RANGE>0, 100</RANGE>
 			<SHORT>cn</SHORT>
-			<PREVIEW>//indent_number4\r\nif ('this_is' == /an_example/) {\r\n    of_beautifer();\r\n} else {\r\n    var a = b ? (c % d) : e[f];\r\n}\r\n\r\n//indent_number5\r\nif ('this_is' == /an_example/) {\r\n     of_beautifer();\r\n} else {\r\n     var a = b ? (c % d) : e[f];\r\n}</PREVIEW>
+			<PREVIEW>//indent_number4\r\nif (&apos;this_is&apos; == /an_example/) {\r\n    of_beautifer();\r\n} else {\r\n    var a = b ? (c % d) : e[f];\r\n}\r\n\r\n//indent_number5\r\nif (&apos;this_is&apos; == /an_example/) {\r\n     of_beautifer();\r\n} else {\r\n     var a = b ? (c % d) : e[f];\r\n}</PREVIEW>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Fill empty lines</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>ei</SHORT>
+				<PREVIEW>if (&apos;this_is&apos; == /an_example/) {\r\n****of_beautifer();\r\n****\r\n} else {\r\n****var a = b ? (c % d) : e[f];\r\n}</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>if (&apos;this_is&apos; == /an_example/) {\r\n****of_beautifer();\r\n\r\n} else {\r\n****var a = b ? (c % d) : e[f];\r\n}</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Min</NAME>
+			<GROUP>TRUE</GROUP>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Compression</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>mi</SHORT>
+				<PREVIEW>if(&apos;this_is&apos;==/an_example/){of_beautifer();}else{var a=b?(c%d):e[f];}</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>if (&apos;this_is&apos; == /an_example/) {\r\n    of_beautifer();\r\n} else {\r\n    var a = b ? (c % d) : e[f];\r\n}</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Keep top comments</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>kc</SHORT>
+				<PREVIEW>/* an_example */\r\nif(&apos;this_is&apos;==/an_example/){of_beautifer();}else{var a=b?(c%d):e[f];}</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>if(&apos;this_is&apos;==/an_example/){of_beautifer();}else{var a=b?(c%d):e[f];}</PREVIEW>
+			</ITEM>
 		</PROPERTY>
 	</PROPERTYS>
 </SETCONFIG>
