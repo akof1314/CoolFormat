@@ -106,6 +106,25 @@ public:
 			"}   // end FooName\n");
 		DoFormatterAssert("-C", strTextIn, strTextIn);
 	}
+
+	TEST_METHOD(PadOperator)
+	{
+		CString strTextIn(
+			"\nstruct Bar\n"
+			"{\n"
+			"    int foo = 2;\n"
+			"    int bar = 4;\n"
+			"    int baz = foo*bar;\n"
+			"};");
+		CString strTextOut(
+			"\nstruct Bar\n"
+			"{\n"
+			"    int foo = 2;\n"
+			"    int bar = 4;\n"
+			"    int baz = foo * bar;\n"
+			"};");
+		DoFormatterAssert("-p-k1", strTextIn, strTextOut);
+	}
 };
 
 TEST_CLASS(UnitTestJS)
@@ -385,5 +404,39 @@ public:
 			"	color:black;\n"
 			"}");
 		DoFormatterAssert("-c3-ss", strTextIn, strTextOut);
+	}
+};
+
+TEST_CLASS(UnitTestObjC)
+{
+public:
+	void DoFormatterAssert(const char *pOptions, const CString &strTextIn, const CString &strTextNeedOut)
+	{
+		CFormatterHelp formatterSP;
+		CString strTextOut, strMsgOut;
+		g_GlobalTidy.m_TidyObjectiveC = pOptions;
+		formatterSP.DoFormatter(SYN_OBJECTIVEC, strTextIn, strTextOut, strMsgOut, _AtlGetConversionACP());
+		Assert::AreEqual(strTextNeedOut.GetString(), strTextOut.GetString());
+	}
+
+	TEST_METHOD(ObjCUnPadMethodPrefix)
+	{
+		CString strTextIn(
+			"\n"
+			"-(void)Foo1;\n"
+			"+ (void)Foo2;\n"
+			"-    (void)Foo3;\n"
+			"\n"
+			"-(void)Foo4\n"
+			"{ }");
+		CString strTextOut(
+			"\n"
+			"-(void)Foo1;\n"
+			"+(void)Foo2;\n"
+			"-(void)Foo3;\n"
+			"\n"
+			"-(void)Foo4\n"
+			"{ }");
+		DoFormatterAssert("-xR", strTextIn, strTextOut);
 	}
 };
