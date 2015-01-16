@@ -237,7 +237,8 @@ Bool TY_(IsXMLLetter)(uint c)
 {
     return ((c >= 0x41 && c <= 0x5a) ||
         (c >= 0x61 && c <= 0x7a) ||
-        (c >= 0xc0 && c <= 0xd6) ||
+		(c >= 0x80 && c <= 0xff) || // 增加中文判断
+		(c >= 0xc0 && c <= 0xd6) ||
         (c >= 0xd8 && c <= 0xf6) ||
         (c >= 0xf8 && c <= 0xff) ||
         (c >= 0x100 && c <= 0x131) ||
@@ -995,8 +996,8 @@ static tmbchar ParseTagName( TidyDocImpl* doc )
 
     while ((c = TY_(ReadChar)(doc->docIn)) != EndOfStream)
     {
-        if ((!xml && !TY_(IsNamechar)(c)) ||
-            (xml && !TY_(IsXMLNamechar)(c)))
+		if ((!xml && !TY_(IsNamechar)(c)) ||
+			(xml && !TY_(IsXMLNamechar)(c)))
             break;
 
         /* fold case of subsequent characters */
@@ -2065,6 +2066,8 @@ static Node* GetTokenFromStream( TidyDocImpl* doc, GetTokenMode mode )
 
     lexer->txtstart = lexer->txtend = lexer->lexsize;
 
+	Bool xmlIn = cfgBool(doc, TidyXmlTags);
+
     while ((c = TY_(ReadChar)(doc->docIn)) != EndOfStream)
     {
         if (lexer->insertspace)
@@ -2147,9 +2150,23 @@ static Node* GetTokenFromStream( TidyDocImpl* doc, GetTokenMode mode )
 
                     TY_(AddCharToLexer)(lexer, c);
 
-                    if (TY_(IsLetter)(c))
+					if (xmlIn || TY_(IsLetter)(c))
                     {
-                        lexer->lexsize -= 3;
+						if (xmlIn)
+						{
+							for (int iu = 2; iu <= 6; ++iu)
+							{
+								if (lexer->lexbuf[lexer->lexsize - iu] == '/')
+								{
+									lexer->lexsize -= iu + 1;
+									break;
+								}
+							}
+						} 
+						else
+						{
+							lexer->lexsize -= 3;
+						}
                         lexer->txtend = lexer->lexsize;
                         TY_(UngetChar)(c, doc->docIn);
                         lexer->state = LEX_ENDTAG;
@@ -2346,11 +2363,25 @@ static Node* GetTokenFromStream( TidyDocImpl* doc, GetTokenMode mode )
                 }
 
                 /* check for start tag */
-                if (TY_(IsLetter)(c))
+                if (xmlIn || TY_(IsLetter)(c))
                 {
                     TY_(UngetChar)(c, doc->docIn);     /* push back letter */
                     TY_(UngetChar)('<', doc->docIn);
-                    lexer->lexsize -= 2;      /* discard "<" + letter */
+					if (xmlIn)
+					{
+						for (int iu = 2; iu <= 6; ++iu)
+						{
+							if (lexer->lexbuf[lexer->lexsize - iu] == '<')
+							{
+								lexer->lexsize -= iu;      /* discard "<" + letter */
+								break;
+							}
+						}
+					} 
+					else
+					{
+						lexer->lexsize -= 2;      /* discard "<" + letter */
+					}
                     lexer->txtend = lexer->lexsize;
                     lexer->state = LEX_STARTTAG;         /* ready to read tag name */
 
@@ -2373,7 +2404,25 @@ static Node* GetTokenFromStream( TidyDocImpl* doc, GetTokenMode mode )
                 continue;
 
             case LEX_ENDTAG:  /* </letter */
-                lexer->txtstart = lexer->lexsize - 1;
+				if (xmlIn && c > 0x7F)
+				{
+					int erru, countu = 0;
+					tmbchar bufu[10] = { 0 };
+
+					erru = TY_(EncodeCharToUTF8Bytes)(c, bufu, NULL, &countu);
+					if (erru)
+					{
+						lexer->txtstart = lexer->lexsize - 1;
+					}
+					else
+					{
+						lexer->txtstart = lexer->lexsize - countu;
+					}
+				} 
+				else
+				{
+					lexer->txtstart = lexer->lexsize - 1;
+				}
                 doc->docIn->curcol += 2;
                 c = ParseTagName( doc );
                 lexer->token = TagToken( doc, EndTag );  /* create endtag token */
@@ -2400,8 +2449,17 @@ static Node* GetTokenFromStream( TidyDocImpl* doc, GetTokenMode mode )
 
             case LEX_STARTTAG: /* first letter of tagname */
                 c = TY_(ReadChar)(doc->docIn);
-                ChangeChar(lexer, (tmbchar)c);
-                lexer->txtstart = lexer->lexsize - 1; /* set txtstart to first letter */
+				uint oldsize = lexer->lexsize;
+				if (xmlIn)
+				{
+					lexer->lexsize--;
+					TY_(AddCharToLexer)(lexer, c);
+				}
+				else
+				{
+					ChangeChar(lexer, (tmbchar)c);
+				}
+				lexer->txtstart = oldsize - 1; /* set txtstart to first letter */
                 c = ParseTagName( doc );
                 isempty = no;
                 attributes = NULL;
