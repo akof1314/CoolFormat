@@ -508,6 +508,9 @@ BOOL CMainFrame::CreateRibbonBar ()
 	bNameVaild = strTemp.LoadString(IDS_STRING84);
 	ASSERT(bNameVaild);
 	pCategory->AddHidden(new CBCGPRibbonButton(ID_EDIT_REDO, strTemp, 5));
+	bNameVaild = strTemp.LoadString(IDS_CHANGE_VIEW);
+	ASSERT(bNameVaild);
+	pCategory->AddHidden(new CBCGPRibbonButton(ID_CHANGE_VIEW, strTemp));
 
 	// 添加高级属性页
 	bNameVaild = strTemp.LoadString(IDS_STRING85);

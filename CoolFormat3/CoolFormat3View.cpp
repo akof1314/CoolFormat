@@ -160,23 +160,9 @@ BOOL CCoolFormat3View::PreTranslateMessage(MSG* pMsg)
 {
 	if (pMsg->message == WM_KEYDOWN)
 	{
-		if (pMsg->wParam == 192)			//ÇÐ»»´úÂë¡¢¸ßÁÁ
+		if (TranslateAccelerator(m_hWnd, m_hAccel, pMsg))
 		{
-			if ((GetKeyState(VK_CONTROL) & 0x8000))
-			{
-				if (GetTabControl().GetTabsNum() > 1)
-				{
-					SetActiveView(1 - GetTabControl().GetActiveTab());
-				}
-				return TRUE;
-			} 
-		}		
-		else
-		{
-			if (TranslateAccelerator(m_hWnd, m_hAccel, pMsg))
-			{
-				return true;
-			}
+			return true;
 		}
 	}
 	return CBCGPTabView::PreTranslateMessage(pMsg);

@@ -97,6 +97,7 @@ BEGIN_MESSAGE_MAP(CSynBCGPEditView, CBCGPEditView)
 	ON_COMMAND(ID_ENCODING_GB2312, &CSynBCGPEditView::OnEncodingGb2312)
 	ON_COMMAND(ID_ENCODING_SHIFTJIS, &CSynBCGPEditView::OnEncodingShiftjis)
 	ON_COMMAND(ID_ENCODING_EUCKR, &CSynBCGPEditView::OnEncodingEuckr)
+	ON_COMMAND(ID_CHANGE_VIEW, &CSynBCGPEditView::OnChangeView)
 END_MESSAGE_MAP()
 
 
@@ -935,4 +936,24 @@ void CSynBCGPEditView::OnEncodingEuckr()
 {
 	m_pEdit->SelectEncoding(51949);
 	ReSetEncodingLabel();
+}
+
+void CSynBCGPEditView::OnChangeView()
+{
+	CWnd *pParentWnd = GetParent();
+	if (pParentWnd == NULL)
+	{
+		return;
+	}
+	pParentWnd = pParentWnd->GetParent();
+	if (pParentWnd == NULL)
+	{
+		return;
+	}
+
+	CBCGPTabView *pTabView = (CBCGPTabView *)pParentWnd;
+	if (pTabView->GetTabControl().GetTabsNum() > 1)
+	{
+		pTabView->SetActiveView(1);
+	}
 }

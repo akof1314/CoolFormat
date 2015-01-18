@@ -227,6 +227,7 @@ BEGIN
         MENUITEM "输出窗口",                        32951
         MENUITEM "批量格式化",                       ID_BATCHFORMAT
         MENUITEM "新版本提示",                       ID_NEWVERTIP
+        MENUITEM "切换视图",                        ID_CHANGE_VIEW
     END
 END
 
@@ -448,7 +449,7 @@ BEGIN
     LTEXT           "无幻出品",IDC_STATIC_WUHUAN,7,105,69,8
     DEFPUSHBUTTON   "确定",IDOK,178,100,50,16,WS_GROUP
     PUSHBUTTON      "http://blog.csdn.net/akof1314",IDC_COMPANY_URL,55,104,119,14
-    CONTROL         IDB_BITMAP_ABOUT,IDC_STATIC,"Static",SS_BITMAP,21,21,46,46
+	CONTROL         IDB_BITMAP_ABOUT, IDC_STATIC, "Static", SS_BITMAP, 21, 21, 46, 46, NOT WS_GROUP
     LTEXT           "CoolFormat 版本 3.2       版权所有 (C) 2013",IDC_STATIC_VERSION,7,90,180,8,SS_NOPREFIX
     LTEXT           "静态",IDC_STATIC_ABOUT,84,24,142,57
 END
@@ -1394,6 +1395,8 @@ BEGIN
     IDS_STATUS_ENCODING     "编码格式"
     IDS_NEWVERSION          "新版本可用"
     IDS_NEWVERSION_DESC     "更新至最新版本"
+    IDS_CHANGE_VIEW         "切换视图"
+    ID_CHANGE_VIEW          "代码与高亮之间切换\n切换视图"
 END
 
 #endif    // 中文(简体，中国) resources

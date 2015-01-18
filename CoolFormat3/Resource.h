@@ -167,6 +167,8 @@
 #define IDS_STATUS_ENCODING             148
 #define IDS_NEWVERSION                  149
 #define IDS_NEWVERSION_DESC             150
+#define IDS_CHANGE_VIEW                 151
+#define ID_CHANGE_VIEW                  152
 #define IDB_RIBBON_ICONS                154
 #define IDB_RIBBON_FILESMALL            155
 #define IDB_RIBBON_FILELARGE            156

@@ -134,6 +134,7 @@ public:
 	afx_msg void OnEncodingGb2312();
 	afx_msg void OnEncodingShiftjis();
 	afx_msg void OnEncodingEuckr();
+	afx_msg void OnChangeView();
 };
 
 
