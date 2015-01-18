@@ -38,7 +38,6 @@ CSynBCGPEditCtrl::CSynBCGPEditCtrl()
 	m_nColorBlockStrLenMax = 4 + 2;
 	m_bNumberColor = FALSE;
 	m_bCheckColorTags = FALSE;
-	m_bFirstShow = TRUE;
 }
 
 CSynBCGPEditCtrl::~CSynBCGPEditCtrl()
@@ -46,7 +45,6 @@ CSynBCGPEditCtrl::~CSynBCGPEditCtrl()
 }
 
 BEGIN_MESSAGE_MAP(CSynBCGPEditCtrl, CBCGPEditCtrl)
-	ON_WM_KILLFOCUS()
 	ON_WM_CREATE()
 	ON_WM_SYSCOLORCHANGE()
 	ON_WM_LBUTTONDOWN()
@@ -406,18 +404,6 @@ void CSynBCGPEditCtrl::OnGetCharColor( TCHAR ch, int nOffset, COLORREF& clrText,
 				}
 			}
 		}
-	}
-}
-
-
-void CSynBCGPEditCtrl::OnKillFocus(CWnd* pNewWnd)
-{
-	CBCGPEditCtrl::OnKillFocus(pNewWnd);
-
-	if (m_bFirstShow)
-	{
-		m_bFirstShow = FALSE;
-		SetFocus();
 	}
 }
 

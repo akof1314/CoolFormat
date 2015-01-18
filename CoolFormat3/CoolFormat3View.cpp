@@ -22,6 +22,8 @@ BEGIN_MESSAGE_MAP(CCoolFormat3View, CBCGPTabView)
 	ON_COMMAND(ID_FILE_PRINT, CBCGPTabView::OnFilePrint)
 	ON_COMMAND(ID_FILE_PRINT_PREVIEW, OnFilePrintPreview)
 	ON_COMMAND(ID_FILE_PRINT_DIRECT, CBCGPTabView::OnFilePrint)
+	ON_WM_SETFOCUS()
+	ON_WM_CREATE()
 END_MESSAGE_MAP()
 
 // CCoolFormat3View construction/destruction
@@ -108,15 +110,6 @@ CCoolFormat3Doc* CCoolFormat3View::GetDocument() const // non-debug version is i
 void CCoolFormat3View::OnInitialUpdate()
 {	
 	CBCGPTabView::OnInitialUpdate();
-	
-	GetTabControl().EnableTabSwap(FALSE);
-	GetTabControl().HideSingleTab(TRUE);
-	GetTabControl().AutoDestroyWindow(TRUE);
-	m_hAccel = LoadAccelerators(AfxGetInstanceHandle(), MAKEINTRESOURCE(IDR_ACCEL_EDIT));
-	CString strTemp;
-	BOOL bNameVaild = strTemp.LoadString(ID_TAB_CODE);
-	ASSERT(bNameVaild);
-	AddView(RUNTIME_CLASS (CSynBCGPEditView), strTemp, ID_TAB_CODE);
 
 	CSynBCGPEditView *pCodeView = (CSynBCGPEditView*)GetActiveView();
 	if (!GetDocument()->GetPathName().IsEmpty())
@@ -187,4 +180,32 @@ BOOL CCoolFormat3View::PreTranslateMessage(MSG* pMsg)
 		}
 	}
 	return CBCGPTabView::PreTranslateMessage(pMsg);
+}
+
+void CCoolFormat3View::OnSetFocus(CWnd* pOldWnd)
+{
+	CBCGPTabView::OnSetFocus(pOldWnd);
+
+	if (GetActiveView())
+	{
+		GetActiveView()->SetFocus();
+	}
+}
+
+int CCoolFormat3View::OnCreate(LPCREATESTRUCT lpCreateStruct)
+{
+	if (CBCGPTabView::OnCreate(lpCreateStruct) == -1)
+		return -1;
+
+	GetTabControl().EnableTabSwap(FALSE);
+	GetTabControl().HideSingleTab(TRUE);
+	GetTabControl().AutoDestroyWindow(TRUE);
+	m_hAccel = LoadAccelerators(AfxGetInstanceHandle(), MAKEINTRESOURCE(IDR_ACCEL_EDIT));
+
+	CString strTemp;
+	BOOL bNameVaild = strTemp.LoadString(ID_TAB_CODE);
+	ASSERT(bNameVaild);
+	AddView(RUNTIME_CLASS(CSynBCGPEditView), strTemp, ID_TAB_CODE);
+
+	return 0;
 }

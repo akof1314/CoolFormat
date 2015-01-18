@@ -110,14 +110,12 @@ public:
 protected:
 	CSynLanguage m_SynLanguage;
 	BOOL m_bNumberColor;
-	BOOL m_bFirstShow;
 	CKofFile m_File;
 	void OnGetCharColor (TCHAR ch, int nOffset, COLORREF& clrText, COLORREF& clrBk);
 	BOOL OnGetWordColor (const CString& strWord, COLORREF& clrText, COLORREF& clrBk, int nPos);	
 	DECLARE_MESSAGE_MAP()
 
 public:
-	afx_msg void OnKillFocus(CWnd* pNewWnd);
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	afx_msg void OnSysColorChange();
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);

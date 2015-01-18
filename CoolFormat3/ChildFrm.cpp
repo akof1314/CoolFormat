@@ -92,11 +92,6 @@ int CChildFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	DockControlBar(&m_wndOutput);
 	m_wndOutput.ShowControlBar(FALSE, FALSE, FALSE);
 
-	//以下是防止edit闪烁，已经通过隐藏减少闪烁
-	//GetParent()->SetRedraw (FALSE);
-	//MDIMaximize();
-	//GetParent()->SetRedraw (TRUE);
-
 	return 0;
 }
 
