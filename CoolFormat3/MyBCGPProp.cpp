@@ -248,11 +248,11 @@ void CMyBCGPProp::GetResultShort(CString& strValue)
 			strValue += STR_SHORT_PREFIX + strShort
 				+ (IsList() ? _T("") : FormatProperty());
 		}
-	}
 
-	if (m_pBuddyProp)
-	{
-		strValue += m_pBuddyProp->FormatProperty();
+		if (m_pBuddyProp)
+		{
+			strValue += m_pBuddyProp->FormatProperty();
+		}
 	}
 }
 

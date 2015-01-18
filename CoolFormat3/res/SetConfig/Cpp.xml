@@ -704,12 +704,26 @@
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
+			<NAME>Max code</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>xC</SHORT>
+				<PREVIEW>if (thisVariable1 == thatVariable1\r\n        || thisVariable2 == thatVariable2\r\n        || thisVariable3 == thatVariable3)\r\n    bar();</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>if (thisVariable1 == thatVariable1 || thisVariable2 == thatVariable2 || thisVariable3 == thatVariable3)\r\n    bar();</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
 			<NAME>Max code length</NAME>
 			<TYPE>Number</TYPE>
 			<VALUE>50</VALUE>
 			<RANGE>50, 200</RANGE>
-			<SHORT>xC</SHORT>
-			<PREVIEW>if (thisVariable1 == thatVariable1 || thisVariable2 == thatVariable2 || thisVariable3 == thatVariable3)\r\n    bar();\r\n\r\n==&gt;\r\n\r\nif (thisVariable1 == thatVariable1\r\n        || thisVariable2 == thatVariable2\r\n        || thisVariable3 == thatVariable3)\r\n    bar();</PREVIEW>
+			<BUDDY>TRUE</BUDDY>
+			<PREVIEW>//Max code length50\r\nif (thisVariable1 == thatVariable1\r\n        || thisVariable2 == thatVariable2\r\n        || thisVariable3 == thatVariable3)\r\n    bar();\r\n\r\n//Max code length100\r\nif (thisVariable1 == thatVariable1 || thisVariable2 == thatVariable2\r\n        || thisVariable3 == thatVariable3)\r\n    bar();</PREVIEW>
 		</PROPERTY>
 		<PROPERTY>
 			<NAME>Break after logical</NAME>
