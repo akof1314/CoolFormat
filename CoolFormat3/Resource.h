@@ -357,6 +357,8 @@
 #define IDC_CHECK10                     1161
 #define IDC_CHECK_BAT_CSS               1161
 #define IDC_CHECK11                     1162
+#define IDC_CHECK_BAT_PHP2              1162
+#define IDC_CHECK_BAT_OBJC              1162
 #define IDC_CHECK12                     1163
 #define IDC_CHECK13                     1164
 #define IDC_CHECK14                     1165

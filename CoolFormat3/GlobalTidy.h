@@ -18,7 +18,6 @@ class GlobalTidy
 public:
 	GlobalTidy(void);
 	~GlobalTidy(void);
-
 	
 	/**
 	 * 初始化全局格式化参数

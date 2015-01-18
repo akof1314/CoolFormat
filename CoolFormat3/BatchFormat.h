@@ -32,6 +32,10 @@ public:
 	void LoadListToList(LPCTSTR pszFileName);
 	void EnableAllWindow(BOOL bEnable);
 	void DoThreadFormatter();
+	void GetAllFiles(CString path, StringList &filenamelist, POSITION headpos);
+	void AddDirToList(LPCTSTR pszDirName);
+
+
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Ö§³Ö
 	DECLARE_MESSAGE_MAP()
 public:
@@ -41,8 +45,6 @@ public:
 	afx_msg void OnBnClickedButtonBatchloadlist();
 	afx_msg void OnBnClickedButtonBarchaddfiles();
 	afx_msg void OnBnClickedButtonDobatch();
-	void GetAllFiles(CString path, StringList &filenamelist, POSITION headpos);
-	void AddDirToList(LPCTSTR pszDirName);
 	afx_msg LRESULT DoFomatterEvenet(WPARAM wParam, LPARAM lParam);
 	afx_msg void OnLvnGetdispinfoListBatchfile(NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg void OnLvnKeydownListBatchfile(NMHDR *pNMHDR, LRESULT *pResult);
