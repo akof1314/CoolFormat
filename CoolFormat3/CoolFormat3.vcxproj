@@ -271,6 +271,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug Static|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release Static|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="UpdateChecker.cpp" />
     <ClCompile Include="XmlOutlineParser.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -337,6 +338,7 @@
     <ClInclude Include="uchardet\nsUTF8Prober.h" />
     <ClInclude Include="uchardet\prmem.h" />
     <ClInclude Include="uchardet\uchardet.h" />
+    <ClInclude Include="UpdateChecker.h" />
     <ClInclude Include="XmlOutlineParser.h" />
   </ItemGroup>
   <ItemGroup>

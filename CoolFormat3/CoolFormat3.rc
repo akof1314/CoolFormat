@@ -226,6 +226,7 @@ BEGIN
         MENUITEM "格式化设置",                       32950
         MENUITEM "输出窗口",                        32951
         MENUITEM "批量格式化",                       ID_BATCHFORMAT
+        MENUITEM "新版本提示",                       ID_NEWVERTIP
     END
 END
 
@@ -1390,6 +1391,8 @@ BEGIN
     IDS_MULTEXT_EDIT_DLG    "文本编辑"
     IDS_STRING_POPULARCOMLANG "中文;English;"
     IDS_STATUS_ENCODING     "编码格式"
+    IDS_NEWVERSION          "新版本可用"
+    IDS_NEWVERSION_DESC     "更新至最新版本"
 END
 
 #endif    // 中文(简体，中国) resources
@@ -1992,6 +1995,8 @@ BEGIN
     IDS_MULTEXT_EDIT_DLG    "Text Edit"
     IDS_STRING_POPULARCOMLANG "Chinese;English;"
     IDS_STATUS_ENCODING     "Encoding"
+    IDS_NEWVERSION          "The new version is available"
+    IDS_NEWVERSION_DESC     "Update to the latest version"
 END
 
 #endif    // 英语(美国) resources

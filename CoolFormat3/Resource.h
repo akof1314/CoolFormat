@@ -165,6 +165,8 @@
 #define IDS_MULTEXT_EDIT_DLG            146
 #define IDS_STRING_POPULARCOMLANG       147
 #define IDS_STATUS_ENCODING             148
+#define IDS_NEWVERSION                  149
+#define IDS_NEWVERSION_DESC             150
 #define IDB_RIBBON_ICONS                154
 #define IDB_RIBBON_FILESMALL            155
 #define IDB_RIBBON_FILELARGE            156
@@ -563,13 +565,15 @@
 #define ID_ANSI                         32994
 #define ID_ENCODING_ANSI                32995
 #define ID_NOW_ENCODING                 32996
+#define ID_32997                        32997
+#define ID_NEWVERTIP                    32998
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        201
-#define _APS_NEXT_COMMAND_VALUE         32997
+#define _APS_NEXT_COMMAND_VALUE         32999
 #define _APS_NEXT_CONTROL_VALUE         1276
 #define _APS_NEXT_SYMED_VALUE           108
 #endif

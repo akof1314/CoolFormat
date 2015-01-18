@@ -18,8 +18,8 @@
 #include "SetEditDlg.h"
 #include "TellBug.h"
 #include "BatchFormat.h"
-
 #include "SetSheet.h"
+#include "UpdateChecker.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -55,6 +55,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CBCGPMDIFrameWnd)
 	ON_COMMAND(ID_FILEDIR_OPEN, &CMainFrame::OnFiledirOpen)
 	ON_COMMAND(ID_STATUSBAR_PANE4, OnAdminUrl)
 	ON_COMMAND(ID_NOW_ENCODING, OnAdminUrl)
+	ON_COMMAND(ID_NEWVERTIP, &CMainFrame::OnNewvertip)
 	ON_REGISTERED_MESSAGE(BCGM_ON_BEFORE_SHOW_RIBBON_ITEM_MENU, OnShowRibbonItemMenu)
 	ON_COMMAND(ID_EXPORTREG, &CMainFrame::OnExportreg)
 	ON_COMMAND(ID_LANGEXT, &CMainFrame::OnLangext)
@@ -65,6 +66,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CBCGPMDIFrameWnd)
 	ON_COMMAND(ID_ONLINEHELP, &CMainFrame::OnOnlinehelp)
 	ON_COMMAND(ID_SETFORMATTER, &CMainFrame::OnSetformatter)
 	ON_COMMAND(ID_BATCHFORMAT, &CMainFrame::OnBatchformat)
+	ON_MESSAGE(WM_DOCHECKUPDATEEVENT, &CMainFrame::DoCheckUpdateEvenet)
 	ON_WM_COPYDATA()
 END_MESSAGE_MAP()
 
@@ -460,11 +462,7 @@ BOOL CMainFrame::CreateRibbonBar ()
 	bNameVaild = strTemp.LoadString(IDS_STRING79);
 	ASSERT(bNameVaild);
 	pPanelFunction->Add(new CBCGPRibbonButton(ID_BATCHFORMAT, strTemp, -1, 5));
-
-
 	pPanelFunction->SetKeys(_T("zf"));
-
-
 
 	//风格面板
 	bNameVaild = strTemp.LoadString(IDS_STRING80);
@@ -486,7 +484,6 @@ BOOL CMainFrame::CreateRibbonBar ()
 	pLabelLang->SetID(ID_NOW_LANG);
 	pPanelStyle->Add(pLabelLang);	
 
-
 	// 窗口面板
 	bNameVaild = strTemp.LoadString(IDS_STRING82);
 	ASSERT(bNameVaild);
@@ -501,10 +498,8 @@ BOOL CMainFrame::CreateRibbonBar ()
 
 	// Add the launch button at the bottom of the panel:
 	pPanelWindow->EnableLaunchButton (ID_WINDOW_MANAGER, -1, _T("l"));
-
 	pPanelWindow->SetKeys (_T("zw"));
 	
-
 	// Add some hidden (non-ribbon) elements:
 	bNameVaild = strTemp.LoadString(IDS_STRING83);
 	ASSERT(bNameVaild);
@@ -595,6 +590,16 @@ BOOL CMainFrame::CreateRibbonBar ()
 	//pStyleButton->SetMenu (IDR_THEME_MENU, TRUE /* Right align */);
 
 	//m_wndRibbonBar.AddToTabs (pStyleButton);
+
+	CUpdateChecker checker;
+	if (checker.IsHasNewVersion())
+	{
+		DoCheckUpdateEvenet(0, 0);
+	}
+	else
+	{
+		checker.CheckUpdate();
+	}
 
 	// Add "About" button to the right of tabs:
 	m_wndRibbonBar.AddToTabs (new CBCGPRibbonButton (ID_APP_ABOUT, _T("\na"), m_PanelImages.ExtractIcon (0)));
@@ -1037,4 +1042,27 @@ BOOL CMainFrame::OnCopyData(CWnd* pWnd, COPYDATASTRUCT* pCopyDataStruct)
 		theApp.OpenDocumentFile(strName);
 	}
 	return CBCGPMDIFrameWnd::OnCopyData(pWnd, pCopyDataStruct);
+}
+
+void CMainFrame::OnNewvertip()
+{
+	ShellExecute(this->m_hWnd, _T("open"), _T("https://github.com/akof1314/CoolFormat"), _T(""), _T(""), SW_SHOW);
+}
+
+LRESULT CMainFrame::DoCheckUpdateEvenet(WPARAM wParam, LPARAM lParam)
+{
+	CString strTemp;
+	BOOL bNameVaild = strTemp.LoadString(IDS_NEWVERSION);
+	ASSERT(bNameVaild);
+	CBCGPRibbonHyperlink *pLink = new CBCGPRibbonHyperlink(ID_NEWVERTIP, strTemp, _T(""));
+	bNameVaild = strTemp.LoadString(IDS_NEWVERSION_DESC);
+	ASSERT(bNameVaild);
+	pLink->SetLink(strTemp);
+	m_wndRibbonBar.AddToTabs(pLink);
+
+	if (wParam == 1)
+	{
+		m_wndRibbonBar.RecalcLayout();
+	}
+	return 0;
 }

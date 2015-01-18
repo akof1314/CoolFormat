@@ -1,5 +1,4 @@
 // CoolFormat3.cpp : Defines the class behaviors for the application.
-//
 
 #include "stdafx.h"
 #include "CoolFormat3.h"
@@ -165,6 +164,8 @@ int CCoolFormat3App::ExitInstance()
 	WriteInt(_T("ApplicationLanguage"), m_nAppLanguageID);
 	WriteInt(_T("SynLanguage"), m_nSynLanguage);
 	WriteInt(_T("BatchLanguage"), m_nBatchSyn);
+	WriteInt(_T("LastCheckUpdate"), m_nLastCheckUpdate);
+	WriteString(_T("LastNewVersion"), m_strNewVersion);
 	BCGCBProCleanUp();
 
 	return CWinApp::ExitInstance();
@@ -262,6 +263,8 @@ void CCoolFormat3App::LoadReg()
 	m_nAppLanguageID = GetInt(_T("ApplicationLanguage"), 0);
 	m_nSynLanguage = GetInt(_T("SynLanguage"), SYN_NORMALTEXT);
 	m_nBatchSyn = GetInt(_T("BatchLanguage"), 0);
+	m_nLastCheckUpdate = GetInt(_T("LastCheckUpdate"), 0);
+	m_strNewVersion = GetString(_T("LastNewVersion"));
 	g_GlobalUtils.InitGlobalUtilsFrist();
 }
 

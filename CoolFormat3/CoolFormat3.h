@@ -8,6 +8,10 @@
 #include "resource.h"       // main symbols
 
 #define COOLFORMAT_CLASS _T("CoolFormat")
+
+#define WM_DOFOMATTEREVENT WM_USER + 1314
+#define WM_DOCHECKUPDATEEVENT WM_USER + 1315
+
 // CCoolFormat3App:
 // See CoolFormat3.cpp for the implementation of this class
 //
@@ -41,6 +45,8 @@ public:
 	UINT m_nAppLanguageID;
 	UINT m_nSynLanguage;
 	UINT m_nBatchSyn;	//批量格式化语言选择
+	UINT m_nLastCheckUpdate; // 上次检查更新的日期
+	CString m_strNewVersion; // 新版本号
 
 // Implementation
 	afx_msg void OnAppAbout();

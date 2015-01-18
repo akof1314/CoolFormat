@@ -9,7 +9,6 @@
 #include "FormatterHelp.h"
 #include <math.h>
 
-#define WM_DOFOMATTEREVENT WM_USER + 1314
 #define LIST_DEFAULT_NAME _T("CoolFormatList")
 #define LIST_EXT_NAME _T(".cflist")
 const TCHAR WIN_EOL[] = _T("\r\n");

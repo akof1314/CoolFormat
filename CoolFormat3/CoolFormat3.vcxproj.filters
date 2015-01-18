@@ -246,6 +246,9 @@
     <ClCompile Include="MyBCGPRibbonStatusBarPane.cpp">
       <Filter>源文件\源码扩展</Filter>
     </ClCompile>
+    <ClCompile Include="UpdateChecker.cpp">
+      <Filter>源文件\主框架</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FormatterHelp.h">
@@ -439,6 +442,9 @@
     </ClInclude>
     <ClInclude Include="MyBCGPRibbonStatusBarPane.h">
       <Filter>头文件\源码扩展</Filter>
+    </ClInclude>
+    <ClInclude Include="UpdateChecker.h">
+      <Filter>头文件\主框架</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
