@@ -451,7 +451,7 @@ BEGIN
     DEFPUSHBUTTON   "确定",IDOK,178,100,50,16,WS_GROUP
     PUSHBUTTON      "http://blog.csdn.net/akof1314",IDC_COMPANY_URL,55,104,119,14
     CONTROL         IDB_BITMAP_ABOUT,IDC_STATIC,"Static",SS_BITMAP,21,21,46,46
-    LTEXT           "CoolFormat 版本 3.2       版权所有 (C) 2013",IDC_STATIC_VERSION,7,90,180,8,SS_NOPREFIX
+    LTEXT           "CoolFormat 版本 3.3       版权所有 (C) 2015",IDC_STATIC_VERSION,7,90,180,8,SS_NOPREFIX
     LTEXT           "静态",IDC_STATIC_ABOUT,84,24,142,57
 END
 
@@ -683,8 +683,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 3,2,0,1
- PRODUCTVERSION 3,2,0,1
+ FILEVERSION 3,3,0,1
+ PRODUCTVERSION 3,3,0,1
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -701,12 +701,12 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "无幻出品"
             VALUE "FileDescription", "源代码格式化"
-            VALUE "FileVersion", "3.2.0.1"
+            VALUE "FileVersion", "3.3.0.1"
             VALUE "InternalName", "CoolFormat.exe"
-            VALUE "LegalCopyright", "无幻 (c) 2010-2013。保留所有权利。"
+            VALUE "LegalCopyright", "无幻 (c) 2010-2015。保留所有权利。"
             VALUE "OriginalFilename", "CoolFormat.exe"
             VALUE "ProductName", "CoolFormat源代码格式化"
-            VALUE "ProductVersion", "3.2.0.1"
+            VALUE "ProductVersion", "3.3.0.1"
         END
     END
     BLOCK "VarFileInfo"
@@ -967,7 +967,7 @@ BEGIN
     IDS_STRING_WUHUAN       "无幻出品"
     IDS_STRING_CHANGELANG   "更改语言将在退出并重启程序后生效"
     IDS_STRING_HTML_AUTOCOPY "自动复制"
-    IDS_STRING_VERSION      "CoolFormat 版本 3.2       版权所有 (C) 2013"
+    IDS_STRING_VERSION      "CoolFormat 版本 3.3       版权所有 (C) 2015"
 END
 
 STRINGTABLE
@@ -1515,8 +1515,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 3,2,0,1
- PRODUCTVERSION 3,2,0,1
+ FILEVERSION 3,3,0,1
+ PRODUCTVERSION 3,3,0,1
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -1533,12 +1533,12 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "WuHuan Product"
             VALUE "FileDescription", "Source Code Formatter"
-            VALUE "FileVersion", "3.2.0.1"
+            VALUE "FileVersion", "3.3.0.1"
             VALUE "InternalName", "CoolFormat.exe"
-            VALUE "LegalCopyright", "WuHuan (c) 2010-2013.  All rights reserved."
+            VALUE "LegalCopyright", "WuHuan (c) 2010-2015.  All rights reserved."
             VALUE "OriginalFilename", "CoolFormat.exe"
             VALUE "ProductName", "CoolFormat Source Code Formatter"
-            VALUE "ProductVersion", "3.2.0.1"
+            VALUE "ProductVersion", "3.3.0.1"
         END
     END
     BLOCK "VarFileInfo"
@@ -1571,7 +1571,7 @@ BEGIN
     IDS_STRING_WUHUAN       "WuHuan Product"
     IDS_STRING_CHANGELANG   "Change the language setting will take effect after you exit and restart the program"
     IDS_STRING_HTML_AUTOCOPY "Auto Copy"
-    IDS_STRING_VERSION      "CoolFormat Version 3.2   Copyright (C) 2013"
+    IDS_STRING_VERSION      "CoolFormat Version 3.3   Copyright (C) 2015"
 END
 
 STRINGTABLE
