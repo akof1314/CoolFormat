@@ -36,7 +36,7 @@ END_MESSAGE_MAP()
 
 BOOL CSetSheet::OnInitDialog()
 {
-	BOOL bResult = CBCGPPropertySheet::OnInitDialog();
+	CBCGPPropertySheet::OnInitDialog();
 
 	CRect rc;
 	GetClientRect(&rc);

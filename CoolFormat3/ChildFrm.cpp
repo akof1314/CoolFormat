@@ -65,7 +65,7 @@ void CChildFrame::Dump(CDumpContext& dc) const
 
 // CChildFrame message handlers
 
-void CChildFrame::ActivateFrame(int nCmdShow)
+void CChildFrame::ActivateFrame(int /*nCmdShow*/)
 {
 	CBCGPMDIChildWnd::ActivateFrame(SW_SHOWMAXIMIZED);
 }

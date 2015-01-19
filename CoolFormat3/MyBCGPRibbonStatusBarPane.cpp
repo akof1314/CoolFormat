@@ -19,6 +19,6 @@ CMyBCGPRibbonStatusBarPane::~CMyBCGPRibbonStatusBarPane()
 {
 }
 
-void CMyBCGPRibbonStatusBarPane::OnDrawMenuArrow(CDC* pDC, const CRect& rectMenuArrow)
+void CMyBCGPRibbonStatusBarPane::OnDrawMenuArrow(CDC* /*pDC*/, const CRect& /*rectMenuArrow*/)
 {
 }

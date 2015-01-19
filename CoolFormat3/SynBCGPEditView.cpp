@@ -103,10 +103,8 @@ END_MESSAGE_MAP()
 
 // CSynBCGPEditView 绘图
 
-void CSynBCGPEditView::OnDraw(CDC* pDC)
+void CSynBCGPEditView::OnDraw(CDC* /*pDC*/)
 {
-	CDocument* pDoc = GetDocument();
-	// TODO: 在此添加绘制代码
 }
 
 
@@ -267,7 +265,7 @@ int CSynBCGPEditView::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	return 0;
 }
 //////////////////////////////////////////////////////////////////////////
-void CSynBCGPEditView::OnUpdateCursorPos( CCmdUI *pCmdUI )
+void CSynBCGPEditView::OnUpdateCursorPos( CCmdUI * /*pCmdUI*/ )
 {
 	CBCGPRibbonStatusBar* pStatusBar = ((CMainFrame*) GetTopLevelFrame ())->GetRibbonStatusBar ();
 	CBCGPRibbonStatusBarPane* pCursorPos = DYNAMIC_DOWNCAST (

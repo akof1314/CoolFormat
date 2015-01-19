@@ -249,7 +249,7 @@ void CCoolFormat3App::OnFileOpen()
 	}
 }
 
-int CCoolFormat3App::DoMessageBox(LPCTSTR lpszPrompt, UINT nType, UINT nIDPrompt)
+int CCoolFormat3App::DoMessageBox(LPCTSTR lpszPrompt, UINT nType, UINT /*nIDPrompt*/)
 {
 	return CFMessageBox(lpszPrompt, nType);
 	//return __super::DoMessageBox(lpszPrompt, nType, nIDPrompt);

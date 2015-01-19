@@ -430,7 +430,7 @@ void CBatchFormat::OnBnClickedButtonDobatch()
 		return;
 	}
 
-	m_pgcProgress.SetRange(0, nCount);
+	m_pgcProgress.SetRange32(0, nCount);
 	m_pgcProgress.SetPos(0);
 	m_pgcProgress.SetStep(1);
 	EnableAllWindow(FALSE);	
@@ -627,7 +627,7 @@ void CBatchFormat::DoThreadFormatter()
 	PostMessage(WM_DOFOMATTEREVENT);
 }
 //////////////////////////////////////////////////////////////////////////
-LRESULT CBatchFormat::DoFomatterEvenet( WPARAM wParam, LPARAM lParam )
+LRESULT CBatchFormat::DoFomatterEvenet( WPARAM /*wParam*/, LPARAM /*lParam*/ )
 {
 	if (FALSE == m_pgcProgress.IsWindowVisible())
 	{

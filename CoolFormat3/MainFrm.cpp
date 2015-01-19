@@ -612,7 +612,7 @@ BOOL CMainFrame::CreateRibbonBar ()
 	return TRUE;
 }
 //////////////////////////////////////////////////////////////////////////
-LRESULT CMainFrame::OnRibbonCustomize (WPARAM wp, LPARAM lp)
+LRESULT CMainFrame::OnRibbonCustomize (WPARAM /*wp*/, LPARAM /*lp*/)
 {
 	ShowOptions (0);
 	return 1;
@@ -686,7 +686,7 @@ void CMainFrame::ShowOptions (int nPage)
 	m_wndRibbonBar.EnableToolTips (theApp.m_bShowToolTips, theApp.m_bShowToolTipDescr);
 }
 //////////////////////////////////////////////////////////////////////////
-LRESULT CMainFrame::OnGetTabToolTip( WPARAM wp, LPARAM lp )
+LRESULT CMainFrame::OnGetTabToolTip( WPARAM /*wp*/, LPARAM lp )
 {
 	CBCGPTabToolTipInfo* pInfo = (CBCGPTabToolTipInfo*)lp;
 	ASSERT (pInfo != NULL);
@@ -1052,7 +1052,7 @@ void CMainFrame::OnNewvertip()
 	ShellExecute(this->m_hWnd, _T("open"), _T("https://github.com/akof1314/CoolFormat"), _T(""), _T(""), SW_SHOW);
 }
 
-LRESULT CMainFrame::DoCheckUpdateEvenet(WPARAM wParam, LPARAM lParam)
+LRESULT CMainFrame::DoCheckUpdateEvenet(WPARAM wParam, LPARAM /*lParam*/)
 {
 	CString strTemp;
 	BOOL bNameVaild = strTemp.LoadString(IDS_NEWVERSION);

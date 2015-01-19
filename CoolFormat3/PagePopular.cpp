@@ -91,7 +91,7 @@ void CPagePopular::OnOK()
 	}
 	++m_nLanguageStyle;
 
-	if (theApp.m_nAppLanguageID != m_nLanguageStyle)
+	if (theApp.m_nAppLanguageID != (UINT)m_nLanguageStyle)
 	{
 		theApp.m_nAppLanguageID = m_nLanguageStyle;
 		CString strTemp;

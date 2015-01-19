@@ -25,8 +25,8 @@ void COptionsPropSheet::OnDrawPageHeader (CDC* pDC, int nPage, CRect rectHeader)
 {
 	CSize sizeIcon = m_Icons.GetImageSize ();
 	CBCGPDrawManager dm (*pDC);
-	COLORREF clrBegin, clrFinish;
-
+	COLORREF clrBegin = RGB(0, 0, 0);
+	COLORREF clrFinish = RGB(0, 0, 0);
 	
 	switch (CBCGPVisualManager2010::GetStyle())
 	{

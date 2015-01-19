@@ -87,7 +87,7 @@ void CSynBCGPEditCtrl::SelectLanguage( UINT nLanguage )
 	while (nPos != -1)
 	{
 		strWord = strWords.Mid(nPosPrior, nPos - nPosPrior);
-		SetWordColor(strWord, m_clrSyn, -1, bCaseSensitive);
+		SetWordColor(strWord, m_clrSyn, (COLORREF)-1, bCaseSensitive);
 
 		nPosPrior = nPos + 1;
 		nPos = strWords.Find(_T(","), nPosPrior);
@@ -99,7 +99,7 @@ void CSynBCGPEditCtrl::SelectLanguage( UINT nLanguage )
 	while (nPos != -1)
 	{
 		strWord = strWords.Mid(nPosPrior, nPos - nPosPrior);
-		SetWordColor(strWord, m_clrType, -1, bCaseSensitive);
+		SetWordColor(strWord, m_clrType, (COLORREF)-1, bCaseSensitive);
 
 		nPosPrior = nPos + 1;
 		nPos = strWords.Find(_T(","), nPosPrior);
@@ -112,7 +112,7 @@ void CSynBCGPEditCtrl::SelectLanguage( UINT nLanguage )
 	m_SynLanguage.GetMultilineComment(strBlockOpen, strBlockClose, bCaseSensitive);
 	if (_T("") != strBlockOpen.Trim())
 	{
-		SetBlockColor(strBlockOpen, strBlockClose, TRUE, m_clrComment, -1, bCaseSensitive);
+		SetBlockColor(strBlockOpen, strBlockClose, TRUE, m_clrComment, (COLORREF)-1, bCaseSensitive);
 	}
 
 	CString strBlockOpens;
@@ -122,7 +122,7 @@ void CSynBCGPEditCtrl::SelectLanguage( UINT nLanguage )
 	while (nPos != -1)
 	{
 		strBlockOpen = strBlockOpens.Mid(nPosPrior, nPos - nPosPrior);
-		SetBlockColor(strBlockOpen, _T(""), FALSE, m_clrComment, -1, bCaseSensitive);
+		SetBlockColor(strBlockOpen, _T(""), FALSE, m_clrComment, (COLORREF)-1, bCaseSensitive);
 
 		nPosPrior = nPos + 1;
 		nPos = strBlockOpens.Find(_T(","), nPosPrior);
@@ -132,12 +132,12 @@ void CSynBCGPEditCtrl::SelectLanguage( UINT nLanguage )
 	m_SynLanguage.GetString(strBlockOpen, strBlockClose, bCaseSensitive);
 	if (_T("") != strBlockOpen.Trim())
 	{
-		SetBlockColor(strBlockOpen, strBlockClose, FALSE, m_clrString, -1, bCaseSensitive);
+		SetBlockColor(strBlockOpen, strBlockClose, FALSE, m_clrString, (COLORREF)-1, bCaseSensitive);
 	}
 	m_SynLanguage.GetChar(strBlockOpen, strBlockClose, bCaseSensitive);
 	if (_T("") != strBlockOpen.Trim())
 	{
-		SetBlockColor(strBlockOpen, strBlockClose, FALSE, m_clrChar, -1, bCaseSensitive);
+		SetBlockColor(strBlockOpen, strBlockClose, FALSE, m_clrChar, (COLORREF)-1, bCaseSensitive);
 	}
 
 	// 6)…Ë÷√’€µ˛
@@ -258,21 +258,21 @@ void CSynBCGPEditCtrl::SelectLanguage( UINT nLanguage )
 		UseXmlParser(TRUE);
 		break;
 	case SYN_PASCAL:
-		SetBlockColor(_T("(*"), _T("*)"), FALSE, m_clrComment, -1, FALSE);
+		SetBlockColor(_T("(*"), _T("*)"), FALSE, m_clrComment, (COLORREF)-1, FALSE);
 		break;
 	case SYN_AUTOIT:
 		//SetBlockColor(_T("#comments-start"), _T("#comments-end"), FALSE, m_clrComment, -1, FALSE);
 		break;
 	case SYN_D:
-		SetBlockColor(_T("/+"), _T("+/"), FALSE, m_clrComment, -1, FALSE);
-		SetBlockColor(_T("`"), _T("`"), FALSE, m_clrChar, -1, FALSE);
+		SetBlockColor(_T("/+"), _T("+/"), FALSE, m_clrComment, (COLORREF)-1, FALSE);
+		SetBlockColor(_T("`"), _T("`"), FALSE, m_clrChar, (COLORREF)-1, FALSE);
 		break;
 	}
 	RedrawWindow();
 	UpdateAutoOutlining();
 }
 
-BOOL CSynBCGPEditCtrl::OnGetWordColor( const CString& strWord, COLORREF& clrText, COLORREF& clrBk, int nPos )
+BOOL CSynBCGPEditCtrl::OnGetWordColor( const CString& strWord, COLORREF& clrText, COLORREF& clrBk, int /*nPos*/ )
 {
 	BCGP_EDIT_SYNTAX_COLOR clrWord;
 
@@ -917,7 +917,7 @@ void CSynBCGPEditCtrl::InsertComment(BOOL bForward)
 //////////////////////////////////////////////////////////////////////////
 void CSynBCGPEditCtrl::ReplaceTextToFormatter( BOOL bAllText /*= TRUE*/ )
 {
-	int nFirstSelRow;
+	int nFirstSelRow = 0;
 	if (bAllText)
 	{
 		SetSel2(0, -1, TRUE, FALSE);
