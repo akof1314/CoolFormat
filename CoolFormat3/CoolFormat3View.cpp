@@ -180,8 +180,28 @@ void CCoolFormat3View::OnSetFocus(CWnd* pOldWnd)
 
 int CCoolFormat3View::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
-	if (CBCGPTabView::OnCreate(lpCreateStruct) == -1)
+	//if (CBCGPTabView::OnCreate(lpCreateStruct) == -1)
+	//	return -1;
+
+	//////////////////////////////////////////////////////////////////////////
+	if (CView::OnCreate(lpCreateStruct) == -1)
 		return -1;
+
+	CRect rectDummy;
+	rectDummy.SetRectEmpty();
+
+	// Create tabs window:
+	if (!m_wndTabs.Create(CBCGPTabWnd::STYLE_3D, rectDummy, this, 1))
+	{
+		TRACE0("Failed to create tab window\n");
+		return -1;      // fail to create
+	}
+	m_wndTabs.ModifyTabStyle(CBCGPTabWnd::STYLE_3D_VS2005);
+
+	m_wndTabs.SetFlatFrame(TRUE, FALSE);
+	m_wndTabs.SetTabBorderSize(0, FALSE);
+	m_wndTabs.AutoDestroyWindow(FALSE);
+	//////////////////////////////////////////////////////////////////////////
 
 	GetTabControl().EnableTabSwap(FALSE);
 	GetTabControl().HideSingleTab(TRUE);

@@ -417,6 +417,7 @@ BEGIN
     "F",            ID_EDIT_FIND,           VIRTKEY, CONTROL, NOINVERT
     "G",            ID_EDIT_GOTO_LINE,      VIRTKEY, CONTROL, NOINVERT
     "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL, NOINVERT
+    "Y",            ID_EDIT_REDO,           VIRTKEY, CONTROL, NOINVERT
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, NOINVERT
     "H",            ID_EDIT_REPLACE,        VIRTKEY, CONTROL, NOINVERT
     "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL, NOINVERT
@@ -426,7 +427,7 @@ BEGIN
     VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
     VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
     "2",            ID_SELFORMAT,           VIRTKEY, CONTROL, NOINVERT
-    "Y",            ID_EDIT_REDO,           VIRTKEY, CONTROL, NOINVERT
+    VK_OEM_3,       ID_CHANGE_VIEW,         VIRTKEY, SHIFT, CONTROL, NOINVERT
 END
 
 IDR_ACCEL_EDIT ACCELERATORS
@@ -449,7 +450,7 @@ BEGIN
     LTEXT           "无幻出品",IDC_STATIC_WUHUAN,7,105,69,8
     DEFPUSHBUTTON   "确定",IDOK,178,100,50,16,WS_GROUP
     PUSHBUTTON      "http://blog.csdn.net/akof1314",IDC_COMPANY_URL,55,104,119,14
-	CONTROL         IDB_BITMAP_ABOUT, IDC_STATIC, "Static", SS_BITMAP, 21, 21, 46, 46, NOT WS_GROUP
+    CONTROL         IDB_BITMAP_ABOUT,IDC_STATIC,"Static",SS_BITMAP,21,21,46,46
     LTEXT           "CoolFormat 版本 3.2       版权所有 (C) 2013",IDC_STATIC_VERSION,7,90,180,8,SS_NOPREFIX
     LTEXT           "静态",IDC_STATIC_ABOUT,84,24,142,57
 END
@@ -1154,7 +1155,7 @@ BEGIN
     IDS_GOTOLINE_DLG        "转到行"
     IDS_GOTOLINE_DLG_TIP    "行号(1 - %d)："
     IDS_EDITSTYLE_DATA      "常规;粗体;斜体;粗体+斜体;"
-    ID_TAB_HTML             "高亮(Ctrl+~) "
+    ID_TAB_HTML             "高亮 "
     ID_TAB_CODE             "代码 "
     IDS_HTML_TIP            "已经重新高亮代码，可以全选复制粘贴到博客！"
     IDS_TELLBUG_TITLE       "提交建议或BUG"
@@ -1758,7 +1759,7 @@ BEGIN
     IDS_GOTOLINE_DLG        "Go to line"
     IDS_GOTOLINE_DLG_TIP    "Line number(1 - %d):"
     IDS_EDITSTYLE_DATA      "Regular;Bold;Italic;Bold+Italic;"
-    ID_TAB_HTML             "Highlight(Ctrl+~) "
+    ID_TAB_HTML             "Highlight"
     ID_TAB_CODE             "Code"
     IDS_HTML_TIP            "Has been re-highlighted code, select to copy and paste to your blog!"
     IDS_TELLBUG_TITLE       "Submit suggestions or BUG"
@@ -2001,6 +2002,8 @@ BEGIN
     IDS_STATUS_ENCODING     "Encoding"
     IDS_NEWVERSION          "The new version is available"
     IDS_NEWVERSION_DESC     "Update to the latest version"
+    IDS_CHANGE_VIEW         "SwitchView"
+    ID_CHANGE_VIEW          "Switch the view between the code and highlight\nSwitchView"
 END
 
 #endif    // 英语(美国) resources
