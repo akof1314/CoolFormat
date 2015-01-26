@@ -157,6 +157,7 @@ void CBatchFormat::OnDropFiles(HDROP hDropInfo)
 void CBatchFormat::InitList()
 {
 	m_listFiles.SetExtendedStyle(m_listFiles.GetExtendedStyle() | LVS_EX_FULLROWSELECT | LVS_EX_CHECKBOXES);
+	m_listFiles.SetFont(&globalData.fontRegular);
 
 	//≤Â»Î¡–Õ∑
 	CString strTemp;
