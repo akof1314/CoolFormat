@@ -33,6 +33,7 @@ BEGIN_MESSAGE_MAP(CSynHtmlView, CHtmlView)
 	ON_COMMAND(ID_COPY_HTMLSRC, &CSynHtmlView::OnCopyHtmlsrc)
 	ON_COMMAND(ID_FILE_SAVE_AS, &CSynHtmlView::OnFileSaveAs)
 	ON_COMMAND(ID_EDIT_COPY, &CSynHtmlView::OnEditCopy)
+	ON_COMMAND(ID_CHANGE_VIEW, &CSynHtmlView::OnChangeView)
 END_MESSAGE_MAP()
 
 // CSynHtmlView Õï¶Ï
@@ -149,7 +150,7 @@ void CSynHtmlView::OnFileSaveAs()
 	OnFileSave();
 }
 //////////////////////////////////////////////////////////////////////////
-BOOL CSynHtmlView::ShowCodeToHtml( const CString &strHtml, const CString &strCode, const CString &strLang, int iLineCount, BOOL bAlreadyShow /*= FALSE*/ )
+BOOL CSynHtmlView::ShowCodeToHtml( const CString &strHtml, const CString &strCode, const CString &strLang, int iLineCount, BOOL /*bAlreadyShow*/ /*= FALSE*/ )
 {
 	m_strHtmlCode = strCode;
 	m_strHtmlCode.Replace(_T("\n"), _T("\r\n"));
@@ -435,4 +436,21 @@ BOOL CSynHtmlView::CopyHtmlSrcToClip( const CString &strHtml )
 
 	::CloseClipboard ();
 	return TRUE;
+}
+
+void CSynHtmlView::OnChangeView()
+{
+	CWnd *pParentWnd = GetParent();
+	if (pParentWnd == NULL)
+	{
+		return;
+	}
+	pParentWnd = pParentWnd->GetParent();
+	if (pParentWnd == NULL)
+	{
+		return;
+	}
+
+	CBCGPTabView *pTabView = (CBCGPTabView *)pParentWnd;
+	pTabView->SetActiveView(0);
 }

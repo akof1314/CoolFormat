@@ -1,0 +1,557 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="源文件\源码扩展">
+      <UniqueIdentifier>{4cc05b91-ce76-447b-b50b-3f5fd775cac2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\主框架">
+      <UniqueIdentifier>{d8e6e8e1-9c21-416c-bf0c-627f232b2466}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\弹出对话框">
+      <UniqueIdentifier>{82b487e2-46e9-4932-b4c9-f94afa0d568f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\自己实现">
+      <UniqueIdentifier>{99c89816-6a73-4684-8ad9-60bc424b7098}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\格式化设置">
+      <UniqueIdentifier>{6574857c-a5a1-4c56-b064-ebfc3dcbd30b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="头文件\源码扩展">
+      <UniqueIdentifier>{9c732204-f49c-46d9-98eb-182a4bd8f1bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\主框架">
+      <UniqueIdentifier>{c6e08111-b364-45f1-a392-14461f5ab2e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\弹出对话框">
+      <UniqueIdentifier>{05ef5176-21c8-4b2e-a9b0-28ad821fe177}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\自己实现">
+      <UniqueIdentifier>{e3bd6639-2e4e-4409-a13e-f104348c42f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\格式化设置">
+      <UniqueIdentifier>{9fe96ea8-e6ed-485d-b71e-ab15a109715d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="配置文件">
+      <UniqueIdentifier>{29673e21-007f-45c1-8bde-9f9fb32ff5f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="uchardet">
+      <UniqueIdentifier>{c3fb3e7f-3256-470d-ae35-280340505c58}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="FormatterHelp.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="GlobalTidy.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="GlobalUtils.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="KofBCGPListCtrl.cpp">
+      <Filter>源文件\源码扩展</Filter>
+    </ClCompile>
+    <ClCompile Include="kofColorButton.cpp">
+      <Filter>源文件\源码扩展</Filter>
+    </ClCompile>
+    <ClCompile Include="ChildFrm.cpp">
+      <Filter>源文件\主框架</Filter>
+    </ClCompile>
+    <ClCompile Include="CoolFormat3.cpp">
+      <Filter>源文件\主框架</Filter>
+    </ClCompile>
+    <ClCompile Include="CoolFormat3Doc.cpp">
+      <Filter>源文件\主框架</Filter>
+    </ClCompile>
+    <ClCompile Include="CoolFormat3View.cpp">
+      <Filter>源文件\主框架</Filter>
+    </ClCompile>
+    <ClCompile Include="MainFrm.cpp">
+      <Filter>源文件\主框架</Filter>
+    </ClCompile>
+    <ClCompile Include="OutputViewBar.cpp">
+      <Filter>源文件\主框架</Filter>
+    </ClCompile>
+    <ClCompile Include="RegConfig.cpp">
+      <Filter>源文件\主框架</Filter>
+    </ClCompile>
+    <ClCompile Include="SynBCGPEditCtrl.cpp">
+      <Filter>源文件\主框架</Filter>
+    </ClCompile>
+    <ClCompile Include="SynBCGPEditView.cpp">
+      <Filter>源文件\主框架</Filter>
+    </ClCompile>
+    <ClCompile Include="SynColorScheme.cpp">
+      <Filter>源文件\主框架</Filter>
+    </ClCompile>
+    <ClCompile Include="SynExtension.cpp">
+      <Filter>源文件\主框架</Filter>
+    </ClCompile>
+    <ClCompile Include="SynHtmlView.cpp">
+      <Filter>源文件\主框架</Filter>
+    </ClCompile>
+    <ClCompile Include="SynLanguage.cpp">
+      <Filter>源文件\主框架</Filter>
+    </ClCompile>
+    <ClCompile Include="SynStyle.cpp">
+      <Filter>源文件\主框架</Filter>
+    </ClCompile>
+    <ClCompile Include="XmlOutlineParser.cpp">
+      <Filter>源文件\主框架</Filter>
+    </ClCompile>
+    <ClCompile Include="BatchFormat.cpp">
+      <Filter>源文件\弹出对话框</Filter>
+    </ClCompile>
+    <ClCompile Include="GotoLineDlg.cpp">
+      <Filter>源文件\弹出对话框</Filter>
+    </ClCompile>
+    <ClCompile Include="LangExtDlg.cpp">
+      <Filter>源文件\弹出对话框</Filter>
+    </ClCompile>
+    <ClCompile Include="LangExtEditDlg.cpp">
+      <Filter>源文件\弹出对话框</Filter>
+    </ClCompile>
+    <ClCompile Include="PagePopular.cpp">
+      <Filter>源文件\弹出对话框</Filter>
+    </ClCompile>
+    <ClCompile Include="PageResource.cpp">
+      <Filter>源文件\弹出对话框</Filter>
+    </ClCompile>
+    <ClCompile Include="SetEditDlg.cpp">
+      <Filter>源文件\弹出对话框</Filter>
+    </ClCompile>
+    <ClCompile Include="SetHtmlDlg.cpp">
+      <Filter>源文件\弹出对话框</Filter>
+    </ClCompile>
+    <ClCompile Include="TellBug.cpp">
+      <Filter>源文件\弹出对话框</Filter>
+    </ClCompile>
+    <ClCompile Include="KofFile.cpp">
+      <Filter>源文件\自己实现</Filter>
+    </ClCompile>
+    <ClCompile Include="SetSheet.cpp">
+      <Filter>源文件\格式化设置</Filter>
+    </ClCompile>
+    <ClCompile Include="SetPageBase.cpp">
+      <Filter>源文件\格式化设置</Filter>
+    </ClCompile>
+    <ClCompile Include="MyBCGPPropList.cpp">
+      <Filter>源文件\源码扩展</Filter>
+    </ClCompile>
+    <ClCompile Include="MyBCGPProp.cpp">
+      <Filter>源文件\源码扩展</Filter>
+    </ClCompile>
+    <ClCompile Include="OptionsPropSheet.cpp">
+      <Filter>源文件\弹出对话框</Filter>
+    </ClCompile>
+    <ClCompile Include="MyBCGPRibbonLabel.cpp">
+      <Filter>源文件\源码扩展</Filter>
+    </ClCompile>
+    <ClCompile Include="MulTextEditDlg.cpp">
+      <Filter>源文件\弹出对话框</Filter>
+    </ClCompile>
+    <ClCompile Include="uchardet\CharDistribution.cpp">
+      <Filter>uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="uchardet\JpCntx.cpp">
+      <Filter>uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="uchardet\LangBulgarianModel.cpp">
+      <Filter>uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="uchardet\LangCyrillicModel.cpp">
+      <Filter>uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="uchardet\LangGreekModel.cpp">
+      <Filter>uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="uchardet\LangHebrewModel.cpp">
+      <Filter>uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="uchardet\LangHungarianModel.cpp">
+      <Filter>uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="uchardet\LangThaiModel.cpp">
+      <Filter>uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="uchardet\nsBig5Prober.cpp">
+      <Filter>uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="uchardet\nsCharSetProber.cpp">
+      <Filter>uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="uchardet\nsEscCharsetProber.cpp">
+      <Filter>uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="uchardet\nsEscSM.cpp">
+      <Filter>uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="uchardet\nsEUCJPProber.cpp">
+      <Filter>uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="uchardet\nsEUCKRProber.cpp">
+      <Filter>uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="uchardet\nsEUCTWProber.cpp">
+      <Filter>uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="uchardet\nsGB2312Prober.cpp">
+      <Filter>uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="uchardet\nsHebrewProber.cpp">
+      <Filter>uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="uchardet\nsLatin1Prober.cpp">
+      <Filter>uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="uchardet\nsMBCSGroupProber.cpp">
+      <Filter>uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="uchardet\nsMBCSSM.cpp">
+      <Filter>uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="uchardet\nsSBCharSetProber.cpp">
+      <Filter>uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="uchardet\nsSBCSGroupProber.cpp">
+      <Filter>uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="uchardet\nsSJISProber.cpp">
+      <Filter>uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="uchardet\nsUniversalDetector.cpp">
+      <Filter>uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="uchardet\nsUTF8Prober.cpp">
+      <Filter>uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="uchardet\uchardet.cpp">
+      <Filter>uchardet</Filter>
+    </ClCompile>
+    <ClCompile Include="MyBCGPRibbonStatusBarPane.cpp">
+      <Filter>源文件\源码扩展</Filter>
+    </ClCompile>
+    <ClCompile Include="UpdateChecker.cpp">
+      <Filter>源文件\主框架</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="FormatterHelp.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalTidy.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalUtils.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="KofBCGPListCtrl.h">
+      <Filter>头文件\源码扩展</Filter>
+    </ClInclude>
+    <ClInclude Include="kofColorButton.h">
+      <Filter>头文件\源码扩展</Filter>
+    </ClInclude>
+    <ClInclude Include="ChildFrm.h">
+      <Filter>头文件\主框架</Filter>
+    </ClInclude>
+    <ClInclude Include="CoolFormat3.h">
+      <Filter>头文件\主框架</Filter>
+    </ClInclude>
+    <ClInclude Include="CoolFormat3Doc.h">
+      <Filter>头文件\主框架</Filter>
+    </ClInclude>
+    <ClInclude Include="CoolFormat3View.h">
+      <Filter>头文件\主框架</Filter>
+    </ClInclude>
+    <ClInclude Include="MainFrm.h">
+      <Filter>头文件\主框架</Filter>
+    </ClInclude>
+    <ClInclude Include="OutputViewBar.h">
+      <Filter>头文件\主框架</Filter>
+    </ClInclude>
+    <ClInclude Include="RegConfig.h">
+      <Filter>头文件\主框架</Filter>
+    </ClInclude>
+    <ClInclude Include="SynBCGPEditCtrl.h">
+      <Filter>头文件\主框架</Filter>
+    </ClInclude>
+    <ClInclude Include="SynBCGPEditView.h">
+      <Filter>头文件\主框架</Filter>
+    </ClInclude>
+    <ClInclude Include="SynColorScheme.h">
+      <Filter>头文件\主框架</Filter>
+    </ClInclude>
+    <ClInclude Include="SynExtension.h">
+      <Filter>头文件\主框架</Filter>
+    </ClInclude>
+    <ClInclude Include="SynHtmlView.h">
+      <Filter>头文件\主框架</Filter>
+    </ClInclude>
+    <ClInclude Include="SynLanguage.h">
+      <Filter>头文件\主框架</Filter>
+    </ClInclude>
+    <ClInclude Include="SynStyle.h">
+      <Filter>头文件\主框架</Filter>
+    </ClInclude>
+    <ClInclude Include="XmlOutlineParser.h">
+      <Filter>头文件\主框架</Filter>
+    </ClInclude>
+    <ClInclude Include="BatchFormat.h">
+      <Filter>头文件\弹出对话框</Filter>
+    </ClInclude>
+    <ClInclude Include="GotoLineDlg.h">
+      <Filter>头文件\弹出对话框</Filter>
+    </ClInclude>
+    <ClInclude Include="LangExtDlg.h">
+      <Filter>头文件\弹出对话框</Filter>
+    </ClInclude>
+    <ClInclude Include="LangExtEditDlg.h">
+      <Filter>头文件\弹出对话框</Filter>
+    </ClInclude>
+    <ClInclude Include="PagePopular.h">
+      <Filter>头文件\弹出对话框</Filter>
+    </ClInclude>
+    <ClInclude Include="PageResource.h">
+      <Filter>头文件\弹出对话框</Filter>
+    </ClInclude>
+    <ClInclude Include="SetEditDlg.h">
+      <Filter>头文件\弹出对话框</Filter>
+    </ClInclude>
+    <ClInclude Include="SetHtmlDlg.h">
+      <Filter>头文件\弹出对话框</Filter>
+    </ClInclude>
+    <ClInclude Include="TellBug.h">
+      <Filter>头文件\弹出对话框</Filter>
+    </ClInclude>
+    <ClInclude Include="KofFile.h">
+      <Filter>头文件\自己实现</Filter>
+    </ClInclude>
+    <ClInclude Include="SetSheet.h">
+      <Filter>头文件\格式化设置</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\BCGControlBarPro\BCGCBPro\bcgprores.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SetPageBase.h">
+      <Filter>头文件\格式化设置</Filter>
+    </ClInclude>
+    <ClInclude Include="MyBCGPPropList.h">
+      <Filter>头文件\源码扩展</Filter>
+    </ClInclude>
+    <ClInclude Include="MyBCGPProp.h">
+      <Filter>头文件\源码扩展</Filter>
+    </ClInclude>
+    <ClInclude Include="OptionsPropSheet.h">
+      <Filter>头文件\弹出对话框</Filter>
+    </ClInclude>
+    <ClInclude Include="MyBCGPRibbonLabel.h">
+      <Filter>头文件\源码扩展</Filter>
+    </ClInclude>
+    <ClInclude Include="MulTextEditDlg.h">
+      <Filter>头文件\弹出对话框</Filter>
+    </ClInclude>
+    <ClInclude Include="CFBaseTidy.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="uchardet\CharDistribution.h">
+      <Filter>uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="uchardet\JpCntx.h">
+      <Filter>uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="uchardet\nsBig5Prober.h">
+      <Filter>uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="uchardet\nsCharSetProber.h">
+      <Filter>uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="uchardet\nsCodingStateMachine.h">
+      <Filter>uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="uchardet\nscore.h">
+      <Filter>uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="uchardet\nsEscCharsetProber.h">
+      <Filter>uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="uchardet\nsEUCJPProber.h">
+      <Filter>uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="uchardet\nsEUCKRProber.h">
+      <Filter>uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="uchardet\nsEUCTWProber.h">
+      <Filter>uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="uchardet\nsGB2312Prober.h">
+      <Filter>uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="uchardet\nsHebrewProber.h">
+      <Filter>uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="uchardet\nsLatin1Prober.h">
+      <Filter>uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="uchardet\nsMBCSGroupProber.h">
+      <Filter>uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="uchardet\nsPkgInt.h">
+      <Filter>uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="uchardet\nsSBCharSetProber.h">
+      <Filter>uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="uchardet\nsSBCSGroupProber.h">
+      <Filter>uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="uchardet\nsSJISProber.h">
+      <Filter>uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="uchardet\nsUniversalDetector.h">
+      <Filter>uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="uchardet\nsUTF8Prober.h">
+      <Filter>uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="uchardet\prmem.h">
+      <Filter>uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="uchardet\uchardet.h">
+      <Filter>uchardet</Filter>
+    </ClInclude>
+    <ClInclude Include="MyBCGPRibbonStatusBarPane.h">
+      <Filter>头文件\源码扩展</Filter>
+    </ClInclude>
+    <ClInclude Include="UpdateChecker.h">
+      <Filter>头文件\主框架</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\aboutmain.bmp">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\CoolFormat3.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\CoolFormat3Doc.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\Document.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\menuimages.bmp">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\menuimages_hc.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\options.png">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\output_bar_hc.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\ribbonfilelarge.bmp">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\ribbonfilesmall.bmp">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\ribbonhomelarge.bmp">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\ribbonhomesmall.bmp">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\ribbonicons.bmp">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\ribbonmain.bmp">
+      <Filter>资源文件</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="CoolFormat3.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="..\..\BCGControlBarPro\BCGCBPro\Styles\BCGPStyle2010Black.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="..\..\BCGControlBarPro\BCGCBPro\Styles\BCGPStyle2010Blue.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
+    <ResourceCompile Include="..\..\BCGControlBarPro\BCGCBPro\Styles\BCGPStyle2010White.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\CoolFormat3.rc2">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="uchardet\Big5Freq.tab">
+      <Filter>uchardet</Filter>
+    </None>
+    <None Include="uchardet\EUCKRFreq.tab">
+      <Filter>uchardet</Filter>
+    </None>
+    <None Include="uchardet\EUCTWFreq.tab">
+      <Filter>uchardet</Filter>
+    </None>
+    <None Include="uchardet\GB2312Freq.tab">
+      <Filter>uchardet</Filter>
+    </None>
+    <None Include="uchardet\JISFreq.tab">
+      <Filter>uchardet</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+    <Text Include="uchardet\README.TXT">
+      <Filter>uchardet</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="res\SetConfig\Cpp.xml">
+      <Filter>配置文件</Filter>
+    </Xml>
+    <Xml Include="res\SetConfig\HTML.xml">
+      <Filter>配置文件</Filter>
+    </Xml>
+    <Xml Include="res\SetConfig\JavaScript.xml">
+      <Filter>配置文件</Filter>
+    </Xml>
+    <Xml Include="res\SetConfig\JSON.xml">
+      <Filter>配置文件</Filter>
+    </Xml>
+    <Xml Include="res\SetConfig\PHP.xml">
+      <Filter>配置文件</Filter>
+    </Xml>
+    <Xml Include="res\SetConfig\SQL.xml">
+      <Filter>配置文件</Filter>
+    </Xml>
+    <Xml Include="res\SetConfig\CSS.xml">
+      <Filter>配置文件</Filter>
+    </Xml>
+  </ItemGroup>
+</Project>

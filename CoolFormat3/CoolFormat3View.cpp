@@ -22,6 +22,8 @@ BEGIN_MESSAGE_MAP(CCoolFormat3View, CBCGPTabView)
 	ON_COMMAND(ID_FILE_PRINT, CBCGPTabView::OnFilePrint)
 	ON_COMMAND(ID_FILE_PRINT_PREVIEW, OnFilePrintPreview)
 	ON_COMMAND(ID_FILE_PRINT_DIRECT, CBCGPTabView::OnFilePrint)
+	ON_WM_SETFOCUS()
+	ON_WM_CREATE()
 END_MESSAGE_MAP()
 
 // CCoolFormat3View construction/destruction
@@ -108,15 +110,6 @@ CCoolFormat3Doc* CCoolFormat3View::GetDocument() const // non-debug version is i
 void CCoolFormat3View::OnInitialUpdate()
 {	
 	CBCGPTabView::OnInitialUpdate();
-	
-	GetTabControl().EnableTabSwap(FALSE);
-	GetTabControl().HideSingleTab(TRUE);
-	GetTabControl().AutoDestroyWindow(TRUE);
-	m_hAccel = LoadAccelerators(AfxGetInstanceHandle(), MAKEINTRESOURCE(IDR_ACCEL_EDIT));
-	CString strTemp;
-	BOOL bNameVaild = strTemp.LoadString(ID_TAB_CODE);
-	ASSERT(bNameVaild);
-	AddView(RUNTIME_CLASS (CSynBCGPEditView), strTemp, ID_TAB_CODE);
 
 	CSynBCGPEditView *pCodeView = (CSynBCGPEditView*)GetActiveView();
 	if (!GetDocument()->GetPathName().IsEmpty())
@@ -127,6 +120,7 @@ void CCoolFormat3View::OnInitialUpdate()
 		pCodeView->GetEditCtrl()->SelectLanguageByExt(strExt);
 		pCodeView->GetEditCtrl()->OpenFileEx(strFileName);
 		pCodeView->ReSetLangLabel();
+		pCodeView->ReSetEncodingLabel();
 		GetDocument()->SetModifiedFlag(FALSE);
 
 		// 2)加载文件图标
@@ -140,6 +134,7 @@ void CCoolFormat3View::OnInitialUpdate()
 	{
 		pCodeView->GetEditCtrl()->SelectLanguage(theApp.m_nSynLanguage);
 		pCodeView->ReSetLangLabel();
+		pCodeView->ReSetEncodingLabel();
 	}
 }
 
@@ -160,28 +155,63 @@ CSynBCGPEditView * CCoolFormat3View::GetSynView()
 	}
 	return pView;
 }
+
 BOOL CCoolFormat3View::PreTranslateMessage(MSG* pMsg)
 {
 	if (pMsg->message == WM_KEYDOWN)
 	{
-		if (pMsg->wParam == 192)			//切换代码、高亮
+		if (TranslateAccelerator(m_hWnd, m_hAccel, pMsg))
 		{
-			if ((GetKeyState(VK_CONTROL) & 0x8000))
-			{
-				if (GetTabControl().GetTabsNum() > 1)
-				{
-					SetActiveView(1 - GetTabControl().GetActiveTab());
-				}
-				return TRUE;
-			} 
-		}		
-		else
-		{
-			if (TranslateAccelerator(m_hWnd, m_hAccel, pMsg))
-			{
-				return true;
-			}
+			return true;
 		}
 	}
 	return CBCGPTabView::PreTranslateMessage(pMsg);
+}
+
+void CCoolFormat3View::OnSetFocus(CWnd* pOldWnd)
+{
+	CBCGPTabView::OnSetFocus(pOldWnd);
+
+	if (GetActiveView())
+	{
+		GetActiveView()->SetFocus();
+	}
+}
+
+int CCoolFormat3View::OnCreate(LPCREATESTRUCT lpCreateStruct)
+{
+	//if (CBCGPTabView::OnCreate(lpCreateStruct) == -1)
+	//	return -1;
+
+	//////////////////////////////////////////////////////////////////////////
+	if (CView::OnCreate(lpCreateStruct) == -1)
+		return -1;
+
+	CRect rectDummy;
+	rectDummy.SetRectEmpty();
+
+	// Create tabs window:
+	if (!m_wndTabs.Create(CBCGPTabWnd::STYLE_3D, rectDummy, this, 1))
+	{
+		TRACE0("Failed to create tab window\n");
+		return -1;      // fail to create
+	}
+	m_wndTabs.ModifyTabStyle(CBCGPTabWnd::STYLE_3D_VS2005);
+
+	m_wndTabs.SetFlatFrame(TRUE, FALSE);
+	m_wndTabs.SetTabBorderSize(0, FALSE);
+	m_wndTabs.AutoDestroyWindow(FALSE);
+	//////////////////////////////////////////////////////////////////////////
+
+	GetTabControl().EnableTabSwap(FALSE);
+	GetTabControl().HideSingleTab(TRUE);
+	GetTabControl().AutoDestroyWindow(TRUE);
+	m_hAccel = LoadAccelerators(AfxGetInstanceHandle(), MAKEINTRESOURCE(IDR_ACCEL_EDIT));
+
+	CString strTemp;
+	BOOL bNameVaild = strTemp.LoadString(ID_TAB_CODE);
+	ASSERT(bNameVaild);
+	AddView(RUNTIME_CLASS(CSynBCGPEditView), strTemp, ID_TAB_CODE);
+
+	return 0;
 }

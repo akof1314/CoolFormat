@@ -1,6 +1,7 @@
 #include "StdAfx.h"
 #include "CoolFormat3.h"
 #include "KofFile.h"
+#include "uchardet/uchardet.h"
 
 const UCHAR CKofFile::m_EncodeBoms[][3] = {
 	{0x00, 0x00, 0x00},  /**< Unknown */
@@ -22,6 +23,7 @@ CKofFile::CKofFile(void)
 	m_EncodeType = ANSI_ENCODE;
 	m_nSkip = 0;
 	ZeroMemory(m_szErrorMsg, MAX_ERROR_MSG);
+	m_nCodepage = _AtlGetConversionACP();
 }
 
 CKofFile::~CKofFile(void)
@@ -69,6 +71,7 @@ BOOL CKofFile::OpenFile( LPCTSTR lpszFileName, CString &strFileText )
 		DetermineEncodeType(pszFileBuffer, dwFileSize);
 		LPSTR pszNewFileBuffer = pszFileBuffer + m_nSkip;
 		DWORD dwNewFileSize = dwFileSize - m_nSkip;
+		DetectCodepage(pszFileBuffer, dwFileSize);
 		DetermineFormatType(pszNewFileBuffer, dwNewFileSize);
 		ConvertEncodeToTChar(pszNewFileBuffer, dwNewFileSize, strFileText);
 		ConvertFormatToTChar(strFileText);
@@ -109,7 +112,7 @@ BOOL CKofFile::SaveFile( LPCTSTR lpszFileName, LPCTSTR lpszFileText )
 		{
 		case ANSI_ENCODE:
 			{
-				CT2A lpszNewFileText(lpszFileText);
+				CT2A lpszNewFileText(lpszFileText, m_nCodepage);
 				SaveFileText(file, lpszNewFileText, strlen(lpszNewFileText));
 			}
 			break;
@@ -248,7 +251,7 @@ void CKofFile::ConvertEncodeToTChar( LPSTR lpszFileBuf, DWORD dwFileSize, CStrin
 	switch (m_EncodeType)
 	{
 	case ANSI_ENCODE:
-		strFileText = CA2T(lpszFileBuf);
+		strFileText = CA2T(lpszFileBuf, m_nCodepage);
 		break;
 	case UTF8_ENCODE:
 	case UTF8NB_ENCODE:
@@ -365,4 +368,182 @@ void CKofFile::SaveFileText( CFile &file, LPSTR lpszFileBuf, DWORD dwFileSize )
 	file.Write(lpszFileBuf, dwNewFileSize);
 	file.Flush();
 	file.Close();
+}
+
+void CKofFile::DetectCodepage(LPSTR lpszFileBuf, DWORD dwFileSize)
+{
+	m_nCodepage = _AtlGetConversionACP();
+	if (m_EncodeType != ANSI_ENCODE)
+	{
+		return;
+	}
+
+	uchardet_t ud = uchardet_new();
+	if (uchardet_handle_data(ud, lpszFileBuf, dwFileSize) == 0)
+	{
+		uchardet_data_end(ud);
+		const char* cs = uchardet_get_charset(ud);
+		m_nCodepage = GetEncodingFromString(cs);
+	}
+	uchardet_delete(ud);
+}
+
+struct EncodingUnit {
+	int _codePage;
+	char *_aliasList;
+};
+
+EncodingUnit encodings[] = {
+	{ 1250, "windows-1250" },
+	{ 1251, "windows-1251" },
+	{ 1252, "windows-1252" },
+	{ 1253, "windows-1253" },
+	{ 1254, "windows-1254" },
+	{ 1255, "windows-1255" },
+	{ 1256, "windows-1256" },
+	{ 1257, "windows-1257" },
+	{ 1258, "windows-1258" },
+	{ 28591, "latin1 ISO_8859-1 ISO-8859-1 CP819 IBM819 csISOLatin1 iso-ir-100 l1" },
+	{ 28592, "latin2 ISO_8859-2 ISO-8859-2 csISOLatin2 iso-ir-101 l2" },
+	{ 28593, "latin3 ISO_8859-3 ISO-8859-3 csISOLatin3 iso-ir-109 l3" },
+	{ 28594, "latin4 ISO_8859-4 ISO-8859-4 csISOLatin4 iso-ir-110 l4" },
+	{ 28595, "cyrillic ISO_8859-5 ISO-8859-5 csISOLatinCyrillic iso-ir-144" },
+	{ 28596, "arabic ISO_8859-6 ISO-8859-6 csISOLatinArabic iso-ir-127 ASMO-708 ECMA-114" },
+	{ 28597, "greek ISO_8859-7 ISO-8859-7 csISOLatinGreek greek8 iso-ir-126 ELOT_928 ECMA-118" },
+	{ 28598, "hebrew ISO_8859-8 ISO-8859-8 csISOLatinHebrew iso-ir-138" },
+	{ 28599, "latin5 ISO_8859-9 ISO-8859-9 csISOLatin5 iso-ir-148 l5" },
+	{ 28600, ""/*"latin6 ISO_8859-10 ISO-8859-10 csISOLatin6 iso-ir-157 l6"*/ },
+	{ 28601, ""/*"ISO_8859-11 ISO-8859-11"*/ },
+	{ 28603, "ISO_8859-13 ISO-8859-13" },
+	{ 28604, "iso-celtic latin8 ISO_8859-14 ISO-8859-14 18 iso-ir-199" },
+	{ 28605, "Latin-9 ISO_8859-15 ISO-8859-15" },
+	{ 28606, ""/*"latin10 ISO_8859-16 ISO-8859-16 110 iso-ir-226"*/ },
+	{ 437, "IBM437 cp437 437 csPC8CodePage437" },
+	{ 720, "IBM720 cp720 oem720 720" },
+	{ 737, "IBM737 cp737 oem737 737" },
+	{ 775, "IBM775 cp775 oem775 775" },
+	{ 850, "IBM850 cp850 oem850 850" },
+	{ 852, "IBM852 cp852 oem852 852" },
+	{ 855, "IBM855 cp855 oem855 855 csIBM855" },
+	{ 857, "IBM857 cp857 oem857 857" },
+	{ 858, "IBM858 cp858 oem858 858" },
+	{ 860, "IBM860 cp860 oem860 860" },
+	{ 861, "IBM861 cp861 oem861 861" },
+	{ 862, "IBM862 cp862 oem862 862" },
+	{ 863, "IBM863 cp863 oem863 863" },
+	{ 865, "IBM865 cp865 oem865 865" },
+	{ 866, "IBM866 cp866 oem866 866" },
+	{ 869, "IBM869 cp869 oem869 869" },
+	{ 950, "big5 csBig5" },
+	{ 936, "gb2312 gbk csGB2312 gb18030" },
+	{ 932, "Shift_JIS MS_Kanji csShiftJIS csWindows31J" },
+	{ 949, "windows-949 korean" },
+	{ 51949, "euc-kr csEUCKR" },
+	{ 874, "tis-620" },
+	{ 10007, "x-mac-cyrillic xmaccyrillic" },
+	{ 21866, "koi8_u" },
+	{ 20866, "koi8_r csKOI8R" },
+	{ 65001, "utf-8 utf8" }
+};
+
+UINT CKofFile::GetEncodingFromString(const char *encodingAlias)
+{
+	size_t nbItem = sizeof(encodings) / sizeof(EncodingUnit);
+	for (size_t i = 0; i < nbItem; ++i)
+	{
+		CStringA strAlias(encodings[i]._aliasList);
+		int nTokenPos = 0;
+		CStringA strToken = strAlias.Tokenize(" ", nTokenPos);
+
+		while (!strToken.IsEmpty())
+		{
+			if (strToken.CompareNoCase(encodingAlias) == 0)
+			{
+				return encodings[i]._codePage;
+			}
+			strToken = strAlias.Tokenize(" ", nTokenPos);
+		}
+	}
+	return _AtlGetConversionACP();
+}
+
+void CKofFile::SetCodepage(UINT nCodePage)
+{
+	m_nCodepage = nCodePage;
+}
+
+FileEncodeType CKofFile::GetFileEncodeTypeByCodepage(UINT nCodePage)
+{
+	switch (nCodePage)
+	{
+	case 65001:
+		return UTF8_ENCODE;
+	case 65002:
+		return UTF8NB_ENCODE;
+	case 1200:
+		return UTF16LE_ENCODE;
+	case 1201:
+		return UTF16BE_ENCODE;
+	case 99999:
+		return ANSI_ENCODE;
+	}
+	return END_ENCODE;
+}
+
+BOOL CKofFile::ChangeFileEncodeType(FileEncodeType encodeType)
+{
+	m_EncodeType = encodeType;
+	return TRUE;
+}
+
+BOOL CKofFile::ChangeCodepage(UINT nCodePage, CString &strFileText)
+{
+	if (m_EncodeType == ANSI_ENCODE && m_nCodepage != nCodePage)
+	{
+		CT2A lpszNewFileText(strFileText, m_nCodepage);
+		strFileText = CA2T(lpszNewFileText, nCodePage);
+		m_nCodepage = nCodePage;
+		return TRUE;
+	}
+	return FALSE;
+}
+
+LPCTSTR CKofFile::GetCodepageString()
+{
+	switch (m_EncodeType)
+	{
+	case ANSI_ENCODE:
+	{
+		switch (m_nCodepage)
+		{
+		case 936:
+			return _T("GB2312");
+		case 950:
+			return _T("Big5");
+		case 932:
+			return _T("Shift-JIS");
+		case 51949:
+			return _T("EUC-KR");
+		default:
+			return _T("ANSI");
+			break;
+		}
+	}
+		break;
+	case UTF8_ENCODE:
+		return _T("UTF-8");
+		break;
+	case UTF8NB_ENCODE:
+		return _T("UTF-8 No BOM");
+		break;
+	case UTF16BE_ENCODE:
+		return _T("UTF-16 BE");
+		break;
+	case UTF16LE_ENCODE:
+		return _T("UTF-16 LE");
+		break;
+	default:
+		break;
+	}
+	return _T("ANSI");
 }

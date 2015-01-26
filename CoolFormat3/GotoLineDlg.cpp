@@ -1,10 +1,8 @@
 // GotoLineDlg.cpp : 实现文件
-//
 
 #include "stdafx.h"
 #include "CoolFormat3.h"
 #include "GotoLineDlg.h"
-
 
 // CGotoLineDlg 对话框
 
@@ -27,10 +25,8 @@ void CGotoLineDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_LINE, m_nLineNumber);
 }
 
-
 BEGIN_MESSAGE_MAP(CGotoLineDlg, CBCGPDialog)
 END_MESSAGE_MAP()
-
 
 // CGotoLineDlg 消息处理程序
 
@@ -39,7 +35,11 @@ BOOL CGotoLineDlg::OnInitDialog()
 	CBCGPDialog::OnInitDialog();
 
 	InitLang();
-	
+
+	if (!IsVisualManagerStyle())
+	{
+		EnableVisualManagerStyle(TRUE, TRUE);
+	}
 	return TRUE;  // return TRUE unless you set the focus to a control
 	// 异常: OCX 属性页应返回 FALSE
 }

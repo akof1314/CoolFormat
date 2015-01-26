@@ -18,7 +18,6 @@ class GlobalTidy
 public:
 	GlobalTidy(void);
 	~GlobalTidy(void);
-
 	
 	/**
 	 * 初始化全局格式化参数
@@ -32,15 +31,10 @@ public:
 	CString m_TidyCpp;
 	CString m_TidyJava;
 	CString m_TidyCSharp;
+	CString m_TidyObjectiveC;
 
 	/** Tidy选项类 MIT协议 */
 	CString m_TidyHtml;
-	CString m_TidyHtml_at;
-	CString m_TidyHtml_cp;
-	CString m_TidyHtml_nbt;
-	CString m_TidyHtml_net;
-	CString m_TidyHtml_nit;
-	CString m_TidyHtml_npt;
 
 	/** XML选项类 */
 	CString m_TidyXml;

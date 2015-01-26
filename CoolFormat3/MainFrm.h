@@ -110,6 +110,8 @@ public:
 	afx_msg void OnSetformatter();
 	afx_msg void OnBatchformat();
 	afx_msg BOOL OnCopyData(CWnd* pWnd, COPYDATASTRUCT* pCopyDataStruct);
+	afx_msg void OnNewvertip();
+	afx_msg LRESULT DoCheckUpdateEvenet(WPARAM wParam, LPARAM lParam);
 };
 
 

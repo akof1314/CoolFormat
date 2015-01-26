@@ -1,9 +1,10 @@
-// SetSheet.cpp : ÊµÏÖÎÄ¼þ
-//
+ï»¿// SetSheet.cpp : å®žçŽ°æ–‡ä»¶
 
 #include "stdafx.h"
 #include "CoolFormat3.h"
 #include "SetSheet.h"
+
+#include "SetPageBase.h"
 
 #define  IDC_SETSHEET_DEFAULT 501
 // CSetSheet
@@ -31,11 +32,11 @@ BEGIN_MESSAGE_MAP(CSetSheet, CBCGPPropertySheet)
 END_MESSAGE_MAP()
 
 
-// CSetSheet ÏûÏ¢´¦Àí³ÌÐò
+// CSetSheet æ¶ˆæ¯å¤„ç†ç¨‹åº
 
 BOOL CSetSheet::OnInitDialog()
 {
-	BOOL bResult = CBCGPPropertySheet::OnInitDialog();
+	CBCGPPropertySheet::OnInitDialog();
 
 	CRect rc;
 	GetClientRect(&rc);
@@ -56,7 +57,8 @@ BOOL CSetSheet::OnInitDialog()
 	bNameVaild = strTemp.LoadString(IDCANCEL);
 	ASSERT(bNameVaild);
 	SetDlgItemText(IDCANCEL, strTemp);
-	return bResult;
+	GetDlgItem(IDCANCEL)->SetFocus();
+	return FALSE;
 }
 
 BOOL CSetSheet::PreTranslateMessage(MSG* pMsg)
@@ -73,6 +75,7 @@ BOOL CSetSheet::PreTranslateMessage(MSG* pMsg)
 				g_GlobalTidy.m_TidyCpp = g_GlobalTidy.m_TidyNames[SYN_CPP].tidyName;
 				g_GlobalTidy.m_TidyJava = g_GlobalTidy.m_TidyNames[SYN_JAVA].tidyName;
 				g_GlobalTidy.m_TidyCSharp = g_GlobalTidy.m_TidyNames[SYN_CS].tidyName;
+				g_GlobalTidy.m_TidyObjectiveC = g_GlobalTidy.m_TidyNames[SYN_OBJECTIVEC].tidyName;
 				g_GlobalTidy.m_TidyHtml = g_GlobalTidy.m_TidyNames[SYN_HTML].tidyName;
 				g_GlobalTidy.m_TidyXml = g_GlobalTidy.m_TidyNames[SYN_XML].tidyName;
 				g_GlobalTidy.m_TidyPhp = g_GlobalTidy.m_TidyNames[SYN_PHP].tidyName;
@@ -80,18 +83,50 @@ BOOL CSetSheet::PreTranslateMessage(MSG* pMsg)
 				g_GlobalTidy.m_TidyCss = g_GlobalTidy.m_TidyNames[SYN_CSS].tidyName;
 				g_GlobalTidy.m_TidyJson = g_GlobalTidy.m_TidyNames[SYN_JSON].tidyName;
 				g_GlobalTidy.m_TidySql = g_GlobalTidy.m_TidyNames[SYN_SQL].tidyName;
-				g_GlobalTidy.m_TidyHtml_at.Empty();
-				g_GlobalTidy.m_TidyHtml_cp.Empty();
-				g_GlobalTidy.m_TidyHtml_nbt.Empty();
-				g_GlobalTidy.m_TidyHtml_net.Empty();
-				g_GlobalTidy.m_TidyHtml_nit.Empty();
-				g_GlobalTidy.m_TidyHtml_npt.Empty();
 				EndDialog(IDOK);
 			}
 			return TRUE;
 		}
 	}
 	return CBCGPPropertySheet::PreTranslateMessage(pMsg);
+}
+
+INT_PTR CSetSheet::DoModalAllPage()
+{
+	m_psh.dwFlags |= PSH_NOAPPLYNOW;
+	SetLook(CBCGPPropertySheet::PropSheetLook_List, 124);
+
+	CSetPageBase pageCpp(_T("C/C++"), _T("CPP"), g_GlobalTidy.m_TidyCpp);
+	CSetPageBase pageJava(_T("Java"), _T("CPP"), g_GlobalTidy.m_TidyJava);
+	CSetPageBase pageCs(_T("C#"), _T("CPP"), g_GlobalTidy.m_TidyCSharp);
+	CSetPageBase pageObjc(_T("Objectiveâ€‘C"), _T("CPP"), g_GlobalTidy.m_TidyObjectiveC);
+	CSetPageBase pageJS(_T("JavaScript"), _T("JavaScript"), g_GlobalTidy.m_TidyJs);
+	CSetPageBase pageHtml(_T("HTML"), _T("HTML"), g_GlobalTidy.m_TidyHtml);
+	CSetPageBase pageXml(_T("XML"), _T("HTML"), g_GlobalTidy.m_TidyXml);
+	CSetPageBase pagePHP(_T("PHP"), _T("PHP"), g_GlobalTidy.m_TidyPhp);
+	CSetPageBase pageCSS(_T("CSS"), _T("CSS"), g_GlobalTidy.m_TidyCss);
+	CSetPageBase pageJson(_T("JSON"), _T("JSON"), g_GlobalTidy.m_TidyJson);
+	CSetPageBase pageSql(_T("SQL"), _T("SQL"), g_GlobalTidy.m_TidySql);
+	AddPage(&pageCpp);
+	AddPage(&pageCs);
+	AddPage(&pageCSS);
+	AddPage(&pageHtml);
+	AddPage(&pageJava);
+	AddPage(&pageJS);
+	AddPage(&pageJson);
+	AddPage(&pageObjc);
+	AddPage(&pagePHP);
+	AddPage(&pageSql);
+	AddPage(&pageXml);
+
+	EnableVisualManagerStyle(TRUE, TRUE);
+
+	INT_PTR nResult = DoModal();
+	if (nResult == IDOK)
+	{
+		SaveTidyToReg();
+	}
+	return nResult;
 }
 
 void CSetSheet::SaveTidyToReg()
@@ -115,6 +150,10 @@ void CSetSheet::SaveTidyToReg()
 			bRegVaild = FALSE;
 		}
 		if (!reg.Write(g_GlobalTidy.m_TidyNames[SYN_CS].langName, g_GlobalTidy.m_TidyCSharp))
+		{
+			bRegVaild = FALSE;
+		}
+		if (!reg.Write(g_GlobalTidy.m_TidyNames[SYN_OBJECTIVEC].langName, g_GlobalTidy.m_TidyObjectiveC))
 		{
 			bRegVaild = FALSE;
 		}
@@ -143,31 +182,6 @@ void CSetSheet::SaveTidyToReg()
 			bRegVaild = FALSE;
 		}
 		if (!reg.Write(g_GlobalTidy.m_TidyNames[SYN_SQL].langName, g_GlobalTidy.m_TidySql))
-		{
-			bRegVaild = FALSE;
-		}
-
-		if (!reg.Write(_T("HTMLat"), g_GlobalTidy.m_TidyHtml_at))
-		{
-			bRegVaild = FALSE;
-		}
-		if (!reg.Write(_T("HTMLcp"), g_GlobalTidy.m_TidyHtml_cp))
-		{
-			bRegVaild = FALSE;
-		}
-		if (!reg.Write(_T("HTMLnbt"), g_GlobalTidy.m_TidyHtml_nbt))
-		{
-			bRegVaild = FALSE;
-		}
-		if (!reg.Write(_T("HTMLnet"), g_GlobalTidy.m_TidyHtml_net))
-		{
-			bRegVaild = FALSE;
-		}
-		if (!reg.Write(_T("HTMLnit"), g_GlobalTidy.m_TidyHtml_nit))
-		{
-			bRegVaild = FALSE;
-		}
-		if (!reg.Write(_T("HTMLnpt"), g_GlobalTidy.m_TidyHtml_npt))
 		{
 			bRegVaild = FALSE;
 		}

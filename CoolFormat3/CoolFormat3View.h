@@ -50,6 +50,8 @@ protected:
 public:
 	virtual void OnInitialUpdate();
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
+	afx_msg void OnSetFocus(CWnd* pOldWnd);
+	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 };
 
 #ifndef _DEBUG  // debug version in CoolFormat3View.cpp

@@ -38,7 +38,6 @@ CSynBCGPEditCtrl::CSynBCGPEditCtrl()
 	m_nColorBlockStrLenMax = 4 + 2;
 	m_bNumberColor = FALSE;
 	m_bCheckColorTags = FALSE;
-	m_bFirstShow = TRUE;
 }
 
 CSynBCGPEditCtrl::~CSynBCGPEditCtrl()
@@ -46,7 +45,6 @@ CSynBCGPEditCtrl::~CSynBCGPEditCtrl()
 }
 
 BEGIN_MESSAGE_MAP(CSynBCGPEditCtrl, CBCGPEditCtrl)
-	ON_WM_KILLFOCUS()
 	ON_WM_CREATE()
 	ON_WM_SYSCOLORCHANGE()
 	ON_WM_LBUTTONDOWN()
@@ -89,7 +87,7 @@ void CSynBCGPEditCtrl::SelectLanguage( UINT nLanguage )
 	while (nPos != -1)
 	{
 		strWord = strWords.Mid(nPosPrior, nPos - nPosPrior);
-		SetWordColor(strWord, m_clrSyn, -1, bCaseSensitive);
+		SetWordColor(strWord, m_clrSyn, (COLORREF)-1, bCaseSensitive);
 
 		nPosPrior = nPos + 1;
 		nPos = strWords.Find(_T(","), nPosPrior);
@@ -101,7 +99,7 @@ void CSynBCGPEditCtrl::SelectLanguage( UINT nLanguage )
 	while (nPos != -1)
 	{
 		strWord = strWords.Mid(nPosPrior, nPos - nPosPrior);
-		SetWordColor(strWord, m_clrType, -1, bCaseSensitive);
+		SetWordColor(strWord, m_clrType, (COLORREF)-1, bCaseSensitive);
 
 		nPosPrior = nPos + 1;
 		nPos = strWords.Find(_T(","), nPosPrior);
@@ -114,7 +112,7 @@ void CSynBCGPEditCtrl::SelectLanguage( UINT nLanguage )
 	m_SynLanguage.GetMultilineComment(strBlockOpen, strBlockClose, bCaseSensitive);
 	if (_T("") != strBlockOpen.Trim())
 	{
-		SetBlockColor(strBlockOpen, strBlockClose, TRUE, m_clrComment, -1, bCaseSensitive);
+		SetBlockColor(strBlockOpen, strBlockClose, TRUE, m_clrComment, (COLORREF)-1, bCaseSensitive);
 	}
 
 	CString strBlockOpens;
@@ -124,7 +122,7 @@ void CSynBCGPEditCtrl::SelectLanguage( UINT nLanguage )
 	while (nPos != -1)
 	{
 		strBlockOpen = strBlockOpens.Mid(nPosPrior, nPos - nPosPrior);
-		SetBlockColor(strBlockOpen, _T(""), FALSE, m_clrComment, -1, bCaseSensitive);
+		SetBlockColor(strBlockOpen, _T(""), FALSE, m_clrComment, (COLORREF)-1, bCaseSensitive);
 
 		nPosPrior = nPos + 1;
 		nPos = strBlockOpens.Find(_T(","), nPosPrior);
@@ -134,12 +132,12 @@ void CSynBCGPEditCtrl::SelectLanguage( UINT nLanguage )
 	m_SynLanguage.GetString(strBlockOpen, strBlockClose, bCaseSensitive);
 	if (_T("") != strBlockOpen.Trim())
 	{
-		SetBlockColor(strBlockOpen, strBlockClose, FALSE, m_clrString, -1, bCaseSensitive);
+		SetBlockColor(strBlockOpen, strBlockClose, FALSE, m_clrString, (COLORREF)-1, bCaseSensitive);
 	}
 	m_SynLanguage.GetChar(strBlockOpen, strBlockClose, bCaseSensitive);
 	if (_T("") != strBlockOpen.Trim())
 	{
-		SetBlockColor(strBlockOpen, strBlockClose, FALSE, m_clrChar, -1, bCaseSensitive);
+		SetBlockColor(strBlockOpen, strBlockClose, FALSE, m_clrChar, (COLORREF)-1, bCaseSensitive);
 	}
 
 	// 6)设置折叠
@@ -260,21 +258,21 @@ void CSynBCGPEditCtrl::SelectLanguage( UINT nLanguage )
 		UseXmlParser(TRUE);
 		break;
 	case SYN_PASCAL:
-		SetBlockColor(_T("(*"), _T("*)"), FALSE, m_clrComment, -1, FALSE);
+		SetBlockColor(_T("(*"), _T("*)"), FALSE, m_clrComment, (COLORREF)-1, FALSE);
 		break;
 	case SYN_AUTOIT:
 		//SetBlockColor(_T("#comments-start"), _T("#comments-end"), FALSE, m_clrComment, -1, FALSE);
 		break;
 	case SYN_D:
-		SetBlockColor(_T("/+"), _T("+/"), FALSE, m_clrComment, -1, FALSE);
-		SetBlockColor(_T("`"), _T("`"), FALSE, m_clrChar, -1, FALSE);
+		SetBlockColor(_T("/+"), _T("+/"), FALSE, m_clrComment, (COLORREF)-1, FALSE);
+		SetBlockColor(_T("`"), _T("`"), FALSE, m_clrChar, (COLORREF)-1, FALSE);
 		break;
 	}
 	RedrawWindow();
 	UpdateAutoOutlining();
 }
 
-BOOL CSynBCGPEditCtrl::OnGetWordColor( const CString& strWord, COLORREF& clrText, COLORREF& clrBk, int nPos )
+BOOL CSynBCGPEditCtrl::OnGetWordColor( const CString& strWord, COLORREF& clrText, COLORREF& clrBk, int /*nPos*/ )
 {
 	BCGP_EDIT_SYNTAX_COLOR clrWord;
 
@@ -409,30 +407,11 @@ void CSynBCGPEditCtrl::OnGetCharColor( TCHAR ch, int nOffset, COLORREF& clrText,
 	}
 }
 
-
-void CSynBCGPEditCtrl::OnKillFocus(CWnd* pNewWnd)
-{
-	CBCGPEditCtrl::OnKillFocus(pNewWnd);
-
-	if (m_bFirstShow)
-	{
-		m_bFirstShow = FALSE;
-		SetFocus();
-	}
-}
-
 BOOL CSynBCGPEditCtrl::OpenFileEx( const CString& strFileName )
 {
 	CString strText;
 	if (m_File.OpenFile(strFileName, strText))
 	{
-		if (!globalData.bIsWindowsVista) //XP的时候
-		{
-			if (theApp.m_bChangedLang)
-			{
-				strText = CA2T(CT2A(strText), GetACP());
-			}
-		}
 		SetWindowText(strText);
 		return TRUE;
 	} 
@@ -528,73 +507,6 @@ void CSynBCGPEditCtrl::OnSysColorChange()
 
 	InitColors ();
 	RedrawWindow ();
-}
-
-void CSynBCGPEditCtrl::OnDrawLineNumbersBar( CDC* pDC, CRect rect )
-{
-	ASSERT_VALID (pDC);
-
-	pDC->FillSolidRect (rect, m_clrBackLineNumber);
-
-	// Draw dividing line:
-	rect.DeflateRect (0, 0, 1, 0);
-
-	WORD wHatchBits1 [8] = { 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00 };
-	WORD wHatchBits2 [8] = { 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF };
-
-	CBitmap bmpPattern;
-	bmpPattern.CreateBitmap (8, 8, 1, 1, 
-		(rect.top % 2) ? wHatchBits1 : wHatchBits2);
-
-	CBrush br;
-	br.CreatePatternBrush (&bmpPattern);
-
-	CRect rectLine = rect;
-	rectLine.left = rectLine.right - 1;
-
-	COLORREF clrTextOld = pDC->SetTextColor (m_clrBackSidebar);
-
-	pDC->FillRect (rectLine, &br);
-	pDC->SetTextColor (clrTextOld);
-
-	rect.DeflateRect (0, 0, 1, 0);
-
-	// Determine start and end offsets of the visible part of buffer
-	CPoint ptTopLeft (m_rectText.left + 1, m_rectText.top);
-	CPoint ptBottomRight (m_rectText.right - 1, m_rectText.bottom - 1);
-
-	int nStartOffset = HitTest (ptTopLeft);
-	int nEndOffset = HitTest (ptBottomRight);
-
-	if (nStartOffset == -1)
-	{
-		nStartOffset = 0;
-	}
-
-	if (nEndOffset == -1)
-	{
-		nEndOffset = m_strBuffer.GetLength () - 1;
-	}
-
-	nEndOffset = min (nEndOffset, m_strBuffer.GetLength ());
-
-	int nRowColumnTop = RowFromOffset (nStartOffset);
-	int nRowColumnBottom = RowFromOffset (nEndOffset);
-
-	// Draw line numbers:
-	int nRow = nRowColumnTop;
-	int nVirtualRow = GetVirtualRow (nRow);
-	int nRowStartOffset = nStartOffset;
-
-	while (nRow <= nRowColumnBottom && nRowStartOffset >= 0)
-	{
-		CRect rect (rect);
-		rect.top = (nVirtualRow - m_nScrollOffsetVert) * m_nLineHeight;
-		rect.bottom = rect.top + m_nLineHeight;
-		OnDrawLineNumber (pDC, rect, nRow);
-
-		NextRow (nRow, nVirtualRow, nRowStartOffset);
-	}
 }
 
 static CString ColorMyTag (COLORREF clr)
@@ -953,7 +865,8 @@ void CSynBCGPEditCtrl::InsertComment(BOOL bForward)
 
 		SetLastUndoReason(g_dwUATComment);
 		ReplaceSel(strSelText, TRUE);
-	} 
+		SetSel2(nFirstSelRow, m_nCurrOffset, TRUE);
+	}
 	else
 	{
 		int nCommentLen = strComment.GetLength();
@@ -997,45 +910,93 @@ void CSynBCGPEditCtrl::InsertComment(BOOL bForward)
 		{
 			SetLastUndoReason(g_dwUATUncomment);
 			ReplaceSel(strSelText, TRUE);
+			SetSel2(nFirstSelRow, m_nCurrOffset, TRUE);
 		}
 	}
 }
 //////////////////////////////////////////////////////////////////////////
 void CSynBCGPEditCtrl::ReplaceTextToFormatter( BOOL bAllText /*= TRUE*/ )
 {
+	int nFirstSelRow = 0;
 	if (bAllText)
 	{
 		SetSel2(0, -1, TRUE, FALSE);
 	}
+	else
+	{
+		int iStartSel = min(m_iStartSel, m_iEndSel);
+		int iEndSel = max(m_iStartSel, m_iEndSel);
+		int nLastSelRow;
+		if (iStartSel == -1 || iEndSel == -1)
+		{
+			nFirstSelRow = GetCurrRowStart(FALSE);
+			nLastSelRow = GetCurrRowEnd(FALSE);
+		}
+		else
+		{
+			int nEndRowOffset = GetRowStartByOffset(iEndSel, TRUE);
+
+			if (nEndRowOffset == iEndSel)
+			{
+				iEndSel--;
+			}
+
+			nFirstSelRow = GetRowStartByOffset(iStartSel, TRUE);
+			nLastSelRow = max(iEndSel, GetRowEndByOffset(iEndSel, TRUE));
+		}
+		
+		SetSel2(nFirstSelRow, nLastSelRow + 1, TRUE, FALSE);
+	}
+
 	CString strSelText(GetSelText());
 	if (strSelText.IsEmpty())
 	{
 		return;
 	}
 
+	CString strInitIndent;
+	if (!bAllText)
+	{
+		for (int i = 0; i < strSelText.GetLength(); ++i)
+		{
+			if (strSelText[i] != ' ' && strSelText[i] != '\t')
+			{
+				break;
+			}
+			strInitIndent.AppendChar(strSelText[i]);
+		}
+	}
 
-	CT2A strTextIn(strSelText, GetACP());	
 	CString strTextOut, strMsgOut;
 	CFormatterHelp formatterSP;
-	if (formatterSP.DoFormatter(m_SynLanguage.GetCurLanguage(), strTextIn, strTextOut, strMsgOut))
+	if (formatterSP.DoFormatter(m_SynLanguage.GetCurLanguage(), strSelText, strTextOut, strMsgOut, m_File.GetCodepage()))
 	{
 		SetLastUndoReason(g_dwUATFormatter);
-		DeleteSelectedText (FALSE, FALSE, TRUE);
-		if (!globalData.bIsWindowsVista) //XP的时候
-		{
-			if (theApp.m_bChangedLang)
-			{
-				strTextOut = CA2T(CT2A(strTextOut), GetACP());
-			}
-		}
-		InsertText (strTextOut, m_nCurrOffset, FALSE);
+		
 		if (bAllText)
 		{
+			DeleteSelectedText(FALSE, FALSE, TRUE);
+			InsertText(strTextOut, m_nCurrOffset, FALSE);
 			SetSel2(0, 0, FALSE);
 		}
 		else
 		{
-			RedrawWindow ();
+			int nInitIndentLen = strInitIndent.GetLength();
+			int nPos = nInitIndentLen;
+			strTextOut.Insert(0, strInitIndent);
+			nPos = strTextOut.Find(g_chEOL, nPos);
+			while (nPos != -1)
+			{
+				if (nPos == strTextOut.GetLength() - 1)
+				{
+					break;
+				}
+				strTextOut.Insert(nPos + 1, strInitIndent);
+				nPos = strTextOut.Find(g_chEOL, nPos + nInitIndentLen + 1);
+			}
+
+			ReplaceSel(strTextOut, TRUE);
+			SetSel2(nFirstSelRow, m_nCurrOffset, TRUE);
 		}
 	}
 	else
@@ -1052,6 +1013,7 @@ void CSynBCGPEditCtrl::ReplaceTextToFormatter( BOOL bAllText /*= TRUE*/ )
 		pFrame->AddOutputMsg(strMsgOut);
 	}
 }
+//////////////////////////////////////////////////////////////////////////
 void CSynBCGPEditCtrl::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	const BOOL bShift = ::GetAsyncKeyState (VK_SHIFT) & 0x8000;
@@ -1124,4 +1086,37 @@ void CSynBCGPEditCtrl::OnLButtonDown(UINT nFlags, CPoint point)
 		SetRedraw(TRUE);
 		RedrawWindow ();
 	}
+}
+
+void CSynBCGPEditCtrl::SelectEncoding(UINT nCodepage)
+{
+	FileEncodeType encodeType = m_File.GetFileEncodeTypeByCodepage(nCodepage);
+	if (encodeType != END_ENCODE)
+	{
+		if (encodeType != m_File.GetFileEncodeType())
+		{
+			m_File.ChangeFileEncodeType(encodeType);
+			SetModified(TRUE);
+		}
+	}
+	else
+	{
+		if (nCodepage != m_File.GetCodepage())
+		{
+			if (ANSI_ENCODE == m_File.GetFileEncodeType())
+			{
+				CString strBuffer(m_strBuffer);
+				strBuffer.Replace(_T("\n"), _T("\r\n"));
+				if (m_File.ChangeCodepage(nCodepage, strBuffer))
+				{
+					SetWindowText(strBuffer);
+				}
+			} 
+		}
+	}
+}
+
+LPCTSTR CSynBCGPEditCtrl::GetSelectEncodingString()
+{
+	return m_File.GetCodepageString();
 }

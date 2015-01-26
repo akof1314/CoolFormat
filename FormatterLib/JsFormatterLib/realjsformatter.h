@@ -1,7 +1,7 @@
 /* realjsformatter.h
    2010-12-16
 
-Copyright (c) 2010-2012 SUN Junwen
+Copyright (c) 2010-2013 SUN Junwen
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -19,10 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 #ifndef _REAL_JSFORMATTER_H_
 #define _REAL_JSFORMATTER_H_
-//#include <ctime>
 #include <string>
-#include <stack>
-#include <queue>
 #include <map>
 #include <set>
 
@@ -30,47 +27,71 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 using namespace std;
 
-/*
- * if-i, else-e, else if-i,
- * for-f, do-d, while-w,
- * switch-s, case-c, default-c
- * try-r, catch-h
- * {-BLOCK, (-BRACKET
- */
-#define JS_IF 'i'
-#define JS_ELSE 'e'
-#define JS_FOR 'f'
-#define JS_DO 'd'
-#define JS_WHILE 'w'
-#define JS_SWITCH 's'
-#define JS_CASE 'c'
-#define JS_TRY 'r'
-#define JS_CATCH 'h'
-#define JS_FUNCTION 'n'
-#define JS_ASSIGN '='
-#define JS_BLOCK '{'
-#define JS_BRACKET '('
-#define JS_SQUARE '['
-#define JS_HELPER '\\'
-
 class RealJSFormatter: public JSParser
 {
 public:
-	template<class T>
-	bool GetStackTop(stack<T> stk, T& ret);
-	template<class T>
-	bool StackTopEq(stack<T> stk, T eq);
-
-	typedef stack<char> CharStack;
-	typedef stack<bool> BoolStack;
-	typedef queue<JSParser::TokenAndType> TokenQueue;
 	typedef map<string, char> StrCharMap;
 	typedef set<string> StrSet;
 
-	RealJSFormatter();
-	RealJSFormatter(char chIndent, int nChPerInd);
-	RealJSFormatter(bool bSkipCR, bool bPutCR);
-	RealJSFormatter(char chIndent, int nChPerInd, bool bSkipCR, bool bPutCR, bool bNLBracket);
+	/*
+	 * CR_READ
+	 *   READ_CR 读取 \r
+	 *   SKIP_READ_CR 读取时跳过 \r
+	 */
+	enum CR_READ { SKIP_READ_CR, READ_CR };
+	/*
+	 * CR_PUT
+	 *   PUT_CR 换行使用 \r\n
+	 *   NOT_PUT_CR 换行使用 \n
+	 */
+	enum CR_PUT { NOT_PUT_CR, PUT_CR };
+	/*
+	 * BRAC_NEWLINE
+	 *   NEWLINE_BRAC 括号前换行
+	 *   NO_NEWLINE_BRAC 括号前不换行
+	 */
+	enum BRAC_NEWLINE { NO_NEWLINE_BRAC, NEWLINE_BRAC };
+	/*
+	 * INDENT_IN_EMPTYLINE
+	 *   INDENT_IN_EMPTYLINE 空行输出缩进字符
+	 *   NO_INDENT_IN_EMPTYLINE 空行不输出缩进字符
+	 */
+	enum EMPTYLINE_INDENT { NO_INDENT_IN_EMPTYLINE, INDENT_IN_EMPTYLINE };
+
+	struct FormatterOption 
+	{
+		char chIndent;
+		int nChPerInd;
+		CR_READ eCRRead;
+		CR_PUT eCRPut;
+		BRAC_NEWLINE eBracNL;
+		EMPTYLINE_INDENT eEmpytIndent;
+
+		FormatterOption():
+			chIndent('\t'),
+			nChPerInd(1),
+			eCRRead(SKIP_READ_CR),
+			eCRPut(NOT_PUT_CR),
+			eBracNL(NO_NEWLINE_BRAC),
+			eEmpytIndent(NO_INDENT_IN_EMPTYLINE)
+		{}
+
+		FormatterOption(char op_chIndent,
+						int op_nChPerInd,
+						CR_READ op_eCRRead,
+						CR_PUT op_eCRPut,
+						BRAC_NEWLINE op_eBracNL,
+						EMPTYLINE_INDENT op_eEmpytIndent):
+			chIndent(op_chIndent),
+			nChPerInd(op_nChPerInd),
+			eCRRead(op_eCRRead),
+			eCRPut(op_eCRPut),
+			eBracNL(op_eBracNL),
+			eEmpytIndent(op_eEmpytIndent)
+		{}
+	};
+
+	RealJSFormatter(FormatterOption option);
 
 	virtual ~RealJSFormatter()
 	{}
@@ -84,8 +105,6 @@ public:
 	static string TrimSpace(const string& str);
 	static string TrimRightSpace(const string& str);
 	void StringReplace(string& strBase, const string& strSrc, const string& strDes);
-
-	bool m_debugOutput;
 
 private:
 	void Init();
@@ -101,10 +120,6 @@ private:
 		const string& rightStyle = string("")); // Put a token out with style
 	void PutString(const string& str);
 	void PutLineBuffer();
-
-// 	clock_t m_startClock;
-// 	clock_t m_endClock;
-// 	double m_duration;
 
 	int m_nLineIndents;
 	string m_lineBuffer;
@@ -125,13 +140,9 @@ private:
 	bool m_bCommentPut; // 刚刚输出了注释
 
 	string m_initIndent; // 起始缩进
-	char m_chIndent; // 作为缩进的字符
-	int m_nChPerInd; // 每个缩进缩进字符个数
 
-	bool m_bSkipCR; // 读取时跳过 \r
-	bool m_bPutCR; // 使用 \r\n 作为换行
-
-	bool m_bNLBracket; // { 之前是否换行
+	// 以下为配置项
+	FormatterOption m_struOption;
 
 private:
 	// 阻止拷贝

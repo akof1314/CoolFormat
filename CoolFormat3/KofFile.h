@@ -68,6 +68,44 @@ public:
 	 */
 	FileEncodeType GetFileEncodeType(){return m_EncodeType;}
 
+	/**
+	* 获取当前打开的文件文档代码页
+	* @return UINT 返回文件文档代码页
+	*/
+	UINT GetCodepage(){ return m_nCodepage; }
+
+	/**
+	* 设置当前打开的文件文档代码页
+	* @param UINT nCodePage 设置代码页
+	*/
+	void SetCodepage(UINT nCodePage);
+
+	/**
+	* 以代码页获取编码类型
+	* @param UINT nCodePage 代码页
+	*/
+	FileEncodeType GetFileEncodeTypeByCodepage(UINT nCodePage);
+
+	/**
+	 * 改变编码类型
+	 * @param FileEncodeType encodeType
+	 * @return BOOL 
+	 */
+	BOOL ChangeFileEncodeType(FileEncodeType encodeType);
+
+	/**
+	* 改变编码类型
+	* @param FileEncodeType encodeType
+	* @return BOOL
+	*/
+	BOOL ChangeCodepage(UINT nCodePage, CString &strFileText);
+
+	/**
+	* 获取编码字符串
+	* @return LPCTSTR 返回错误信息指针
+	*/
+	LPCTSTR GetCodepageString();
+
 protected:
 	void DetermineEncodeType(LPSTR lpszFileBuf, DWORD dwFileSize);
 	void DetermineFormatType(LPSTR lpszFileBuf, DWORD dwFileSize);
@@ -78,11 +116,14 @@ protected:
 	void BigEndianSwapLittleEndian(LPSTR lpszFileBuf, DWORD dwFileSize);
 	BOOL IsTextUtf8(LPCSTR lpszFileBuf, DWORD dwFileSize);
 	void SetLastErrorMsg(LPCTSTR lpszErrorMsg){lstrcpy(m_szErrorMsg, lpszErrorMsg);}
+	void DetectCodepage(LPSTR lpszFileBuf, DWORD dwFileSize);
+	UINT GetEncodingFromString(const char *encodingAlias);
 
 private:
 	FileFormatType m_FormatType;
 	FileEncodeType m_EncodeType;
 	TCHAR m_szErrorMsg[MAX_ERROR_MSG];
 	UINT m_nSkip;
+	UINT m_nCodepage;
 	static const UCHAR m_EncodeBoms[END_ENCODE][3];
 };

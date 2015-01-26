@@ -6,8 +6,9 @@
 
 #include "MainFrm.h"
 #include "SynBCGPEditView.h"
-#include "BCGEX\MyBCGPRibbonLabel.h"
-#include "BCGEX\OptionsPropSheet.h"
+#include "MyBCGPRibbonLabel.h"
+#include "MyBCGPRibbonStatusBarPane.h"
+#include "OptionsPropSheet.h"
 #include "PagePopular.h"
 #include "PageResource.h"
 
@@ -17,15 +18,8 @@
 #include "SetEditDlg.h"
 #include "TellBug.h"
 #include "BatchFormat.h"
-
 #include "SetSheet.h"
-#include "SetPageCpp.h"
-#include "SetPageJS.h"
-#include "SetPageHtml.h"
-#include "SetPagePHP.h"
-#include "SetPageCSS.h"
-#include "SetPageJson.h"
-#include "SetPageSql.h"
+#include "UpdateChecker.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -60,6 +54,8 @@ BEGIN_MESSAGE_MAP(CMainFrame, CBCGPMDIFrameWnd)
 	ON_COMMAND(ID_FILE_PATH, &CMainFrame::OnFilePath)
 	ON_COMMAND(ID_FILEDIR_OPEN, &CMainFrame::OnFiledirOpen)
 	ON_COMMAND(ID_STATUSBAR_PANE4, OnAdminUrl)
+	ON_COMMAND(ID_NOW_ENCODING, OnAdminUrl)
+	ON_COMMAND(ID_NEWVERTIP, &CMainFrame::OnNewvertip)
 	ON_REGISTERED_MESSAGE(BCGM_ON_BEFORE_SHOW_RIBBON_ITEM_MENU, OnShowRibbonItemMenu)
 	ON_COMMAND(ID_EXPORTREG, &CMainFrame::OnExportreg)
 	ON_COMMAND(ID_LANGEXT, &CMainFrame::OnLangext)
@@ -70,6 +66,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CBCGPMDIFrameWnd)
 	ON_COMMAND(ID_ONLINEHELP, &CMainFrame::OnOnlinehelp)
 	ON_COMMAND(ID_SETFORMATTER, &CMainFrame::OnSetformatter)
 	ON_COMMAND(ID_BATCHFORMAT, &CMainFrame::OnBatchformat)
+	ON_MESSAGE(WM_DOCHECKUPDATEEVENT, &CMainFrame::DoCheckUpdateEvenet)
 	ON_WM_COPYDATA()
 END_MESSAGE_MAP()
 
@@ -122,16 +119,17 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_wndStatusBar.AddExtendedElement(new CBCGPRibbonStatusBarPane(
 		ID_STATUSBAR_PANE3, strTemp, TRUE, NULL, strTemp3), strTemp2);	
 	
-	bNameValid = strTemp.LoadString(IDS_STATUS_QQ);
+	strTemp = _T("GB2312");
+	bNameValid = strTemp2.LoadString(IDS_STATUS_ENCODING);
 	ASSERT(bNameValid);
-	bNameValid = strTemp2.LoadString(IDS_STATUS_CONTACT);
-	ASSERT(bNameValid);
-	m_wndStatusBar.AddExtendedElement (new CBCGPRibbonStatusBarPane (
-		ID_STATUSBAR_PANE2, strTemp, TRUE), strTemp2);
+	CBCGPRibbonStatusBarPane* pPaneCodepage = new CMyBCGPRibbonStatusBarPane(
+		ID_STATUSBAR_PANE2, strTemp, FALSE);
+	pPaneCodepage->SetMenu(IDR_ENCODING_MENU);
+	pPaneCodepage->SetID(ID_NOW_ENCODING);
+	m_wndStatusBar.AddExtendedElement(pPaneCodepage, strTemp2);
 
 
 	EnableDocking(CBRS_ALIGN_ANY);
-
 
 	// Enable windows manager:
 	EnableWindowsDialog (ID_WINDOW_MANAGER, IDS_WINDOWS_MANAGER, TRUE);
@@ -464,11 +462,7 @@ BOOL CMainFrame::CreateRibbonBar ()
 	bNameVaild = strTemp.LoadString(IDS_STRING79);
 	ASSERT(bNameVaild);
 	pPanelFunction->Add(new CBCGPRibbonButton(ID_BATCHFORMAT, strTemp, -1, 5));
-
-
 	pPanelFunction->SetKeys(_T("zf"));
-
-
 
 	//风格面板
 	bNameVaild = strTemp.LoadString(IDS_STRING80);
@@ -490,7 +484,6 @@ BOOL CMainFrame::CreateRibbonBar ()
 	pLabelLang->SetID(ID_NOW_LANG);
 	pPanelStyle->Add(pLabelLang);	
 
-
 	// 窗口面板
 	bNameVaild = strTemp.LoadString(IDS_STRING82);
 	ASSERT(bNameVaild);
@@ -505,10 +498,8 @@ BOOL CMainFrame::CreateRibbonBar ()
 
 	// Add the launch button at the bottom of the panel:
 	pPanelWindow->EnableLaunchButton (ID_WINDOW_MANAGER, -1, _T("l"));
-
 	pPanelWindow->SetKeys (_T("zw"));
 	
-
 	// Add some hidden (non-ribbon) elements:
 	bNameVaild = strTemp.LoadString(IDS_STRING83);
 	ASSERT(bNameVaild);
@@ -517,6 +508,9 @@ BOOL CMainFrame::CreateRibbonBar ()
 	bNameVaild = strTemp.LoadString(IDS_STRING84);
 	ASSERT(bNameVaild);
 	pCategory->AddHidden(new CBCGPRibbonButton(ID_EDIT_REDO, strTemp, 5));
+	bNameVaild = strTemp.LoadString(IDS_CHANGE_VIEW);
+	ASSERT(bNameVaild);
+	pCategory->AddHidden(new CBCGPRibbonButton(ID_CHANGE_VIEW, strTemp));
 
 	// 添加高级属性页
 	bNameVaild = strTemp.LoadString(IDS_STRING85);
@@ -600,6 +594,16 @@ BOOL CMainFrame::CreateRibbonBar ()
 
 	//m_wndRibbonBar.AddToTabs (pStyleButton);
 
+	CUpdateChecker checker;
+	if (checker.IsHasNewVersion())
+	{
+		DoCheckUpdateEvenet(0, 0);
+	}
+	else
+	{
+		checker.CheckUpdate();
+	}
+
 	// Add "About" button to the right of tabs:
 	m_wndRibbonBar.AddToTabs (new CBCGPRibbonButton (ID_APP_ABOUT, _T("\na"), m_PanelImages.ExtractIcon (0)));
 
@@ -608,7 +612,7 @@ BOOL CMainFrame::CreateRibbonBar ()
 	return TRUE;
 }
 //////////////////////////////////////////////////////////////////////////
-LRESULT CMainFrame::OnRibbonCustomize (WPARAM wp, LPARAM lp)
+LRESULT CMainFrame::OnRibbonCustomize (WPARAM /*wp*/, LPARAM /*lp*/)
 {
 	ShowOptions (0);
 	return 1;
@@ -682,7 +686,7 @@ void CMainFrame::ShowOptions (int nPage)
 	m_wndRibbonBar.EnableToolTips (theApp.m_bShowToolTips, theApp.m_bShowToolTipDescr);
 }
 //////////////////////////////////////////////////////////////////////////
-LRESULT CMainFrame::OnGetTabToolTip( WPARAM wp, LPARAM lp )
+LRESULT CMainFrame::OnGetTabToolTip( WPARAM /*wp*/, LPARAM lp )
 {
 	CBCGPTabToolTipInfo* pInfo = (CBCGPTabToolTipInfo*)lp;
 	ASSERT (pInfo != NULL);
@@ -1007,37 +1011,7 @@ void CMainFrame::OnSetformatter()
 	BOOL bNameVaild = strTemp.LoadString(IDS_STRING_SETFORMATTER);
 	ASSERT(bNameVaild);
 	CSetSheet setSheet(strTemp, this, 0);
-	setSheet.m_psh.dwFlags |= PSH_NOAPPLYNOW;
-	setSheet.SetLook(CBCGPPropertySheet::PropSheetLook_List, 124);
-
-	CSetPageCpp pageCpp(SYN_CPP, IDS_STRING_SET_CPP);
-	CSetPageCpp pageJava(SYN_JAVA, IDS_STRING_SET_JAVA);
-	CSetPageCpp pageCs(SYN_CS, IDS_STRING_SET_CSHARP);
-	CSetPageJS pageJS;
-	CSetPageHtml pageHtml(SYN_HTML, IDS_STRING_SET_HTML);
-	CSetPageHtml pageXml(SYN_XML, IDS_STRING_SET_XML);
-	CSetPagePHP pagePHP;
-	CSetPageCSS pageCSS;
-	CSetPageJson pageJson;
-	CSetPageSql pageSql;
-	setSheet.AddPage(&pageCpp);
-	setSheet.AddPage(&pageCs);
-	setSheet.AddPage(&pageCSS);
-	setSheet.AddPage(&pageHtml);
-	setSheet.AddPage(&pageJava);
-	setSheet.AddPage(&pageJS);
-	setSheet.AddPage(&pageJson);
-	setSheet.AddPage(&pagePHP);
-	setSheet.AddPage(&pageSql);
-	setSheet.AddPage(&pageXml);
-
-	setSheet.EnableVisualManagerStyle(TRUE, TRUE);
-
-	INT_PTR nResult = setSheet.DoModal();
-	if (nResult == IDOK)
-	{
-		setSheet.SaveTidyToReg();
-	}
+	setSheet.DoModalAllPage();	
 }
 //////////////////////////////////////////////////////////////////////////
 void CMainFrame::OnBatchformat()
@@ -1071,4 +1045,27 @@ BOOL CMainFrame::OnCopyData(CWnd* pWnd, COPYDATASTRUCT* pCopyDataStruct)
 		theApp.OpenDocumentFile(strName);
 	}
 	return CBCGPMDIFrameWnd::OnCopyData(pWnd, pCopyDataStruct);
+}
+
+void CMainFrame::OnNewvertip()
+{
+	ShellExecute(this->m_hWnd, _T("open"), _T("https://github.com/akof1314/CoolFormat"), _T(""), _T(""), SW_SHOW);
+}
+
+LRESULT CMainFrame::DoCheckUpdateEvenet(WPARAM wParam, LPARAM /*lParam*/)
+{
+	CString strTemp;
+	BOOL bNameVaild = strTemp.LoadString(IDS_NEWVERSION);
+	ASSERT(bNameVaild);
+	CBCGPRibbonHyperlink *pLink = new CBCGPRibbonHyperlink(ID_NEWVERTIP, strTemp, _T(""));
+	bNameVaild = strTemp.LoadString(IDS_NEWVERSION_DESC);
+	ASSERT(bNameVaild);
+	pLink->SetLink(strTemp);
+	m_wndRibbonBar.AddToTabs(pLink);
+
+	if (wParam == 1)
+	{
+		m_wndRibbonBar.RecalcLayout();
+	}
+	return 0;
 }

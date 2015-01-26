@@ -42,6 +42,7 @@ public:
 	afx_msg void OnEditCopy();
 	virtual void DocumentComplete(LPDISPATCH pDisp, VARIANT* URL);
 	virtual void NavigateComplete2(LPDISPATCH pDisp, VARIANT* URL);
+	afx_msg void OnChangeView();
 };
 
 

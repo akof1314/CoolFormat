@@ -1,4 +1,3 @@
-#include "stdafx.h"
 // core API
 #include <iostream>
 #include <stdlib.h>

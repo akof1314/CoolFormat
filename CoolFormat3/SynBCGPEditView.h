@@ -39,6 +39,8 @@ public:
 	 */
 	void ReSetLangLabel();
 
+	void ReSetEncodingLabel();
+
 #ifdef _DEBUG
 	virtual void AssertValid() const;
 #ifndef _WIN32_WCE
@@ -123,6 +125,16 @@ public:
 	afx_msg void OnCommentNot();
 	afx_msg void OnSelformat();
 	afx_msg void OnSize(UINT nType, int cx, int cy);
+	afx_msg void OnEncodingAnsi();
+	afx_msg void OnEncodingUtf8();
+	afx_msg void OnEncodingUtf8nb();
+	afx_msg void OnEncodingUtf16le();
+	afx_msg void OnEncodingUtf16be();
+	afx_msg void OnEncodingBig5();
+	afx_msg void OnEncodingGb2312();
+	afx_msg void OnEncodingShiftjis();
+	afx_msg void OnEncodingEuckr();
+	afx_msg void OnChangeView();
 };
 
 

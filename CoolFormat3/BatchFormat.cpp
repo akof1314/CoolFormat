@@ -9,10 +9,12 @@
 #include "FormatterHelp.h"
 #include <math.h>
 
-#define WM_DOFOMATTEREVENT WM_USER + 1314
 #define LIST_DEFAULT_NAME _T("CoolFormatList")
 #define LIST_EXT_NAME _T(".cflist")
 const TCHAR WIN_EOL[] = _T("\r\n");
+const int s_iIdList[] = { IDC_CHECK_BAT_C, IDC_CHECK_BAT_CS, IDC_CHECK_BAT_CSS, IDC_CHECK_BAT_HTML, IDC_CHECK_BAT_JAVA,
+IDC_CHECK_BAT_JAVAST, IDC_CHECK_BAT_JSON, IDC_CHECK_BAT_OBJC, IDC_CHECK_BAT_PHP, IDC_CHECK_BAT_SQL, IDC_CHECK_BAT_XML };
+const int s_iSynList[] = { SYN_CPP, SYN_CS, SYN_CSS, SYN_HTML, SYN_JAVA, SYN_JAVASCRIPT, SYN_JSON, SYN_OBJECTIVEC, SYN_PHP, SYN_SQL, SYN_XML };
 
 // CBatchFormat 对话框
 
@@ -58,16 +60,17 @@ BOOL CBatchFormat::OnInitDialog()
 	InitList();
 
 	int nBatchSyn = theApp.m_nBatchSyn;
-	int iIdList[] = {IDC_CHECK_BAT_C, IDC_CHECK_BAT_CS, IDC_CHECK_BAT_CSS, IDC_CHECK_BAT_HTML, IDC_CHECK_BAT_JAVA,
-		IDC_CHECK_BAT_JAVAST, IDC_CHECK_BAT_JSON, IDC_CHECK_BAT_PHP, IDC_CHECK_BAT_SQL, IDC_CHECK_BAT_XML}; 
-	int nSizeList = sizeof(iIdList) / sizeof(int);
-	int nCheck;
+	int nSizeList = sizeof(s_iIdList) / sizeof(int);
 	for (int i = 0; i < nSizeList; ++i)
 	{
-		nCheck = nBatchSyn & (int)pow(2.0, i); 
-		((CButton *)(GetDlgItem(iIdList[i])))->SetCheck(nCheck);	
+		int nBitPow = (int)pow(2.0, i);
+		((CButton *)(GetDlgItem(s_iIdList[i])))->SetCheck((nBatchSyn & nBitPow) == nBitPow);
 	}
 
+	if (!IsVisualManagerStyle())
+	{
+		EnableVisualManagerStyle(TRUE, TRUE);
+	}
 	return TRUE;  // return TRUE unless you set the focus to a control
 	// 异常: OCX 属性页应返回 FALSE
 }
@@ -158,6 +161,7 @@ void CBatchFormat::OnDropFiles(HDROP hDropInfo)
 void CBatchFormat::InitList()
 {
 	m_listFiles.SetExtendedStyle(m_listFiles.GetExtendedStyle() | LVS_EX_FULLROWSELECT | LVS_EX_CHECKBOXES);
+	m_listFiles.SetFont(&globalData.fontRegular);
 
 	//插入列头
 	CString strTemp;
@@ -431,7 +435,7 @@ void CBatchFormat::OnBnClickedButtonDobatch()
 		return;
 	}
 
-	m_pgcProgress.SetRange(0, nCount);
+	m_pgcProgress.SetRange32(0, nCount);
 	m_pgcProgress.SetPos(0);
 	m_pgcProgress.SetStep(1);
 	EnableAllWindow(FALSE);	
@@ -449,6 +453,7 @@ void CBatchFormat::EnableAllWindow( BOOL bEnable )
 	GetDlgItem(IDC_CHECK_BAT_JAVAST)->EnableWindow(bEnable);
 	GetDlgItem(IDC_CHECK_BAT_JSON)->EnableWindow(bEnable);
 	GetDlgItem(IDC_CHECK_BAT_PHP)->EnableWindow(bEnable);
+	GetDlgItem(IDC_CHECK_BAT_OBJC)->EnableWindow(bEnable);
 	GetDlgItem(IDC_CHECK_BAT_SQL)->EnableWindow(bEnable);
 	GetDlgItem(IDC_CHECK_BAT_XML)->EnableWindow(bEnable);
 
@@ -534,15 +539,12 @@ void CBatchFormat::OnNMClickListBatchfile(NMHDR *pNMHDR, LRESULT *pResult)
 void CBatchFormat::AddDirToList( LPCTSTR pszDirName )
 {
 	CString strFileExt, strSynExt;
-	int iIdList[] = {IDC_CHECK_BAT_C, IDC_CHECK_BAT_CS, IDC_CHECK_BAT_CSS, IDC_CHECK_BAT_HTML, IDC_CHECK_BAT_JAVA,
-	IDC_CHECK_BAT_JAVAST, IDC_CHECK_BAT_JSON, IDC_CHECK_BAT_PHP, IDC_CHECK_BAT_SQL, IDC_CHECK_BAT_XML}; 
-	int iSynList[] = {SYN_CPP, SYN_CS, SYN_CSS, SYN_HTML, SYN_JAVA, SYN_JAVASCRIPT, SYN_JSON, SYN_PHP, SYN_SQL, SYN_XML};
-	int nSizeList = sizeof(iIdList) / sizeof(int);
+	int nSizeList = sizeof(s_iIdList) / sizeof(int);
 	for (int i = 0; i < nSizeList; ++i)
 	{
-		if (((CButton *)(GetDlgItem(iIdList[i])))->GetCheck())
+		if (((CButton *)(GetDlgItem(s_iIdList[i])))->GetCheck())
 		{
-			g_GlobalUtils.m_sLanguageExt.GetLanguageFilter(iSynList[i], strSynExt);
+			g_GlobalUtils.m_sLanguageExt.GetLanguageFilter(s_iSynList[i], strSynExt);
 			strFileExt.Append(strSynExt);
 		}
 	}
@@ -618,9 +620,8 @@ void CBatchFormat::DoThreadFormatter()
 				break;
 			}
 	
-			CStringA strTextIn(strText);
 			strTextOut.Empty();
-			if (formatterSP.DoFormatter(nSynIndex, strTextIn, strTextOut, strMsgOut))
+			if (formatterSP.DoFormatter(nSynIndex, strText, strTextOut, strMsgOut, m_File.GetCodepage()))
 			{
 				m_File.SaveFile(strName, strTextOut);
 			}
@@ -631,7 +632,7 @@ void CBatchFormat::DoThreadFormatter()
 	PostMessage(WM_DOFOMATTEREVENT);
 }
 //////////////////////////////////////////////////////////////////////////
-LRESULT CBatchFormat::DoFomatterEvenet( WPARAM wParam, LPARAM lParam )
+LRESULT CBatchFormat::DoFomatterEvenet( WPARAM /*wParam*/, LPARAM /*lParam*/ )
 {
 	if (FALSE == m_pgcProgress.IsWindowVisible())
 	{
@@ -649,17 +650,15 @@ LRESULT CBatchFormat::DoFomatterEvenet( WPARAM wParam, LPARAM lParam )
 	}
 	return 0;
 }
-
+//////////////////////////////////////////////////////////////////////////
 void CBatchFormat::OnCancel()
 {
-	int iIdList[] = {IDC_CHECK_BAT_C, IDC_CHECK_BAT_CS, IDC_CHECK_BAT_CSS, IDC_CHECK_BAT_HTML, IDC_CHECK_BAT_JAVA,
-		IDC_CHECK_BAT_JAVAST, IDC_CHECK_BAT_JSON, IDC_CHECK_BAT_PHP, IDC_CHECK_BAT_SQL, IDC_CHECK_BAT_XML}; 
-	int nSizeList = sizeof(iIdList) / sizeof(int);
+	int nSizeList = sizeof(s_iIdList) / sizeof(int);
 	int nBatchSyn = 0;
 	int nCheck;
 	for (int i = 0; i < nSizeList; ++i)
 	{
-		nCheck = (BOOL)((CButton *)(GetDlgItem(iIdList[i])))->GetCheck();
+		nCheck = (BOOL)((CButton *)(GetDlgItem(s_iIdList[i])))->GetCheck();
 		if (1 == nCheck)
 		{
 			nBatchSyn |= (int)pow(2.0, i);

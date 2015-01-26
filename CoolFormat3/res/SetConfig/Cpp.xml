@@ -1,0 +1,818 @@
+<SETCONFIG>
+	<VERSION>1</VERSION>
+	<PROPERTYS>
+		<PROPERTY>
+			<NAME>Bracket</NAME>
+			<GROUP>TRUE</GROUP>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Bracket style</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>None</VALUE>
+			<ITEM>
+				<VALUE>Allman/bsd/break</VALUE>
+				<SHORT>A1</SHORT>
+				<PREVIEW>int Foo(bool isFoo)\r\n{\r\n     if (isFoo)\r\n     {\r\n          bar();\r\n          return 1;\r\n     }\r\n     else\r\n          return 0;\r\n}</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>Java/attach</VALUE>
+				<SHORT>A2</SHORT>
+				<PREVIEW>int Foo(bool isFoo) {\r\n     if (isFoo) {\r\n          bar();\r\n          return 1;\r\n     } else\r\n          return 0;\r\n}</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>KR</VALUE>
+				<SHORT>A3</SHORT>
+				<PREVIEW>int Foo(bool isFoo)\r\n{\r\n     if (isFoo) {\r\n          bar();\r\n          return 1;\r\n     } else\r\n          return 0;\r\n}</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>Stroustrup</VALUE>
+				<SHORT>A4</SHORT>
+				<PREVIEW>int Foo(bool isFoo)\r\n{\r\n     if (isFoo) {\r\n          bar();\r\n          return 1;\r\n     } else\r\n          return 0;\r\n}</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>Whitesmith</VALUE>
+				<SHORT>A5</SHORT>
+				<PREVIEW>int Foo(bool isFoo)\r\n     {\r\n     if (isFoo)\r\n          {\r\n          bar();\r\n          return 1;\r\n          }\r\n     else\r\n          return 0;\r\n     }</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>Banner</VALUE>
+				<SHORT>A6</SHORT>
+				<PREVIEW>int Foo(bool isFoo) {\r\n     if (isFoo) {\r\n          bar();\r\n          return 1;\r\n          }\r\n     else\r\n          return 0;\r\n     }</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>GNU</VALUE>
+				<SHORT>A7</SHORT>
+				<PREVIEW>int Foo(bool isFoo)\r\n{\r\n   if (isFoo)\r\n      {\r\n         bar();\r\n         return 1;\r\n      }\r\n   else\r\n      return 0;\r\n}</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>Linux</VALUE>
+				<SHORT>A8</SHORT>
+				<PREVIEW>int Foo(bool isFoo)\r\n{\r\n         if (isFoo) {\r\n                   bar();\r\n                   return 1;\r\n         } else\r\n                   return 0;\r\n}</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>Horstmann</VALUE>
+				<SHORT>A9</SHORT>
+				<PREVIEW>int Foo(bool isFoo)\r\n{  if (isFoo)\r\n    {   bar();\r\n         return 1;\r\n    }\r\n    else\r\n         return 0;\r\n}</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>1tbs/otbs</VALUE>
+				<SHORT>A10</SHORT>
+				<PREVIEW>int Foo(bool isFoo)\r\n{\r\n     if (isFoo) {\r\n          bar();\r\n          return 1;\r\n     } else {\r\n          return 0;\r\n     }\r\n}</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>Pico</VALUE>
+				<SHORT>A11</SHORT>
+				<PREVIEW>int Foo(bool isFoo)\r\n{  if (isFoo)\r\n    {   bar();\r\n         return 1; }\r\n    else\r\n         return 0; }</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>Lisp/python</VALUE>
+				<SHORT>A12</SHORT>
+				<PREVIEW>int Foo(bool isFoo) {\r\n   if (isFoo) {\r\n        bar();\r\n         return 1; }\r\n    else\r\n         return 0; }</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>Google</VALUE>
+				<SHORT>A14</SHORT>
+				<PREVIEW>int Foo(bool isFoo) {\r\n     if (isFoo) {\r\n          bar();\r\n          return 1;\r\n     } else\r\n          return 0;\r\n}</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>VTK</VALUE>
+				<SHORT>A15</SHORT>
+				<PREVIEW>int Foo(bool isFoo)\r\n{\r\n     if (isFoo)\r\n          {\r\n          bar();\r\n          return 1;\r\n          }\r\n     else\r\n          return 0;\r\n}</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>None</VALUE>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Bracket Modify</NAME>
+			<GROUP>TRUE</GROUP>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Attach namespaces</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>xn</SHORT>
+				<PREVIEW>namespace FooName {\r\n...\r\n}</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>namespace FooName \r\n{\r\n...\r\n}</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Attach classes</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>xc</SHORT>
+				<PREVIEW>class Foo {\r\n    public:\r\n        Foo() {\r\n            isFoo();\r\n        }\r\n};</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>class Foo\r\n{\r\n    public:\r\n        Foo() {\r\n            isFoo();\r\n        }\r\n};</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Attach inlines</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>xl</SHORT>
+				<PREVIEW>class Foo\r\n{\r\n    public:\r\n        Foo() {\r\n            isFoo();\r\n        }\r\n};</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>class Foo\r\n{\r\n    public:\r\n        Foo()\r\n        {\r\n            isFoo();\r\n        }\r\n};</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Attach extern c</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>xk</SHORT>
+				<PREVIEW>#ifdef __cplusplus\r\nextern &quot;C&quot; {\r\n#endif</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>#ifdef __cplusplus\r\nextern &quot;C&quot;\r\n{\r\n#endif</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Indentation</NAME>
+			<GROUP>TRUE</GROUP>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Indent using</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>Spaces</VALUE>
+			<ITEM>
+				<VALUE>Spaces</VALUE>
+				<SHORT>s</SHORT>
+				<PREVIEW>int*Foo(bool*isBar)\r\n{\r\n****if*(isBar)*{\r\n********bar();\r\n****}\r\n****else*{\r\n********bar(arg1,\r\n************arg2,\r\n************arg3);\r\n****}\r\n}</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>Tab</VALUE>
+				<SHORT>t</SHORT>
+				<PREVIEW>int*Foo(bool*isBar)\r\n{\r\n---&gt;if*(isBar)*{\r\n---&gt;---&gt;bar();\r\n---&gt;}\r\n---&gt;else*{\r\n---&gt;---&gt;bar(arg1,\r\n---&gt;---&gt;****arg2,\r\n---&gt;---&gt;****arg3);\r\n---&gt;}\r\n}</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>Force tab</VALUE>
+				<SHORT>T</SHORT>
+				<PREVIEW>int*Foo(bool*isBar)\r\n{\r\n---&gt;if*(isBar)*{\r\n---&gt;---&gt;bar();\r\n---&gt;}\r\n---&gt;else*{\r\n---&gt;---&gt;bar(arg1,\r\n---&gt;---&gt;---&gt;arg2,\r\n---&gt;---&gt;---&gt;arg3);\r\n---&gt;}\r\n}</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Indent number</NAME>
+			<TYPE>Number</TYPE>
+			<VALUE>4</VALUE>
+			<RANGE>2, 20</RANGE>
+			<BUDDY>TRUE</BUDDY>
+			<PREVIEW>//indent_number4\r\nint Foo(bool isBar)\r\n{\r\n    bar();\r\n}\r\n\r\n//indent_number5\r\nint Foo(bool isBar)\r\n{\r\n     bar();\r\n}</PREVIEW>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Indent classes</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>C</SHORT>
+				<PREVIEW>class Foo\r\n{\r\n    public:\r\n        Foo();\r\n        virtual ~Foo();\r\n};</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>class Foo\r\n{\r\npublic:\r\n    Foo();\r\n    virtual ~Foo();\r\n};</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Indent modifiers</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>xG</SHORT>
+				<PREVIEW>class Foo\r\n{\r\n  public:\r\n    Foo();\r\n    virtual ~Foo();\r\n};</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>class Foo\r\n{\r\npublic:\r\n    Foo();\r\n    virtual ~Foo();\r\n};</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Indent switches</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>S</SHORT>
+				<PREVIEW>switch (foo)\r\n{\r\n    case 1:\r\n        a += 1;\r\n        break;\r\n\r\n    case 2:\r\n    {\r\n        a += 2;\r\n        break;\r\n    }\r\n}</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>switch (foo)\r\n{\r\ncase 1:\r\n    a += 1;\r\n    break;\r\n\r\ncase 2:\r\n{\r\n    a += 2;\r\n    break;\r\n}\r\n}</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Indent cases</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>K</SHORT>
+				<PREVIEW>switch (foo)\r\n{\r\n    case 1:\r\n        a += 1;\r\n        break;\r\n\r\n    case 2:\r\n        {\r\n            a += 2;\r\n            break;\r\n        }\r\n}</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>switch (foo)\r\n{\r\n    case 1:\r\n        a += 1;\r\n        break;\r\n\r\n    case 2:\r\n    {\r\n        a += 2;\r\n        break;\r\n    }\r\n}</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Indent namespaces</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>N</SHORT>
+				<PREVIEW>namespace foospace\r\n{\r\n    class Foo\r\n    {\r\n        public:\r\n            Foo();\r\n            virtual ~Foo();\r\n    };\r\n}</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>namespace foospace\r\n{\r\nclass Foo\r\n{\r\n    public:\r\n        Foo();\r\n        virtual ~Foo();\r\n};\r\n}</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Indent labels</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>L</SHORT>
+				<PREVIEW>void Foo() {\r\n    while (isFoo) {\r\n        if (isFoo)\r\n            goto error;\r\n        ... \r\n    error:\r\n        ...\r\n    }        \r\n}</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>void Foo() {\r\n    while (isFoo) {\r\n        if (isFoo)\r\n            goto error;\r\n        ...\r\nerror:\r\n        ...\r\n    }\r\n}</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Indent preproc block</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>xW</SHORT>
+				<PREVIEW>#ifdef _WIN32\r\n    #include &lt;windows.h&gt;\r\n    #ifndef NO_EXPORT\r\n        #define EXPORT\r\n    #endif\r\n#endif</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>#ifdef _WIN32\r\n#include &lt;windows.h&gt;\r\n#ifndef NO_EXPORT\r\n#define EXPORT\r\n#endif\r\n#endif</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Indent preproc define</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>w</SHORT>
+				<PREVIEW>#define Is_Foo(arg,op)  \\r\n    ((arg).compare(op)==0)\r\n\r\n#define Is_Bar(arg,a,b)  \\r\n    (Is_Foo((arg), (a))  \\r\n        || Is_Foo((arg), (b)))</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>#define Is_Foo(arg,op)  \\r\n((arg).compare(op)==0)\r\n\r\n#define Is_Bar(arg,a,b)  \\r\n(Is_Foo((arg), (a))   \\r\n|| Is_Foo((arg), (b)))</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Indent preproc cond</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>xw</SHORT>
+				<PREVIEW>isFoo = true;\r\n          #ifdef UNICODE\r\n          text = wideBuff;\r\n          #else\r\n          text = buff;\r\n          #endif;</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>isFoo = true;\r\n#ifdef UNICODE\r\n          text = wideBuff;\r\n#else\r\n          text = buff;\r\n#endif;</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Indent col1 comments</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>Y</SHORT>
+				<PREVIEW>void Foo()\r\n{\r\n    // comment\r\n    if (isFoo)\r\n        bar();\r\n}</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>void Foo()\r\n{\r\n// comment\r\n    if (isFoo)\r\n        bar();\r\n}</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Min conditional indent</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>2 indents</VALUE>
+			<ITEM>
+				<VALUE>0 indent</VALUE>
+				<SHORT>m0</SHORT>
+				<PREVIEW>if (a &lt; b\r\n    || c &gt; d)\r\n    foo++;\r\n\r\nif (a &lt; b\r\n    || c &gt; d)\r\n{\r\n    foo++;\r\n}</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>1 indent</VALUE>
+				<SHORT>m1</SHORT>
+				<PREVIEW>if (a &lt; b\r\n    || c &gt; d)\r\n    foo++;\r\n\r\nif (a &lt; b\r\n    || c &gt; d)\r\n{\r\n    foo++;\r\n}</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>2 indents</VALUE>
+				<SHORT>m2</SHORT>
+				<PREVIEW>if (a &lt; b\r\n        || c &gt; d)\r\n    foo++;\r\n\r\nif (a &lt; b\r\n        || c &gt; d)\r\n{\r\n    foo++;\r\n}</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>0.5 indent</VALUE>
+				<SHORT>m3</SHORT>
+				<PREVIEW>if (a &lt; b\r\n    || c &gt; d)\r\n    foo++;\r\n\r\nif (a &lt; b\r\n    || c &gt; d)\r\n{\r\n    foo++;\r\n}</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Max instatement indent</NAME>
+			<TYPE>Number</TYPE>
+			<VALUE>40</VALUE>
+			<RANGE>40, 120</RANGE>
+			<SHORT>M</SHORT>
+			<PREVIEW>fooArray[] = { red,\r\n         green,\r\n         blue };\r\n\r\nfooFunction(barArg1,\r\n         barArg2,\r\n         barArg3);\r\n\r\nbecomes (with larger value)\r\n\r\nfooArray[] = { red,\r\n               green,\r\n               blue };\r\n\r\nfooFunction(barArg1,\r\n            barArg2,\r\n            barArg3);</PREVIEW>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Padding</NAME>
+			<GROUP>TRUE</GROUP>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Break blocks</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>f</SHORT>
+				<PREVIEW>isFoo = true;\r\n\r\nif (isFoo) {\r\n    bar();\r\n} else {\r\n    anotherBar();\r\n}\r\n\r\nisBar = false;</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>isFoo = true;\r\nif (isFoo) {\r\n    bar();\r\n} else {\r\n    anotherBar();\r\n}\r\nisBar = false;</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Break all blocks</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>F</SHORT>
+				<PREVIEW>isFoo = true;\r\n\r\nif (isFoo) {\r\n    bar();\r\n    \r\n} else {\r\n    anotherBar();\r\n}\r\n\r\nisBar = false;</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>isFoo = true;\r\nif (isFoo) {\r\n    bar();\r\n} else {\r\n    anotherBar();\r\n}\r\nisBar = false;</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Pad operators</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>p</SHORT>
+				<PREVIEW>if (foo == 2)\r\n     a = bar((b - c) * a, d--);</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>if (foo==2)\r\n    a=bar((b-c)*a,d--);</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Pad parens</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>P</SHORT>
+				<PREVIEW>if ( isFoo ( a, b ) )\r\n    bar ( a, b );</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>if (isFoo(a, b))\r\n    bar(a, b);</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Pad parens out</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>d</SHORT>
+				<PREVIEW>if (isFoo (a, b) )\r\n    bar (a, b);</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>if (isFoo(a, b))\r\n    bar(a, b);</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Pad parens in</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>D</SHORT>
+				<PREVIEW>if ( isFoo( a, b ) )\r\n    bar( a, b );</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>if (isFoo(a, b))\r\n    bar(a, b);</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Pad first paren out</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>xd</SHORT>
+				<PREVIEW>if (isFoo ((a+2), b))\r\n    bar (a, b);</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>if (isFoo((a+2), b))\r\n    bar(a, b);</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Pad header</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>H</SHORT>
+				<PREVIEW>if (isFoo(a, b))\r\n    bar(a, b);</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>if(isFoo(a, b))\r\n    bar(a, b);</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Unpad parens</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>U</SHORT>
+				<PREVIEW>if(isFoo(a, b))\r\n    bar(a, b);</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>if ( isFoo( a, b ) )\r\n    bar ( a, b );</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Delete empty lines</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>xe</SHORT>
+				<PREVIEW>void Foo()\r\n{\r\n    foo1 = 1;\r\n    foo2 = 2;\r\n}</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>void Foo()\r\n{\r\n\t\r\n    foo1 = 1;\r\n\t\r\n    foo2 = 2;\r\n\t\r\n}</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Fill empty lines</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>E</SHORT>
+				<PREVIEW>void Foo(bool isFoo) {\r\n****if (isFoo) {\r\n********bar();\r\n****}\r\n****\r\n****else {\r\n********anotherBar();\r\n****}\r\n}</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>void Foo(bool isFoo) {\r\n****if (isFoo) {\r\n********bar();\r\n****}\r\n\r\n****else {\r\n********anotherBar();\r\n****}\r\n}</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Align pointer</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>None</VALUE>
+			<ITEM>
+				<VALUE>None</VALUE>
+				<PREVIEW>char *foo1;\r\nchar&amp; foo2;\r\n\r\n//remains unchanged.</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>Type</VALUE>
+				<SHORT>k1</SHORT>
+				<PREVIEW>char* foo1;\r\nchar&amp; foo2;</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>Middle</VALUE>
+				<SHORT>k2</SHORT>
+				<PREVIEW>char * foo1;\r\nchar &amp; foo2;</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>Name</VALUE>
+				<SHORT>k3</SHORT>
+				<PREVIEW>char *foo1;\r\nchar &amp;foo2;</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Align reference</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>Same</VALUE>
+			<ITEM>
+				<VALUE>Same</VALUE>
+				<PREVIEW>char &amp;foo1;\r\n\r\n//same as pointer.</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>None</VALUE>
+				<SHORT>W0</SHORT>
+				<PREVIEW>char &amp;foo1;\r\n\r\n//remains unchanged.</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>Type</VALUE>
+				<SHORT>W1</SHORT>
+				<PREVIEW>char&amp; foo1;</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>Middle</VALUE>
+				<SHORT>W2</SHORT>
+				<PREVIEW>char &amp; foo1;</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>Name</VALUE>
+				<SHORT>W3</SHORT>
+				<PREVIEW>char &amp;foo1;</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Formatting</NAME>
+			<GROUP>TRUE</GROUP>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Break closing brackets</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>y</SHORT>
+				<PREVIEW>void Foo(bool isFoo) {\r\n    if (isFoo) {\r\n        bar();\r\n    }\r\n    else {\r\n        anotherBar();\r\n    }\r\n}</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>void Foo(bool isFoo) {\r\n    if (isFoo) {\r\n        bar();\r\n    } else {\r\n        anotherBar();\r\n    }\r\n}</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Break elseifs</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>e</SHORT>
+				<PREVIEW>if (isFoo) {\r\n    bar();\r\n}\r\nelse\r\n    if (isFoo1()) {\r\n        bar1();\r\n    }\r\n  else\r\n        if (isFoo2()) {\r\n            bar2();\r\n        }</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>if (isFoo) {\r\n    bar();\r\n}\r\nelse if (isFoo1()) {\r\n    bar1();\r\n}\r\nelse if (isFoo2()) }\r\n    bar2;\r\n}</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Add brackets</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>j</SHORT>
+				<PREVIEW>if (isFoo) {\r\n    isFoo = false;\r\n}</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>if (isFoo)\r\n    isFoo = false;</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Add one line brackets</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>J</SHORT>
+				<PREVIEW>if (isFoo)\r\n    { isFoo = false; }</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>if (isFoo)\r\n    isFoo = false;</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Remove brackets</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>xj</SHORT>
+				<PREVIEW>if (isFoo)\r\n    isFoo = false;</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>if (isFoo)\r\n{\r\n    isFoo = false;\r\n}</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Keep one line blocks</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>O</SHORT>
+				<PREVIEW>if (isFoo)\r\n{ isFoo = false; cout &lt;&lt; isFoo &lt;&lt; endl; }\r\n\r\n//remains unchanged.</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>if (isFoo)\r\n{ isFoo = false; cout &lt;&lt; isFoo &lt;&lt; endl; }</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Keep one line statements</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>o</SHORT>
+				<PREVIEW>if (isFoo)\r\n{\r\n    isFoo = false; cout &lt;&lt; isFoo &lt;&lt; endl;\r\n}\r\n\r\n//remains unchanged.</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>if (isFoo)\r\n{\r\n    isFoo = false; cout &lt;&lt; isFoo &lt;&lt; endl;\r\n}</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Convert tabs</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>c</SHORT>
+				<PREVIEW>int Foo(bool isBar)********//Foo\r\n{\r\n    int a****= b;\r\n}</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>int Foo(bool isBar)---&gt;---&gt;//Foo\r\n{\r\n    int a---&gt;= b;\r\n}</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Close templates</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>xy</SHORT>
+				<PREVIEW>Stack&lt;int,List&lt;int&gt;&gt; stack1;</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>Stack&lt; int,List&lt; int &gt; &gt; stack1;</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Remove comment prefix</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>xp</SHORT>
+				<PREVIEW>/*\r\n    comment line 1\r\n    comment line 2\r\n*/</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>/*\r\n * comment line 1\r\n * comment line 2\r\n */</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Max code</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>xC</SHORT>
+				<PREVIEW>if (thisVariable1 == thatVariable1\r\n        || thisVariable2 == thatVariable2\r\n        || thisVariable3 == thatVariable3)\r\n    bar();</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>if (thisVariable1 == thatVariable1 || thisVariable2 == thatVariable2 || thisVariable3 == thatVariable3)\r\n    bar();</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Max code length</NAME>
+			<TYPE>Number</TYPE>
+			<VALUE>50</VALUE>
+			<RANGE>50, 200</RANGE>
+			<BUDDY>TRUE</BUDDY>
+			<PREVIEW>//Max code length50\r\nif (thisVariable1 == thatVariable1\r\n        || thisVariable2 == thatVariable2\r\n        || thisVariable3 == thatVariable3)\r\n    bar();\r\n\r\n//Max code length100\r\nif (thisVariable1 == thatVariable1 || thisVariable2 == thatVariable2\r\n        || thisVariable3 == thatVariable3)\r\n    bar();</PREVIEW>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Break after logical</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>xL</SHORT>
+				<PREVIEW>if (thisVariable1 == thatVariable1 ||\r\n        thisVariable2 == thatVariable2 ||\r\n        thisVariable3 == thatVariable3)\r\n    bar();</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>if (thisVariable1 == thatVariable1\r\n        || thisVariable2 == thatVariable2\r\n        || thisVariable3 == thatVariable3)\r\n    bar();</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Objective-C</NAME>
+			<GROUP>TRUE</GROUP>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Align method colon</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>xM</SHORT>
+				<PREVIEW>-(void)deleteKey:(id)key\r\n         atIndex:(int)index\r\n          ofNode:(Node*)node;</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>-(void)deleteKey:(id)key\r\n    atIndex:(int)index\r\n    ofNode:(Node*)node;</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Pad method prefix</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>xQ</SHORT>
+				<PREVIEW>- (void)foo1;\r\n+ (void)foo2;</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>-(void)foo1;\r\n+(void)foo2;</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Unpad method prefix</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>xR</SHORT>
+				<PREVIEW>-(void)foo1;\r\n+(void)foo2;</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>- (void)foo1;\r\n+ (void)foo2;</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Pad method colon</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>Do no change</VALUE>
+			<ITEM>
+				<VALUE>Do no change</VALUE>
+				<PREVIEW>-(id)write :(NSString*)path\r\n     order :(int)ord\r\n{\r\n     [file writeData :headData\r\n      atOffset :rootOffset];\r\n}\r\n\r\n//remains unchanged.</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>None</VALUE>
+				<SHORT>xP0</SHORT>
+				<PREVIEW>-(id)write:(NSString*)path\r\n     order:(int)ord\r\n{\r\n     [file writeData:headData\r\n      atOffset:rootOffset];\r\n}</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>All</VALUE>
+				<SHORT>xP1</SHORT>
+				<PREVIEW>-(id)write : (NSString*)path\r\n     order : (int)ord\r\n{\r\n     [file writeData : headData\r\n      atOffset : rootOffset];\r\n}</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>After</VALUE>
+				<SHORT>xP2</SHORT>
+				<PREVIEW>-(id)write: (NSString*)path\r\n     order: (int)ord\r\n{\r\n     [file writeData: headData\r\n      atOffset: rootOffset];\r\n}</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>Before</VALUE>
+				<SHORT>xP3</SHORT>
+				<PREVIEW>-(id)write :(NSString*)path\r\n     order :(int)ord\r\n{\r\n     [file writeData :headData\r\n      atOffset :rootOffset];\r\n}</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+	</PROPERTYS>
+</SETCONFIG>

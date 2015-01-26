@@ -2103,8 +2103,8 @@ void TY_(PPrintTree)( TidyDocImpl* doc, uint mode, uint indent, Node *node )
                 contentIndent += spaces;
 
             PCondFlushLine( doc, indent );
-            if ( indsmart && node->prev != NULL )
-                TY_(PFlushLine)( doc, indent );
+			if (indsmart && node->prev != NULL)
+				TY_(PFlushLine)(doc, indent);
 
             /* do not omit elements with attributes */
             if ( !hideend || !TY_(nodeHasCM)(node, CM_OMITST) ||

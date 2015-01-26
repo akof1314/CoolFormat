@@ -1,0 +1,416 @@
+<SETCONFIG>
+	<VERSION>1</VERSION>
+	<PROPERTYS>
+		<PROPERTY>
+			<NAME>Bracket</NAME>
+			<GROUP>TRUE</GROUP>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Bracket style</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>PEAR</VALUE>
+			<ITEM>
+				<VALUE>KR</VALUE>
+				<SHORT>is0</SHORT>
+				<PREVIEW>&lt;?php\r\nfunction foo() {\r\n    echo &quot;a is bigger than b&quot;;\r\n}\r\n?&gt;</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>Allman</VALUE>
+				<SHORT>is1</SHORT>
+				<PREVIEW>&lt;?php\r\nfunction foo()\r\n{\r\n    echo &quot;a is bigger than b&quot;;\r\n}\r\n?&gt;</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>Whitesmiths</VALUE>
+				<SHORT>is2</SHORT>
+				<PREVIEW>&lt;?php\r\nfunction foo()\r\n    {\r\n    echo &quot;a is bigger than b&quot;;\r\n    }\r\n?&gt;</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>GNU</VALUE>
+				<SHORT>is3</SHORT>
+				<PREVIEW>&lt;?php\r\nfunction foo()\r\n  {\r\n    echo &quot;a is bigger than b&quot;;\r\n  }\r\n?&gt;</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>PEAR</VALUE>
+				<SHORT>is4</SHORT>
+				<PREVIEW>&lt;?php\r\nfunction foo()\r\n{\r\n    echo &quot;a is bigger than b&quot;;\r\n}\r\n?&gt;</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Indentation</NAME>
+			<GROUP>TRUE</GROUP>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Indent using</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>Spaces</VALUE>
+			<ITEM>
+				<VALUE>Spaces</VALUE>
+				<SHORT>ich0</SHORT>
+				<PREVIEW>&lt;?php\r\nfunction foo()\r\n{\r\n****echo &quot;a is bigger than b&quot;;\r\n}\r\n?&gt;</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>Tab</VALUE>
+				<SHORT>ich1</SHORT>
+				<PREVIEW>&lt;?php\r\nfunction foo()\r\n{\r\n---&gt;echo &quot;a is bigger than b&quot;;\r\n}\r\n?&gt;</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Indent number</NAME>
+			<TYPE>Number</TYPE>
+			<VALUE>4</VALUE>
+			<RANGE>0, 100</RANGE>
+			<SHORT>in</SHORT>
+			<PREVIEW>//indent_number4\r\n&lt;?php\r\nfunction foo()\r\n{\r\n****echo &quot;a is bigger than b&quot;;\r\n}\r\n?&gt;\r\n\r\n//indent_number5\r\n&lt;?php\r\nfunction foo()\r\n{\r\n*****echo &quot;a is bigger than b&quot;;\r\n}\r\n?&gt;</PREVIEW>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>First indent number</NAME>
+			<TYPE>Number</TYPE>
+			<VALUE>0</VALUE>
+			<RANGE>0, 100</RANGE>
+			<SHORT>fin</SHORT>
+			<PREVIEW>//first_indent_number0\r\n&lt;?php\r\nfunction foo()\r\n{\r\n    echo &quot;a is bigger than b&quot;;\r\n}\r\n?&gt;\r\n\r\n//first_indent_number2\r\n&lt;?php\r\n  function foo()\r\n  {\r\n      echo &quot;a is bigger than b&quot;;\r\n  }\r\n?&gt;</PREVIEW>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Indent case default</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>icd</SHORT>
+				<PREVIEW>&lt;?php\r\nswitch($i) {\r\n    case 0:\r\n        echo &quot;i equals 0&quot;;\r\n        break;\r\n    case 1:\r\n        echo &quot;i equals 1&quot;;\r\n        break;\r\n    case 2:\r\n        echo &quot;i equals 2&quot;;\r\n        break;\r\n    default:\r\n        echo &quot;i is not equal to 0, 1 or 2&quot;;\r\n}\r\n?&gt;</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>&lt;?php\r\nswitch($i) {\r\ncase 0:\r\n    echo &quot;i equals 0&quot;;\r\n    break;\r\ncase 1:\r\n    echo &quot;i equals 1&quot;;\r\n    break;\r\ncase 2:\r\n    echo &quot;i equals 2&quot;;\r\n    break;\r\ndefault:\r\n    echo &quot;i is not equal to 0, 1 or 2&quot;;\r\n}\r\n?&gt;</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Padding</NAME>
+			<GROUP>TRUE</GROUP>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Structures</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>sas</SHORT>
+				<PREVIEW>&lt;?php\r\nif ($a&gt;$b)\r\n    echo &quot;a is bigger than b&quot;;\r\n?&gt;</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>&lt;?php\r\nif($a&gt;$b)\r\n    echo &quot;a is bigger than b&quot;;\r\n?&gt;</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Brackets</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>sibr</SHORT>
+				<PREVIEW>&lt;?php\r\nif( $a&gt;$b )\r\n    echo &quot;a is bigger than b&quot;;\r\n?&gt;</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>&lt;?php\r\nif($a&gt;$b)\r\n    echo &quot;a is bigger than b&quot;;\r\n?&gt;</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Empty brackets</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>siebr</SHORT>
+				<PREVIEW>&lt;?php\r\nfunction foo( )\r\n{\r\n    echo &quot;a is bigger than b&quot;;\r\n}\r\n?&gt;</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>&lt;?php\r\nfunction foo()\r\n{\r\n    echo &quot;a is bigger than b&quot;;\r\n}\r\n?&gt;</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Block brackets</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>sibb</SHORT>
+				<PREVIEW>&lt;?php\r\n$arr[ &apos;1&apos; ]=56;\r\n?&gt;</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>&lt;?php\r\n$arr[&apos;1&apos;]=56;\r\n?&gt;</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Empty block brackets</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>siebb</SHORT>
+				<PREVIEW>&lt;?php\r\n$arr[ ]=56;\r\n?&gt;</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>&lt;?php\r\n$arr[]=56;\r\n?&gt;</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Math operators</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>samt</SHORT>
+				<PREVIEW>&lt;?php\r\n$a=3 * 3 % 5;\r\n?&gt;</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>&lt;?php\r\n$a=3*3%5;\r\n?&gt;</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Logical operators</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>salo</SHORT>
+				<PREVIEW>&lt;?php\r\n$g=true &amp;&amp; false;\r\n?&gt;</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>&lt;?php\r\n$g=true&amp;&amp;false;\r\n?&gt;</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Equality operators</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>saeo</SHORT>
+				<PREVIEW>&lt;?php\r\nvar_dump(0 == &quot;a&quot;);\r\n?&gt;</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>&lt;?php\r\nvar_dump(0==&quot;a&quot;);\r\n?&gt;</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Relational operators</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>saro</SHORT>
+				<PREVIEW>&lt;?php\r\nvar_dump(0 &gt;= &quot;a&quot;);\r\n?&gt;</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>&lt;?php\r\nvar_dump(0&gt;=&quot;a&quot;);\r\n?&gt;</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Bitwise operators</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>sabo</SHORT>
+				<PREVIEW>&lt;?php\r\necho 12 ^ 9;\r\n$res=4 &gt;&gt; 1;\r\n?&gt;</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>&lt;?php\r\necho 12^9;\r\n$res=4&gt;&gt;1;\r\n?&gt;</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Assignment operators</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>saao</SHORT>
+				<PREVIEW>&lt;?php\r\n$a = 3;\r\n$a += 5;\r\n$b = &quot;Hello &quot;;\r\n$b .= &quot;There!&quot;;\r\n?&gt;</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>&lt;?php\r\n$a=3;\r\n$a+=5;\r\n$b=&quot;Hello &quot;;\r\n$b.=&quot;There!&quot;;\r\n?&gt;</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Map operators</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>samp</SHORT>
+				<PREVIEW>&lt;?php\r\n$array=array(\r\n    &quot;foo&quot; =&gt; &quot;bar&quot;,\r\n    &quot;bar&quot; =&gt; &quot;foo&quot;\r\n);\r\n?&gt;</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>&lt;?php\r\n$array=array(\r\n    &quot;foo&quot;=&gt;&quot;bar&quot;,\r\n    &quot;bar&quot;=&gt;&quot;foo&quot;\r\n);\r\n?&gt;</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Formatting</NAME>
+			<GROUP>TRUE</GROUP>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Remove all comments</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>rc</SHORT>
+				<PREVIEW>&lt;?php\r\nfunction foo()\r\n{\r\n    echo &quot;a is bigger than b&quot;;\r\n}\r\n?&gt;</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>&lt;?php\r\nfunction foo()\r\n{\r\n    echo &quot;a is bigger than b&quot;;\r\n    //a is bigger than b\r\n}\r\n?&gt;</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Remove empty lines</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>rel</SHORT>
+				<PREVIEW>&lt;?php\r\nfunction foo()\r\n{\r\n    echo &quot;a is bigger than b&quot;;\r\n}\r\n?&gt;</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>&lt;?php\r\nfunction foo()\r\n{\r\n    echo &quot;a is bigger than b&quot;;\r\n\r\n}\r\n?&gt;</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Align assignments</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>aas</SHORT>
+				<PREVIEW>&lt;?php\r\n$a   =3;\r\n$aa  =5;\r\n$aaaa=&quot;Hello &quot;;\r\n?&gt;</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>&lt;?php\r\n$a=3;\r\n$aa=5;\r\n$aaaa=&quot;Hello &quot;;\r\n?&gt;</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Comment structures</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>cas</SHORT>
+				<PREVIEW>&lt;?php\r\nif($a&gt;$b) {\r\n    echo &quot;a is bigger than b&quot;;\r\n} //$a&gt;$b\r\n?&gt;</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>&lt;?php\r\nif($a&gt;$b) {\r\n    echo &quot;a is bigger than b&quot;;\r\n}\r\n?&gt;</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Remove semicolon lines</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>rsl</SHORT>
+				<PREVIEW>&lt;?php\r\nfunction foo()\r\n{\r\n    echo &quot;a is bigger than b&quot;;\r\n}\r\n?&gt;</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>&lt;?php\r\nfunction foo()\r\n{\r\n    echo &quot;a is bigger than b&quot;;\r\n    ;\r\n}\r\n?&gt;</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Indent empty lines</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>iel</SHORT>
+				<PREVIEW>&lt;?php\r\nfunction foo()\r\n{\r\n****echo &quot;a is bigger than b&quot;;\r\n****\r\n****echo &quot;a is bigger than b&quot;;\r\n}\r\n?&gt;</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>&lt;?php\r\nfunction foo()\r\n{\r\n****echo &quot;a is bigger than b&quot;;\r\n\r\n****echo &quot;a is bigger than b&quot;;\r\n}\r\n?&gt;</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Rewrite perl comments</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>rpc</SHORT>
+				<PREVIEW>&lt;?php\r\necho &apos;One Final Test&apos;;\r\n// This is a one-line shell-style comment\r\n?&gt;</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>&lt;?php\r\necho &apos;One Final Test&apos;;\r\n# This is a one-line shell-style comment\r\n?&gt;</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Rewrite short tag</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>rst</SHORT>
+				<PREVIEW>&lt;?php\r\necho &apos;Test&apos;;\r\n?&gt;</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>&lt;?\r\necho &apos;Test&apos;;\r\n?&gt;</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Asp tags</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>at</SHORT>
+				<PREVIEW>&lt;%\r\necho &apos;Test&apos;;\r\n%&gt;</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Short tags</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>st</SHORT>
+				<PREVIEW>&lt;?\r\necho &apos;Test&apos;;\r\n?&gt;</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Quiet</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>q</SHORT>
+				<PREVIEW>No errors are shown</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>Errors are shown</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+	</PROPERTYS>
+</SETCONFIG>

@@ -1,9 +1,7 @@
 // kofColorButton.cpp : 实现文件
-//
 
 #include "stdafx.h"
 #include "kofColorButton.h"
-
 
 // CkofColorButton
 
@@ -54,7 +52,7 @@ void CkofColorButton::DrawItem(LPDRAWITEMSTRUCT lpDIS)
 	dm.DrawRect (rc, (COLORREF)-1, globalData.clrWindow);
 }
 
-void CkofColorButton::OnLButtonDown(UINT nFlags, CPoint point)
+void CkofColorButton::OnLButtonDown(UINT /*nFlags*/, CPoint /*point*/)
 {
 	CBCGPColorDialog dlg(m_Color);
 	if (dlg.DoModal() == IDOK)

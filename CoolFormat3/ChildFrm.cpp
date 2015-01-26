@@ -65,7 +65,7 @@ void CChildFrame::Dump(CDumpContext& dc) const
 
 // CChildFrame message handlers
 
-void CChildFrame::ActivateFrame(int nCmdShow)
+void CChildFrame::ActivateFrame(int /*nCmdShow*/)
 {
 	CBCGPMDIChildWnd::ActivateFrame(SW_SHOWMAXIMIZED);
 }
@@ -92,11 +92,6 @@ int CChildFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	DockControlBar(&m_wndOutput);
 	m_wndOutput.ShowControlBar(FALSE, FALSE, FALSE);
 
-	//以下是防止edit闪烁，已经通过隐藏减少闪烁
-	//GetParent()->SetRedraw (FALSE);
-	//MDIMaximize();
-	//GetParent()->SetRedraw (TRUE);
-
 	return 0;
 }
 
@@ -120,6 +115,7 @@ void CChildFrame::OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDeact
 		if (pSynView != NULL)
 		{
 			pSynView->ReSetLangLabel();
+			pSynView->ReSetEncodingLabel();
 		}
 	}
 }

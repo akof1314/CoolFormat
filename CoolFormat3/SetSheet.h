@@ -9,6 +9,9 @@ public:
 	CSetSheet(UINT nIDCaption, CWnd* pParentWnd = NULL, UINT iSelectPage = 0);
 	CSetSheet(LPCTSTR pszCaption, CWnd* pParentWnd = NULL, UINT iSelectPage = 0);
 	virtual ~CSetSheet();
+
+	INT_PTR DoModalAllPage();
+
 	void SaveTidyToReg();
 
 protected:

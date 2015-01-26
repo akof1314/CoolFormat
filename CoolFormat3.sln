@@ -1,21 +1,34 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CoolFormat3", "CoolFormat3\CoolFormat3.vcproj", "{3ED78A39-F379-4B65-9411-E952B7D87793}"
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CoolFormat3", "CoolFormat3\CoolFormat3.vcxproj", "{3ED78A39-F379-4B65-9411-E952B7D87793}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D4C64229-FDD6-460C-B6D0-37B7A529B630} = {D4C64229-FDD6-460C-B6D0-37B7A529B630}
+		{5E00DC2E-169B-4570-B7A1-442AE22DE2E5} = {5E00DC2E-169B-4570-B7A1-442AE22DE2E5}
+		{3D0E5F57-72FE-4915-A6A7-F36F74844D38} = {3D0E5F57-72FE-4915-A6A7-F36F74844D38}
+		{964A9EA4-EB9A-4660-9148-E31C25631117} = {964A9EA4-EB9A-4660-9148-E31C25631117}
+		{C9A7BABE-72C8-4FDE-AC09-86D844D18EE3} = {C9A7BABE-72C8-4FDE-AC09-86D844D18EE3}
+		{F726E5CC-2920-4FA9-B4CB-291CD798C1AB} = {F726E5CC-2920-4FA9-B4CB-291CD798C1AB}
+		{48362BDC-C157-42C5-82A3-903965BFE9BE} = {48362BDC-C157-42C5-82A3-903965BFE9BE}
+	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AStyleLib", "FormatterLib\AStyle\build\vs2008\AStyleLib\AStyleLib.vcproj", "{3D0E5F57-72FE-4915-A6A7-F36F74844D38}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AStyleLib", "FormatterLib\AStyle\build\vs2008\AStyleLib\AStyleLib.vcxproj", "{3D0E5F57-72FE-4915-A6A7-F36F74844D38}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tidylib", "FormatterLib\tidy\build\msvc\tidylib.vcproj", "{D4C64229-FDD6-460C-B6D0-37B7A529B630}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tidylib", "FormatterLib\tidy\build\msvc\tidylib.vcxproj", "{D4C64229-FDD6-460C-B6D0-37B7A529B630}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "JsFormatterLib", "FormatterLib\JsFormatterLib\JsFormatterLib.vcproj", "{964A9EA4-EB9A-4660-9148-E31C25631117}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "JsFormatterLib", "FormatterLib\JsFormatterLib\JsFormatterLib.vcxproj", "{964A9EA4-EB9A-4660-9148-E31C25631117}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PhpFormatterLib", "FormatterLib\PhpFormatterLib\PhpFormatterLib.vcproj", "{48362BDC-C157-42C5-82A3-903965BFE9BE}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PhpFormatterLib", "FormatterLib\PhpFormatterLib\PhpFormatterLib.vcxproj", "{48362BDC-C157-42C5-82A3-903965BFE9BE}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SqlFormatterLib", "FormatterLib\SqlFormatterLib\SqlFormatterLib.vcproj", "{5E00DC2E-169B-4570-B7A1-442AE22DE2E5}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SqlFormatterLib", "FormatterLib\SqlFormatterLib\SqlFormatterLib.vcxproj", "{5E00DC2E-169B-4570-B7A1-442AE22DE2E5}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CssTidyLib", "FormatterLib\CssTidyLib\CssTidyLib.vcproj", "{C9A7BABE-72C8-4FDE-AC09-86D844D18EE3}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CssTidyLib", "FormatterLib\CssTidyLib\CssTidyLib.vcxproj", "{C9A7BABE-72C8-4FDE-AC09-86D844D18EE3}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "JsonCppLib", "FormatterLib\JsonCppLib\JsonCppLib.vcproj", "{F726E5CC-2920-4FA9-B4CB-291CD798C1AB}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "JsonCppLib", "FormatterLib\JsonCppLib\JsonCppLib.vcxproj", "{F726E5CC-2920-4FA9-B4CB-291CD798C1AB}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CoolFormatUnitTest", "Tools\CoolFormatUnitTest\CoolFormatUnitTest.vcxproj", "{DE8B9158-115D-4877-9238-4BAD385A5EEA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,35 +45,55 @@ Global
 		{3ED78A39-F379-4B65-9411-E952B7D87793}.Release Static|Win32.Build.0 = Release Static|Win32
 		{3ED78A39-F379-4B65-9411-E952B7D87793}.Release Static|x64.ActiveCfg = Release Static|Win32
 		{3D0E5F57-72FE-4915-A6A7-F36F74844D38}.Debug Static|Win32.ActiveCfg = Debug|Win32
+		{3D0E5F57-72FE-4915-A6A7-F36F74844D38}.Debug Static|Win32.Build.0 = Debug|Win32
 		{3D0E5F57-72FE-4915-A6A7-F36F74844D38}.Debug Static|x64.ActiveCfg = Debug|x64
 		{3D0E5F57-72FE-4915-A6A7-F36F74844D38}.Debug Static|x64.Build.0 = Debug|x64
 		{3D0E5F57-72FE-4915-A6A7-F36F74844D38}.Release Static|Win32.ActiveCfg = Release|Win32
+		{3D0E5F57-72FE-4915-A6A7-F36F74844D38}.Release Static|Win32.Build.0 = Release|Win32
 		{3D0E5F57-72FE-4915-A6A7-F36F74844D38}.Release Static|x64.ActiveCfg = Release|x64
 		{3D0E5F57-72FE-4915-A6A7-F36F74844D38}.Release Static|x64.Build.0 = Release|x64
 		{D4C64229-FDD6-460C-B6D0-37B7A529B630}.Debug Static|Win32.ActiveCfg = Debug|Win32
+		{D4C64229-FDD6-460C-B6D0-37B7A529B630}.Debug Static|Win32.Build.0 = Debug|Win32
 		{D4C64229-FDD6-460C-B6D0-37B7A529B630}.Debug Static|x64.ActiveCfg = Debug|Win32
 		{D4C64229-FDD6-460C-B6D0-37B7A529B630}.Release Static|Win32.ActiveCfg = Release|Win32
+		{D4C64229-FDD6-460C-B6D0-37B7A529B630}.Release Static|Win32.Build.0 = Release|Win32
 		{D4C64229-FDD6-460C-B6D0-37B7A529B630}.Release Static|x64.ActiveCfg = Release|Win32
 		{964A9EA4-EB9A-4660-9148-E31C25631117}.Debug Static|Win32.ActiveCfg = Debug|Win32
+		{964A9EA4-EB9A-4660-9148-E31C25631117}.Debug Static|Win32.Build.0 = Debug|Win32
 		{964A9EA4-EB9A-4660-9148-E31C25631117}.Debug Static|x64.ActiveCfg = Debug|Win32
 		{964A9EA4-EB9A-4660-9148-E31C25631117}.Release Static|Win32.ActiveCfg = Release|Win32
+		{964A9EA4-EB9A-4660-9148-E31C25631117}.Release Static|Win32.Build.0 = Release|Win32
 		{964A9EA4-EB9A-4660-9148-E31C25631117}.Release Static|x64.ActiveCfg = Release|Win32
 		{48362BDC-C157-42C5-82A3-903965BFE9BE}.Debug Static|Win32.ActiveCfg = Debug|Win32
+		{48362BDC-C157-42C5-82A3-903965BFE9BE}.Debug Static|Win32.Build.0 = Debug|Win32
 		{48362BDC-C157-42C5-82A3-903965BFE9BE}.Debug Static|x64.ActiveCfg = Debug|Win32
 		{48362BDC-C157-42C5-82A3-903965BFE9BE}.Release Static|Win32.ActiveCfg = Release|Win32
+		{48362BDC-C157-42C5-82A3-903965BFE9BE}.Release Static|Win32.Build.0 = Release|Win32
 		{48362BDC-C157-42C5-82A3-903965BFE9BE}.Release Static|x64.ActiveCfg = Release|Win32
 		{5E00DC2E-169B-4570-B7A1-442AE22DE2E5}.Debug Static|Win32.ActiveCfg = Debug|Win32
+		{5E00DC2E-169B-4570-B7A1-442AE22DE2E5}.Debug Static|Win32.Build.0 = Debug|Win32
 		{5E00DC2E-169B-4570-B7A1-442AE22DE2E5}.Debug Static|x64.ActiveCfg = Debug|Win32
 		{5E00DC2E-169B-4570-B7A1-442AE22DE2E5}.Release Static|Win32.ActiveCfg = Release|Win32
+		{5E00DC2E-169B-4570-B7A1-442AE22DE2E5}.Release Static|Win32.Build.0 = Release|Win32
 		{5E00DC2E-169B-4570-B7A1-442AE22DE2E5}.Release Static|x64.ActiveCfg = Release|Win32
 		{C9A7BABE-72C8-4FDE-AC09-86D844D18EE3}.Debug Static|Win32.ActiveCfg = Debug|Win32
+		{C9A7BABE-72C8-4FDE-AC09-86D844D18EE3}.Debug Static|Win32.Build.0 = Debug|Win32
 		{C9A7BABE-72C8-4FDE-AC09-86D844D18EE3}.Debug Static|x64.ActiveCfg = Debug|Win32
 		{C9A7BABE-72C8-4FDE-AC09-86D844D18EE3}.Release Static|Win32.ActiveCfg = Release|Win32
+		{C9A7BABE-72C8-4FDE-AC09-86D844D18EE3}.Release Static|Win32.Build.0 = Release|Win32
 		{C9A7BABE-72C8-4FDE-AC09-86D844D18EE3}.Release Static|x64.ActiveCfg = Release|Win32
 		{F726E5CC-2920-4FA9-B4CB-291CD798C1AB}.Debug Static|Win32.ActiveCfg = Debug|Win32
+		{F726E5CC-2920-4FA9-B4CB-291CD798C1AB}.Debug Static|Win32.Build.0 = Debug|Win32
 		{F726E5CC-2920-4FA9-B4CB-291CD798C1AB}.Debug Static|x64.ActiveCfg = Debug|Win32
 		{F726E5CC-2920-4FA9-B4CB-291CD798C1AB}.Release Static|Win32.ActiveCfg = Release|Win32
+		{F726E5CC-2920-4FA9-B4CB-291CD798C1AB}.Release Static|Win32.Build.0 = Release|Win32
 		{F726E5CC-2920-4FA9-B4CB-291CD798C1AB}.Release Static|x64.ActiveCfg = Release|Win32
+		{DE8B9158-115D-4877-9238-4BAD385A5EEA}.Debug Static|Win32.ActiveCfg = Debug Static|Win32
+		{DE8B9158-115D-4877-9238-4BAD385A5EEA}.Debug Static|Win32.Build.0 = Debug Static|Win32
+		{DE8B9158-115D-4877-9238-4BAD385A5EEA}.Debug Static|x64.ActiveCfg = Debug Static|Win32
+		{DE8B9158-115D-4877-9238-4BAD385A5EEA}.Release Static|Win32.ActiveCfg = Release Static|Win32
+		{DE8B9158-115D-4877-9238-4BAD385A5EEA}.Release Static|Win32.Build.0 = Release Static|Win32
+		{DE8B9158-115D-4877-9238-4BAD385A5EEA}.Release Static|x64.ActiveCfg = Release Static|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

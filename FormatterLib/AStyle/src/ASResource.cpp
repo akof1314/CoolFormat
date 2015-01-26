@@ -1,8 +1,7 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *   ASResource.cpp
  *
- *   Copyright (C) 2006-2011 by Jim Pattee <jimp03@email.com>
- *   Copyright (C) 1998-2002 by Tal Davidson
+ *   Copyright (C) 2014 by Jim Pattee
  *   <http://www.gnu.org/licenses/lgpl-3.0.html>
  *
  *   This file is a part of Artistic Style - an indentation and
@@ -29,8 +28,8 @@
 #include <algorithm>
 
 
-namespace astyle
-{
+namespace astyle {
+
 const string ASResource::AS_IF = string("if");
 const string ASResource::AS_ELSE = string("else");
 const string ASResource::AS_FOR = string("for");
@@ -41,10 +40,15 @@ const string ASResource::AS_CASE = string("case");
 const string ASResource::AS_DEFAULT = string("default");
 const string ASResource::AS_CLASS = string("class");
 const string ASResource::AS_VOLATILE = string("volatile");
+const string ASResource::AS_INTERRUPT = string("interrupt");
+const string ASResource::AS_NOEXCEPT = string("noexcept");
+const string ASResource::AS_AUTORELEASEPOOL = string("autoreleasepool");
 const string ASResource::AS_STRUCT = string("struct");
 const string ASResource::AS_UNION = string("union");
 const string ASResource::AS_INTERFACE = string("interface");
 const string ASResource::AS_NAMESPACE = string("namespace");
+const string ASResource::AS_END = string("end");
+const string ASResource::AS_SELECTOR = string("selector");
 const string ASResource::AS_EXTERN = string("extern");
 const string ASResource::AS_ENUM = string("enum");
 const string ASResource::AS_PUBLIC = string("public");
@@ -56,6 +60,7 @@ const string ASResource::AS_OPERATOR = string("operator");
 const string ASResource::AS_TEMPLATE = string("template");
 const string ASResource::AS_TRY = string("try");
 const string ASResource::AS_CATCH = string("catch");
+const string ASResource::AS_THROW = string("throw");
 const string ASResource::AS_FINALLY = string("finally");
 const string ASResource::_AS_TRY = string("__try");
 const string ASResource::_AS_FINALLY = string("__finally");
@@ -65,6 +70,7 @@ const string ASResource::AS_CONST = string("const");
 const string ASResource::AS_SEALED = string("sealed");
 const string ASResource::AS_OVERRIDE = string("override");
 const string ASResource::AS_WHERE = string("where");
+const string ASResource::AS_LET = string("let");
 const string ASResource::AS_NEW = string("new");
 
 const string ASResource::AS_ASM = string("asm");
@@ -95,8 +101,8 @@ const string ASResource::AS_AND_ASSIGN = string("&=");
 const string ASResource::AS_XOR_ASSIGN = string("^=");
 const string ASResource::AS_GR_GR_ASSIGN = string(">>=");
 const string ASResource::AS_LS_LS_ASSIGN = string("<<=");
-const string ASResource::AS_GR_GR_GR_ASSIGN = string(">>>=");	// Java only?
-const string ASResource::AS_LS_LS_LS_ASSIGN = string("<<<=");	// Java only?
+const string ASResource::AS_GR_GR_GR_ASSIGN = string(">>>=");
+const string ASResource::AS_LS_LS_LS_ASSIGN = string("<<<=");
 const string ASResource::AS_GCC_MIN_ASSIGN = string("<?");
 const string ASResource::AS_GCC_MAX_ASSIGN = string(">?");
 
@@ -111,16 +117,16 @@ const string ASResource::AS_MINUS_MINUS = string("--");
 const string ASResource::AS_NOT_EQUAL = string("!=");
 const string ASResource::AS_GR_EQUAL = string(">=");
 const string ASResource::AS_GR_GR = string(">>");
-const string ASResource::AS_GR_GR_GR = string(">>>");			// Java only?
+const string ASResource::AS_GR_GR_GR = string(">>>");
 const string ASResource::AS_LS_EQUAL = string("<=");
 const string ASResource::AS_LS_LS = string("<<");
-const string ASResource::AS_LS_LS_LS = string("<<<");			// Java only?
+const string ASResource::AS_LS_LS_LS = string("<<<");
 const string ASResource::AS_QUESTION_QUESTION = string("??");
-const string ASResource::AS_EQUAL_GR = string("=>");            // C# lambda expression arrow
+const string ASResource::AS_LAMBDA = string("=>");            // C# lambda expression arrow
 const string ASResource::AS_ARROW = string("->");
 const string ASResource::AS_AND = string("&&");
 const string ASResource::AS_OR = string("||");
-const string ASResource::AS_COLON_COLON = string("::");
+const string ASResource::AS_SCOPE_RESOLUTION = string("::");
 
 const string ASResource::AS_PLUS = string("+");
 const string ASResource::AS_MINUS = string("-");
@@ -139,6 +145,9 @@ const string ASResource::AS_COLON = string(":");
 const string ASResource::AS_COMMA = string(",");
 const string ASResource::AS_SEMICOLON = string(";");
 
+const string ASResource::AS_QFOREACH = string("Q_FOREACH");
+const string ASResource::AS_QFOREVER = string("Q_FOREVER");
+const string ASResource::AS_FOREVER = string("forever");
 const string ASResource::AS_FOREACH = string("foreach");
 const string ASResource::AS_LOCK = string("lock");
 const string ASResource::AS_UNSAFE = string("unsafe");
@@ -155,13 +164,15 @@ const string ASResource::AS_DYNAMIC_CAST = string("dynamic_cast");
 const string ASResource::AS_REINTERPRET_CAST = string("reinterpret_cast");
 const string ASResource::AS_STATIC_CAST = string("static_cast");
 
+const string ASResource::AS_NS_DURING = string("NS_DURING");
+const string ASResource::AS_NS_HANDLER = string("NS_HANDLER");
 
 /**
  * Sort comparison function.
  * Compares the length of the value of pointers in the vectors.
  * The LONGEST strings will be first in the vector.
  *
- * @params the string pointers to be compared.
+ * @param a and b, the string pointers to be compared.
  */
 bool sortOnLength(const string* a, const string* b)
 {
@@ -172,7 +183,7 @@ bool sortOnLength(const string* a, const string* b)
  * Sort comparison function.
  * Compares the value of pointers in the vectors.
  *
- * @params the string pointers to be compared.
+ * @param a and b, the string pointers to be compared.
  */
 bool sortOnName(const string* a, const string* b)
 {
@@ -240,6 +251,10 @@ void ASResource::buildHeaders(vector<const string*>* headers, int fileType, bool
 	headers->push_back(&AS_DEFAULT);
 	headers->push_back(&AS_TRY);
 	headers->push_back(&AS_CATCH);
+	headers->push_back(&AS_QFOREACH);		// QT
+	headers->push_back(&AS_QFOREVER);		// QT
+	headers->push_back(&AS_FOREACH);		// QT & C#
+	headers->push_back(&AS_FOREVER);		// Qt & Boost
 
 	if (fileType == C_TYPE)
 	{
@@ -256,7 +271,6 @@ void ASResource::buildHeaders(vector<const string*>* headers, int fileType, bool
 	if (fileType == SHARP_TYPE)
 	{
 		headers->push_back(&AS_FINALLY);
-		headers->push_back(&AS_FOREACH);
 		headers->push_back(&AS_LOCK);
 		headers->push_back(&AS_FIXED);
 		headers->push_back(&AS_GET);
@@ -294,6 +308,32 @@ void ASResource::buildIndentableHeaders(vector<const string*>* indentableHeaders
 }
 
 /**
+* Build the vector of indentable macros pairs.
+* Initialized by ASFormatter, used by ONLY ASEnhancer.cpp
+*
+* @param indentableMacros       a reference to the vector to be built.
+*/
+void ASResource::buildIndentableMacros(vector<const pair<const string, const string>* >* indentableMacros)
+{
+	// the pairs must be retained in memory
+	static const struct pair<const string, const string> macros[] =
+	{
+		// wxWidgets
+		make_pair("BEGIN_EVENT_TABLE", "END_EVENT_TABLE"),
+		make_pair("wxBEGIN_EVENT_TABLE", "wxEND_EVENT_TABLE"),
+		// MFC
+		make_pair("BEGIN_DISPATCH_MAP", "END_DISPATCH_MAP"),
+		make_pair("BEGIN_EVENT_MAP", "END_EVENT_MAP"),
+		make_pair("BEGIN_MESSAGE_MAP", "END_MESSAGE_MAP"),
+		make_pair("BEGIN_PROPPAGEIDS", "END_PROPPAGEIDS"),
+	};
+
+	size_t elements = sizeof(macros) / sizeof(macros[0]);
+	for (size_t i = 0; i < elements; i++)
+		indentableMacros->push_back(&macros[i]);
+}
+
+/**
  * Build the vector of non-assignment operators.
  * Used by ONLY ASBeautifier.cpp
  *
@@ -314,7 +354,7 @@ void ASResource::buildNonAssignmentOperators(vector<const string*>* nonAssignmen
 	nonAssignmentOperators->push_back(&AS_ARROW);
 	nonAssignmentOperators->push_back(&AS_AND);
 	nonAssignmentOperators->push_back(&AS_OR);
-	nonAssignmentOperators->push_back(&AS_EQUAL_GR);
+	nonAssignmentOperators->push_back(&AS_LAMBDA);
 
 	sort(nonAssignmentOperators->begin(), nonAssignmentOperators->end(), sortOnLength);
 }
@@ -334,6 +374,8 @@ void ASResource::buildNonParenHeaders(vector<const string*>* nonParenHeaders, in
 	nonParenHeaders->push_back(&AS_CATCH);		// can be paren or non-paren
 	nonParenHeaders->push_back(&AS_CASE);		// can be paren or non-paren
 	nonParenHeaders->push_back(&AS_DEFAULT);
+	nonParenHeaders->push_back(&AS_QFOREVER);	// QT
+	nonParenHeaders->push_back(&AS_FOREVER);	// Boost
 
 	if (fileType == C_TYPE)
 	{
@@ -374,7 +416,7 @@ void ASResource::buildNonParenHeaders(vector<const string*>* nonParenHeaders, in
  *
  * @param operators             a reference to the vector to be built.
  */
-void ASResource::buildOperators(vector<const string*>* operators)
+void ASResource::buildOperators(vector<const string*>* operators, int fileType)
 {
 	operators->push_back(&AS_PLUS_ASSIGN);
 	operators->push_back(&AS_MINUS_ASSIGN);
@@ -399,13 +441,11 @@ void ASResource::buildOperators(vector<const string*>* operators)
 	operators->push_back(&AS_LS_LS_LS);
 	operators->push_back(&AS_LS_LS);
 	operators->push_back(&AS_QUESTION_QUESTION);
-	operators->push_back(&AS_EQUAL_GR);
-	operators->push_back(&AS_GCC_MIN_ASSIGN);
-	operators->push_back(&AS_GCC_MAX_ASSIGN);
+	operators->push_back(&AS_LAMBDA);
 	operators->push_back(&AS_ARROW);
 	operators->push_back(&AS_AND);
 	operators->push_back(&AS_OR);
-	operators->push_back(&AS_COLON_COLON);
+	operators->push_back(&AS_SCOPE_RESOLUTION);
 	operators->push_back(&AS_PLUS);
 	operators->push_back(&AS_MINUS);
 	operators->push_back(&AS_MULT);
@@ -421,7 +461,11 @@ void ASResource::buildOperators(vector<const string*>* operators)
 	operators->push_back(&AS_BIT_AND);
 	operators->push_back(&AS_BIT_NOT);
 	operators->push_back(&AS_BIT_XOR);
-
+	if (fileType == C_TYPE)
+	{
+		operators->push_back(&AS_GCC_MIN_ASSIGN);
+		operators->push_back(&AS_GCC_MAX_ASSIGN);
+	}
 	sort(operators->begin(), operators->end(), sortOnLength);
 }
 
@@ -471,8 +515,11 @@ void ASResource::buildPreCommandHeaders(vector<const string*>* preCommandHeaders
 	{
 		preCommandHeaders->push_back(&AS_CONST);
 		preCommandHeaders->push_back(&AS_VOLATILE);
-		preCommandHeaders->push_back(&AS_SEALED);		// Visual C only
-		preCommandHeaders->push_back(&AS_OVERRIDE);		// Visual C only
+		preCommandHeaders->push_back(&AS_INTERRUPT);
+		preCommandHeaders->push_back(&AS_NOEXCEPT);
+		preCommandHeaders->push_back(&AS_OVERRIDE);
+		preCommandHeaders->push_back(&AS_SEALED);			// Visual C only
+		preCommandHeaders->push_back(&AS_AUTORELEASEPOOL);	// Obj-C only
 	}
 
 	if (fileType == JAVA_TYPE)
@@ -519,11 +566,11 @@ void ASResource::buildPreDefinitionHeaders(vector<const string*>* preDefinitionH
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- *                             ASBase Funtions
+ *                             ASBase Functions
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 // check if a specific line position contains a keyword.
-bool ASBase::findKeyword(const string& line, int i, const string& keyword) const
+bool ASBase::findKeyword(const string &line, int i, const string &keyword) const
 {
 	assert(isCharPotentialHeader(line, i));
 	// check the word
@@ -547,7 +594,7 @@ bool ASBase::findKeyword(const string& line, int i, const string& keyword) const
 
 // get the current word on a line
 // index must point to the beginning of the word
-string ASBase::getCurrentWord(const string& line, size_t index) const
+string ASBase::getCurrentWord(const string &line, size_t index) const
 {
 	assert(isCharPotentialHeader(line, index));
 	size_t lineLength = line.length();

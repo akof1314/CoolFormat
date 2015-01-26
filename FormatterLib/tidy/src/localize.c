@@ -1007,8 +1007,16 @@ static void messagePos( TidyDocImpl* doc, TidyReportLevel level,
         for ( cp = buf; *cp; ++cp )
             TY_(WriteChar)( *cp, doc->errout );
 
-        for ( cp = messageBuf; *cp; ++cp )
-            TY_(WriteChar)( *cp, doc->errout );
+		tchar c;
+		for (cp = messageBuf; *cp; ++cp)
+		{
+			c = (unsigned char)*cp;
+
+			if (c > 0x7F)
+				cp += TY_(GetUTF8)(cp, &c);
+
+			TY_(WriteChar)(c, doc->errout);
+		}
         TY_(WriteChar)( '\n', doc->errout );
         TidyDocFree(doc, buf);
     }

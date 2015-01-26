@@ -1,5 +1,4 @@
 // CoolFormat3.cpp : Defines the class behaviors for the application.
-//
 
 #include "stdafx.h"
 #include "CoolFormat3.h"
@@ -35,7 +34,6 @@ END_MESSAGE_MAP()
 CCoolFormat3App::CCoolFormat3App() :
 	CBCGPWorkspace (TRUE /* m_bResourceSmartUpdate */)
 {
-	m_bChangedLang = FALSE;
 }
 
 
@@ -166,6 +164,8 @@ int CCoolFormat3App::ExitInstance()
 	WriteInt(_T("ApplicationLanguage"), m_nAppLanguageID);
 	WriteInt(_T("SynLanguage"), m_nSynLanguage);
 	WriteInt(_T("BatchLanguage"), m_nBatchSyn);
+	WriteInt(_T("LastCheckUpdate"), m_nLastCheckUpdate);
+	WriteString(_T("LastNewVersion"), m_strNewVersion);
 	BCGCBProCleanUp();
 
 	return CWinApp::ExitInstance();
@@ -249,7 +249,7 @@ void CCoolFormat3App::OnFileOpen()
 	}
 }
 
-int CCoolFormat3App::DoMessageBox(LPCTSTR lpszPrompt, UINT nType, UINT nIDPrompt)
+int CCoolFormat3App::DoMessageBox(LPCTSTR lpszPrompt, UINT nType, UINT /*nIDPrompt*/)
 {
 	return CFMessageBox(lpszPrompt, nType);
 	//return __super::DoMessageBox(lpszPrompt, nType, nIDPrompt);
@@ -263,6 +263,8 @@ void CCoolFormat3App::LoadReg()
 	m_nAppLanguageID = GetInt(_T("ApplicationLanguage"), 0);
 	m_nSynLanguage = GetInt(_T("SynLanguage"), SYN_NORMALTEXT);
 	m_nBatchSyn = GetInt(_T("BatchLanguage"), 0);
+	m_nLastCheckUpdate = GetInt(_T("LastCheckUpdate"), 0);
+	m_strNewVersion = GetString(_T("LastNewVersion"));
 	g_GlobalUtils.InitGlobalUtilsFrist();
 }
 
@@ -271,12 +273,11 @@ void CCoolFormat3App::RunLang()
 	g_GlobalUtils.InitGlobalUtils();
 	//0表示第一次启动程序，判断操作系统语言
 	//1表示中文，2表示英文
-	LANGID langNowID = GetSystemDefaultLangID();
+	LANGID langNowID = GetUserDefaultLangID();
 	LANGID langCHS = MAKELANGID(LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED);
 	LANGID langENG = MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_US);
 	if (0 == m_nAppLanguageID)
 	{
-
 		if (langNowID == langCHS)
 		{
 			m_nAppLanguageID = 1;
@@ -311,7 +312,6 @@ void CCoolFormat3App::RunLang()
 	}
 	else
 	{
-		LCID nOldId = GetThreadLocale();
 		if (1 == m_nAppLanguageID)
 		{
 			if (langNowID != langCHS)
@@ -326,7 +326,6 @@ void CCoolFormat3App::RunLang()
 				SetThreadLocale(MAKELCID(langENG, SORT_DEFAULT));
 			}
 		}
-		m_bChangedLang = nOldId != GetThreadLocale();
 	}
 }
 
@@ -382,9 +381,8 @@ BOOL CCoolFormat3App::IsCmdLine()
 			return TRUE;
 		}
 
-		CStringA strTextIn(strText);
 		strTextOut.Empty();
-		if (formatterSP.DoFormatter(nSynIndex, strTextIn, strTextOut, strMsgOut))
+		if (formatterSP.DoFormatter(nSynIndex, strText, strTextOut, strMsgOut, m_File.GetCodepage()))
 		{
 			m_File.SaveFile(strName, strTextOut);
 		}
@@ -421,6 +419,7 @@ BOOL CCoolFormat3App::IsCmdLine()
 	
 	return FALSE;
 }
+
 BOOL CAboutDlg::OnInitDialog()
 {
 	CBCGPDialog::OnInitDialog();
