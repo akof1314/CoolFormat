@@ -42,6 +42,10 @@ BOOL CMulTextEditDlg::OnInitDialog()
 
 	InitLang();
 
+	if (!IsVisualManagerStyle())
+	{
+		EnableVisualManagerStyle(TRUE, TRUE);
+	}
 	return TRUE;
 }
 

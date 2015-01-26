@@ -70,6 +70,11 @@ BOOL CSetEditDlg::OnInitDialog()
 
 	InitFont();
 
+	if (!IsVisualManagerStyle())
+	{
+		EnableVisualManagerStyle(TRUE, TRUE);
+	}
+
 	GetDlgItem(IDCANCEL)->SetFocus();
 	return FALSE;
 }

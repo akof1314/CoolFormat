@@ -42,6 +42,12 @@ BOOL CLangExtDlg::OnInitDialog()
 	InitList();
 	
 	m_btnDefaultLink.SizeToContent();
+
+	if (!IsVisualManagerStyle())
+	{
+		EnableVisualManagerStyle(TRUE, TRUE);
+	}
+
 	GetDlgItem(IDCANCEL)->SetFocus();
 	return FALSE;
 }

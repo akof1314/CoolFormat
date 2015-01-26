@@ -49,6 +49,11 @@ BOOL CLangExtEditDlg::OnInitDialog()
 
 	InitLang();
 
+	if (!IsVisualManagerStyle())
+	{
+		EnableVisualManagerStyle(TRUE, TRUE);
+	}
+
 	GetDlgItem(IDCANCEL)->SetFocus();
 	return FALSE;
 }

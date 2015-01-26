@@ -67,6 +67,10 @@ BOOL CBatchFormat::OnInitDialog()
 		((CButton *)(GetDlgItem(s_iIdList[i])))->SetCheck((nBatchSyn & nBitPow) == nBitPow);
 	}
 
+	if (!IsVisualManagerStyle())
+	{
+		EnableVisualManagerStyle(TRUE, TRUE);
+	}
 	return TRUE;  // return TRUE unless you set the focus to a control
 	// 异常: OCX 属性页应返回 FALSE
 }

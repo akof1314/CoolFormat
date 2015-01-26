@@ -76,7 +76,21 @@ int CUpdateChecker::CompareVersion(const CString &strVersion1, const CString &st
 void CUpdateChecker::DoThreadCheckUpdate()
 {
 	CInternetSession session;
-	CHttpFile *pFile = (CHttpFile *)session.OpenURL(s_szURL);
+	CHttpFile *pFile = NULL;
+
+	try
+	{
+		pFile = (CHttpFile *)session.OpenURL(s_szURL);
+	}
+	catch (CInternetException* e)
+	{
+		e->Delete();
+	}
+	catch (CException* e)
+	{
+		e->Delete();
+	}
+
 	if (pFile)
 	{
 		DWORD dwStatusCode;
