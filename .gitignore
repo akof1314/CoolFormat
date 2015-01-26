@@ -1,0 +1,10 @@
+/Bin/
+/CoolFormat3/
+/FormatterLib/
+/Include/
+/ipch/
+/Lib/
+/Temp/
+/Tools/
+*.v12.suo
+*.sdf
