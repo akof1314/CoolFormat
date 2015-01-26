@@ -77,6 +77,7 @@ void CUpdateChecker::DoThreadCheckUpdate()
 {
 	CInternetSession session;
 	CHttpFile *pFile = NULL;
+	session.SetOption(INTERNET_OPTION_CONNECT_TIMEOUT, 10000);
 
 	try
 	{
