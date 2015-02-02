@@ -38,3 +38,4 @@
 Tools/MakeSetConfig/ipch/
 Tools/MakeSetConfig/Temp/
 Include/
+Plugins/NPP/Temp/
