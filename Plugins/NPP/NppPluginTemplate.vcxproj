@@ -196,7 +196,7 @@
       <Message>
       </Message>
       <Command>echo D | xcopy "$(TargetPath)" "$(SolutionDir)..\Bin\$(ConfigurationName)" /y
-echo D | xcopy "$(TargetPath)" "D:\Program Files\Notepad++\plugins" /y</Command>
+echo D | xcopy "$(TargetPath)" "D:\Program Files\npp\unicode\plugins" /y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

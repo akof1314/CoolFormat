@@ -142,7 +142,7 @@ void selectedFormat()
 
 void formatterSettings()
 {
-	::MessageBox(NULL, TEXT("Hello, Notepad++!"), TEXT("Notepad++ Plugin Template"), MB_OK);
+	showSettings();
 }
 
 struct LangSynType {
@@ -204,10 +204,12 @@ LangSynType langSynType[] = {
 	{ L_EXTERNAL, SYN_NORMALTEXT }
 };
 
-typedef bool( * DoFormatterProc)(unsigned int uLanguage,
-	const std::string &strTextIn,
-	std::string &strTextOut,
-	std::string &strMsgOut,
+typedef bool(*DoFormatterProc)(unsigned int nLanguage,
+	const char *pszTextIn,
+	char *pszTextOut,
+	int &nTextOut,
+	char *pszMsgOut,
+	int &nMsgOut,
 	unsigned int uCodepage);
 
 typedef void( * ShowSettingsProc)();
@@ -256,7 +258,7 @@ void doFormat(bool bSelected)
 
 	char *pText = NULL;
 	std::string initIndent("");
-	if (bSelected)
+	if (!bSelected)
 	{
 		pText = new char[nTextLen + 1];
 		::SendMessage(hCurrScintilla, SCI_GETTEXT, nTextLen + 1, (LPARAM)pText);
@@ -306,21 +308,35 @@ void doFormat(bool bSelected)
 		}
 	}
 
-	std::string strTextOut;
-	std::string strMsgOut;
 	if (DoFormatter)
 	{
 		LangType langType = L_TXT;
 		::SendMessage(nppData._nppHandle, NPPM_GETCURRENTLANGTYPE, 0, (LPARAM)&langType);
 		unsigned int uLanguage = langSynType[langType].uLanguage;
-		unsigned int uCodepage = get;
+		unsigned int uCodepage = 0;
 
-		if (DoFormatter(uLanguage, pText, strTextOut, strMsgOut, uCodepage))
+		int nTextOut = 0;
+		int nMsgOut = 0;
+		if (DoFormatter(uLanguage, pText, NULL, nTextOut, NULL, nMsgOut, uCodepage))
 		{
-			::SendMessage(hCurrScintilla, SCI_SETTEXT, 0, (LPARAM)strTextOut.c_str());
+			char *pszTextOut = new char[nTextOut + 1];
+			char *pszMsgOut = new char[nMsgOut + 1];
+			memset(pszTextOut, 0, nTextOut + 1);
+			memset(pszMsgOut, 0, nMsgOut + 1);
+			if (DoFormatter(uLanguage, pText, pszTextOut, nTextOut, pszMsgOut, nMsgOut, uCodepage))
+			{
+				if (bSelected)
+				{
+					::SendMessage(hCurrScintilla, SCI_REPLACESEL, 0, (LPARAM)pszTextOut);
+				} 
+				else
+				{
+					::SendMessage(hCurrScintilla, SCI_SETTEXT, 0, (LPARAM)pszTextOut);
+				}
+			}
+			delete[] pszTextOut;
+			delete[] pszMsgOut;
 		}
-		::MessageBoxA(NULL, strTextOut.c_str(), "s", MB_OK);
-		::MessageBoxA(NULL, strMsgOut.c_str(), "s2", MB_OK);
 	}
 	delete[] pText;
 }
