@@ -38,7 +38,6 @@ const TCHAR NPP_PLUGIN_NAME[] = TEXT("CoolFormat");
 //
 const int nbFunc = 4;
 
-
 //
 // Initialization of your plugin data
 // It will be called while plugin loading

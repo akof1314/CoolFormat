@@ -15,42 +15,56 @@
 //along with this program; if not, write to the Free Software
 //Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
+#include <string>
 #include "GoToLineDlg.h"
 #include "PluginDefinition.h"
 
 extern NppData nppData;
 
-BOOL CALLBACK DemoDlg::run_dlgProc(UINT message, WPARAM wParam, LPARAM lParam)
+BOOL CALLBACK OutputDlg::run_dlgProc(UINT message, WPARAM wParam, LPARAM lParam)
 {
 	switch (message) 
 	{
-		case WM_COMMAND : 
+		case WM_SIZE:
 		{
-			switch (wParam)
-			{
-				case IDOK :
-				{
-					int line = getLine();
-					if (line != -1)
-					{
-						// Get the current scintilla
-						int which = -1;
-						::SendMessage(nppData._nppHandle, NPPM_GETCURRENTSCINTILLA, 0, (LPARAM)&which);
-						if (which == -1)
-							return FALSE;
-						HWND curScintilla = (which == 0)?nppData._scintillaMainHandle:nppData._scintillaSecondHandle;
+			int iDlgWidth, iDlgHeight;
+			iDlgWidth = LOWORD(lParam);
+			iDlgHeight = HIWORD(lParam);
 
-						::SendMessage(curScintilla, SCI_ENSUREVISIBLE, line-1, 0);
-						::SendMessage(curScintilla, SCI_GOTOLINE, line-1, 0);
-					}
-					return TRUE;
-				}
-			}
-				return FALSE;
+			SetWindowPos(GetDlgItem(_hSelf, ID_GOLINE_EDIT),
+				HWND_TOP, 0, 0, iDlgWidth, iDlgHeight,
+				SWP_SHOWWINDOW);
+			return FALSE;
 		}
-
 		default :
 			return DockingDlgInterface::run_dlgProc(message, wParam, lParam);
+	}
+}
+
+std::string ReplaceAll(std::string str, const std::string& from, const std::string& to)
+{
+	size_t start_pos = 0;
+	while ((start_pos = str.find(from, start_pos)) != std::string::npos) {
+		str.replace(start_pos, from.length(), to);
+		start_pos += to.length(); // Handles case where 'to' is a substring of 'from'
+	}
+	return str;
+}
+
+void OutputDlg::setOutput(const char *pszOutput)
+{
+	std::string strOutput(pszOutput);
+	strOutput.erase(strOutput.find_last_not_of(" \n\r\t") + 1);
+	strOutput = ReplaceAll(strOutput, "\n", "\r\n");
+
+	if (strOutput.size() == 0)
+	{
+		display(false);
+	}
+	else
+	{
+		display(true);
+		::SetDlgItemTextA(_hSelf, ID_GOLINE_EDIT, strOutput.c_str());
 	}
 }
 

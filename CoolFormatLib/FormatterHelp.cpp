@@ -8,6 +8,7 @@
 #include "CFHtmlTidy.h"
 #include "CFCppTidy.h"
 #include "SynLanguage.h"
+#include "StrUseful.h"
 #include "GlobalTidy.h"
 
 #ifdef _DEBUG
@@ -34,16 +35,6 @@ CFormatterHelp::CFormatterHelp(void)
 
 CFormatterHelp::~CFormatterHelp(void)
 {
-}
-
-std::string ReplaceAll(std::string str, const std::string& from, const std::string& to)
-{
-	size_t start_pos = 0;
-	while ((start_pos = str.find(from, start_pos)) != std::string::npos) {
-		str.replace(start_pos, from.length(), to);
-		start_pos += to.length(); // Handles case where 'to' is a substring of 'from'
-	}
-	return str;
 }
 
 bool CFormatterHelp::DoFormatter(unsigned int nLanguage, const std::string &strTextIn, std::string &strTextOut, std::string &strMsgOut, unsigned int uCodepage)

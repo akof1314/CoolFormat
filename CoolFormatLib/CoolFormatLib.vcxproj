@@ -100,6 +100,7 @@ echo D | xcopy "$(TargetPath)" "D:\Program Files\npp\unicode\plugins\CoolFormat"
     <ClInclude Include="FormatterHelp.h" />
     <ClInclude Include="GlobalTidy.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="StrUseful.h" />
     <ClInclude Include="SynLanguage.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>

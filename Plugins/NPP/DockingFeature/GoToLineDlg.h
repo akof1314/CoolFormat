@@ -21,10 +21,10 @@
 #include "DockingDlgInterface.h"
 #include "resource.h"
 
-class DemoDlg : public DockingDlgInterface
+class OutputDlg : public DockingDlgInterface
 {
 public :
-	DemoDlg() : DockingDlgInterface(IDD_PLUGINGOLINE_DEMO){};
+	OutputDlg() : DockingDlgInterface(IDD_PLUGINGOLINE_DEMO){};
 
     virtual void display(bool toShow = true) const {
         DockingDlgInterface::display(toShow);
@@ -36,16 +36,10 @@ public :
 		_hParent = parent2set;
 	};
 
+	void setOutput(const char *pszOutput);
+
 protected :
 	virtual BOOL CALLBACK run_dlgProc(UINT message, WPARAM wParam, LPARAM lParam);
-
-private :
-
-    int getLine() const {
-        BOOL isSuccessful;
-        int line = ::GetDlgItemInt(_hSelf, ID_GOLINE_EDIT, &isSuccessful, FALSE);
-        return (isSuccessful?line:-1);
-    };
 
 };
 

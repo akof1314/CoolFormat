@@ -1,5 +1,6 @@
 #include "StdAfx.h"
 #include "GlobalTidy.h"
+#include "StrUseful.h"
 
 TidyDeafult GlobalTidy::m_TidyNames[MAX_SYN_LANG] = {
 	{TEXT("ActionScript"),				("*.as;*.mx;"),																			SYN_ACTIONSCRIPT},
@@ -91,7 +92,8 @@ void GlobalTidy::InitGlobalTidy()
 
 				if (lResult == ERROR_SUCCESS &&  dwCount > 0)
 				{
-					sVal.assign((char*)pData);
+					std::wstring wsVal((wchar_t*)pData);
+					sVal = ws2s(wsVal);
 				}
 				else
 				{

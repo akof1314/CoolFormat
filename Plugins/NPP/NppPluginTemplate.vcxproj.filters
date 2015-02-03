@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx</Extensions>
     </Filter>
+    <Filter Include="DockingFeature">
+      <UniqueIdentifier>{d39503bf-7f52-4bb0-a077-85f4abae6441}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PluginDefinition.cpp">
@@ -20,6 +23,12 @@
     </ClCompile>
     <ClCompile Include="NppPluginCF.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DockingFeature\GoToLineDlg.cpp">
+      <Filter>DockingFeature</Filter>
+    </ClCompile>
+    <ClCompile Include="DockingFeature\StaticDialog.cpp">
+      <Filter>DockingFeature</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -44,5 +53,28 @@
     <ClInclude Include="SynLanguage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="DockingFeature\Docking.h">
+      <Filter>DockingFeature</Filter>
+    </ClInclude>
+    <ClInclude Include="DockingFeature\DockingDlgInterface.h">
+      <Filter>DockingFeature</Filter>
+    </ClInclude>
+    <ClInclude Include="DockingFeature\dockingResource.h">
+      <Filter>DockingFeature</Filter>
+    </ClInclude>
+    <ClInclude Include="DockingFeature\GoToLineDlg.h">
+      <Filter>DockingFeature</Filter>
+    </ClInclude>
+    <ClInclude Include="DockingFeature\StaticDialog.h">
+      <Filter>DockingFeature</Filter>
+    </ClInclude>
+    <ClInclude Include="DockingFeature\Window.h">
+      <Filter>DockingFeature</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="DockingFeature\goLine.rc">
+      <Filter>DockingFeature</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

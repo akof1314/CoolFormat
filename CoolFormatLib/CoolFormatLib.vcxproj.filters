@@ -36,6 +36,9 @@
     <ClInclude Include="SynLanguage.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="StrUseful.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

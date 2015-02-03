@@ -22,6 +22,7 @@
 #include "PluginDefinition.h"
 #include "menuCmdID.h"
 #include "SynLanguage.h"
+#include "GoToLineDlg.h"
 
 //
 // The plugin data that Notepad++ needs
@@ -34,12 +35,14 @@ FuncItem funcItem[nbFunc];
 NppData nppData;
 
 HINSTANCE hInstCF = NULL;
+OutputDlg outputDlg;
 
 //
 // Initialize your plugin data here
 // It will be called while plugin loading   
 void pluginInit(HANDLE hModule)
 {
+	outputDlg.init((HINSTANCE)hModule, nppData._nppHandle);
 }
 
 //
@@ -242,6 +245,28 @@ void loadCFDll()
 	}
 }
 
+void showOutput(const char *pszOutput)
+{
+	outputDlg.setParent(nppData._nppHandle);
+	tTbData	data = { 0 };
+
+	if (!outputDlg.isCreated())
+	{
+		outputDlg.create(&data);
+
+		// define the default docking behaviour
+		data.uMask = DWS_DF_CONT_BOTTOM;
+
+		data.pszModuleName = outputDlg.getPluginFileName();
+		data.pszName = TEXT("CoolFormat");
+
+		// the dlgDlg should be the index of funcItem where the current function pointer is
+		data.dlgID = 0;
+		::SendMessage(nppData._nppHandle, NPPM_DMMREGASDCKDLG, 0, (LPARAM)&data);
+	}
+	outputDlg.setOutput(pszOutput);
+}
+
 void doFormat(bool bSelected)
 {
 	loadCFDll();
@@ -268,9 +293,7 @@ void doFormat(bool bSelected)
 		size_t selStart = ::SendMessage(hCurrScintilla, SCI_GETSELECTIONSTART, 0, 0);
 		size_t selEnd = ::SendMessage(hCurrScintilla, SCI_GETSELECTIONEND, 0, 0);
 
-		// 格式化选中部分
 		char testChar;
-		// 找行头
 		while (selStart > 0)
 		{
 			testChar = (char)::SendMessage(hCurrScintilla, SCI_GETCHARAT, selStart - 1, 0);
@@ -279,7 +302,6 @@ void doFormat(bool bSelected)
 
 			--selStart;
 		}
-		// 找行尾
 		while (selEnd < nTextLen)
 		{
 			testChar = (char)::SendMessage(hCurrScintilla, SCI_GETCHARAT, selEnd, 0);
@@ -289,16 +311,13 @@ void doFormat(bool bSelected)
 			++selEnd;
 		}
 
-		// 重新选择整行
 		::SendMessage(hCurrScintilla, SCI_SETSELECTIONSTART, selStart, 0);
 		::SendMessage(hCurrScintilla, SCI_SETSELECTIONEND, selEnd, 0);
 
-		// 获得 Sel
 		size_t nTextLenSel = ::SendMessage(hCurrScintilla, SCI_GETSELTEXT, 0, 0);
 		pText = new char[nTextLenSel];
 		::SendMessage(hCurrScintilla, SCI_GETSELTEXT, nTextLenSel, (LPARAM)pText);
 
-		// 得到 Initial Indent
 		for (size_t i = 0; i < nTextLenSel; ++i)
 		{
 			testChar = pText[i];
@@ -325,6 +344,7 @@ void doFormat(bool bSelected)
 			memset(pszMsgOut, 0, nMsgOut + 1);
 			if (DoFormatter(uLanguage, pText, pszTextOut, nTextOut, pszMsgOut, nMsgOut, uCodepage))
 			{
+				showOutput(pszMsgOut);
 				if (bSelected)
 				{
 					::SendMessage(hCurrScintilla, SCI_REPLACESEL, 0, (LPARAM)pszTextOut);
