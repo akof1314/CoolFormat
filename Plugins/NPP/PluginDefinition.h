@@ -74,5 +74,6 @@ void selectedFormat();
 void formatterSettings();
 void doFormat(bool bSelected);
 void showSettings();
+void resetDlgStyle();
 
 #endif //PLUGINDEFINITION_H

@@ -38,9 +38,14 @@ public :
 
 	void setOutput(const char *pszOutput);
 
+	void resetStyle();
+
 protected :
 	virtual BOOL CALLBACK run_dlgProc(UINT message, WPARAM wParam, LPARAM lParam);
 
+	HBRUSH _hBrush;
+	COLORREF _clrTextFg;
+	HFONT _fontText;
 };
 
 #endif //GOTILINE_DLG_H

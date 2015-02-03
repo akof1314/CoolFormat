@@ -73,7 +73,11 @@ extern "C" __declspec(dllexport) void beNotified(SCNotification *notifyCode)
 			commandMenuCleanUp();
 		}
 		break;
-
+		case NPPN_WORDSTYLESUPDATED:
+		{
+			resetDlgStyle();
+		}
+		break;
 		default:
 			return;
 	}

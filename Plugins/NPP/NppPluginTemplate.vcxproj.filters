@@ -71,6 +71,9 @@
     <ClInclude Include="DockingFeature\Window.h">
       <Filter>DockingFeature</Filter>
     </ClInclude>
+    <ClInclude Include="StrUseful.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DockingFeature\goLine.rc">

@@ -218,6 +218,7 @@ echo D | xcopy "$(TargetPath)" "D:\Program Files\npp\unicode\plugins" /y</Comman
     <ClInclude Include="PluginInterface.h" />
     <ClInclude Include="DockingFeature\resource.h" />
     <ClInclude Include="Scintilla.h" />
+    <ClInclude Include="StrUseful.h" />
     <ClInclude Include="SynLanguage.h" />
   </ItemGroup>
   <ItemGroup>

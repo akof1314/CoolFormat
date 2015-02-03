@@ -248,22 +248,6 @@ void loadCFDll()
 void showOutput(const char *pszOutput)
 {
 	outputDlg.setParent(nppData._nppHandle);
-	tTbData	data = { 0 };
-
-	if (!outputDlg.isCreated())
-	{
-		outputDlg.create(&data);
-
-		// define the default docking behaviour
-		data.uMask = DWS_DF_CONT_BOTTOM;
-
-		data.pszModuleName = outputDlg.getPluginFileName();
-		data.pszName = TEXT("CoolFormat");
-
-		// the dlgDlg should be the index of funcItem where the current function pointer is
-		data.dlgID = 0;
-		::SendMessage(nppData._nppHandle, NPPM_DMMREGASDCKDLG, 0, (LPARAM)&data);
-	}
 	outputDlg.setOutput(pszOutput);
 }
 
@@ -369,4 +353,9 @@ void showSettings()
 	{
 		ShowSettings();
 	}
+}
+
+void resetDlgStyle()
+{
+	outputDlg.resetStyle();
 }
