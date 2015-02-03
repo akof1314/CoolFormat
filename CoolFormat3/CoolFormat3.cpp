@@ -94,6 +94,8 @@ BOOL CCoolFormat3App::InitInstance()
 
 	if (m_bOnlyShowSettings)
 	{
+		CBCGPVisualManager::SetDefaultManager(RUNTIME_CLASS(CBCGPVisualManagerXP));
+
 		CString strTemp;
 		BOOL bNameVaild = strTemp.LoadString(IDS_STRING_SETFORMATTER);
 		ASSERT(bNameVaild);

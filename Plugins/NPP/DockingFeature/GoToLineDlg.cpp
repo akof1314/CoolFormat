@@ -44,10 +44,6 @@ BOOL CALLBACK OutputDlg::run_dlgProc(UINT message, WPARAM wParam, LPARAM lParam)
 			SetBkMode(hDC, TRANSPARENT);
 			return (LRESULT)_hBrush;
 		}
-		case WM_INITDIALOG:
-		{
-			return FALSE;
-		}
 		case WM_DESTROY:
 		{
 			DeleteObject(_hBrush);
@@ -112,7 +108,7 @@ void OutputDlg::resetStyle()
 	COLORREF clrBg = ::SendMessage(hCurrScintilla, SCI_STYLEGETBACK, STYLE_DEFAULT, 0);
 	_clrTextFg = ::SendMessage(hCurrScintilla, SCI_STYLEGETFORE, STYLE_DEFAULT, 0);
 	char szFontName[255];
-	::SendMessage(hCurrScintilla, SCI_STYLEGETFONT, STYLE_DEFAULT, *szFontName);
+	::SendMessage(hCurrScintilla, SCI_STYLEGETFONT, STYLE_DEFAULT, (LPARAM)szFontName);
 	int fontSize = ::SendMessage(hCurrScintilla, SCI_STYLEGETSIZE, STYLE_DEFAULT, 0);
 	if (_hBrush)
 	{
@@ -123,9 +119,11 @@ void OutputDlg::resetStyle()
 	{
 		DeleteObject(_fontText);
 	}
+	std::string strFontName(szFontName);
+	std::wstring wstrFontName = s2ws(strFontName);
 	_fontText = CreateFont(fontSize, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_OUTLINE_PRECIS,
-		CLIP_DEFAULT_PRECIS, CLEARTYPE_QUALITY, VARIABLE_PITCH, s2ws(szFontName).c_str());
-	::SendMessage(GetDlgItem(_hSelf, ID_GOLINE_EDIT), WM_SETFONT, WPARAM(_fontText), TRUE);
+		CLIP_DEFAULT_PRECIS, CLEARTYPE_QUALITY, VARIABLE_PITCH, wstrFontName.c_str());
+	::SendMessage(GetDlgItem(_hSelf, ID_GOLINE_EDIT), WM_SETFONT, (WPARAM)_fontText, TRUE);
 
 	RedrawWindow(_hSelf, NULL, NULL, RDW_INVALIDATE);
 }
