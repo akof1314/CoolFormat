@@ -3,6 +3,8 @@
 #include "stdafx.h"
 #include "CoolFormat3.h"
 #include "MainFrm.h"
+#include "SetSheet.h"
+#include "SetPageBase.h"
 
 #include "ChildFrm.h"
 #include "CoolFormat3Doc.h"
@@ -34,6 +36,7 @@ END_MESSAGE_MAP()
 CCoolFormat3App::CCoolFormat3App() :
 	CBCGPWorkspace (TRUE /* m_bResourceSmartUpdate */)
 {
+	m_bOnlyShowSettings = FALSE;
 }
 
 
@@ -86,8 +89,18 @@ BOOL CCoolFormat3App::InitInstance()
 	{
 		return FALSE;
 	}
-	globalData.SetDPIAware ();
+	globalData.SetDPIAware();
 	RunLang();
+
+	if (m_bOnlyShowSettings)
+	{
+		CString strTemp;
+		BOOL bNameVaild = strTemp.LoadString(IDS_STRING_SETFORMATTER);
+		ASSERT(bNameVaild);
+		CSetSheet setSheet(strTemp, NULL, 0);
+		setSheet.DoModalAllPage(TRUE);
+		return FALSE;
+	}
 
 	// Initialize all Managers for usage. They are automatically constructed
 	// if not yet present
@@ -339,7 +352,12 @@ BOOL CCoolFormat3App::IsCmdLine()
 	{
 		strName = strCmd.Mid(3);
 		bFormatter = TRUE;
-	}	
+	}
+	else if (0 == strArgs.CompareNoCase(_T("-s")))
+	{
+		m_bOnlyShowSettings = TRUE;
+		return FALSE;
+	}
 
 	BOOL bFindFile = FALSE;
 	if (strName.GetLength() > 0)

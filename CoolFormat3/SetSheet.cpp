@@ -91,7 +91,7 @@ BOOL CSetSheet::PreTranslateMessage(MSG* pMsg)
 	return CBCGPPropertySheet::PreTranslateMessage(pMsg);
 }
 
-INT_PTR CSetSheet::DoModalAllPage()
+INT_PTR CSetSheet::DoModalAllPage(BOOL bMainWnd /*= FALSE*/)
 {
 	m_psh.dwFlags |= PSH_NOAPPLYNOW;
 	SetLook(CBCGPPropertySheet::PropSheetLook_List, 124);
@@ -120,6 +120,11 @@ INT_PTR CSetSheet::DoModalAllPage()
 	AddPage(&pageXml);
 
 	EnableVisualManagerStyle(TRUE, TRUE);
+
+	if (bMainWnd)
+	{
+		theApp.m_pMainWnd = this;
+	}
 
 	INT_PTR nResult = DoModal();
 	if (nResult == IDOK)

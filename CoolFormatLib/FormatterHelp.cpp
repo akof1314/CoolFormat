@@ -135,10 +135,7 @@ bool CFormatterHelp::DoFormatter(unsigned int nLanguage, const std::string &strT
 		return FALSE;
 	}
 		
-	std::string strOut, strErr;
-	bool bTidyOk = pTidy->TidyMain(strTextIn.c_str(), strTidy.c_str(), strOut, strErr);
-	strTextOut = strOut;
-	strMsgOut = strErr.c_str();
+	bool bTidyOk = pTidy->TidyMain(strTextIn.c_str(), strTidy.c_str(), strTextOut, strMsgOut);
 	delete pTidy;
 	return bTidyOk;
 }

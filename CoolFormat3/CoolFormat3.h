@@ -53,6 +53,9 @@ public:
 	afx_msg void OnFileOpen();
 	DECLARE_MESSAGE_MAP()
 	virtual int DoMessageBox(LPCTSTR lpszPrompt, UINT nType, UINT nIDPrompt);
+
+private:
+	BOOL m_bOnlyShowSettings;
 };
 
 extern CCoolFormat3App theApp;

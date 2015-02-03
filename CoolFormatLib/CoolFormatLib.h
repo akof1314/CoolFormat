@@ -6,6 +6,8 @@
 // 符号视为是被导出的。
 #include <string>
 
+HMODULE hCFModule;
+
 #ifdef COOLFORMATLIB_EXPORTS
 #define COOLFORMATLIB_API __declspec(dllexport)
 #else
@@ -17,9 +19,11 @@ extern "C" {          // we need to export the C interface
 #endif
 
 COOLFORMATLIB_API bool DoFormatter(unsigned int nLanguage,
-	const std::string &strTextIn,
-	std::string &strTextOut,
-	std::string &strMsgOut,
+	const char *pszTextIn,
+	char *pszTextOut,
+	int &nTextOut,
+	char *pszMsgOut,
+	int &nMsgOut,
 	unsigned int uCodepage);
 
 COOLFORMATLIB_API void ShowSettings();
