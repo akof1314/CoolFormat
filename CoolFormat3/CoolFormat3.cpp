@@ -4,7 +4,6 @@
 #include "CoolFormat3.h"
 #include "MainFrm.h"
 #include "SetSheet.h"
-#include "SetPageBase.h"
 
 #include "ChildFrm.h"
 #include "CoolFormat3Doc.h"

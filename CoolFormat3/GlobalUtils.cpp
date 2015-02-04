@@ -21,7 +21,6 @@ void GlobalUtils::InitGlobalUtils()
 	globalData.m_bUseVisualManagerInBuiltInDialogs = TRUE;	
 	m_sColorScheme.InitColorScheme();
 	m_sStyleScheme.InitStyle();
-	//m_fontWidth.CreatePointFont(85, _T("Courier New"), NULL);
 
 	LOGFONT lf;
 	memset (&lf, 0, sizeof (LOGFONT));
@@ -31,7 +30,7 @@ void GlobalUtils::InitGlobalUtils()
 	lstrcpy (lf.lfFaceName, _T("Courier New"));
 	lf.lfOutPrecision =	3;
 	lf.lfClipPrecision = 2;
-	lf.lfQuality = 1;
+	lf.lfQuality = globalData.bIsWindowsXP ? 5 : 1;
 	lf.lfPitchAndFamily = 49;
 	m_fontWidth.CreateFontIndirect (&lf);
 }

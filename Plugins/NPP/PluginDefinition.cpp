@@ -22,6 +22,7 @@
 #include "PluginDefinition.h"
 #include "menuCmdID.h"
 #include "SynLanguage.h"
+#include "StrUseful.h"
 #include "GoToLineDlg.h"
 
 //
@@ -79,17 +80,17 @@ void commandMenuInit()
 	pShKey->_isAlt = true;
 	pShKey->_isCtrl = true;
 	pShKey->_isShift = true;
-	pShKey->_key = 'M';
+	pShKey->_key = 'Q';
 	setCommand(0, TEXT("Quick Format"), quickFormat, pShKey, false);
 
 	pShKey = new ShortcutKey;
 	pShKey->_isAlt = true;
 	pShKey->_isCtrl = true;
 	pShKey->_isShift = true;
-	pShKey->_key = 'J';
+	pShKey->_key = 'S';
 	setCommand(1, TEXT("Selected Format"), selectedFormat, pShKey, false);
 	setCommand(2, TEXT("-SEPARATOR-"), NULL, NULL, false);
-	setCommand(3, TEXT("Formatter Settings"), formatterSettings, NULL, false);
+	setCommand(3, TEXT("Formatter Settings..."), formatterSettings, NULL, false);
 }
 
 //
@@ -213,7 +214,9 @@ typedef bool(*DoFormatterProc)(unsigned int nLanguage,
 	int &nTextOut,
 	char *pszMsgOut,
 	int &nMsgOut,
-	unsigned int uCodepage);
+	unsigned int uCodepage,
+	const char *pszEol,
+	const char *pszInitIndent);
 
 typedef void( * ShowSettingsProc)();
 
@@ -266,11 +269,15 @@ void doFormat(bool bSelected)
 		return;
 
 	char *pText = NULL;
-	std::string initIndent("");
+	int nLine = 0;
+	std::string strInitIndent("");
 	if (!bSelected)
 	{
 		pText = new char[nTextLen + 1];
 		::SendMessage(hCurrScintilla, SCI_GETTEXT, nTextLen + 1, (LPARAM)pText);
+
+		int nCurrentPos = ::SendMessage(hCurrScintilla, SCI_GETCURRENTPOS, 0, 0);
+		nLine = ::SendMessage(hCurrScintilla, SCI_LINEFROMPOSITION, nCurrentPos, 0);
 	} 
 	else
 	{
@@ -307,7 +314,7 @@ void doFormat(bool bSelected)
 			testChar = pText[i];
 			if (testChar != ' ' && testChar != '\t')
 				break;
-			initIndent += testChar;
+			strInitIndent += testChar;
 		}
 	}
 
@@ -317,16 +324,32 @@ void doFormat(bool bSelected)
 		::SendMessage(nppData._nppHandle, NPPM_GETCURRENTLANGTYPE, 0, (LPARAM)&langType);
 		unsigned int uLanguage = langSynType[langType].uLanguage;
 		unsigned int uCodepage = 0;
+		int eolMode = ::SendMessage(hCurrScintilla, SCI_GETEOLMODE, 0, 0);
+		std::string strEol(1, '\n');
+		switch (eolMode)
+		{
+		case SC_EOL_CRLF:
+			strEol = "\r\n";
+			break;
+		case SC_EOL_CR:
+			strEol = "\r";
+			break;
+		case SC_EOL_LF:
+			strEol = "\n";
+			break;
+		default:
+			break;
+		}
 
 		int nTextOut = 0;
 		int nMsgOut = 0;
-		if (DoFormatter(uLanguage, pText, NULL, nTextOut, NULL, nMsgOut, uCodepage))
+		if (DoFormatter(uLanguage, pText, NULL, nTextOut, NULL, nMsgOut, uCodepage, strEol.c_str(), strInitIndent.c_str()))
 		{
 			char *pszTextOut = new char[nTextOut + 1];
 			char *pszMsgOut = new char[nMsgOut + 1];
 			memset(pszTextOut, 0, nTextOut + 1);
 			memset(pszMsgOut, 0, nMsgOut + 1);
-			if (DoFormatter(uLanguage, pText, pszTextOut, nTextOut, pszMsgOut, nMsgOut, uCodepage))
+			if (DoFormatter(uLanguage, pText, pszTextOut, nTextOut, pszMsgOut, nMsgOut, uCodepage, strEol.c_str(), strInitIndent.c_str()))
 			{
 				showOutput(pszMsgOut);
 				if (bSelected)
@@ -336,7 +359,10 @@ void doFormat(bool bSelected)
 				else
 				{
 					::SendMessage(hCurrScintilla, SCI_SETTEXT, 0, (LPARAM)pszTextOut);
+
+					::SendMessage(hCurrScintilla, SCI_GOTOLINE, nLine, 0);
 				}
+				::SetFocus(hCurrScintilla);
 			}
 			delete[] pszTextOut;
 			delete[] pszMsgOut;

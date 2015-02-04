@@ -37,7 +37,7 @@ CFormatterHelp::~CFormatterHelp(void)
 {
 }
 
-bool CFormatterHelp::DoFormatter(unsigned int nLanguage, const std::string &strTextIn, std::string &strTextOut, std::string &strMsgOut, unsigned int uCodepage)
+bool CFormatterHelp::DoFormatter(unsigned int nLanguage, const std::string &strTextIn, std::string &strTextOut, std::string &strMsgOut)
 {
 	CCFBaseTidy* pTidy = NULL;
 	std::string strTidy;
@@ -48,7 +48,7 @@ bool CFormatterHelp::DoFormatter(unsigned int nLanguage, const std::string &strT
 	{
 		pTidy = new CCFCppTidy();
 		std::string strNewTidy(g_GlobalTidy.m_TidyCpp);
-		strNewTidy = ReplaceAll(strNewTidy, "-", " -");
+		strNewTidy = strreplace_all(strNewTidy, "-", " -");
 		strTidy = (strNewTidy);
 		strTidy.append(" --mode=c");
 	}
@@ -57,7 +57,7 @@ bool CFormatterHelp::DoFormatter(unsigned int nLanguage, const std::string &strT
 	{
 		pTidy = new CCFCppTidy();
 		std::string strNewTidy(g_GlobalTidy.m_TidyCSharp);
-		strNewTidy = ReplaceAll(strNewTidy, "-", " -");
+		strNewTidy = strreplace_all(strNewTidy, "-", " -");
 		strTidy = (strNewTidy);
 		strTidy.append(" --mode=cs");
 	}
@@ -66,7 +66,7 @@ bool CFormatterHelp::DoFormatter(unsigned int nLanguage, const std::string &strT
 	{
 		pTidy = new CCFCppTidy();
 		std::string strNewTidy(g_GlobalTidy.m_TidyJava);
-		strNewTidy = ReplaceAll(strNewTidy, "-", " -");
+		strNewTidy = strreplace_all(strNewTidy, "-", " -");
 		strTidy = (strNewTidy);
 		strTidy.append(" --mode=java");
 	}
@@ -75,7 +75,7 @@ bool CFormatterHelp::DoFormatter(unsigned int nLanguage, const std::string &strT
 	{
 		pTidy = new CCFCppTidy();
 		std::string strNewTidy(g_GlobalTidy.m_TidyObjectiveC);
-		strNewTidy = ReplaceAll(strNewTidy, "-", " -");
+		strNewTidy = strreplace_all(strNewTidy, "-", " -");
 		strTidy = (strNewTidy);
 		strTidy.append(" --mode=c");
 	}

@@ -24,7 +24,9 @@ COOLFORMATLIB_API bool DoFormatter(unsigned int nLanguage,
 	int &nTextOut,
 	char *pszMsgOut,
 	int &nMsgOut,
-	unsigned int uCodepage);
+	unsigned int uCodepage = 0,
+	const char *pszEol = NULL,
+	const char *pszInitIndent = NULL);
 
 COOLFORMATLIB_API void ShowSettings();
 

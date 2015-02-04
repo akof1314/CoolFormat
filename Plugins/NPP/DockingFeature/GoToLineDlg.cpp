@@ -58,8 +58,8 @@ BOOL CALLBACK OutputDlg::run_dlgProc(UINT message, WPARAM wParam, LPARAM lParam)
 void OutputDlg::setOutput(const char *pszOutput)
 {
 	std::string strOutput(pszOutput);
-	strOutput.erase(strOutput.find_last_not_of(" \n\r\t") + 1);
-	strOutput = ReplaceAll(strOutput, "\n", "\r\n");
+	strOutput = strtrim_right(strOutput);
+	strOutput = strreplace_all(strOutput, "\n", "\r\n");
 
 	if (strOutput.size() == 0)
 	{
@@ -88,7 +88,8 @@ void OutputDlg::setOutput(const char *pszOutput)
 		}
 
 		display(true);
-		::SetDlgItemTextA(_hSelf, ID_GOLINE_EDIT, strOutput.c_str());
+		std::wstring wsOutput = s2ws(strOutput);
+		::SetDlgItemText(_hSelf, ID_GOLINE_EDIT, wsOutput.c_str());
 	}
 }
 
@@ -121,6 +122,8 @@ void OutputDlg::resetStyle()
 	}
 	std::string strFontName(szFontName);
 	std::wstring wstrFontName = s2ws(strFontName);
+	HDC hDC = GetDC(_hSelf);
+	fontSize = -MulDiv(fontSize, GetDeviceCaps(hDC, LOGPIXELSY), 72);
 	_fontText = CreateFont(fontSize, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, DEFAULT_CHARSET, OUT_OUTLINE_PRECIS,
 		CLIP_DEFAULT_PRECIS, CLEARTYPE_QUALITY, VARIABLE_PITCH, wstrFontName.c_str());
 	::SendMessage(GetDlgItem(_hSelf, ID_GOLINE_EDIT), WM_SETFONT, (WPARAM)_fontText, TRUE);

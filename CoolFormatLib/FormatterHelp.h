@@ -10,6 +10,5 @@ public:
 	bool DoFormatter(unsigned int nLanguage, 
 		const std::string &strTextIn, 
 		std::string &strTextOut, 
-		std::string &strMsgOut, 
-		unsigned int uCodepage);
+		std::string &strMsgOut);
 };

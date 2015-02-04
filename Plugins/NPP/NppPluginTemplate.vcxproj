@@ -158,7 +158,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>shlwapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OutDir)NppPluginTemplate.dll</OutputFile>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
@@ -169,7 +169,7 @@
     <PostBuildEvent>
       <Message>
       </Message>
-      <Command>echo D | xcopy "$(TargetPath)" "$(SolutionDir)\..\Bin\$(ConfigurationName)" /y</Command>
+      <Command>echo D | xcopy "$(TargetPath)" "$(SolutionDir)..\Bin\$(ConfigurationName)" /y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Debug|Win32'">
