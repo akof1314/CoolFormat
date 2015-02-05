@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
 
-#include "..\..\CoolFormat3\stdafx.h"
+#include "..\..\CoolFormat\stdafx.h"
 #include "FormatterHelp.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
