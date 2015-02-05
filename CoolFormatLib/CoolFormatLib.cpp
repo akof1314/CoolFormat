@@ -6,9 +6,25 @@
 #include "FormatterHelp.h"
 
 bool g_InitTidy = false;
+PROCESS_INFORMATION g_piProcInfo = { 0 };
 
 void CheckInit()
 {
+	if (g_piProcInfo.hProcess)
+	{
+		DWORD dwExitCode = STILL_ACTIVE;
+		if (GetExitCodeProcess(g_piProcInfo.hProcess, &dwExitCode))
+		{
+			if (dwExitCode != STILL_ACTIVE)
+			{
+				CloseHandle(g_piProcInfo.hProcess);
+				CloseHandle(g_piProcInfo.hThread);
+				ZeroMemory(&g_piProcInfo, sizeof(PROCESS_INFORMATION));
+
+				g_InitTidy = false;
+			}
+		}
+	}
 	if (g_InitTidy)
 	{
 		return;
@@ -95,9 +111,6 @@ COOLFORMATLIB_API void ShowSettings()
 	siStartInfo.wShowWindow = SW_SHOW;
 	siStartInfo.dwFlags = STARTF_USESHOWWINDOW | STARTF_USESTDHANDLES;
 
-	PROCESS_INFORMATION piProcInfo;
-	ZeroMemory(&piProcInfo, sizeof(PROCESS_INFORMATION));
-
 	TCHAR szBuff[MAX_PATH];
 	GetModuleFileName(hCFModule, szBuff, sizeof(szBuff));
 	std::wstring strFileName(szBuff);
@@ -109,10 +122,9 @@ COOLFORMATLIB_API void ShowSettings()
 	strFileName.erase(pos);
 	strFileName.append(TEXT("\\CoolFormat.exe"));
 
-	if (!CreateProcess(strFileName.c_str(), TEXT(" -s"), NULL, NULL, FALSE, NULL, NULL, NULL, &siStartInfo, &piProcInfo))
+	ZeroMemory(&g_piProcInfo, sizeof(PROCESS_INFORMATION));
+	if (!CreateProcess(strFileName.c_str(), TEXT(" -s"), NULL, NULL, FALSE, NULL, NULL, NULL, &siStartInfo, &g_piProcInfo))
 	{
 		return;
 	}
-	WaitForSingleObject(piProcInfo.hProcess, INFINITE);
-	g_InitTidy = false;
 }
