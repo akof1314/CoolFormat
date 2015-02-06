@@ -63,6 +63,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)Lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>CssTidyLibd.lib;SqlFormatterLibd.lib;JsonCppLibd.lib;JsFormatterLibd.lib;PhpFormatterLibd.lib;tidylibd.lib;AStyleLibd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>echo D | xcopy "$(TargetPath)" "$(SolutionDir)Bin\$(Configuration)" /y
@@ -87,6 +88,7 @@ echo D | xcopy "$(TargetPath)" "D:\Program Files\Notepad++\plugins\CoolFormat" /
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(SolutionDir)Lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>CssTidyLib.lib;SqlFormatterLib.lib;JsonCppLib.lib;JsFormatterLib.lib;PhpFormatterLib.lib;tidylib.lib;AStyleLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>echo D | xcopy "$(TargetPath)" "$(SolutionDir)Bin\$(Configuration)" /y</Command>

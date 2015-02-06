@@ -31,7 +31,7 @@
 
 /* linux includes */
 #ifndef WIN32
-#  include <alloca.h> //NOTE: needed for parser; malloca
+//#  include <alloca.h> //NOTE: needed for parser; malloca
 #  include <stdlib.h> //NOTE: what are the C++ variants for these two?
 #  include <stdio.h>
 #endif

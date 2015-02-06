@@ -1,4 +1,5 @@
 #include "CFJsTidy.h"
+#include <cstring>
 #include "jsformatString.h"
 #include "jsminCharArray.h"
 

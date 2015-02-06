@@ -1,4 +1,5 @@
 #include "CFBaseTidy.h"
+#include <cstring>
 #include <algorithm>
 using namespace std;
 
@@ -31,9 +32,9 @@ void CCFBaseTidy::SetTidyFromOptions(const char* pOptions)
 	if (NULL == pOptions)
 	{
 		return;
-	}
+    }
 
-	int lenTidy = strlen(pOptions);
+    int lenTidy = strlen(pOptions);
 	if (lenTidy <= 0 || pOptions[0] != '-')
 	{
 		return;
@@ -76,7 +77,7 @@ void CCFBaseTidy::SetTidyOption(const char* pOption, int nPos, int nSize)
 	}
 	else
 	{
-		auto it = std::find_if(strTextParam.begin(), strTextParam.end(), isdigit);
+        auto it = std::find_if(strTextParam.begin(), strTextParam.end(), ::isdigit);
 		if (it != strTextParam.end())
 		{
 			strParam.assign(strTextParam.begin(), it);

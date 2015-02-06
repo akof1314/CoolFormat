@@ -11,24 +11,6 @@
 #include "StrUseful.h"
 #include "GlobalTidy.h"
 
-#ifdef _DEBUG
-#pragma comment(lib, "CssTidyLibd.lib")
-#pragma comment(lib, "SqlFormatterLibd.lib")
-#pragma comment(lib, "JsonCppLibd.lib")
-#pragma comment(lib, "JsFormatterLibd.lib")
-#pragma comment(lib, "PhpFormatterLibd.lib")
-#pragma comment(lib, "tidylibd.lib")
-#pragma comment(lib, "AStyleLibd.lib")
-#else
-#pragma comment(lib, "CssTidyLib.lib")
-#pragma comment(lib, "SqlFormatterLib.lib")
-#pragma comment(lib, "JsonCppLib.lib")
-#pragma comment(lib, "JsFormatterLib.lib")
-#pragma comment(lib, "PhpFormatterLib.lib")
-#pragma comment(lib, "tidylib.lib")
-#pragma comment(lib, "AStyleLib.lib")
-#endif // _DEBUG
-
 CFormatterHelp::CFormatterHelp(void)
 {
 }

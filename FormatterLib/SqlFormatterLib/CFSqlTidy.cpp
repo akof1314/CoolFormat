@@ -1,4 +1,5 @@
 #include "CFSqlTidy.h"
+#include <cstring>
 #include "SQLFormatter2.h"
 
 CCFSqlTidy::CCFSqlTidy(void)

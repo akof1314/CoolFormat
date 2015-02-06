@@ -1,4 +1,5 @@
-#pragma once
+#ifndef SYNLANGUAGE_H
+#define SYNLANGUAGE_H
 
 enum{
 	SYN_ACTIONSCRIPT = 0,
@@ -38,3 +39,4 @@ enum{
 };
 
 const unsigned int MAX_SYN_LANG = SYN_XML + 1;
+#endif

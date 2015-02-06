@@ -1,4 +1,5 @@
-#pragma once
+#ifndef GLOBALTIDY_H
+#define GLOBALTIDY_H
 #include <string>
 #include "SynLanguage.h"
 
@@ -54,3 +55,5 @@ public:
 };
 
 extern GlobalTidy g_GlobalTidy;
+
+#endif

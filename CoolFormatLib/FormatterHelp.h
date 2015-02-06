@@ -1,4 +1,5 @@
-#pragma once
+#ifndef FORMATTERHELP_H
+#define FORMATTERHELP_H
 #include <string>
 
 class CFormatterHelp
@@ -12,3 +13,4 @@ public:
 		std::string &strTextOut, 
 		std::string &strMsgOut);
 };
+#endif

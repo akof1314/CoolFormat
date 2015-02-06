@@ -12,21 +12,26 @@ CCFCppTidy::~CCFCppTidy(void)
 
 }
 
+static std::string s_strErr;
+
+void  STDCALL ASErrorHandler(int /*errorNumber*/, const char* errorMessage)
+{
+    s_strErr.append(errorMessage);
+}
+
+char* STDCALL ASMemoryAlloc(unsigned long memoryNeeded)
+{
+    char* buffer = new(std::nothrow) char[memoryNeeded];
+    return buffer;
+}
+
 bool CCFCppTidy::TidyMain(const char* pSourceIn, const char *pOptions, std::string &strOut, std::string &strErr)
 {
-	static std::string s_strErr;
-	s_strErr.clear();
+    s_strErr.clear();
 
 	char* textOut = AStyleMain(pSourceIn, pOptions,
-		[](int /*errorNumber*/, const char* errorMessage)
-	{
-		s_strErr.append(errorMessage);
-	},
-		[](unsigned long memoryNeeded)
-	{
-		char* buffer = new(std::nothrow) char[memoryNeeded];
-		return buffer;
-	});
+        ASErrorHandler,
+        ASMemoryAlloc);
 
 	strErr = s_strErr;
 	if (textOut == NULL)

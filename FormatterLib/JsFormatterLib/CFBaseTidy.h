@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CFBASETIDY_H
+#define CFBASETIDY_H
 #include <string>
 
 class CCFBaseTidy
@@ -59,4 +60,4 @@ protected:
 	*/
 	void* tidy;
 };
-
+#endif

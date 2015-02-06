@@ -96,8 +96,13 @@ COOLFORMATLIB_API bool DoFormatter(unsigned int nLanguage, const char *pszTextIn
 	}
 	else
 	{
+#ifdef _MSC_VER
 		strTextOut._Copy_s(pszTextOut, nTextOut, nTextOut, 0);
 		strMsgOut._Copy_s(pszMsgOut, nMsgOut, nMsgOut, 0);
+#else
+		strTextOut.copy(pszTextOut, nTextOut, 0);
+		strMsgOut.copy(pszMsgOut, nMsgOut, 0);
+#endif
 		return true;
 	}
 }

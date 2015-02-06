@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CFJSTIDY_H
+#define CFJSTIDY_H
 #include "CFBaseTidy.h"
 
 class CCFJsTidy : public CCFBaseTidy
@@ -16,3 +17,4 @@ protected:
 	void SetTidyProp(const std::string& strParam, int nNumValue, const std::string& strNumValue, const std::string& strTextValue);
 
 };
+#endif

@@ -196,7 +196,7 @@ static int initMappedFileSource( TidyAllocator *allocator, TidyInputSource* inp,
 #if _MSC_VER < 1300  /* less than msvc++ 7.0 */
     {
         LARGE_INTEGER* pli = (LARGE_INTEGER *)&fin->size;
-        (DWORD)pli->LowPart = GetFileSize( fp, (DWORD *)&pli->HighPart );
+        pli->LowPart = GetFileSize( fp, (DWORD *)&pli->HighPart );
         if ( GetLastError() != NO_ERROR || fin->size <= 0 )
         {
             TidyFree(allocator, fin);

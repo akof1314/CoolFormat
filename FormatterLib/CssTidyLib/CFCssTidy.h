@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CFCSSTIDY_H
+#define CFCSSTIDY_H
 #include "CFBaseTidy.h"
 
 class CCFCssTidy : public CCFBaseTidy
@@ -23,6 +24,7 @@ protected:
 
 	void SetTidyProp(const std::string& strParam, int nNumValue, const std::string& strNumValue, const std::string& strTextValue);
 };
+#endif
 /*
 settings["remove_bslash"] = 1;
 settings["compress_colors"] = 1;

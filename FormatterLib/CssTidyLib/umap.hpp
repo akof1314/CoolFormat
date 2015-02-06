@@ -135,7 +135,11 @@ class umap
 			{
 				for (typename FifoT::iterator i = sortv.begin(), e = sortv.end(); i != e; ++i)
 				{
+#ifdef _MSC_VER
 					if( (*i)->first == key)
+#else
+					if ((*i)->first == (*it)->first)
+#endif
 					{
 						content.erase(*i);
 						sortv.erase(i);

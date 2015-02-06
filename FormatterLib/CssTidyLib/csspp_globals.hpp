@@ -22,6 +22,7 @@
 //#include <string> 
 //#include <iterator>
 //#include <vector>
+#include <cstring>
 #include <math.h>
 #include <time.h>
 #include <sstream>

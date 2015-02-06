@@ -2154,7 +2154,8 @@ static Node* GetTokenFromStream( TidyDocImpl* doc, GetTokenMode mode )
                     {
 						if (xmlIn)
 						{
-							for (int iu = 2; iu <= 6; ++iu)
+							int iu;
+							for (iu = 2; iu <= 6; ++iu)
 							{
 								if (lexer->lexbuf[lexer->lexsize - iu] == '/')
 								{
@@ -2369,7 +2370,8 @@ static Node* GetTokenFromStream( TidyDocImpl* doc, GetTokenMode mode )
                     TY_(UngetChar)('<', doc->docIn);
 					if (xmlIn)
 					{
-						for (int iu = 2; iu <= 6; ++iu)
+						int iu;
+						for (iu = 2; iu <= 6; ++iu)
 						{
 							if (lexer->lexbuf[lexer->lexsize - iu] == '<')
 							{
