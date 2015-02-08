@@ -19,7 +19,7 @@ public:
 	 * 初始化全局格式化参数
 	 * @return void 
 	 */
-	void InitGlobalTidy();
+	void InitGlobalTidy(const std::string &strDllPath);
 
 	bool m_bTidySyn[SYN_XML + 1];
 
@@ -52,6 +52,13 @@ public:
 
 	/** 默认的语言结构体数组 */
 	static TidyDeafult m_TidyNames[MAX_SYN_LANG];
+
+private:
+	bool LoadGlobalTidy(const std::string &strDllPath);
+
+	bool LoadFromReg();
+
+	bool LoadFromFile(const std::string &strDllPath);
 };
 
 extern GlobalTidy g_GlobalTidy;

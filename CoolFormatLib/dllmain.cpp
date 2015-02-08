@@ -1,6 +1,11 @@
 // dllmain.cpp : 定义 DLL 应用程序的入口点。
 #include "stdafx.h"
+#ifdef _WIN32
+#else
+#include <dlfcn.h>
+#endif
 
+#ifdef _WIN32
 extern HMODULE hCFModule;
 
 BOOL APIENTRY DllMain( HMODULE hModule,
@@ -20,3 +25,11 @@ BOOL APIENTRY DllMain( HMODULE hModule,
 	return TRUE;
 }
 
+#else
+__attribute__((constructor))
+void on_load(void) {
+	Dl_info dl_info;
+	dladdr(on_load, &dl_info);
+	fprintf(stderr, "module %s loaded\n", dl_info.dli_fname);
+}
+#endif

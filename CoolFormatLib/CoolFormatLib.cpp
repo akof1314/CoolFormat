@@ -6,10 +6,35 @@
 #include "FormatterHelp.h"
 
 bool g_InitTidy = false;
+
+#ifdef _WIN32
+HMODULE hCFModule;
+#endif
+
+#ifdef _MSC_VER
 PROCESS_INFORMATION g_piProcInfo = { 0 };
+#endif
+
+std::string GetDllPath()
+{
+#ifdef _WIN32
+	char szBuff[MAX_PATH];
+	GetModuleFileNameA(hCFModule, szBuff, sizeof(szBuff));
+	std::string strFileName(szBuff);
+	std::string::size_type pos = strFileName.rfind('\\');
+	if (pos == std::string::npos)
+	{
+		return NULL;
+	}
+	strFileName.erase(pos);
+	return strFileName;
+#endif
+
+}
 
 void CheckInit()
 {
+#ifdef _MSC_VER
 	if (g_piProcInfo.hProcess)
 	{
 		DWORD dwExitCode = STILL_ACTIVE;
@@ -25,11 +50,13 @@ void CheckInit()
 			}
 		}
 	}
+#endif
+
 	if (g_InitTidy)
 	{
 		return;
 	}
-	g_GlobalTidy.InitGlobalTidy();
+	g_GlobalTidy.InitGlobalTidy(GetDllPath());
 	g_InitTidy = true;
 }
 
@@ -109,6 +136,7 @@ COOLFORMATLIB_API bool DoFormatter(unsigned int nLanguage, const char *pszTextIn
 
 COOLFORMATLIB_API void ShowSettings()
 {
+#ifdef _MSC_VER
 	STARTUPINFO siStartInfo;
 	ZeroMemory(&siStartInfo, sizeof(STARTUPINFO));
 	siStartInfo.cb = sizeof(STARTUPINFO);
@@ -116,15 +144,7 @@ COOLFORMATLIB_API void ShowSettings()
 	siStartInfo.wShowWindow = SW_SHOW;
 	siStartInfo.dwFlags = STARTF_USESHOWWINDOW | STARTF_USESTDHANDLES;
 
-	TCHAR szBuff[MAX_PATH];
-	GetModuleFileName(hCFModule, szBuff, sizeof(szBuff));
-	std::wstring strFileName(szBuff);
-	std::wstring::size_type pos = strFileName.rfind('\\');
-	if (pos == std::wstring::npos)
-	{
-		return;
-	}
-	strFileName.erase(pos);
+	std::wstring strFileName(s2ws(GetDllPath()));
 	strFileName.append(TEXT("\\CoolFormat.exe"));
 
 	ZeroMemory(&g_piProcInfo, sizeof(PROCESS_INFORMATION));
@@ -132,4 +152,5 @@ COOLFORMATLIB_API void ShowSettings()
 	{
 		return;
 	}
+#endif
 }

@@ -1,4 +1,5 @@
 #include "StdAfx.h"
+#include <fstream>
 #include "GlobalTidy.h"
 #include "StrUseful.h"
 
@@ -49,7 +50,7 @@ GlobalTidy::~GlobalTidy(void)
 {
 }
 
-void GlobalTidy::InitGlobalTidy()
+void GlobalTidy::InitGlobalTidy(const std::string &strDllPath)
 {
 	for(int i = 0; i <= SYN_XML; ++i)
 	{
@@ -67,6 +68,27 @@ void GlobalTidy::InitGlobalTidy()
 	m_bTidySyn[SYN_JSON] = TRUE;
 	m_bTidySyn[SYN_SQL] = TRUE;
 
+	m_TidyCpp = m_TidyNames[SYN_CPP].tidyName;
+	m_TidyJava = m_TidyNames[SYN_JAVA].tidyName;
+	m_TidyCSharp = m_TidyNames[SYN_CS].tidyName;
+	m_TidyObjectiveC = m_TidyNames[SYN_OBJECTIVEC].tidyName;
+	m_TidyHtml = m_TidyNames[SYN_HTML].tidyName;
+	m_TidyXml = m_TidyNames[SYN_XML].tidyName;
+	m_TidyPhp = m_TidyNames[SYN_PHP].tidyName;
+	m_TidyJs = m_TidyNames[SYN_JAVASCRIPT].tidyName;
+	m_TidyCss = m_TidyNames[SYN_CSS].tidyName;
+	m_TidyJson = m_TidyNames[SYN_JSON].tidyName;
+	m_TidySql = m_TidyNames[SYN_SQL].tidyName;
+	LoadGlobalTidy(strDllPath);
+}
+
+bool GlobalTidy::LoadGlobalTidy(const std::string &strDllPath)
+{
+	return LoadFromFile(strDllPath);
+}
+
+bool GlobalTidy::LoadFromReg()
+{
 	std::string strTidy;
 	HKEY hKEY;
 	LPCTSTR lpszSection = TEXT("Software\\CoolFormat\\CoolFormat3\\Settings\\SynTidy");
@@ -111,86 +133,150 @@ void GlobalTidy::InitGlobalTidy()
 			return lResult == ERROR_SUCCESS;
 		};
 
-		if (!readKey(m_TidyNames[SYN_CPP].langName, strTidy))
+		if (readKey(m_TidyNames[SYN_CPP].langName, strTidy))
 		{
-			strTidy = m_TidyNames[SYN_CPP].tidyName;
+			m_TidyCpp = strTidy;
 		}
-		m_TidyCpp = strTidy;
 
-		if (!readKey(m_TidyNames[SYN_JAVA].langName, strTidy))
+		if (readKey(m_TidyNames[SYN_JAVA].langName, strTidy))
 		{
-			strTidy = m_TidyNames[SYN_JAVA].tidyName;
+			m_TidyJava = strTidy;
 		}
-		m_TidyJava = strTidy;
 
-		if (!readKey(m_TidyNames[SYN_CS].langName, strTidy))
+		if (readKey(m_TidyNames[SYN_CS].langName, strTidy))
 		{
-			strTidy = m_TidyNames[SYN_CS].tidyName;
+			m_TidyCSharp = strTidy;
 		}
-		m_TidyCSharp = strTidy;
 
-		if (!readKey(m_TidyNames[SYN_OBJECTIVEC].langName, strTidy))
+		if (readKey(m_TidyNames[SYN_OBJECTIVEC].langName, strTidy))
 		{
-			strTidy = m_TidyNames[SYN_OBJECTIVEC].tidyName;
+			m_TidyObjectiveC = strTidy;
 		}
-		m_TidyObjectiveC = strTidy;
 
-		if (!readKey(m_TidyNames[SYN_HTML].langName, strTidy))
+		if (readKey(m_TidyNames[SYN_HTML].langName, strTidy))
 		{
-			strTidy = m_TidyNames[SYN_HTML].tidyName;
+			m_TidyHtml = strTidy;
 		}
-		m_TidyHtml = strTidy;
 
-		if (!readKey(m_TidyNames[SYN_XML].langName, strTidy))
+		if (readKey(m_TidyNames[SYN_XML].langName, strTidy))
 		{
-			strTidy = m_TidyNames[SYN_XML].tidyName;
+			m_TidyXml = strTidy;
 		}
-		m_TidyXml = strTidy;
 
-		if (!readKey(m_TidyNames[SYN_PHP].langName, strTidy))
+		if (readKey(m_TidyNames[SYN_PHP].langName, strTidy))
 		{
-			strTidy = m_TidyNames[SYN_PHP].tidyName;
+			m_TidyPhp = strTidy;
 		}
-		m_TidyPhp = strTidy;
 
-		if (!readKey(m_TidyNames[SYN_JAVASCRIPT].langName, strTidy))
+		if (readKey(m_TidyNames[SYN_JAVASCRIPT].langName, strTidy))
 		{
-			strTidy = m_TidyNames[SYN_JAVASCRIPT].tidyName;
+			m_TidyJs = strTidy;
 		}
-		m_TidyJs = strTidy;
 
-		if (!readKey(m_TidyNames[SYN_CSS].langName, strTidy))
+		if (readKey(m_TidyNames[SYN_CSS].langName, strTidy))
 		{
-			strTidy = m_TidyNames[SYN_CSS].tidyName;
+			m_TidyCss = strTidy;
 		}
-		m_TidyCss = strTidy;
 
-		if (!readKey(m_TidyNames[SYN_JSON].langName, strTidy))
+		if (readKey(m_TidyNames[SYN_JSON].langName, strTidy))
 		{
-			strTidy = m_TidyNames[SYN_JSON].tidyName;
+			m_TidyJson = strTidy;
 		}
-		m_TidyJson = strTidy;
 
-		if (!readKey(m_TidyNames[SYN_SQL].langName, strTidy))
+		if (readKey(m_TidyNames[SYN_SQL].langName, strTidy))
 		{
-			strTidy = m_TidyNames[SYN_SQL].tidyName;
+			m_TidySql = strTidy;
 		}
-		m_TidySql = strTidy;
 
 		RegCloseKey(hKEY);
+		return true;
 	}
-	else
+	return false;
+}
+
+bool GlobalTidy::LoadFromFile(const std::string &strDllPath)
+{
+	std::string strFileName(strDllPath);
+	strFileName.append("\\CoolFormatConfig.cfconfig");
+	std::ifstream configFile(strFileName);
+	if (configFile.is_open())
 	{
-		m_TidyCpp = m_TidyNames[SYN_CPP].tidyName;
-		m_TidyJava = m_TidyNames[SYN_JAVA].tidyName;
-		m_TidyCSharp = m_TidyNames[SYN_CS].tidyName;
-		m_TidyObjectiveC = m_TidyNames[SYN_OBJECTIVEC].tidyName;
-		m_TidyHtml = m_TidyNames[SYN_HTML].tidyName;
-		m_TidyXml = m_TidyNames[SYN_XML].tidyName;
-		m_TidyPhp = m_TidyNames[SYN_PHP].tidyName;
-		m_TidyJs = m_TidyNames[SYN_JAVASCRIPT].tidyName;
-		m_TidyCss = m_TidyNames[SYN_CSS].tidyName;
-		m_TidyJson = m_TidyNames[SYN_JSON].tidyName;
-		m_TidySql = m_TidyNames[SYN_SQL].tidyName;
+		std::string strLine;
+		bool bSynTidy = false;
+		while (configFile.good())
+		{
+			std::getline(configFile, strLine);
+
+			if (strLine.size() == 0)
+			{
+				continue;
+			}
+			else if (strLine.compare("[SynTidy]") == 0)
+			{
+				bSynTidy = true;
+			}
+			else if (strLine[0] == '[')
+			{
+				bSynTidy = false;
+			}
+			else if (bSynTidy)
+			{
+				std::string::size_type posSplit = strLine.find('=');
+				if (posSplit != std::string::npos)
+				{
+					std::string strLang = strLine.substr(0, posSplit);
+					std::string strTidy = strLine.substr(posSplit + 3);
+					strTidy = strTidy.erase(strTidy.size() - 2);
+
+					if (strLang == "C++")
+					{
+						m_TidyCpp = strTidy;
+					}
+					else if (strLang == "C#")
+					{
+						m_TidyCSharp = strTidy;
+					}
+					else if (strLang == "CSS")
+					{
+						m_TidyCss = strTidy;
+					}
+					else if (strLang == "HTML")
+					{
+						m_TidyHtml = strTidy;
+					}
+					else if (strLang == "Java")
+					{
+						m_TidyJava = strTidy;
+					}
+					else if (strLang == "JavaScript")
+					{
+						m_TidyJs = strTidy;
+					}
+					else if (strLang == "JSON")
+					{
+						m_TidyJson = strTidy;
+					}
+					else if (strLang == "Objective-C")
+					{
+						m_TidyObjectiveC = strTidy;
+					}
+					else if (strLang == "PHP")
+					{
+						m_TidyPhp = strTidy;
+					}
+					else if (strLang == "SQL")
+					{
+						m_TidySql = strTidy;
+					}
+					else if (strLang == "XML")
+					{
+						m_TidyXml = strTidy;
+					}
+				}
+			}
+		}
+		configFile.close();
+		return true;
 	}
+	return false;
 }

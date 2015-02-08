@@ -6,8 +6,6 @@
 // 符号视为是被导出的。
 #include <string>
 
-HMODULE hCFModule;
-
 #ifdef COOLFORMATLIB_EXPORTS
 #define COOLFORMATLIB_API __declspec(dllexport)
 #else
