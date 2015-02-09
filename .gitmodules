@@ -1,0 +1,3 @@
+[submodule "Plugins/Sublime/Sublime-CoolFormat"]
+	path = Plugins/Sublime/Sublime-CoolFormat
+	url = ../Sublime-CoolFormat.git
