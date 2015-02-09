@@ -19,7 +19,7 @@
 
 #include "csspp_globals.hpp"
 
-map<string, bool> settings;
+//map<string, bool> settings;
 map< string, vector<string> > shorthands;
 map<string, string> background_prop_default, replace_colors, all_properties;
 vector<string> unit_values, color_values;
