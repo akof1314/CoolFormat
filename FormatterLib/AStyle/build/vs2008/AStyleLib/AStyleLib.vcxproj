@@ -37,13 +37,13 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v120_xp</PlatformToolset>
     <CharacterSet>NotSet</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v120_xp</PlatformToolset>
     <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
@@ -66,21 +66,22 @@
     <_ProjectFileVersion>12.0.30501.0</_ProjectFileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)Temp\Link\$(ProjectName)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)Temp\Compile\$(ProjectName)\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)Temp\Link\$(ProjectName)\$(PlatformName)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)Temp\Compile\$(ProjectName)\$(PlatformName)\$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)d</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>$(SolutionDir)Temp\Link\$(ProjectName)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)Temp\Compile\$(ProjectName)\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)Temp\Link\$(ProjectName)\$(PlatformName)\$(PlatformName)$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)Temp\Compile\$(ProjectName)\$(PlatformName)\$(PlatformName)$(Configuration)\</IntDir>
+    <TargetName>$(ProjectName)d</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)Temp\Link\$(ProjectName)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)Temp\Compile\$(ProjectName)\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)Temp\Link\$(ProjectName)\$(PlatformName)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)Temp\Compile\$(ProjectName)\$(PlatformName)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(SolutionDir)Temp\Link\$(ProjectName)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)Temp\Compile\$(ProjectName)\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)Temp\Link\$(ProjectName)\$(PlatformName)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)Temp\Compile\$(ProjectName)\$(PlatformName)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -98,7 +99,7 @@
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
     </Lib>
     <PostBuildEvent>
-      <Command>echo D | xcopy "$(TargetPath)" "$(SolutionDir)Lib" /y
+      <Command>echo D | xcopy "$(TargetPath)" "$(SolutionDir)Lib\$(PlatformName)" /y
 echo D | xcopy "$(ProjectDir)..\..\..\src\CFCppTidy.h" "$(SolutionDir)Include" /y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -111,17 +112,17 @@ echo D | xcopy "$(ProjectDir)..\..\..\src\CFCppTidy.h" "$(SolutionDir)Include" /
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;ASTYLE_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <PrecompiledHeader />
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Lib>
-      <OutputFile>$(OutDir)AStyleLibd.lib</OutputFile>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
     </Lib>
     <PostBuildEvent>
-      <Command>echo D | xcopy "$(TargetPath)" "$(SolutionDir)Lib" /y</Command>
+      <Command>echo D | xcopy "$(TargetPath)" "$(SolutionDir)Lib\$(PlatformName)" /y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -138,7 +139,7 @@ echo D | xcopy "$(ProjectDir)..\..\..\src\CFCppTidy.h" "$(SolutionDir)Include" /
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
     </Lib>
     <PostBuildEvent>
-      <Command>echo D | xcopy "$(TargetPath)" "$(SolutionDir)Lib" /y
+      <Command>echo D | xcopy "$(TargetPath)" "$(SolutionDir)Lib\$(PlatformName)" /y
 echo D | xcopy "$(ProjectDir)..\..\..\src\CFCppTidy.h" "$(SolutionDir)Include" /y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -150,16 +151,16 @@ echo D | xcopy "$(ProjectDir)..\..\..\src\CFCppTidy.h" "$(SolutionDir)Include" /
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;ASTYLE_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PrecompiledHeader />
       <WarningLevel>Level4</WarningLevel>
       <DebugInformationFormat />
     </ClCompile>
     <Lib>
-      <OutputFile>$(OutDir)AStyleLib.lib</OutputFile>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
     </Lib>
     <PostBuildEvent>
-      <Command>echo D | xcopy "$(TargetPath)" "$(SolutionDir)Lib" /y</Command>
+      <Command>echo D | xcopy "$(TargetPath)" "$(SolutionDir)Lib\$(PlatformName)" /y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
