@@ -160,7 +160,6 @@ echo D | xcopy "$(ProjectDir)CFPhpTidy.h" "$(SolutionDir)Include" /y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="debug.cpp" />
     <ClCompile Include="exception.cpp" />
     <ClCompile Include="formatter.cpp" />
     <ClCompile Include="node.cpp" />

@@ -1,13 +1,13 @@
 #include "stdafx.h"
-#ifdef _WIN32
-#else
-#include <dlfcn.h>
 #include <string>
+
+#ifndef _WIN32
+#include <dlfcn.h>
 #endif
 
-#ifdef _WIN32
-extern HMODULE hCFModule;
+extern std::string g_strDllFilePath;
 
+#ifdef _WIN32
 BOOL APIENTRY DllMain( HMODULE hModule,
                        DWORD  ul_reason_for_call,
                        LPVOID /*lpReserved*/
@@ -16,7 +16,12 @@ BOOL APIENTRY DllMain( HMODULE hModule,
 	switch (ul_reason_for_call)
 	{
 	case DLL_PROCESS_ATTACH:
-		hCFModule = hModule;
+	{
+		char szBuff[MAX_PATH];
+		GetModuleFileNameA(hModule, szBuff, sizeof(szBuff));
+		g_strDllFilePath = szBuff;
+	}
+							 
 	case DLL_THREAD_ATTACH:
 	case DLL_THREAD_DETACH:
 	case DLL_PROCESS_DETACH:
@@ -26,11 +31,10 @@ BOOL APIENTRY DllMain( HMODULE hModule,
 }
 
 #else
-extern std::string g_strDllPath;
 __attribute__((constructor))
 void on_load(void) {
 	Dl_info dl_info;
     dladdr((void *)on_load, &dl_info);
-    g_strDllPath = dl_info.dli_fname;
+	g_strDllFilePath = dl_info.dli_fname;
 }
 #endif

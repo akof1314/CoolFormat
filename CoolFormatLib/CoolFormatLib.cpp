@@ -5,26 +5,19 @@
 #include "FormatterHelp.h"
 
 bool g_InitTidy = false;
+std::string g_strDllFilePath;
 
 #ifdef _WIN32
-HMODULE hCFModule;
 	#ifndef USE_LOCAL_CONFIG_FILE
 		PROCESS_INFORMATION g_piProcInfo = { 0 };
 	#endif
-#else
-std::string g_strDllPath;
 #endif
 
 
 std::string GetDllPath()
 {
-#ifdef _WIN32
-	char szBuff[MAX_PATH];
-	GetModuleFileNameA(hCFModule, szBuff, sizeof(szBuff));
-	std::string strFileName(szBuff);
-#else
-    std::string strFileName(g_strDllPath);
-#endif
+	std::string strFileName(g_strDllFilePath);
+	strFileName = strreplace_all(strFileName, "\\", "/");
     std::string::size_type pos = strFileName.rfind('/');
     if (pos == std::string::npos)
     {
@@ -53,13 +46,13 @@ void CheckInit()
 			}
 		}
 	}
-#endif
-#endif
-
 	if (g_InitTidy)
 	{
 		return;
 	}
+#endif
+#endif
+
 	g_GlobalTidy.InitGlobalTidy(GetDllPath());
 	g_InitTidy = true;
 }
@@ -150,7 +143,7 @@ COOLFORMATLIB_API void ShowSettings()
 	siStartInfo.dwFlags = STARTF_USESHOWWINDOW | STARTF_USESTDHANDLES;
 
 	std::wstring strFileName(s2ws(GetDllPath()));
-	strFileName.append(TEXT("\\CoolFormat.exe"));
+	strFileName.append(TEXT("/CoolFormat.exe"));
 
 	ZeroMemory(&g_piProcInfo, sizeof(PROCESS_INFORMATION));
 	if (!CreateProcess(strFileName.c_str(), TEXT(" -s"), NULL, NULL, FALSE, NULL, NULL, NULL, &siStartInfo, &g_piProcInfo))

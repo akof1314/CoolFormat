@@ -12,7 +12,7 @@
 #endif
 
 struct TidyDeafult {
-    const wchar_t *langName;	//用于写注册表、展现用户的名称
+	const char *langName;	//用于写注册表、展现用户的名称
 	const char *tidyName;	//默认格式化参数
 	unsigned int langID;			//语言枚举
 };

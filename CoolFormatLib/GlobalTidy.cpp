@@ -4,40 +4,40 @@
 #include "StrUseful.h"
 
 TidyDeafult GlobalTidy::m_TidyNames[MAX_SYN_LANG] = {
-    {L"ActionScript",				("*.as;*.mx;"),																			SYN_ACTIONSCRIPT},
-    {L"Ada",						("*.ada;*.ads;*.adb;"),																	SYN_ADA},
-    {L"ASM",						("*.asm;"),																				SYN_ASM},
-    {L"ASP",						("*.asp;"),																				SYN_ASP},
-    {L"AutoHotkey",                 ("*.ahk;*.ia;*.scriptlet;*.hkml;"),														SYN_AUTOHOTKEY},
-    {L"AutoIt",                     ("*.au3;"),																				SYN_AUTOIT},
-    {L"Batch",						("*.bat;*.cmd;*.nt;"),																	SYN_BATCH},
-    {L"COBOL",						("*.cbl;*.cbd;*.cdb;*.cdc;*.cob;"),														SYN_COBOL},
-    {L"C++",						("-A1-p-N-Y-k3"),																			SYN_CPP},
-    {L"C#",                         ("-A1-p-N-Y-k3"),																			SYN_CS},
-    {L"CSS",						("-c2-rub-cl0-os1-cc-cf-cfp0-rs2"),														SYN_CSS},
-    {L"D",							("*.d;"),																					SYN_D},
-    {L"Fortran",					("*.f;*.for;*.f90;*.f95;*.f2k;"),															SYN_FORTRAN},
-    {L"Haskell",					("*.hs;*.lhs;*.las;"),																	SYN_HASKELL},
-    {L"HTML",						("-aan-dep-fb-fbc-fu-js-ll-n-ox-pe-qa-qn-m-wa-wj-wp-ws-sw-fo-i0-d1-ce0-ie0-oe0-w0-sbo0"),	SYN_HTML},
-    {L"INI",						("*.ini;*.inf;*.reg;*.url;"),																SYN_INI},
-    {L"Java",						("-A1-p-N-Y-k3"),																			SYN_JAVA},
-    {L"JavaScript",                 ("-nb-cn4"),																				SYN_JAVASCRIPT},
-    {L"JSON",						("-cn3"),																					SYN_JSON},
-    {L"JSP",						("*.jsp;"),																				SYN_JSP},
-    {L"LISP",						("*.lsp;*.lisp;"),																		SYN_LISP},
-    {L"LUA",						("*.lua;"),																				SYN_LUA},
-    {L"NormalText",                 ("*.txt;"),																				SYN_NORMALTEXT},
-    {L"Objective-C",				("-A1-p-N-Y-k3"),																			SYN_OBJECTIVEC},
-    {L"Pascal",                     ("*.dpr;*.dpk;*.pas;*.dfm;*.inc;*.pp;"),													SYN_PASCAL},
-    {L"Perl",						("*.pl;*.pm;*.plx;"),																		SYN_PERL},
-    {L"PHP",						("-sas-icd-samt-salo-saeo-saro-sabo-saao-samp-aas-rsl-iel-rpc-rst-st"),					SYN_PHP},
-    {L"Python",                     ("*.py;*.pyw;"),																			SYN_PYTHON},
-    {L"Ruby",						("*.rb;*.rbw;"),																			SYN_RUBY},
-    {L"SQL",						("-cn2-el-ml0"),																			SYN_SQL},
-    {L"VB",                         ("*.vb;*.bas;*.frm;*.cls;*.ctl;*.pag;*.dsr;*.dob;*.vbs;*.dsm;*.vbp;*.vbg;*.mak;*.vbw;"),	SYN_VB},
-    {L"Verilog",					("*.v;*.vl;*.vmd;"),																		SYN_VERILOG},
-    {L"VHDL",						("*.vhd;*.vhdl;*.vho;"),																	SYN_VHDL},
-    {L"XML",						("-aan-dep-fb-fbc-js-ll-n-ix-qa-qn-m-wa-wj-wp-ws-sw-fo-i1-ce0-ie0-oe0-w0"),				SYN_XML}
+    {"ActionScript",				("*.as;*.mx;"),																			SYN_ACTIONSCRIPT},
+    {"Ada",							("*.ada;*.ads;*.adb;"),																	SYN_ADA},
+    {"ASM",							("*.asm;"),																				SYN_ASM},
+    {"ASP",							("*.asp;"),																				SYN_ASP},
+    {"AutoHotkey",                  ("*.ahk;*.ia;*.scriptlet;*.hkml;"),														SYN_AUTOHOTKEY},
+    {"AutoIt",                      ("*.au3;"),																				SYN_AUTOIT},
+    {"Batch",						("*.bat;*.cmd;*.nt;"),																	SYN_BATCH},
+    {"COBO",						("*.cbl;*.cbd;*.cdb;*.cdc;*.cob;"),														SYN_COBOL},
+    {"C++",							("-A1-p-N-Y-k3"),																			SYN_CPP},
+    {"C#",                          ("-A1-p-N-Y-k3"),																			SYN_CS},
+    {"CSS",							("-c2-rub-cl0-os1-cc-cf-cfp0-rs2"),														SYN_CSS},
+    {"D",							("*.d;"),																					SYN_D},
+    {"Fortran",						("*.f;*.for;*.f90;*.f95;*.f2k;"),															SYN_FORTRAN},
+    {"Haskel",						("*.hs;*.lhs;*.las;"),																	SYN_HASKELL},
+    {"HTM",							("-aan-dep-fb-fbc-fu-js-ll-n-ox-pe-qa-qn-m-wa-wj-wp-ws-sw-fo-i0-d1-ce0-ie0-oe0-w0-sbo0"),	SYN_HTML},
+    {"INI",							("*.ini;*.inf;*.reg;*.url;"),																SYN_INI},
+    {"Java",						("-A1-p-N-Y-k3"),																			SYN_JAVA},
+    {"JavaScript",                  ("-nb-cn4"),																				SYN_JAVASCRIPT},
+    {"JSON",						("-cn3"),																					SYN_JSON},
+    {"JSP",							("*.jsp;"),																				SYN_JSP},
+    {"LISP",						("*.lsp;*.lisp;"),																		SYN_LISP},
+    {"LUA",							("*.lua;"),																				SYN_LUA},
+    {"NormalText",                  ("*.txt;"),																				SYN_NORMALTEXT},
+    {"Objective-C",					("-A1-p-N-Y-k3"),																			SYN_OBJECTIVEC},
+    {"Pasca",						("*.dpr;*.dpk;*.pas;*.dfm;*.inc;*.pp;"),													SYN_PASCAL},
+    {"Per",							("*.pl;*.pm;*.plx;"),																		SYN_PERL},
+    {"PHP",							("-sas-icd-samt-salo-saeo-saro-sabo-saao-samp-aas-rsl-iel-rpc-rst-st"),					SYN_PHP},
+    {"Python",                      ("*.py;*.pyw;"),																			SYN_PYTHON},
+    {"Ruby",						("*.rb;*.rbw;"),																			SYN_RUBY},
+    {"SQ",							("-cn2-el-ml0"),																			SYN_SQL},
+    {"VB",                          ("*.vb;*.bas;*.frm;*.cls;*.ctl;*.pag;*.dsr;*.dob;*.vbs;*.dsm;*.vbp;*.vbg;*.mak;*.vbw;"),	SYN_VB},
+    {"Verilog",						("*.v;*.vl;*.vmd;"),																		SYN_VERILOG},
+    {"VHD",							("*.vhd;*.vhdl;*.vho;"),																	SYN_VHDL},
+    {"XM",							("-aan-dep-fb-fbc-js-ll-n-ix-qa-qn-m-wa-wj-wp-ws-sw-fo-i1-ce0-ie0-oe0-w0"),				SYN_XML}
 };
 
 GlobalTidy g_GlobalTidy;
@@ -96,16 +96,16 @@ bool GlobalTidy::LoadFromReg()
 #ifdef _WIN32
 	std::string strTidy;
 	HKEY hKEY;
-    LPCTSTR lpszSection = L"Software\\CoolFormat\\CoolFormat3\\Settings\\SynTidy");
+    const char *lpszSection = "Software\\CoolFormat\\CoolFormat3\\Settings\\SynTidy";
 
-	if (RegOpenKeyEx(HKEY_CURRENT_USER, lpszSection, 0, KEY_READ, &hKEY) == ERROR_SUCCESS)
+	if (RegOpenKeyExA(HKEY_CURRENT_USER, lpszSection, 0, KEY_READ, &hKEY) == ERROR_SUCCESS)
 	{
-		auto readKey = [&hKEY](LPCTSTR pszKey, std::string &sVal){
+		auto readKey = [&hKEY](const char * pszKey, std::string &sVal){
 			UINT  nBytes = 0;
 			DWORD dwType = 0;
 			DWORD dwCount = 0;
 
-			LONG lResult = ::RegQueryValueEx(hKEY, pszKey, NULL, &dwType,
+			LONG lResult = ::RegQueryValueExA(hKEY, pszKey, NULL, &dwType,
 				NULL, &dwCount);
 
 			if (lResult == ERROR_SUCCESS && dwCount > 0)
@@ -114,13 +114,12 @@ bool GlobalTidy::LoadFromReg()
 
 				BYTE* pData = new BYTE[nBytes + 1];
 
-				lResult = ::RegQueryValueEx(hKEY, pszKey, NULL, &dwType,
+				lResult = ::RegQueryValueExA(hKEY, pszKey, NULL, &dwType,
 					pData, &dwCount);
 
 				if (lResult == ERROR_SUCCESS &&  dwCount > 0)
 				{
-					std::wstring wsVal((wchar_t*)pData);
-					sVal = ws2s(wsVal);
+					sVal = (char*)pData;
 				}
 				else
 				{
@@ -253,7 +252,7 @@ bool GlobalTidy::LoadFromFile(const std::string &strDllPath)
 					{
 						m_TidyCss = strTidy;
 					}
-					else if (strLang == "HTML")
+					else if (strLang == "HTM")
 					{
 						m_TidyHtml = strTidy;
 					}
@@ -277,11 +276,11 @@ bool GlobalTidy::LoadFromFile(const std::string &strDllPath)
 					{
 						m_TidyPhp = strTidy;
 					}
-					else if (strLang == "SQL")
+					else if (strLang == "SQ")
 					{
 						m_TidySql = strTidy;
 					}
-					else if (strLang == "XML")
+					else if (strLang == "XM")
 					{
 						m_TidyXml = strTidy;
 					}

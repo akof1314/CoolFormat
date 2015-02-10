@@ -227,7 +227,7 @@ void loadCFDll()
 {
 	if (hInstCF == NULL)
 	{
-		hInstCF = LoadLibrary(TEXT("plugins\\CoolFormat\\CoolFormatLib.dll"));
+		hInstCF = LoadLibrary(TEXT("plugins\\CoolFormatLib\\cf_windows_x32\\CoolFormatLib.dll"));
 		if (hInstCF)
 		{
 			DoFormatter = (DoFormatterProc)GetProcAddress(hInstCF, "DoFormatter");
