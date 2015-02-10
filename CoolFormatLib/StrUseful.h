@@ -5,6 +5,9 @@
 #ifdef _MSC_VER
 #include <codecvt>
 #include "Windows.h"
+#else
+#include <clocale>
+#include <locale>
 #endif
 
 inline std::wstring s2ws(const std::string& str)

@@ -108,7 +108,7 @@ void CFormatter::AddAssignment(CNode *variable, CNode *semicolon) {
     SAssignment assignment = {
         variable,
         semicolon,
-        variable->token.length()
+        (uint)variable->token.length()
     };
     
     //TODO: add more assignments, eg +=, -= list(..) =

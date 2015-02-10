@@ -105,7 +105,7 @@ bool CFormatterHelp::DoFormatter(unsigned int nLanguage, const std::string &strT
 	}
 	break;
 	default:
-		return FALSE;
+        return false;
 	}
 		
 	bool bTidyOk = pTidy->TidyMain(strTextIn.c_str(), strTidy.c_str(), strTextOut, strMsgOut);

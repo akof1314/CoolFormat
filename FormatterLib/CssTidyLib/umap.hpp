@@ -131,22 +131,22 @@ class umap
 			friend typename umap<keyT,valT>::iterator umap<keyT,valT>::begin();
 			friend typename umap<keyT,valT>::iterator umap<keyT,valT>::end();
 			//friend void umap<keyT,valT>::erase(const typename umap<keyT,valT>::iterator& it);
-			void erase(const typename umap<keyT,valT>::iterator& it)
-			{
-				for (typename FifoT::iterator i = sortv.begin(), e = sortv.end(); i != e; ++i)
-				{
-#ifdef _MSC_VER
-					if( (*i)->first == key)
-#else
-					if ((*i)->first == (*it)->first)
-#endif
-					{
-						content.erase(*i);
-						sortv.erase(i);
-						return;
-					}
-				}
-			}
+//			void erase(const typename umap<keyT,valT>::iterator& it)
+//			{
+//				for (typename FifoT::iterator i = sortv.begin(), e = sortv.end(); i != e; ++i)
+//				{
+//#ifdef _MSC_VER
+//					if( (*i)->first == key)
+//#else
+//					if ((*i)->first == (*it)->first)
+//#endif
+//					{
+//						content.erase(*i);
+//						sortv.erase(i);
+//						return;
+//					}
+//				}
+//			}
 			
 			public:
 				typename FifoT::iterator pos;

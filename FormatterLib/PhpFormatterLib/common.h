@@ -26,7 +26,7 @@
 #include <stack>
 #include <cstring> //NOTE: <cstring> needed?
 #include <cstdarg>
-#include <malloc.h>
+//#include <malloc.h>
 #include <sstream>
 
 /* linux includes */

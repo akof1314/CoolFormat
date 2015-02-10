@@ -29,7 +29,7 @@ BOOL APIENTRY DllMain( HMODULE hModule,
 __attribute__((constructor))
 void on_load(void) {
 	Dl_info dl_info;
-	dladdr(on_load, &dl_info);
-	fprintf(stderr, "module %s loaded\n", dl_info.dli_fname);
+    dladdr((void *)on_load, &dl_info);
+    //fprintf(stderr, "module %s loaded\n", dl_info.dli_fname);
 }
 #endif

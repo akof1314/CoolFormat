@@ -9,7 +9,6 @@ DESTDIR = $$_PRO_FILE_PWD_/../../Lib
 SOURCES += \
     CFBaseTidy.cpp \
     CFPhpTidy.cpp \
-    debug.cpp \
     exception.cpp \
     formatter.cpp \
     node.cpp \
