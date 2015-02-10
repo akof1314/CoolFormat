@@ -1,12 +1,20 @@
-#ifndef GLOBALTIDY_H
+ï»¿#ifndef GLOBALTIDY_H
 #define GLOBALTIDY_H
 #include <string>
 #include "SynLanguage.h"
 
+// æ˜¯å¦ä½¿ç”¨æœ¬åœ°é…ç½®æ–‡ä»¶ï¼Œå¦åˆ™ä½¿ç”¨æ³¨å†Œè¡¨
+#define USE_LOCAL_CONFIG_FILE
+
+// éWINå¹³å°åªèƒ½ä½¿ç”¨æœ¬åœ°é…ç½®æ–‡ä»¶
+#ifndef _WIN32
+	#define USE_LOCAL_CONFIG_FILE
+#endif
+
 struct TidyDeafult {
-	const TCHAR *langName;	//ÓÃÓÚĞ´×¢²á±í¡¢Õ¹ÏÖÓÃ»§µÄÃû³Æ
-	const char *tidyName;	//Ä¬ÈÏ¸ñÊ½»¯²ÎÊı
-	unsigned int langID;			//ÓïÑÔÃ¶¾Ù
+	const TCHAR *langName;	//ç”¨äºå†™æ³¨å†Œè¡¨ã€å±•ç°ç”¨æˆ·çš„åç§°
+	const char *tidyName;	//é»˜è®¤æ ¼å¼åŒ–å‚æ•°
+	unsigned int langID;			//è¯­è¨€æšä¸¾
 };
 
 class GlobalTidy
@@ -16,41 +24,41 @@ public:
 	~GlobalTidy(void);
 	
 	/**
-	 * ³õÊ¼»¯È«¾Ö¸ñÊ½»¯²ÎÊı
+	 * åˆå§‹åŒ–å…¨å±€æ ¼å¼åŒ–å‚æ•°
 	 * @return void 
 	 */
 	void InitGlobalTidy(const std::string &strDllPath);
 
 	bool m_bTidySyn[SYN_XML + 1];
 
-	/** AStyleÑ¡ÏîÀà LGPLĞ­Òé */
+	/** AStyleé€‰é¡¹ç±» LGPLåè®® */
 	std::string m_TidyCpp;
 	std::string m_TidyJava;
 	std::string m_TidyCSharp;
 	std::string m_TidyObjectiveC;
 
-	/** TidyÑ¡ÏîÀà MITĞ­Òé */
+	/** Tidyé€‰é¡¹ç±» MITåè®® */
 	std::string m_TidyHtml;
 
-	/** XMLÑ¡ÏîÀà */
+	/** XMLé€‰é¡¹ç±» */
 	std::string m_TidyXml;
 
-	/** phpformatterÑ¡ÏîÀà GPL2Ğ­Òé */
+	/** phpformatteré€‰é¡¹ç±» GPL2åè®® */
 	std::string m_TidyPhp;
 
-	/** JSMinÑ¡ÏîÀà GPL */
+	/** JSMiné€‰é¡¹ç±» GPL */
 	std::string m_TidyJs;
 
-	/** CssTidyÑ¡ÏîÀà */
+	/** CssTidyé€‰é¡¹ç±» */
 	std::string m_TidyCss;
 
-	/** JsonCppÑ¡ÏîÀà */
+	/** JsonCppé€‰é¡¹ç±» */
 	std::string m_TidyJson;
 
-	/** SqlFormatterÑ¡ÏîÀà */
+	/** SqlFormatteré€‰é¡¹ç±» */
 	std::string m_TidySql;
 
-	/** Ä¬ÈÏµÄÓïÑÔ½á¹¹ÌåÊı×é */
+	/** é»˜è®¤çš„è¯­è¨€ç»“æ„ä½“æ•°ç»„ */
 	static TidyDeafult m_TidyNames[MAX_SYN_LANG];
 
 private:

@@ -84,11 +84,16 @@ void GlobalTidy::InitGlobalTidy(const std::string &strDllPath)
 
 bool GlobalTidy::LoadGlobalTidy(const std::string &strDllPath)
 {
+#ifdef USE_LOCAL_CONFIG_FILE
 	return LoadFromFile(strDllPath);
+#else
+	return LoadFromReg();
+#endif
 }
 
 bool GlobalTidy::LoadFromReg()
 {
+#ifdef _WIN32
 	std::string strTidy;
 	HKEY hKEY;
 	LPCTSTR lpszSection = TEXT("Software\\CoolFormat\\CoolFormat3\\Settings\\SynTidy");
@@ -191,12 +196,19 @@ bool GlobalTidy::LoadFromReg()
 		RegCloseKey(hKEY);
 		return true;
 	}
+#endif
 	return false;
 }
 
 bool GlobalTidy::LoadFromFile(const std::string &strDllPath)
 {
 	std::string strFileName(strDllPath);
+	std::string::size_type pos = strFileName.rfind('\\');
+	if (pos == std::string::npos)
+	{
+		return false;
+	}
+	strFileName.erase(pos);
 	strFileName.append("\\CoolFormatConfig.cfconfig");
 	std::ifstream configFile(strFileName);
 	if (configFile.is_open())

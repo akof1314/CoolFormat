@@ -1,4 +1,4 @@
-// CoolFormatLib.cpp : ∂®“Â DLL ”¶”√≥Ã–Úµƒµº≥ˆ∫Ø ˝°£
+Ôªø// CoolFormatLib.cpp : ÂÆö‰πâ DLL Â∫îÁî®Á®ãÂ∫èÁöÑÂØºÂá∫ÂáΩÊï∞„ÄÇ
 #include "stdafx.h"
 #include "CoolFormatLib.h"
 #include "StrUseful.h"
@@ -9,11 +9,11 @@ bool g_InitTidy = false;
 
 #ifdef _WIN32
 HMODULE hCFModule;
+	#ifndef USE_LOCAL_CONFIG_FILE
+		PROCESS_INFORMATION g_piProcInfo = { 0 };
+	#endif
 #endif
 
-#ifdef _MSC_VER
-PROCESS_INFORMATION g_piProcInfo = { 0 };
-#endif
 
 std::string GetDllPath()
 {
@@ -34,7 +34,8 @@ std::string GetDllPath()
 
 void CheckInit()
 {
-#ifdef _MSC_VER
+#ifdef _WIN32
+#ifndef USE_LOCAL_CONFIG_FILE
 	if (g_piProcInfo.hProcess)
 	{
 		DWORD dwExitCode = STILL_ACTIVE;
@@ -50,6 +51,7 @@ void CheckInit()
 			}
 		}
 	}
+#endif
 #endif
 
 	if (g_InitTidy)
@@ -136,7 +138,8 @@ COOLFORMATLIB_API bool DoFormatter(unsigned int nLanguage, const char *pszTextIn
 
 COOLFORMATLIB_API void ShowSettings()
 {
-#ifdef _MSC_VER
+#ifdef _WIN32
+#ifndef USE_LOCAL_CONFIG_FILE
 	STARTUPINFO siStartInfo;
 	ZeroMemory(&siStartInfo, sizeof(STARTUPINFO));
 	siStartInfo.cb = sizeof(STARTUPINFO);
@@ -152,5 +155,6 @@ COOLFORMATLIB_API void ShowSettings()
 	{
 		return;
 	}
+#endif
 #endif
 }
