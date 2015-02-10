@@ -202,14 +202,15 @@ bool GlobalTidy::LoadFromReg()
 
 bool GlobalTidy::LoadFromFile(const std::string &strDllPath)
 {
-	std::string strFileName(strDllPath);
-	std::string::size_type pos = strFileName.rfind('\\');
+    std::string strFileName(strDllPath);
+    std::string::size_type pos = strFileName.rfind('/');
 	if (pos == std::string::npos)
 	{
 		return false;
 	}
 	strFileName.erase(pos);
-	strFileName.append("\\CoolFormatConfig.cfconfig");
+    strFileName.append("/CoolFormatConfig.cfconfig");
+
 	std::ifstream configFile(strFileName);
 	if (configFile.is_open())
 	{

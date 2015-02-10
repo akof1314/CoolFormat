@@ -1,5 +1,4 @@
-﻿// CoolFormatLib.cpp : 定义 DLL 应用程序的导出函数。
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "CoolFormatLib.h"
 #include "StrUseful.h"
 #include "GlobalTidy.h"
@@ -12,6 +11,8 @@ HMODULE hCFModule;
 	#ifndef USE_LOCAL_CONFIG_FILE
 		PROCESS_INFORMATION g_piProcInfo = { 0 };
 	#endif
+#else
+std::string g_strDllPath;
 #endif
 
 
@@ -21,15 +22,16 @@ std::string GetDllPath()
 	char szBuff[MAX_PATH];
 	GetModuleFileNameA(hCFModule, szBuff, sizeof(szBuff));
 	std::string strFileName(szBuff);
-	std::string::size_type pos = strFileName.rfind('\\');
-	if (pos == std::string::npos)
-	{
-		return NULL;
-	}
-	strFileName.erase(pos);
-	return strFileName;
+#else
+    std::string strFileName(g_strDllPath);
 #endif
-
+    std::string::size_type pos = strFileName.rfind('/');
+    if (pos == std::string::npos)
+    {
+        return NULL;
+    }
+    strFileName.erase(pos);
+    return strFileName;
 }
 
 void CheckInit()
@@ -116,7 +118,7 @@ COOLFORMATLIB_API bool DoFormatter(unsigned int nLanguage, const char *pszTextIn
 						nPos = strTextOut.find(strEol, nPos + nInitIndentLen + nEolLen);
 					}
 				}
-			}
+            }
 
 			nTextOut = strTextOut.size();
 			nMsgOut = strMsgOut.size();
@@ -129,7 +131,7 @@ COOLFORMATLIB_API bool DoFormatter(unsigned int nLanguage, const char *pszTextIn
 		strTextOut._Copy_s(pszTextOut, nTextOut, nTextOut, 0);
 		strMsgOut._Copy_s(pszMsgOut, nMsgOut, nMsgOut, 0);
 #else
-		strTextOut.copy(pszTextOut, nTextOut, 0);
+        strTextOut.copy(pszTextOut, nTextOut, 0);
 		strMsgOut.copy(pszMsgOut, nMsgOut, 0);
 #endif
 		return true;
