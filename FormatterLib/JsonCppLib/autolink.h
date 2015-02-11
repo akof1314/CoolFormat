@@ -6,7 +6,7 @@
 #ifndef JSON_AUTOLINK_H_INCLUDED
 # define JSON_AUTOLINK_H_INCLUDED
 
-# include "config.h"
+# include "json_config.h"
 
 # ifdef JSON_IN_CPPTL
 #  include <cpptl/cpptl_autolink.h>

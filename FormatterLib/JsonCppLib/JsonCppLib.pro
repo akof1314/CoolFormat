@@ -18,13 +18,13 @@ HEADERS += \
     autolink.h \
     CFBaseTidy.h \
     CFJsonTidy.h \
-    config.h \
-    features.h \
     forwards.h \
     json.h \
     json_batchallocator.h \
     json_tool.h \
     reader.h \
     value.h \
-    writer.h
+    writer.h \
+    json_config.h \
+    json_features.h
 

@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "stdafx.h"
 #include <fstream>
 #include "GlobalTidy.h"
 #include "StrUseful.h"
