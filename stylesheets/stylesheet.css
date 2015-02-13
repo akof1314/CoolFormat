@@ -549,7 +549,6 @@ code, pre {
   margin-bottom: 30px;
   font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
   font-size: 13px;
-  color: #222;
 }
 
 code {
@@ -567,7 +566,6 @@ pre {
 }
 pre code {
   padding: 0;
-  color: #2879d0;
   background-color: #fff;
   border: none;
 }

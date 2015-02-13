@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../stylesheets/print.css" media="print">
+    <link rel="stylesheet" type="text/css" href="../stylesheets/stylemd.css">
+    <link rel="shortcut icon" href="../favicon.ico">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>CoolFormat by akof1314</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <a href="http://akof1314.github.io/CoolFormat/" style="text-decoration:none"><h1>CoolFormat</h1></a>
+        <h2 style="border-bottom: 0px">CoolFormat Source Code Formatter</h2>
+        <a href="https://github.com/akof1314/CoolFormat" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <h1>C/C++/C#/Java/Objective-C</h1><h2>Bracket</h2><h3>Bracket style</h3><ul><li><p>Allman/bsd/break</p><blockquote><p>A1</p></blockquote><pre><code>int Foo(bool isFoo)
+{
+     if (isFoo)
+     {
+          bar();
+          return 1;
+     }
+     else
+          return 0;
+}</code></pre></li><li><p>Java/attach</p><blockquote><p>A2</p></blockquote><pre><code>int Foo(bool isFoo) {
+     if (isFoo) {
+          bar();
+          return 1;
+     } else
+          return 0;
+}</code></pre></li><li><p>KR</p><blockquote><p>A3</p></blockquote><pre><code>int Foo(bool isFoo)
+{
+     if (isFoo) {
+          bar();
+          return 1;
+     } else
+          return 0;
+}</code></pre></li><li><p>Stroustrup</p><blockquote><p>A4</p></blockquote><pre><code>int Foo(bool isFoo)
+{
+     if (isFoo) {
+          bar();
+          return 1;
+     } else
+          return 0;
+}</code></pre></li><li><p>Whitesmith</p><blockquote><p>A5</p></blockquote><pre><code>int Foo(bool isFoo)
+     {
+     if (isFoo)
+          {
+          bar();
+          return 1;
+          }
+     else
+          return 0;
+     }</code></pre></li><li><p>Banner</p><blockquote><p>A6</p></blockquote><pre><code>int Foo(bool isFoo) {
+     if (isFoo) {
+          bar();
+          return 1;
+          }
+     else
+          return 0;
+     }</code></pre></li><li><p>GNU</p><blockquote><p>A7</p></blockquote><pre><code>int Foo(bool isFoo)
+{
+   if (isFoo)
+      {
+         bar();
+         return 1;
+      }
+   else
+      return 0;
+}</code></pre></li><li><p>Linux</p><blockquote><p>A8</p></blockquote><pre><code>int Foo(bool isFoo)
+{
+         if (isFoo) {
+                   bar();
+                   return 1;
+         } else
+                   return 0;
+}</code></pre></li><li><p>Horstmann</p><blockquote><p>A9</p></blockquote><pre><code>int Foo(bool isFoo)
+{  if (isFoo)
+    {   bar();
+         return 1;
+    }
+    else
+         return 0;
+}</code></pre></li><li><p>1tbs/otbs</p><blockquote><p>A10</p></blockquote><pre><code>int Foo(bool isFoo)
+{
+     if (isFoo) {
+          bar();
+          return 1;
+     } else {
+          return 0;
+     }
+}</code></pre></li><li><p>Pico</p><blockquote><p>A11</p></blockquote><pre><code>int Foo(bool isFoo)
+{  if (isFoo)
+    {   bar();
+         return 1; }
+    else
+         return 0; }</code></pre></li><li><p>Lisp/python</p><blockquote><p>A12</p></blockquote><pre><code>int Foo(bool isFoo) {
+   if (isFoo) {
+        bar();
+         return 1; }
+    else
+         return 0; }</code></pre></li><li><p>Google</p><blockquote><p>A14</p></blockquote><pre><code>int Foo(bool isFoo) {
+     if (isFoo) {
+          bar();
+          return 1;
+     } else
+          return 0;
+}</code></pre></li><li><p>VTK</p><blockquote><p>A15</p></blockquote><pre><code>int Foo(bool isFoo)
+{
+     if (isFoo)
+          {
+          bar();
+          return 1;
+          }
+     else
+          return 0;
+}</code></pre></li><li><p>None</p></li></ul><h2>Bracket Modify</h2><h3>Attach namespaces</h3><ul><li><p>Yes</p><blockquote><p>xn</p></blockquote><pre><code>namespace FooName {
+...
+}</code></pre></li><li><p>No</p><pre><code>namespace FooName
+{
+...
+}</code></pre></li></ul><h3>Attach classes</h3><ul><li><p>Yes</p><blockquote><p>xc</p></blockquote><pre><code>class Foo {
+    public:
+        Foo() {
+            isFoo();
+        }
+};</code></pre></li><li><p>No</p><pre><code>class Foo
+{
+    public:
+        Foo() {
+            isFoo();
+        }
+};</code></pre></li></ul><h3>Attach inlines</h3><ul><li><p>Yes</p><blockquote><p>xl</p></blockquote><pre><code>class Foo
+{
+    public:
+        Foo() {
+            isFoo();
+        }
+};</code></pre></li><li><p>No</p><pre><code>class Foo
+{
+    public:
+        Foo()
+        {
+            isFoo();
+        }
+};</code></pre></li></ul><h3>Attach extern c</h3><ul><li><p>Yes</p><blockquote><p>xk</p></blockquote><pre><code>#ifdef __cplusplus
+extern &quot;C&quot; {
+#endif</code></pre></li><li><p>No</p><pre><code>#ifdef __cplusplus
+extern &quot;C&quot;
+{
+#endif</code></pre></li></ul><h2>Indentation</h2><h3>Indent using</h3><ul><li><p>Spaces</p><blockquote><p>s</p></blockquote><pre><code>int*Foo(bool*isBar)
+{
+****if*(isBar)*{
+********bar();
+****}
+****else*{
+********bar(arg1,
+************arg2,
+************arg3);
+****}
+}</code></pre></li><li><p>Tab</p><blockquote><p>t</p></blockquote><pre><code>int*Foo(bool*isBar)
+{
+---&gt;if*(isBar)*{
+---&gt;---&gt;bar();
+---&gt;}
+---&gt;else*{
+---&gt;---&gt;bar(arg1,
+---&gt;---&gt;****arg2,
+---&gt;---&gt;****arg3);
+---&gt;}
+}</code></pre></li><li><p>Force tab</p><blockquote><p>T</p></blockquote><pre><code>int*Foo(bool*isBar)
+{
+---&gt;if*(isBar)*{
+---&gt;---&gt;bar();
+---&gt;}
+---&gt;else*{
+---&gt;---&gt;bar(arg1,
+---&gt;---&gt;---&gt;arg2,
+---&gt;---&gt;---&gt;arg3);
+---&gt;}
+}</code></pre></li></ul><h3>Indent number</h3><ul><li><p>Range : 2-20</p><p><em>*Attach to previous short</em></p><pre><code>//indent_number4
+int Foo(bool isBar)
+{
+    bar();
+}
+
+//indent_number5
+int Foo(bool isBar)
+{
+     bar();
+}</code></pre></li></ul><h3>Indent classes</h3><ul><li><p>Yes</p><blockquote><p>C</p></blockquote><pre><code>class Foo
+{
+    public:
+        Foo();
+        virtual ~Foo();
+};</code></pre></li><li><p>No</p><pre><code>class Foo
+{
+public:
+    Foo();
+    virtual ~Foo();
+};</code></pre></li></ul><h3>Indent modifiers</h3><ul><li><p>Yes</p><blockquote><p>xG</p></blockquote><pre><code>class Foo
+{
+  public:
+    Foo();
+    virtual ~Foo();
+};</code></pre></li><li><p>No</p><pre><code>class Foo
+{
+public:
+    Foo();
+    virtual ~Foo();
+};</code></pre></li></ul><h3>Indent switches</h3><ul><li><p>Yes</p><blockquote><p>S</p></blockquote><pre><code>switch (foo)
+{
+    case 1:
+        a += 1;
+        break;
+
+    case 2:
+    {
+        a += 2;
+        break;
+    }
+}</code></pre></li><li><p>No</p><pre><code>switch (foo)
+{
+case 1:
+    a += 1;
+    break;
+
+case 2:
+{
+    a += 2;
+    break;
+}
+}</code></pre></li></ul><h3>Indent cases</h3><ul><li><p>Yes</p><blockquote><p>K</p></blockquote><pre><code>switch (foo)
+{
+    case 1:
+        a += 1;
+        break;
+
+    case 2:
+        {
+            a += 2;
+            break;
+        }
+}</code></pre></li><li><p>No</p><pre><code>switch (foo)
+{
+    case 1:
+        a += 1;
+        break;
+
+    case 2:
+    {
+        a += 2;
+        break;
+    }
+}</code></pre></li></ul><h3>Indent namespaces</h3><ul><li><p>Yes</p><blockquote><p>N</p></blockquote><pre><code>namespace foospace
+{
+    class Foo
+    {
+        public:
+            Foo();
+            virtual ~Foo();
+    };
+}</code></pre></li><li><p>No</p><pre><code>namespace foospace
+{
+class Foo
+{
+    public:
+        Foo();
+        virtual ~Foo();
+};
+}</code></pre></li></ul><h3>Indent labels</h3><ul><li><p>Yes</p><blockquote><p>L</p></blockquote><pre><code>void Foo() {
+    while (isFoo) {
+        if (isFoo)
+            goto error;
+        ...
+    error:
+        ...
+    }
+}</code></pre></li><li><p>No</p><pre><code>void Foo() {
+    while (isFoo) {
+        if (isFoo)
+            goto error;
+        ...
+error:
+        ...
+    }
+}</code></pre></li></ul><h3>Indent preproc block</h3><ul><li><p>Yes</p><blockquote><p>xW</p></blockquote><pre><code>#ifdef _WIN32
+    #include &lt;windows.h&gt;
+    #ifndef NO_EXPORT
+        #define EXPORT
+    #endif
+#endif</code></pre></li><li><p>No</p><pre><code>#ifdef _WIN32
+#include &lt;windows.h&gt;
+#ifndef NO_EXPORT
+#define EXPORT
+#endif
+#endif</code></pre></li></ul><h3>Indent preproc define</h3><ul><li><p>Yes</p><blockquote><p>w</p></blockquote><pre><code>#define Is_Foo(arg,op)  \
+    ((arg).compare(op)==0)
+
+#define Is_Bar(arg,a,b)  \
+    (Is_Foo((arg), (a))  \
+        || Is_Foo((arg), (b)))</code></pre></li><li><p>No</p><pre><code>#define Is_Foo(arg,op)  \
+((arg).compare(op)==0)
+
+#define Is_Bar(arg,a,b)  \
+(Is_Foo((arg), (a))   \
+|| Is_Foo((arg), (b)))</code></pre></li></ul><h3>Indent preproc cond</h3><ul><li><p>Yes</p><blockquote><p>xw</p></blockquote><pre><code>isFoo = true;
+          #ifdef UNICODE
+          text = wideBuff;
+          #else
+          text = buff;
+          #endif;</code></pre></li><li><p>No</p><pre><code>isFoo = true;
+#ifdef UNICODE
+          text = wideBuff;
+#else
+          text = buff;
+#endif;</code></pre></li></ul><h3>Indent col1 comments</h3><ul><li><p>Yes</p><blockquote><p>Y</p></blockquote><pre><code>void Foo()
+{
+    // comment
+    if (isFoo)
+        bar();
+}</code></pre></li><li><p>No</p><pre><code>void Foo()
+{
+// comment
+    if (isFoo)
+        bar();
+}</code></pre></li></ul><h3>Min conditional indent</h3><ul><li><p>0 indent</p><blockquote><p>m0</p></blockquote><pre><code>if (a &lt; b
+    || c &gt; d)
+    foo++;
+
+if (a &lt; b
+    || c &gt; d)
+{
+    foo++;
+}</code></pre></li><li><p>1 indent</p><blockquote><p>m1</p></blockquote><pre><code>if (a &lt; b
+    || c &gt; d)
+    foo++;
+
+if (a &lt; b
+    || c &gt; d)
+{
+    foo++;
+}</code></pre></li><li><p>2 indents</p><blockquote><p>m2</p></blockquote><pre><code>if (a &lt; b
+        || c &gt; d)
+    foo++;
+
+if (a &lt; b
+        || c &gt; d)
+{
+    foo++;
+}</code></pre></li><li><p>0.5 indent</p><blockquote><p>m3</p></blockquote><pre><code>if (a &lt; b
+    || c &gt; d)
+    foo++;
+
+if (a &lt; b
+    || c &gt; d)
+{
+    foo++;
+}</code></pre></li></ul><h3>Max instatement indent</h3><ul><li><p>Range : 40-120</p><blockquote><p>M</p></blockquote><pre><code>fooArray[] = { red,
+         green,
+         blue };
+
+fooFunction(barArg1,
+         barArg2,
+         barArg3);
+
+becomes (with larger value)
+
+fooArray[] = { red,
+               green,
+               blue };
+
+fooFunction(barArg1,
+            barArg2,
+            barArg3);</code></pre></li></ul><h2>Padding</h2><h3>Break blocks</h3><ul><li><p>Yes</p><blockquote><p>f</p></blockquote><pre><code>isFoo = true;
+
+if (isFoo) {
+    bar();
+} else {
+    anotherBar();
+}
+
+isBar = false;</code></pre></li><li><p>No</p><pre><code>isFoo = true;
+if (isFoo) {
+    bar();
+} else {
+    anotherBar();
+}
+isBar = false;</code></pre></li></ul><h3>Break all blocks</h3><ul><li><p>Yes</p><blockquote><p>F</p></blockquote><pre><code>isFoo = true;
+
+if (isFoo) {
+    bar();
+
+} else {
+    anotherBar();
+}
+
+isBar = false;</code></pre></li><li><p>No</p><pre><code>isFoo = true;
+if (isFoo) {
+    bar();
+} else {
+    anotherBar();
+}
+isBar = false;</code></pre></li></ul><h3>Pad operators</h3><ul><li><p>Yes</p><blockquote><p>p</p></blockquote><pre><code>if (foo == 2)
+     a = bar((b - c) * a, d--);</code></pre></li><li><p>No</p><pre><code>if (foo==2)
+    a=bar((b-c)*a,d--);</code></pre></li></ul><h3>Pad parens</h3><ul><li><p>Yes</p><blockquote><p>P</p></blockquote><pre><code>if ( isFoo ( a, b ) )
+    bar ( a, b );</code></pre></li><li><p>No</p><pre><code>if (isFoo(a, b))
+    bar(a, b);</code></pre></li></ul><h3>Pad parens out</h3><ul><li><p>Yes</p><blockquote><p>d</p></blockquote><pre><code>if (isFoo (a, b) )
+    bar (a, b);</code></pre></li><li><p>No</p><pre><code>if (isFoo(a, b))
+    bar(a, b);</code></pre></li></ul><h3>Pad parens in</h3><ul><li><p>Yes</p><blockquote><p>D</p></blockquote><pre><code>if ( isFoo( a, b ) )
+    bar( a, b );</code></pre></li><li><p>No</p><pre><code>if (isFoo(a, b))
+    bar(a, b);</code></pre></li></ul><h3>Pad first paren out</h3><ul><li><p>Yes</p><blockquote><p>xd</p></blockquote><pre><code>if (isFoo ((a+2), b))
+    bar (a, b);</code></pre></li><li><p>No</p><pre><code>if (isFoo((a+2), b))
+    bar(a, b);</code></pre></li></ul><h3>Pad header</h3><ul><li><p>Yes</p><blockquote><p>H</p></blockquote><pre><code>if (isFoo(a, b))
+    bar(a, b);</code></pre></li><li><p>No</p><pre><code>if(isFoo(a, b))
+    bar(a, b);</code></pre></li></ul><h3>Unpad parens</h3><ul><li><p>Yes</p><blockquote><p>U</p></blockquote><pre><code>if(isFoo(a, b))
+    bar(a, b);</code></pre></li><li><p>No</p><pre><code>if ( isFoo( a, b ) )
+    bar ( a, b );</code></pre></li></ul><h3>Delete empty lines</h3><ul><li><p>Yes</p><blockquote><p>xe</p></blockquote><pre><code>void Foo()
+{
+    foo1 = 1;
+    foo2 = 2;
+}</code></pre></li><li><p>No</p><pre><code>void Foo()
+{
+
+    foo1 = 1;
+
+    foo2 = 2;
+
+}</code></pre></li></ul><h3>Fill empty lines</h3><ul><li><p>Yes</p><blockquote><p>E</p></blockquote><pre><code>void Foo(bool isFoo) {
+****if (isFoo) {
+********bar();
+****}
+****
+****else {
+********anotherBar();
+****}
+}</code></pre></li><li><p>No</p><pre><code>void Foo(bool isFoo) {
+****if (isFoo) {
+********bar();
+****}
+
+****else {
+********anotherBar();
+****}
+}</code></pre></li></ul><h3>Align pointer</h3><ul><li><p>None</p><pre><code>char *foo1;
+char&amp; foo2;
+
+//remains unchanged.</code></pre></li><li><p>Type</p><blockquote><p>k1</p></blockquote><pre><code>char* foo1;
+char&amp; foo2;</code></pre></li><li><p>Middle</p><blockquote><p>k2</p></blockquote><pre><code>char * foo1;
+char &amp; foo2;</code></pre></li><li><p>Name</p><blockquote><p>k3</p></blockquote><pre><code>char *foo1;
+char &amp;foo2;</code></pre></li></ul><h3>Align reference</h3><ul><li><p>Same</p><pre><code>char &amp;foo1;
+
+//same as pointer.</code></pre></li><li><p>None</p><blockquote><p>W0</p></blockquote><pre><code>char &amp;foo1;
+
+//remains unchanged.</code></pre></li><li><p>Type</p><blockquote><p>W1</p></blockquote><pre><code>char&amp; foo1;</code></pre></li><li><p>Middle</p><blockquote><p>W2</p></blockquote><pre><code>char &amp; foo1;</code></pre></li><li><p>Name</p><blockquote><p>W3</p></blockquote><pre><code>char &amp;foo1;</code></pre></li></ul><h2>Formatting</h2><h3>Break closing brackets</h3><ul><li><p>Yes</p><blockquote><p>y</p></blockquote><pre><code>void Foo(bool isFoo) {
+    if (isFoo) {
+        bar();
+    }
+    else {
+        anotherBar();
+    }
+}</code></pre></li><li><p>No</p><pre><code>void Foo(bool isFoo) {
+    if (isFoo) {
+        bar();
+    } else {
+        anotherBar();
+    }
+}</code></pre></li></ul><h3>Break elseifs</h3><ul><li><p>Yes</p><blockquote><p>e</p></blockquote><pre><code>if (isFoo) {
+    bar();
+}
+else
+    if (isFoo1()) {
+        bar1();
+    }
+  else
+        if (isFoo2()) {
+            bar2();
+        }</code></pre></li><li><p>No</p><pre><code>if (isFoo) {
+    bar();
+}
+else if (isFoo1()) {
+    bar1();
+}
+else if (isFoo2()) }
+    bar2;
+}</code></pre></li></ul><h3>Add brackets</h3><ul><li><p>Yes</p><blockquote><p>j</p></blockquote><pre><code>if (isFoo) {
+    isFoo = false;
+}</code></pre></li><li><p>No</p><pre><code>if (isFoo)
+    isFoo = false;</code></pre></li></ul><h3>Add one line brackets</h3><ul><li><p>Yes</p><blockquote><p>J</p></blockquote><pre><code>if (isFoo)
+    { isFoo = false; }</code></pre></li><li><p>No</p><pre><code>if (isFoo)
+    isFoo = false;</code></pre></li></ul><h3>Remove brackets</h3><ul><li><p>Yes</p><blockquote><p>xj</p></blockquote><pre><code>if (isFoo)
+    isFoo = false;</code></pre></li><li><p>No</p><pre><code>if (isFoo)
+{
+    isFoo = false;
+}</code></pre></li></ul><h3>Keep one line blocks</h3><ul><li><p>Yes</p><blockquote><p>O</p></blockquote><pre><code>if (isFoo)
+{ isFoo = false; cout &lt;&lt; isFoo &lt;&lt; endl; }
+
+//remains unchanged.</code></pre></li><li><p>No</p><pre><code>if (isFoo)
+{ isFoo = false; cout &lt;&lt; isFoo &lt;&lt; endl; }</code></pre></li></ul><h3>Keep one line statements</h3><ul><li><p>Yes</p><blockquote><p>o</p></blockquote><pre><code>if (isFoo)
+{
+    isFoo = false; cout &lt;&lt; isFoo &lt;&lt; endl;
+}
+
+//remains unchanged.</code></pre></li><li><p>No</p><pre><code>if (isFoo)
+{
+    isFoo = false; cout &lt;&lt; isFoo &lt;&lt; endl;
+}</code></pre></li></ul><h3>Convert tabs</h3><ul><li><p>Yes</p><blockquote><p>c</p></blockquote><pre><code>int Foo(bool isBar)********//Foo
+{
+    int a****= b;
+}</code></pre></li><li><p>No</p><pre><code>int Foo(bool isBar)---&gt;---&gt;//Foo
+{
+    int a---&gt;= b;
+}</code></pre></li></ul><h3>Close templates</h3><ul><li><p>Yes</p><blockquote><p>xy</p></blockquote><pre><code>Stack&lt;int,List&lt;int&gt;&gt; stack1;</code></pre></li><li><p>No</p><pre><code>Stack&lt; int,List&lt; int &gt; &gt; stack1;</code></pre></li></ul><h3>Remove comment prefix</h3><ul><li><p>Yes</p><blockquote><p>xp</p></blockquote><pre><code>/*
+    comment line 1
+    comment line 2
+*/</code></pre></li><li><p>No</p><pre><code>/*
+ * comment line 1
+ * comment line 2
+ */</code></pre></li></ul><h3>Max code</h3><ul><li><p>Yes</p><blockquote><p>xC</p></blockquote><pre><code>if (thisVariable1 == thatVariable1
+        || thisVariable2 == thatVariable2
+        || thisVariable3 == thatVariable3)
+    bar();</code></pre></li><li><p>No</p><pre><code>if (thisVariable1 == thatVariable1 || thisVariable2 == thatVariable2 || thisVariable3 == thatVariable3)
+    bar();</code></pre></li></ul><h3>Max code length</h3><ul><li><p>Range : 50-200</p><p><em>*Attach to previous short</em></p><pre><code>//Max code length50
+if (thisVariable1 == thatVariable1
+        || thisVariable2 == thatVariable2
+        || thisVariable3 == thatVariable3)
+    bar();
+
+//Max code length100
+if (thisVariable1 == thatVariable1 || thisVariable2 == thatVariable2
+        || thisVariable3 == thatVariable3)
+    bar();</code></pre></li></ul><h3>Break after logical</h3><ul><li><p>Yes</p><blockquote><p>xL</p></blockquote><pre><code>if (thisVariable1 == thatVariable1 ||
+        thisVariable2 == thatVariable2 ||
+        thisVariable3 == thatVariable3)
+    bar();</code></pre></li><li><p>No</p><pre><code>if (thisVariable1 == thatVariable1
+        || thisVariable2 == thatVariable2
+        || thisVariable3 == thatVariable3)
+    bar();</code></pre></li></ul><h2>Objective-C</h2><h3>Align method colon</h3><ul><li><p>Yes</p><blockquote><p>xM</p></blockquote><pre><code>-(void)deleteKey:(id)key
+         atIndex:(int)index
+          ofNode:(Node*)node;</code></pre></li><li><p>No</p><pre><code>-(void)deleteKey:(id)key
+    atIndex:(int)index
+    ofNode:(Node*)node;</code></pre></li></ul><h3>Pad method prefix</h3><ul><li><p>Yes</p><blockquote><p>xQ</p></blockquote><pre><code>- (void)foo1;
++ (void)foo2;</code></pre></li><li><p>No</p><pre><code>-(void)foo1;
++(void)foo2;</code></pre></li></ul><h3>Unpad method prefix</h3><ul><li><p>Yes</p><blockquote><p>xR</p></blockquote><pre><code>-(void)foo1;
++(void)foo2;</code></pre></li><li><p>No</p><pre><code>- (void)foo1;
++ (void)foo2;</code></pre></li></ul><h3>Pad method colon</h3><ul><li><p>Do no change</p><pre><code>-(id)write :(NSString*)path
+     order :(int)ord
+{
+     [file writeData :headData
+      atOffset :rootOffset];
+}
+
+//remains unchanged.</code></pre></li><li><p>None</p><blockquote><p>xP0</p></blockquote><pre><code>-(id)write:(NSString*)path
+     order:(int)ord
+{
+     [file writeData:headData
+      atOffset:rootOffset];
+}</code></pre></li><li><p>All</p><blockquote><p>xP1</p></blockquote><pre><code>-(id)write : (NSString*)path
+     order : (int)ord
+{
+     [file writeData : headData
+      atOffset : rootOffset];
+}</code></pre></li><li><p>After</p><blockquote><p>xP2</p></blockquote><pre><code>-(id)write: (NSString*)path
+     order: (int)ord
+{
+     [file writeData: headData
+      atOffset: rootOffset];
+}</code></pre></li><li><p>Before</p><blockquote><p>xP3</p></blockquote><pre><code>-(id)write :(NSString*)path
+     order :(int)ord
+{
+     [file writeData :headData
+      atOffset :rootOffset];
+}</code></pre></li></ul>
+
+
+      </div>
+    </div>
+
+            <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-58728540-2");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
