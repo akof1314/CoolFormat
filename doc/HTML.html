@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../stylesheets/print.css" media="print">
+    <link rel="stylesheet" type="text/css" href="../stylesheets/stylemd.css">
+    <link rel="shortcut icon" href="../favicon.ico">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>CoolFormat by akof1314</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <a href="http://akof1314.github.io/CoolFormat/" style="text-decoration:none"><h1>CoolFormat</h1></a>
+        <h2 style="border-bottom: 0px">CoolFormat Source Code Formatter</h2>
+        <a href="https://github.com/akof1314/CoolFormat" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+      <h1>HTML/XML</h1><h2>HTML/XHTML/XML</h2><h3>Add xml decl</h3><ul><li><p>Yes</p><blockquote><p>axd</p></blockquote><pre><code>&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;note&gt;
+  &lt;to&gt;George&lt;/to&gt;
+  &lt;from&gt;John&lt;/from&gt;
+&lt;/note&gt;</code></pre></li><li><p>No</p><pre><code>&lt;note&gt;
+  &lt;to&gt;George&lt;/to&gt;
+  &lt;from&gt;John&lt;/from&gt;
+&lt;/note&gt;</code></pre></li></ul><h3>Add xml space</h3><ul><li><p>Yes</p><blockquote><p>axs</p></blockquote><pre><code>// with Output xml
+
+&lt;pre xml:space=&quot;preserve&quot;&gt;
+George
+John
+George      John
+&lt;/pre&gt;</code></pre></li><li><p>No</p><pre><code>&lt;pre&gt;
+George
+John
+George      John
+&lt;/pre&gt;</code></pre></li></ul><h3>Alt text</h3><ul><li><p>Text</p><p><em>*Do not include '-' character</em></p><blockquote><p>at</p></blockquote><pre><code>Alt text=Missing
+
+&lt;img src=&quot;/i/eg_tulip.jpg&quot; /&gt;
+==&gt;
+&lt;img src=&quot;/i/eg_tulip.jpg&quot; alt=&quot;Missing&quot; /&gt;</code></pre></li></ul><h3>Anchor as name</h3><ul><li><p>Yes</p><blockquote><p>aan</p></blockquote><pre><code>&lt;a id=&quot;tips&quot; name=&quot;tips&quot;&gt;John&lt;/a&gt;</code></pre></li><li><p>No</p><pre><code>&lt;a id=&quot;tips&quot;&gt;John&lt;/a&gt;</code></pre></li></ul><h3>Assume xml procins</h3><ul><li><p>Yes</p><blockquote><p>axp</p></blockquote><pre><code>Change the parsing of processing instructions to require ?&gt; as the terminator rather than &gt;</code></pre></li><li><p>No</p><pre><code>No change the parsing of processing instructions to require ?&gt; as the terminator rather than &gt;</code></pre></li></ul><h3>Bare</h3><ul><li><p>Yes</p><blockquote><p>b</p></blockquote><pre><code>Strip Microsoft specific HTML from Word 2000 documents</code></pre></li><li><p>No</p><pre><code>No strip Microsoft specific HTML from Word 2000 documents</code></pre></li></ul><h3>Clean</h3><ul><li><p>Yes</p><blockquote><p>c</p></blockquote><pre><code>Strip out surplus presentational tags and attributes replacing them by style rules and structural markup as appropriate</code></pre></li><li><p>No</p><pre><code>No strip out surplus presentational tags and attributes replacing them by style rules and structural markup as appropriate</code></pre></li></ul><h3>CSS-prefix</h3><ul><li><p>Text</p><p><em>*Do not include '-' character</em></p><blockquote><p>cp</p></blockquote><pre><code>Specifies the prefix that Tidy uses for styles rules</code></pre></li></ul><h3>Decorate inferred ul</h3><ul><li><p>Yes</p><blockquote><p>diu</p></blockquote><pre><code>Specifies if Tidy should decorate inferred UL elements with some CSS markup to avoid indentation to the right</code></pre></li><li><p>No</p><pre><code>No specifies if Tidy should decorate inferred UL elements with some CSS markup to avoid indentation to the right</code></pre></li></ul><h3>Doctype</h3><ul><li><p>Omit</p><blockquote><p>d0</p></blockquote><pre><code>&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;</code></pre></li><li><p>Auto</p><blockquote><p>d1</p></blockquote><pre><code>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot;
+    &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;</code></pre></li><li><p>Strict</p><blockquote><p>d2</p></blockquote><pre><code>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Strict//EN&quot;
+    &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd&quot;&gt;
+
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;</code></pre></li><li><p>Transitional</p><blockquote><p>d3</p></blockquote><pre><code>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot;
+    &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;</code></pre></li><li><p>User</p><blockquote><p>d4</p></blockquote><pre><code>use Doctype User</code></pre></li></ul><h3>Doctype User</h3><ul><li><p>Text</p><p><em>*Do not include '-' character</em></p><blockquote><p>du</p></blockquote><pre><code>&quot;-//ACME//DTD HTML 3.14159//EN&quot;</code></pre></li></ul><h3>Drop empty paras</h3><ul><li><p>Yes</p><blockquote><p>dep</p></blockquote><pre><code>&lt;p&gt;This is some text&lt;/p&gt;</code></pre></li><li><p>No</p><pre><code>&lt;p&gt;This is some text&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;</code></pre></li></ul><h3>Drop font tags</h3><ul><li><p>Yes</p><blockquote><p>dft</p></blockquote><pre><code>This is some text!This is some text!&lt;br /&gt;</code></pre></li><li><p>No</p><pre><code>&lt;font size=&quot;3&quot; color=&quot;red&quot;&gt;This is some text!&lt;/font&gt;
+&lt;center&gt;This is some text!&lt;/center&gt;</code></pre></li></ul><h3>Drop proprietary atts</h3><ul><li><p>Yes</p><blockquote><p>dpa</p></blockquote><pre><code>Strip out proprietary attributes</code></pre></li><li><p>No</p><pre><code>No strip out proprietary attributes</code></pre></li></ul><h3>Enclose block text</h3><ul><li><p>Yes</p><blockquote><p>ebt</p></blockquote><pre><code>&lt;p&gt;This is some text!&lt;/p&gt;</code></pre></li><li><p>No</p><pre><code>This is some text!</code></pre></li></ul><h3>Enclose text</h3><ul><li><p>Yes</p><blockquote><p>et</p></blockquote><pre><code>&lt;p&gt;This is some text!&lt;/p&gt;</code></pre></li><li><p>No</p><pre><code>This is some text!</code></pre></li></ul><h3>Escape cdata</h3><ul><li><p>Yes</p><blockquote><p>ec</p></blockquote><pre><code>&lt;note&gt;This is some text&lt;/note&gt;</code></pre></li><li><p>No</p><pre><code>&lt;note&gt;
+  &lt;![CDATA[This is some text]]&gt;
+&lt;/note&gt;</code></pre></li></ul><h3>Fix backslash</h3><ul><li><p>Yes</p><blockquote><p>fb</p></blockquote><pre><code>&lt;img src=&quot;/i/eg_tulip.jpg&quot; /&gt;</code></pre></li><li><p>No</p><pre><code>&lt;img src=&quot;\i\eg_tulip.jpg&quot; /&gt;</code></pre></li></ul><h3>Fix bad comments</h3><ul><li><p>Yes</p><blockquote><p>fbc</p></blockquote><pre><code>Replace unexpected hyphens with &quot;=&quot; characters when it comes across adjacent hyphens</code></pre></li><li><p>No</p><pre><code>No replace unexpected hyphens with &quot;=&quot; characters when it comes across adjacent hyphens</code></pre></li></ul><h3>Fix uri</h3><ul><li><p>Yes</p><blockquote><p>fu</p></blockquote><pre><code>&lt;img src=&quot;/i/eg%20tulip.jpg&quot; /&gt;</code></pre></li><li><p>No</p><pre><code>&lt;img src=&quot;/i/eg tulip.jpg&quot; /&gt;</code></pre></li></ul><h3>Hide comments</h3><ul><li><p>Yes</p><blockquote><p>hc</p></blockquote><pre><code>&lt;note&gt;abc&lt;/note&gt;</code></pre></li><li><p>No</p><pre><code>&lt;!-- This is some text --&gt;
+&lt;note&gt;abc&lt;/note&gt;</code></pre></li></ul><h3>Hide endtags</h3><ul><li><p>Yes</p><blockquote><p>he</p></blockquote><pre><code>Omit optional end-tags when generating the pretty printed markup</code></pre></li><li><p>No</p><pre><code>No omit optional end-tags when generating the pretty printed markup</code></pre></li></ul><h3>Indent cdata</h3><ul><li><p>Yes</p><blockquote><p>ic</p></blockquote><pre><code>Indent &lt;![CDATA[]]&gt; sections</code></pre></li><li><p>No</p><pre><code>No indent &lt;![CDATA[]]&gt; sections</code></pre></li></ul><h3>Input xml</h3><ul><li><p>Yes</p><blockquote><p>ix</p></blockquote><pre><code>Use the XML parser</code></pre></li><li><p>No</p><pre><code>No use the XML parser</code></pre></li></ul><h3>Join classes</h3><ul><li><p>Yes</p><blockquote><p>jc</p></blockquote><pre><code>&lt;h1 class=&quot;intro important&quot;&gt;Header 1&lt;/h1&gt;</code></pre></li><li><p>No</p><pre><code>&lt;h1 class=&quot;intro&quot; class=&quot;important&quot;&gt;Header 1&lt;/h1&gt;</code></pre></li></ul><h3>Join styles</h3><ul><li><p>Yes</p><blockquote><p>js</p></blockquote><pre><code>&lt;h1 style=&quot;color:red; text-align:center;&quot;&gt;This is a header&lt;/h1&gt;</code></pre></li><li><p>No</p><pre><code>&lt;h1 style=&quot;color:red;&quot; style=&quot;text-align:center;&quot;&gt;This is a header&lt;/h1&gt;</code></pre></li></ul><h3>Literal attributes</h3><ul><li><p>Yes</p><blockquote><p>la</p></blockquote><pre><code>&lt;h1 style=&quot;color:red;    text-align:center;&quot;&gt;This is a header&lt;/h1&gt;</code></pre></li><li><p>No</p><pre><code>&lt;h1 style=&quot;color:red; text-align:center;&quot;&gt;This is a header&lt;/h1&gt;</code></pre></li></ul><h3>Logical emphasis</h3><ul><li><p>Yes</p><blockquote><p>le</p></blockquote><pre><code>&lt;strong&gt;This is some text&lt;/strong&gt;
+&lt;em&gt;This is some text&lt;/em&gt;</code></pre></li><li><p>No</p><pre><code>&lt;b&gt;This is some text&lt;/b&gt;
+&lt;i&gt;This is some text&lt;/i&gt;</code></pre></li></ul><h3>Lower literals</h3><ul><li><p>Yes</p><blockquote><p>ll</p></blockquote><pre><code>&lt;p align=&quot;right&quot;&gt;This is some text&lt;/p&gt;</code></pre></li><li><p>No</p><pre><code>&lt;p align=&quot;Right&quot;&gt;This is some text&lt;/p&gt;</code></pre></li></ul><h3>Merge divs</h3><ul><li><p>Auto</p><blockquote><p>md0</p></blockquote><pre><code>&lt;div&gt;
+  This is some text
+&lt;/div&gt;</code></pre></li><li><p>Yes</p><blockquote><p>md1</p></blockquote><pre><code>&lt;div&gt;
+  This is some text
+&lt;/div&gt;</code></pre></li><li><p>No</p><blockquote><p>md2</p></blockquote><pre><code>&lt;div&gt;
+  &lt;div&gt;
+    This is some text
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre></li></ul><h3>Merge spans</h3><ul><li><p>Auto</p><blockquote><p>ms0</p></blockquote><pre><code>&lt;span&gt;
+  This is some text
+&lt;/span&gt;</code></pre></li><li><p>Yes</p><blockquote><p>ms1</p></blockquote><pre><code>&lt;span&gt;
+  This is some text
+&lt;/span&gt;</code></pre></li><li><p>No</p><blockquote><p>ms2</p></blockquote><pre><code>&lt;span&gt;
+  &lt;span&gt;
+    This is some text
+  &lt;/span&gt;
+&lt;/span&gt;</code></pre></li></ul><h3>NCR</h3><ul><li><p>Yes</p><blockquote><p>n</p></blockquote><pre><code>Allow numeric character references</code></pre></li><li><p>No</p><pre><code>No allow numeric character references</code></pre></li></ul><h3>New blocklevel tags</h3><ul><li><p>Text</p><p><em>*Do not include '-' character</em></p><blockquote><p>nbt</p></blockquote><pre><code>// ql we
+
+&lt;ql&gt;
+  &lt;we&gt;This is some text&lt;/we&gt;
+&lt;/ql&gt;</code></pre></li></ul><h3>New empty tags</h3><ul><li><p>Text</p><p><em>*Do not include '-' character</em></p><blockquote><p>net</p></blockquote><pre><code>// ql
+
+&lt;ql /&gt;</code></pre></li></ul><h3>New inline tags</h3><ul><li><p>Text</p><p><em>*Do not include '-' character</em></p><blockquote><p>nit</p></blockquote><pre><code>// ql
+
+&lt;ql&gt;&lt;/ql&gt;</code></pre></li></ul><h3>New pre tags</h3><ul><li><p>Text</p><p><em>*Do not include '-' character</em></p><blockquote><p>npt</p></blockquote><pre><code>// ql
+
+&lt;ql&gt;
+This is some text
+&lt;/ql&gt;</code></pre></li></ul><h3>Numeric entities</h3><ul><li><p>Yes</p><blockquote><p>ne</p></blockquote><pre><code>&lt;q&gt;&amp;#192;&lt;/q&gt;</code></pre></li><li><p>No</p><pre><code>&lt;q&gt;&amp;Agrave;&lt;/q&gt;</code></pre></li></ul><h3>Output html</h3><ul><li><p>Yes</p><blockquote><p>oh</p></blockquote><pre><code>Generate pretty printed output, writing it as HTML</code></pre></li><li><p>No</p></li></ul><h3>Output xhtml</h3><ul><li><p>Yes</p><blockquote><p>ox</p></blockquote><pre><code>Generate pretty printed output, writing it as extensible HTML</code></pre></li><li><p>No</p></li></ul><h3>Output xml</h3><ul><li><p>Yes</p><blockquote><p>oxm</p></blockquote><pre><code>Pretty print output, writing it as well-formed XML</code></pre></li><li><p>No</p></li></ul><h3>Preserve entities</h3><ul><li><p>Yes</p><blockquote><p>pe</p></blockquote><pre><code>&lt;q&gt;&amp;Agrave;&lt;/q&gt;</code></pre></li><li><p>No</p><pre><code>// with Numeric entities
+
+&lt;q&gt;&amp;#192;&lt;/q&gt;</code></pre></li></ul><h3>Quote ampersand</h3><ul><li><p>Yes</p><blockquote><p>qa</p></blockquote><pre><code>&lt;q&gt;&amp;amp;&lt;/q&gt;</code></pre></li><li><p>No</p><pre><code>&lt;q&gt;&amp;&lt;/q&gt;</code></pre></li></ul><h3>Quote marks</h3><ul><li><p>Yes</p><blockquote><p>qm</p></blockquote><pre><code>&lt;q&gt;&amp;#39;&amp;#39;&quot;&quot;&lt;/q&gt;</code></pre></li><li><p>No</p><pre><code>&lt;q&gt;&apos;&apos;&quot;&quot;&lt;/q&gt;</code></pre></li></ul><h3>Quote nbsp</h3><ul><li><p>Yes</p><blockquote><p>qn</p></blockquote><pre><code>&lt;p&gt;&amp;nbsp;&lt;/p&gt;</code></pre></li><li><p>No</p><pre><code>&lt;p&gt; &lt;/p&gt;</code></pre></li></ul><h3>Repeated attributes</h3><ul><li><p>Keep first</p><blockquote><p>ra0</p></blockquote><pre><code>&lt;h1 style=&quot;color:red;&quot; style=&quot;color:blue;&quot;&gt;This is a header&lt;/h1&gt;
+=&gt;
+&lt;h1 style=&quot;color:red;&quot;&gt;This is a header&lt;/h1&gt;</code></pre></li><li><p>Keep last</p><blockquote><p>ra1</p></blockquote><pre><code>&lt;h1 style=&quot;color:red;&quot; style=&quot;color:blue;&quot;&gt;This is a header&lt;/h1&gt;
+=&gt;
+&lt;h1 style=&quot;color:blue;&quot;&gt;This is a header&lt;/h1&gt;</code></pre></li></ul><h3>Replace color</h3><ul><li><p>Yes</p><blockquote><p>rc</p></blockquote><pre><code>&lt;font color=&quot;white&quot;&gt;This is some text!&lt;/font&gt;</code></pre></li><li><p>No</p><pre><code>&lt;font color=&quot;#FFFFFF&quot;&gt;This is some text!&lt;/font&gt;</code></pre></li></ul><h3>Show body only</h3><ul><li><p>Auto</p><blockquote><p>sbo0</p></blockquote><pre><code>// this is performed only if the body tag has been inferred
+
+&lt;p&gt;This is some text!&lt;/p&gt;</code></pre></li><li><p>Yes</p><blockquote><p>sbo1</p></blockquote><pre><code>&lt;p&gt;This is some text!&lt;/p&gt;</code></pre></li><li><p>No</p><blockquote><p>sbo2</p></blockquote><pre><code>&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+  &lt;title&gt;&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+  &lt;p&gt;This is some text!&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></li></ul><h3>Uppercase attributes</h3><ul><li><p>Yes</p><blockquote><p>ua</p></blockquote><pre><code>&lt;p STYLE=&quot;color:red&quot;&gt;This is a paragraph.&lt;/p&gt;</code></pre></li><li><p>No</p><pre><code>&lt;p style=&quot;color:red&quot;&gt;This is a paragraph.&lt;/p&gt;</code></pre></li></ul><h3>Uppercase tags</h3><ul><li><p>Yes</p><blockquote><p>ut</p></blockquote><pre><code>&lt;P style=&quot;color:red&quot;&gt;This is a paragraph.&lt;/P&gt;</code></pre></li><li><p>No</p><pre><code>&lt;p style=&quot;color:red&quot;&gt;This is a paragraph.&lt;/p&gt;</code></pre></li></ul><h3>Word 2000</h3><ul><li><p>Yes</p><blockquote><p>wo</p></blockquote><pre><code>Go to great pains to strip out all the surplus stuff Microsoft Word 2000 inserts when you save Word documents as &quot;Web pages&quot;</code></pre></li><li><p>No</p></li></ul><h2>Pretty Print</h2><h3>Break before br</h3><ul><li><p>Yes</p><blockquote><p>bbb</p></blockquote><pre><code>123
+&lt;br /&gt;
+123
+&lt;br /&gt;</code></pre></li><li><p>No</p><pre><code>123&lt;br /&gt;
+123&lt;br /&gt;</code></pre></li></ul><h3>Indent</h3><ul><li><p>Auto</p><blockquote><p>i0</p></blockquote><pre><code>&lt;ol&gt;
+  &lt;li&gt;Coffee&lt;/li&gt;
+
+  &lt;li&gt;Tea&lt;/li&gt;
+
+  &lt;li&gt;Milk&lt;/li&gt;
+&lt;/ol&gt;</code></pre></li><li><p>Yes</p><blockquote><p>i1</p></blockquote><pre><code>&lt;ol&gt;
+  &lt;li&gt;Coffee
+  &lt;/li&gt;
+  &lt;li&gt;Tea
+  &lt;/li&gt;
+  &lt;li&gt;Milk
+  &lt;/li&gt;
+&lt;/ol&gt;</code></pre></li><li><p>No</p><blockquote><p>i2</p></blockquote><pre><code>&lt;ol&gt;
+&lt;li&gt;Coffee&lt;/li&gt;
+&lt;li&gt;Tea&lt;/li&gt;
+&lt;li&gt;Milk&lt;/li&gt;
+&lt;/ol&gt;</code></pre></li></ul><h3>Indent attributes</h3><ul><li><p>Yes</p><blockquote><p>ia</p></blockquote><pre><code>&lt;font size=&quot;3&quot;
+      color=&quot;red&quot;&gt;This is some text!&lt;/font&gt;</code></pre></li><li><p>No</p><pre><code>&lt;font size=&quot;3&quot; color=&quot;red&quot;&gt;This is some text!&lt;/font&gt;</code></pre></li></ul><h3>Indent spaces</h3><ul><li><p>Range : 0-100</p><blockquote><p>is</p></blockquote><pre><code>//Indent spaces 3
+&lt;ol&gt;
+   &lt;li&gt;Coffee&lt;/li&gt;
+&lt;/ol&gt;
+
+//Indent spaces 2
+&lt;ol&gt;
+  &lt;li&gt;Coffee&lt;/li&gt;
+&lt;/ol&gt;</code></pre></li></ul><h3>Markup</h3><ul><li><p>Yes</p><blockquote><p>m</p></blockquote><pre><code>Generate a pretty printed version of the markup</code></pre></li><li><p>No</p></li></ul><h3>Punctuation wrap</h3><ul><li><p>Yes</p><blockquote><p>pw</p></blockquote><pre><code>Line wrap after some Unicode or Chinese punctuation characters</code></pre></li><li><p>No</p><pre><code>No line wrap after some Unicode or Chinese punctuation characters</code></pre></li></ul><h3>Sort attributes</h3><ul><li><p>None</p><blockquote><p>sa0</p></blockquote><pre><code>&lt;font size=&quot;3&quot; color=&quot;red&quot;&gt;This is some text!&lt;/font&gt;</code></pre></li><li><p>Alpha</p><blockquote><p>sa1</p></blockquote><pre><code>&lt;font color=&quot;red&quot; size=&quot;3&quot;&gt;This is some text!&lt;/font&gt;</code></pre></li></ul><h3>Tab size</h3><ul><li><p>Range : 0-100</p><blockquote><p>ts</p></blockquote><pre><code>Specifies the number of columns that Tidy uses between successive tab stops</code></pre></li></ul><h3>Vertical space</h3><ul><li><p>Yes</p><blockquote><p>vs</p></blockquote><pre><code>&lt;p&gt;This is some text&lt;/p&gt;
+
+
+&lt;p&gt;This is some text&lt;/p&gt;</code></pre></li><li><p>No</p><pre><code>&lt;p&gt;This is some text&lt;/p&gt;
+
+&lt;p&gt;This is some text&lt;/p&gt;</code></pre></li></ul><h3>Wrap</h3><ul><li><p>Range : 0-100</p><blockquote><p>w</p></blockquote><pre><code>//Wrap 10
+
+&lt;p&gt;This
+is some
+text&lt;/p&gt;
+
+//Wrap 0
+&lt;p&gt;This is some text&lt;/p&gt;</code></pre></li></ul><h3>Wrap asp</h3><ul><li><p>Yes</p><blockquote><p>wa</p></blockquote><pre><code>Line wrap text contained within ASP pseudo elements, which look like: &lt;% ... %&gt;</code></pre></li><li><p>No</p><pre><code>No line wrap text contained within ASP pseudo elements, which look like: &lt;% ... %&gt;</code></pre></li></ul><h3>Wrap attributes</h3><ul><li><p>Yes</p><blockquote><p>wat</p></blockquote><pre><code>Line wrap attribute values, for easier editing</code></pre></li><li><p>No</p><pre><code>No line wrap attribute values, for easier editing</code></pre></li></ul><h3>Wrap jste</h3><ul><li><p>Yes</p><blockquote><p>wj</p></blockquote><pre><code>Line wrap text contained within JSTE pseudo elements, which look like: &lt;# ... #&gt;</code></pre></li><li><p>No</p><pre><code>No line wrap text contained within JSTE pseudo elements, which look like: &lt;# ... #&gt;</code></pre></li></ul><h3>Wrap php</h3><ul><li><p>Yes</p><blockquote><p>wp</p></blockquote><pre><code>Line wrap text contained within PHP pseudo elements, which look like: &lt;?php ... ?&gt;</code></pre></li><li><p>No</p><pre><code>No line wrap text contained within PHP pseudo elements, which look like: &lt;?php ... ?&gt;</code></pre></li></ul><h3>Wrap script literals</h3><ul><li><p>Yes</p><blockquote><p>wsl</p></blockquote><pre><code>Line wrap string literals that appear in script attributes</code></pre></li><li><p>No</p><pre><code>No line wrap string literals that appear in script attributes</code></pre></li></ul><h3>Wrap sections</h3><ul><li><p>Yes</p><blockquote><p>ws</p></blockquote><pre><code>Line wrap text contained within &lt;![ ... ]&gt; section tags</code></pre></li><li><p>No</p><pre><code>No line wrap text contained within &lt;![ ... ]&gt; section tags</code></pre></li></ul><h2>Character Encoding</h2><h3>Ascii chars</h3><ul><li><p>Yes</p><blockquote><p>ac</p></blockquote><pre><code>Can be used to modify behavior of -c (--clean yes) option. If set to &quot;yes&quot; when using -c, &amp;emdash;, &amp;rdquo;, and other named character entities are downgraded to their closest ascii equivalents</code></pre></li><li><p>No</p></li></ul><h3>Char encoding</h3><ul><li><p>Raw</p><blockquote><p>ce0</p></blockquote><pre><code>Tidy will output values above 127 without translating them into entities</code></pre></li><li><p>Ascii</p><blockquote><p>ce1</p></blockquote><pre><code>Tidy will accept Latin-1 (ISO-8859-1) character values, but will use entities for all characters whose value &gt; 127</code></pre></li><li><p>latin0</p><blockquote><p>ce2</p></blockquote></li><li><p>latin1</p><blockquote><p>ce3</p></blockquote><pre><code>Characters above 255 will be written as entities</code></pre></li><li><p>utf8</p><blockquote><p>ce4</p></blockquote><pre><code>Tidy assumes that both input and output is encoded as UTF-8</code></pre></li><li><p>iso2022</p><blockquote><p>ce5</p></blockquote></li><li><p>mac</p><blockquote><p>ce6</p></blockquote></li><li><p>win1252</p><blockquote><p>ce7</p></blockquote></li><li><p>ibm858</p><blockquote><p>ce8</p></blockquote></li><li><p>utf16le</p><blockquote><p>ce9</p></blockquote></li><li><p>utf16be</p><blockquote><p>ce10</p></blockquote></li><li><p>utf16</p><blockquote><p>ce10</p></blockquote></li><li><p>big5</p><blockquote><p>ce11</p></blockquote></li><li><p>shiftjis</p><blockquote><p>ce12</p></blockquote></li></ul><h3>Input encoding</h3><ul><li><p>Raw</p><blockquote><p>ie0</p></blockquote><pre><code>Tidy will output values above 127 without translating them into entities</code></pre></li><li><p>Ascii</p><blockquote><p>ie1</p></blockquote><pre><code>Tidy will accept Latin-1 (ISO-8859-1) character values, but will use entities for all characters whose value &gt; 127</code></pre></li><li><p>latin0</p><blockquote><p>ie2</p></blockquote></li><li><p>latin1</p><blockquote><p>ie3</p></blockquote><pre><code>Characters above 255 will be written as entities</code></pre></li><li><p>utf8</p><blockquote><p>ie4</p></blockquote><pre><code>Tidy assumes that both input and output is encoded as UTF-8</code></pre></li><li><p>iso2022</p><blockquote><p>ie5</p></blockquote></li><li><p>mac</p><blockquote><p>ie6</p></blockquote></li><li><p>win1252</p><blockquote><p>ie7</p></blockquote></li><li><p>ibm858</p><blockquote><p>ie8</p></blockquote></li><li><p>utf16le</p><blockquote><p>ie9</p></blockquote></li><li><p>utf16be</p><blockquote><p>ie10</p></blockquote></li><li><p>utf16</p><blockquote><p>ie11</p></blockquote></li><li><p>big5</p><blockquote><p>ie12</p></blockquote></li><li><p>shiftjis</p><blockquote><p>ie13</p></blockquote></li></ul><h3>Output encoding</h3><ul><li><p>Raw</p><blockquote><p>oe0</p></blockquote><pre><code>Tidy will output values above 127 without translating them into entities</code></pre></li><li><p>Ascii</p><blockquote><p>oe1</p></blockquote><pre><code>Tidy will accept Latin-1 (ISO-8859-1) character values, but will use entities for all characters whose value &gt; 127</code></pre></li><li><p>latin0</p><blockquote><p>oe2</p></blockquote></li><li><p>latin1</p><blockquote><p>oe3</p></blockquote><pre><code>Characters above 255 will be written as entities</code></pre></li><li><p>utf8</p><blockquote><p>oe4</p></blockquote><pre><code>Tidy assumes that both input and output is encoded as UTF-8</code></pre></li><li><p>iso2022</p><blockquote><p>oe5</p></blockquote></li><li><p>mac</p><blockquote><p>oe6</p></blockquote></li><li><p>win1252</p><blockquote><p>oe7</p></blockquote></li><li><p>ibm858</p><blockquote><p>oe8</p></blockquote></li><li><p>utf16le</p><blockquote><p>oe9</p></blockquote></li><li><p>utf16be</p><blockquote><p>oe10</p></blockquote></li><li><p>utf16</p><blockquote><p>oe11</p></blockquote></li><li><p>big5</p><blockquote><p>oe12</p></blockquote></li><li><p>shiftjis</p><blockquote><p>oe13</p></blockquote></li></ul><h2>Diagnostics</h2><h3>Show warnings</h3><ul><li><p>Yes</p><blockquote><p>sw</p></blockquote><pre><code>Specifies if Tidy should suppress warnings</code></pre></li><li><p>No</p><pre><code>No specifies if Tidy should suppress warnings</code></pre></li></ul><h3>Show errors</h3><ul><li><p>Range : 0-100</p><blockquote><p>se</p></blockquote><pre><code>Specifies the number Tidy uses to determine if further errors should be shown</code></pre></li></ul><h2>Miscellaneous</h2><h3>Force output</h3><ul><li><p>Yes</p><blockquote><p>fo</p></blockquote><pre><code>Specifies if Tidy should produce output even if errors are encountered</code></pre></li><li><p>No</p><pre><code>No specifies if Tidy should produce output even if errors are encountered</code></pre></li></ul></div>
+    </div>
+
+            <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-58728540-2");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
