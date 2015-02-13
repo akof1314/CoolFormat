@@ -35,6 +35,7 @@
 *.suo
 *.user
 *.aps
+Tools/Bin/
 Tools/MakeSetConfig/ipch/
 Tools/MakeSetConfig/Temp/
 Include/
