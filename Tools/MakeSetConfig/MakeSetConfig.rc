@@ -201,6 +201,7 @@ BEGIN
         MENUITEM "&Open",                       ID_OPEN
         MENUITEM SEPARATOR
         MENUITEM "&Save",                       ID_EXPLORER_SAVE
+        MENUITEM "Save to HTML",                ID_EXPLORER_SAVETOHTML
         MENUITEM "&Close",                      ID_EXPLORER_CLOSE
         MENUITEM SEPARATOR
         MENUITEM "&Delete",                     ID_EXPLORER_DELETE

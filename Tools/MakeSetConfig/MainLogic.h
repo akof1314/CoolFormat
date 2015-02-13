@@ -12,6 +12,7 @@ public:
 	void LoadRCFile(LPCTSTR lpszFileName);
 	void OpenConfigFile(CTreeCtrl* pTreeCtrl);
 	BOOL SaveConfigFile(CTreeCtrl* pTreeCtrl);
+	BOOL SaveConfigToHTMLFile(CTreeCtrl* pTreeCtrl);
 	void ModifyRCFile(LPCTSTR lpszAddConfig, LPCTSTR lpszDelConfig);
 
 	const CStringList* GetConfigs() { return &m_lstConfigs; }

@@ -493,3 +493,122 @@ void CMainLogic::ModifyRCFile(LPCTSTR lpszAddConfig, LPCTSTR lpszDelConfig)
 	listFile.Write(strListA, strListA.GetLength());
 	listFile.Close();
 }
+
+BOOL CMainLogic::SaveConfigToHTMLFile(CTreeCtrl* pTreeCtrl)
+{
+	HTREEITEM hTreeItem = pTreeCtrl->GetSelectedItem();
+	if (hTreeItem == NULL)
+	{
+		return FALSE;
+	}
+
+	CString strFileName = pTreeCtrl->GetItemText(hTreeItem);
+	int nPosName = strFileName.ReverseFind('.');
+	if (nPosName == -1)
+	{
+		return FALSE;
+	}
+
+	strFileName.Delete(nPosName, MAX_PATH);
+
+	CMyTagManager::s_bFormatTags = FALSE;
+	CString strData;
+	CMyTagManager::WriteTag(strData, CMyTagManager::WriteString(_T("h1"), strFileName));
+
+	strFileName = m_strFullConfigPath + strFileName + _T(".HTML");
+
+	CString strPropertys;
+	HTREEITEM hChildItem = pTreeCtrl->GetChildItem(hTreeItem);
+	while (hChildItem)
+	{
+		DWORD_PTR dwChildData = pTreeCtrl->GetItemData(hChildItem);
+		if (dwChildData)
+		{
+			CString strProperty;
+			CMyTagManager::WriteItem(strData, _T("h2"), pTreeCtrl->GetItemText(hChildItem));
+
+			HTREEITEM hPropItem = pTreeCtrl->GetChildItem(hChildItem);
+			while (hPropItem)
+			{
+				DWORD_PTR dwPropData = pTreeCtrl->GetItemData(hPropItem);
+				if (dwPropData)
+				{
+					CMFCPropertyGridProperty* pGroupProp = (CMFCPropertyGridProperty*)dwPropData;
+					if (pGroupProp)
+					{
+						strProperty.Empty();
+						CMyTagManager::WriteItem(strData, _T("h3"), pGroupProp->GetSubItem(0)->GetValue());
+
+						CString strType(pGroupProp->GetSubItem(1)->GetValue());
+						if (strType.CompareNoCase(_T("Combo")) == 0)
+						{
+							strProperty.Empty();
+							CMFCPropertyGridProperty* pItemsProp = pGroupProp->GetSubItem(3);
+							for (int i = 0; i < pItemsProp->GetSubItemsCount(); i++)
+							{
+								CMFCPropertyGridProperty* pItemProp = pItemsProp->GetSubItem(i);
+
+								CString strItem;
+								CMyTagManager::WriteTag(strItem, CMyTagManager::WriteString(_T("p"), pItemProp->GetSubItem(0)->GetValue()));
+								CMyTagManager::WriteTag(strItem, CMyTagManager::WriteString(_T("blockquote"), CMyTagManager::WriteString(_T("p"), pItemProp->GetSubItem(1)->GetValue())));
+								CMyTagManager::WriteTag(strItem, CMyTagManager::WriteString(_T("pre"), CMyTagManager::WriteEntityString(_T("code"), (pItemProp->GetSubItem(2)->GetValue()))));
+
+								CMyTagManager::WriteItem(strProperty, _T("li"), strItem);
+							}
+							CMyTagManager::WriteItem(strData, _T("ul"), strProperty);
+						}
+						else if (strType.CompareNoCase(_T("Number")) == 0)
+						{
+							strProperty.Empty();
+							CString strItem;
+							CString strRange;
+							strRange.Format(_T("Range : %s-%s"), (CString)pGroupProp->GetSubItem(3)->GetValue(), (CString)pGroupProp->GetSubItem(4)->GetValue());
+							CMyTagManager::WriteTag(strItem, CMyTagManager::WriteString(_T("p"), strRange));
+							if (pGroupProp->GetSubItem(5)->GetValue().boolVal)
+							{
+								CMyTagManager::WriteTag(strItem, CMyTagManager::WriteString(_T("p"), CMyTagManager::WriteString(_T("em"), _T("*Attach to previous short"))));
+							}
+							else
+							{
+								CMyTagManager::WriteTag(strItem, CMyTagManager::WriteString(_T("blockquote"), CMyTagManager::WriteString(_T("p"), pGroupProp->GetSubItem(6)->GetValue())));
+							}
+							CMyTagManager::WriteTag(strItem, CMyTagManager::WriteString(_T("pre"), CMyTagManager::WriteEntityString(_T("code"), (pGroupProp->GetSubItem(7)->GetValue()))));
+							CMyTagManager::WriteItem(strProperty, _T("li"), strItem);
+							CMyTagManager::WriteItem(strData, _T("ul"), strProperty);
+
+						}
+						else if (strType.CompareNoCase(_T("Text")) == 0)
+						{
+							strProperty.Empty();
+							CString strItem;
+							CString strText = _T("Text");
+							CMyTagManager::WriteTag(strItem, CMyTagManager::WriteString(_T("p"), strText));
+							CMyTagManager::WriteTag(strItem, CMyTagManager::WriteString(_T("p"), CMyTagManager::WriteString(_T("em"), _T("*Do not include '-' character"))));
+							CMyTagManager::WriteTag(strItem, CMyTagManager::WriteString(_T("blockquote"), CMyTagManager::WriteString(_T("p"), pGroupProp->GetSubItem(3)->GetValue())));
+							CMyTagManager::WriteTag(strItem, CMyTagManager::WriteString(_T("pre"), CMyTagManager::WriteEntityString(_T("code"), (pGroupProp->GetSubItem(4)->GetValue()))));
+							CMyTagManager::WriteItem(strProperty, _T("li"), strItem);
+							CMyTagManager::WriteItem(strData, _T("ul"), strProperty);
+						}
+					}
+				}
+				hPropItem = pTreeCtrl->GetNextItem(hPropItem, TVGN_NEXT);
+			}
+		}
+		hChildItem = pTreeCtrl->GetNextItem(hChildItem, TVGN_NEXT);
+	}
+	CMyTagManager::s_bFormatTags = TRUE;
+
+	CFile listFile;
+	CFileException fileException;
+	if (!listFile.Open(strFileName, CFile::modeWrite | CFile::modeCreate, &fileException))
+	{
+		TCHAR szErrorMsg[1024];
+		fileException.GetErrorMessage(szErrorMsg, 1024, NULL);
+		AfxMessageBox(szErrorMsg, MB_OK | MB_ICONERROR);
+		return FALSE;
+	}
+	CStringA strListA(strData);
+	listFile.Write(strListA, strListA.GetLength());
+	listFile.Close();
+	return TRUE;
+}

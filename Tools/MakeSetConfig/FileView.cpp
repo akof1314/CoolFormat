@@ -55,6 +55,8 @@ BEGIN_MESSAGE_MAP(CFileView, CDockablePane)
 	ON_UPDATE_COMMAND_UI(ID_GROUP_ADDGROUP, &CFileView::OnUpdateGroupAddgroup)
 	ON_COMMAND(ID_GROUP_DELGROUP, &CFileView::OnGroupDelgroup)
 	ON_UPDATE_COMMAND_UI(ID_GROUP_DELGROUP, &CFileView::OnUpdateGroupDelgroup)
+	ON_COMMAND(ID_EXPLORER_SAVETOHTML, &CFileView::OnExplorerSavetohtml)
+	ON_UPDATE_COMMAND_UI(ID_EXPLORER_SAVETOHTML, &CFileView::OnUpdateExplorerSavetohtml)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -741,4 +743,14 @@ BOOL CFileView::IsOtherNoClosed()
 		hChildItem = m_wndFileView.GetNextItem(hChildItem, TVGN_NEXT);
 	}
 	return FALSE;
+}
+
+void CFileView::OnExplorerSavetohtml()
+{
+	theApp.m_MainLogic.SaveConfigToHTMLFile(&m_wndFileView);
+}
+
+void CFileView::OnUpdateExplorerSavetohtml(CCmdUI *pCmdUI)
+{
+	pCmdUI->Enable(IsSelectItemOpened());
 }

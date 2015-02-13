@@ -77,5 +77,7 @@ public:
 	afx_msg void OnUpdateGroupAddgroup(CCmdUI *pCmdUI);
 	afx_msg void OnGroupDelgroup();
 	afx_msg void OnUpdateGroupDelgroup(CCmdUI *pCmdUI);
+	afx_msg void OnExplorerSavetohtml();
+	afx_msg void OnUpdateExplorerSavetohtml(CCmdUI *pCmdUI);
 };
 
