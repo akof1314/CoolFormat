@@ -8,3 +8,8 @@
 /Tools/
 *.v12.suo
 *.sdf
+/CoolFormat/
+/CoolFormatLib/
+/Plugins/
+*.suo
+*.pro.user
