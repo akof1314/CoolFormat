@@ -172,8 +172,7 @@ namespace WuHuan.CoolFormatVSPlugin
                 _outputPane = outputWindow.OutputWindowPanes.Add("CoolFormat");
             }
             _outputPane.Activate();
-            output = output.Insert(0, "=========== CoolFormat Output Begin ===========\r\n");
-            output += "=========== CoolFormat Output End ===========\r\n";
+            _outputPane.Clear();
             _outputPane.OutputString(output);
         }
 
