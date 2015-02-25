@@ -9,6 +9,9 @@ CoolFormat源代码格式化是一款C\C++\C#\CSS\HTML\Java\JavaScript\JSON\Obje
 
 下载[最新版本](https://sourceforge.net/projects/coolformat/files/Release/)
 
+# Documentation #
+参看[格式化文档](http://akof1314.github.io/CoolFormat/doc/index.html)
+
 # Usage #
 参看[使用说明Wiki](https://github.com/akof1314/CoolFormat/wiki)
 

@@ -1,3 +1,3 @@
 CoolFormatVSPlugin
 ==========
-A VS plugin for Source Code Formatter
+A VS plugin for CoolFormat Source Code Formatter

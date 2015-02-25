@@ -1,3 +1,3 @@
 CoolFormatNppPlugin
 ==========
-A Notepad++ plugin for Source Code Formatter
+A Notepad++ plugin for CoolFormat Source Code Formatter
