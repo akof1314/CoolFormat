@@ -41,3 +41,4 @@ Tools/MakeSetConfig/Temp/
 Include/
 Plugins/NPP/Temp/
 *.DS_Store
+/Bin/
