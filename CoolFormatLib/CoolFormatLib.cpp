@@ -113,20 +113,24 @@ COOLFORMATLIB_API bool DoFormatter(unsigned int nLanguage, const char *pszTextIn
 				}
             }
 
-			nTextOut = strTextOut.size();
-			nMsgOut = strMsgOut.size();
+			nTextOut = strTextOut.size() + 1;
+			nMsgOut = strMsgOut.size() + 1;
 		}
 		return bResult;
 	}
 	else
 	{
+		int sizeTextOut = strTextOut.size();
+		int sizeMsgOut = strMsgOut.size();
 #ifdef _MSC_VER
-		strTextOut._Copy_s(pszTextOut, nTextOut, nTextOut, 0);
-		strMsgOut._Copy_s(pszMsgOut, nMsgOut, nMsgOut, 0);
+		strTextOut._Copy_s(pszTextOut, nTextOut, sizeTextOut, 0);
+		strMsgOut._Copy_s(pszMsgOut, nMsgOut, sizeMsgOut, 0);
 #else
-        strTextOut.copy(pszTextOut, nTextOut, 0);
-		strMsgOut.copy(pszMsgOut, nMsgOut, 0);
+		strTextOut.copy(pszTextOut, sizeTextOut, 0);
+		strMsgOut.copy(pszMsgOut, sizeMsgOut, 0);
 #endif
+		pszTextOut[sizeTextOut] = '\0';
+		pszMsgOut[sizeMsgOut] = '\0';
 		return true;
 	}
 }

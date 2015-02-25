@@ -1,16 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Globalization;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.ComponentModel.Design;
 using System.Text;
 using Microsoft.VisualStudio.TextManager.Interop;
-using Microsoft.Win32;
-using Microsoft.VisualStudio;
-using Microsoft.VisualStudio.Shell.Interop;
-using Microsoft.VisualStudio.OLE.Interop;
 using Microsoft.VisualStudio.Shell;
 using EnvDTE;
 
@@ -38,8 +32,6 @@ namespace WuHuan.CoolFormatVSPlugin
     public sealed class CoolFormatVSPluginPackage : Package
     {
         private DTE _dte;
-
-        private IVsTextManager _txtMngr;
 
         private OutputWindowPane _outputPane;
 
@@ -83,7 +75,6 @@ namespace WuHuan.CoolFormatVSPlugin
             }
 
             _dte = (DTE) GetService(typeof (DTE));
-            _txtMngr = (IVsTextManager) GetService(typeof (SVsTextManager));
         }
         #endregion
 
@@ -104,22 +95,7 @@ namespace WuHuan.CoolFormatVSPlugin
 
         private void MenuFormatterSetting(object sender, EventArgs e)
         {
-            // Show a Message Box to prove we were here
-            IVsUIShell uiShell = (IVsUIShell)GetService(typeof(SVsUIShell));
-            Guid clsid = Guid.Empty;
-            int result;
-            Microsoft.VisualStudio.ErrorHandler.ThrowOnFailure(uiShell.ShowMessageBox(
-                       0,
-                       ref clsid,
-                       "CoolFormatVSPlugin",
-                       string.Format(CultureInfo.CurrentCulture, "Inside {0}.MenuItemCallback()", this.ToString()),
-                       string.Empty,
-                       0,
-                       OLEMSGBUTTON.OLEMSGBUTTON_OK,
-                       OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST,
-                       OLEMSGICON.OLEMSGICON_INFO,
-                       0,        // false
-                       out result));
+            ShowSettings();
         }
 
         private void DoFormat(bool selected)
@@ -131,17 +107,19 @@ namespace WuHuan.CoolFormatVSPlugin
 
             string text = "";
             string initIndent = "";
+            EditPoint sp;
+            EditPoint sd;
             if (selected)
             {
-                TextSelection sel = (TextSelection)_dte.ActiveDocument.Selection;
-                //int bottomLine = sel.BottomPoint.Line;
-                //for (int i = sel.TopPoint.Line; i <= bottomLine; i++)
-                //{
-                //    sel.GotoLine(i, true);
-                //    text += sel.Text;
-                //}
-                EditPoint sp = sel.TopPoint.CreateEditPoint();
-                text = sp.GetLines(sp.Line, sel.BottomPoint.Line + 1);
+                TextSelection sel = (TextSelection) _dte.ActiveDocument.Selection;
+                sp = sel.TopPoint.CreateEditPoint();
+                sd = sel.BottomPoint.CreateEditPoint();
+                sel.MoveToLineAndOffset(sp.Line, 1);
+                sel.MoveToLineAndOffset(sd.Line, 1, true);
+                sel.EndOfLine(true);
+                sp = sel.TopPoint.CreateEditPoint();
+                sd = sel.BottomPoint.CreateEditPoint();
+                text = sel.Text;
 
                 foreach (var ch in text)
                 {
@@ -154,9 +132,10 @@ namespace WuHuan.CoolFormatVSPlugin
             }
             else
             {
-                TextDocument doc = (TextDocument)_dte.ActiveDocument.Object("TextDocument");
-                EditPoint sp = doc.StartPoint.CreateEditPoint();
-                text = sp.GetText(doc.EndPoint);
+                TextDocument doc = (TextDocument) _dte.ActiveDocument.Object("TextDocument");
+                sp = doc.StartPoint.CreateEditPoint();
+                sd = doc.EndPoint.CreateEditPoint();
+                text = sp.GetText(sd);
             }
 
             if (String.IsNullOrEmpty(text))
@@ -164,7 +143,7 @@ namespace WuHuan.CoolFormatVSPlugin
                 return;
             }
 
-            string eol = "\r\n";
+            string eol = GetEol(text);
             int lang = GetLanguage();
             int sizeOut = 0;
             int sizeMsg = 0;
@@ -175,16 +154,7 @@ namespace WuHuan.CoolFormatVSPlugin
                 if (DoFormatter(lang, text, textOut, ref sizeOut, textMsg, ref sizeMsg, 0, eol, initIndent))
                 {
                     ShowOutput(textMsg.ToString());
-                    if (selected)
-                    {
-
-                    }
-                    else
-                    {
-                        TextDocument doc = (TextDocument)_dte.ActiveDocument.Object("TextDocument");
-                        EditPoint sp = doc.StartPoint.CreateEditPoint();
-                        sp.ReplaceText(doc.EndPoint, textOut.ToString(), (int)vsEPReplaceTextOptions.vsEPReplaceTextKeepMarkers);
-                    }
+                    sp.ReplaceText(sd, textOut.ToString(), (int)vsEPReplaceTextOptions.vsEPReplaceTextKeepMarkers);
                 }
             }
         }
@@ -203,6 +173,8 @@ namespace WuHuan.CoolFormatVSPlugin
                 _outputPane = outputWindow.OutputWindowPanes.Add("CoolFormat");
             }
             _outputPane.Activate();
+            output = output.Insert(0, "=========== CoolFormat Output Begin ===========\r\n");
+            output += "=========== CoolFormat Output End ===========\r\n";
             _outputPane.OutputString(output);
         }
 
@@ -244,11 +216,27 @@ namespace WuHuan.CoolFormatVSPlugin
             return -1;
         }
 
-        private string GetEol()
+        private string GetEol(string text)
         {
-            IVsTextView textViewCurrent;
-            _txtMngr.GetActiveView(1, null, out textViewCurrent);
-            return "";
+            string eolWin = "\r\n";
+            string eolMac = "\r";
+            string eolUnix = "\n";
+            if (!String.IsNullOrEmpty(text))
+            {
+                if (text.IndexOf(eolWin) != -1)
+                {
+                    return eolWin;
+                }
+                if (text.IndexOf(eolUnix) != -1)
+                {
+                    return eolUnix;
+                }
+                if (text.IndexOf(eolMac) != -1)
+                {
+                    return eolMac;
+                }
+            }
+            return eolWin;
         }
 
         [DllImport("CoolFormatLib/cf_windows_x32/CoolFormatLib", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
@@ -268,6 +256,9 @@ namespace WuHuan.CoolFormatVSPlugin
             [MarshalAs(UnmanagedType.LPStr)]
 	        String pszInitIndent
         );
+
+        [DllImport("CoolFormatLib/cf_windows_x32/CoolFormatLib", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        private static extern bool ShowSettings();
 
         enum Syn_Language
         {

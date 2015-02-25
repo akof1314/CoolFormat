@@ -104,7 +104,7 @@
     </Link>
     <PostBuildEvent>
       <Command>echo D | xcopy "$(TargetPath)" "$(SolutionDir)Bin\$(PlatformName)\$(Configuration)" /y
-echo D | xcopy "$(TargetPath)" "D:\Program Files\Notepad++\plugins\CoolFormat" /y</Command>
+echo D | xcopy "$(TargetPath)" "$(SolutionDir)Plugins\VS\CoolFormatVSPlugin\CoolFormatLib\cf_windows_x32" /y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -149,7 +149,8 @@ echo D | xcopy "$(TargetPath)" "D:\Program Files\Notepad++\plugins\CoolFormat" /
       <AdditionalDependencies>CssTidyLib.lib;SqlFormatterLib.lib;JsonCppLib.lib;JsFormatterLib.lib;PhpFormatterLib.lib;tidylib.lib;AStyleLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>echo D | xcopy "$(TargetPath)" "$(SolutionDir)Bin\$(PlatformName)\$(Configuration)" /y</Command>
+      <Command>echo D | xcopy "$(TargetPath)" "$(SolutionDir)Bin\$(PlatformName)\$(Configuration)" /y
+echo D | xcopy "$(TargetPath)" "$(SolutionDir)Plugins\VS\CoolFormatVSPlugin\CoolFormatLib\cf_windows_x32" /y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

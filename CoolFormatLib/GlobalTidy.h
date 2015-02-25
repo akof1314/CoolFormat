@@ -4,7 +4,7 @@
 #include "SynLanguage.h"
 
 // 是否使用本地配置文件，否则使用注册表
-#define USE_LOCAL_CONFIG_FILE
+//#define USE_LOCAL_CONFIG_FILE
 
 // 非WIN平台只能使用本地配置文件
 #ifndef _WIN32
