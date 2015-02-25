@@ -4,7 +4,6 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.ComponentModel.Design;
 using System.Text;
-using Microsoft.VisualStudio.TextManager.Interop;
 using Microsoft.VisualStudio.Shell;
 using EnvDTE;
 
@@ -95,7 +94,7 @@ namespace WuHuan.CoolFormatVSPlugin
 
         private void MenuFormatterSetting(object sender, EventArgs e)
         {
-            ShowSettings();
+            NativeMethods.ShowSettings();
         }
 
         private void DoFormat(bool selected)
@@ -147,11 +146,11 @@ namespace WuHuan.CoolFormatVSPlugin
             int lang = GetLanguage();
             int sizeOut = 0;
             int sizeMsg = 0;
-            if (DoFormatter(lang, text, null, ref sizeOut, null, ref sizeMsg, 0, eol, initIndent))
+            if (NativeMethods.DoFormatter(lang, text, null, ref sizeOut, null, ref sizeMsg, 0, eol, initIndent))
             {
                 StringBuilder textOut = new StringBuilder(sizeOut);
                 StringBuilder textMsg = new StringBuilder(sizeMsg);
-                if (DoFormatter(lang, text, textOut, ref sizeOut, textMsg, ref sizeMsg, 0, eol, initIndent))
+                if (NativeMethods.DoFormatter(lang, text, textOut, ref sizeOut, textMsg, ref sizeMsg, 0, eol, initIndent))
                 {
                     ShowOutput(textMsg.ToString());
                     sp.ReplaceText(sd, textOut.ToString(), (int)vsEPReplaceTextOptions.vsEPReplaceTextKeepMarkers);
@@ -239,27 +238,6 @@ namespace WuHuan.CoolFormatVSPlugin
             return eolWin;
         }
 
-        [DllImport("CoolFormatLib/cf_windows_x32/CoolFormatLib", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
-        private static extern bool DoFormatter(
-            int nLanguage,
-            [MarshalAs(UnmanagedType.LPStr)]
-            String pszTextIn,
-            [MarshalAs(UnmanagedType.LPStr)]
-	        StringBuilder pszTextOut,
-	        ref int nTextOut,
-            [MarshalAs(UnmanagedType.LPStr)]
-	        StringBuilder pszMsgOut,
-	        ref int nMsgOut,
-	        int uCodepage,
-            [MarshalAs(UnmanagedType.LPStr)]
-	        String pszEol,
-            [MarshalAs(UnmanagedType.LPStr)]
-	        String pszInitIndent
-        );
-
-        [DllImport("CoolFormatLib/cf_windows_x32/CoolFormatLib", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
-        private static extern bool ShowSettings();
-
         enum Syn_Language
         {
             SYN_ACTIONSCRIPT,
@@ -297,5 +275,29 @@ namespace WuHuan.CoolFormatVSPlugin
             SYN_VHDL,
             SYN_XML
         }
+    }
+
+    internal static class NativeMethods
+    {
+        [DllImport("CoolFormatLib/cf_windows_x32/CoolFormatLib", CharSet = CharSet.Ansi, BestFitMapping = false, ThrowOnUnmappableChar = true, CallingConvention = CallingConvention.Cdecl)]
+        internal static extern bool DoFormatter(
+            int nLanguage,
+            [MarshalAs(UnmanagedType.LPStr)]
+            String pszTextIn,
+            [MarshalAs(UnmanagedType.LPStr)]
+	        StringBuilder pszTextOut,
+            ref int nTextOut,
+            [MarshalAs(UnmanagedType.LPStr)]
+	        StringBuilder pszMsgOut,
+            ref int nMsgOut,
+            int uCodepage,
+            [MarshalAs(UnmanagedType.LPStr)]
+	        String pszEol,
+            [MarshalAs(UnmanagedType.LPStr)]
+	        String pszInitIndent
+        );
+
+        [DllImport("CoolFormatLib/cf_windows_x32/CoolFormatLib", CharSet = CharSet.Ansi, CallingConvention = CallingConvention.Cdecl)]
+        internal static extern bool ShowSettings();
     }
 }
