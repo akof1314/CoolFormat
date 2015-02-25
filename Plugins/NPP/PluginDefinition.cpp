@@ -123,19 +123,6 @@ bool setCommand(size_t index, TCHAR *cmdName, PFUNCPLUGINCMD pFunc, ShortcutKey 
 //----------------------------------------------//
 void quickFormat()
 {
-    //// Open a new document
-    //::SendMessage(nppData._nppHandle, NPPM_MENUCOMMAND, 0, IDM_FILE_NEW);
-
-    //// Get the current scintilla
-    //int which = -1;
-    //::SendMessage(nppData._nppHandle, NPPM_GETCURRENTSCINTILLA, 0, (LPARAM)&which);
-    //if (which == -1)
-    //    return;
-    //HWND curScintilla = (which == 0)?nppData._scintillaMainHandle:nppData._scintillaSecondHandle;
-
-    //// Say hello now :
-    //// Scintilla control has no Unicode mode, so we use (char *) here
-    //::SendMessage(curScintilla, SCI_SETTEXT, 0, (LPARAM)"Hello, Notepad++!");
 	doFormat(false);
 }
 
@@ -345,10 +332,10 @@ void doFormat(bool bSelected)
 		int nMsgOut = 0;
 		if (DoFormatter(uLanguage, pText, NULL, nTextOut, NULL, nMsgOut, uCodepage, strEol.c_str(), strInitIndent.c_str()))
 		{
-			char *pszTextOut = new char[nTextOut + 1];
-			char *pszMsgOut = new char[nMsgOut + 1];
-			memset(pszTextOut, 0, nTextOut + 1);
-			memset(pszMsgOut, 0, nMsgOut + 1);
+			char *pszTextOut = new char[nTextOut];
+			char *pszMsgOut = new char[nMsgOut];
+			memset(pszTextOut, 0, nTextOut);
+			memset(pszMsgOut, 0, nMsgOut);
 			if (DoFormatter(uLanguage, pText, pszTextOut, nTextOut, pszMsgOut, nMsgOut, uCodepage, strEol.c_str(), strInitIndent.c_str()))
 			{
 				showOutput(pszMsgOut);
