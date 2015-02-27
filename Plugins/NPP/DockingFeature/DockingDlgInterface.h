@@ -35,8 +35,9 @@ public:
 	virtual void init(HINSTANCE hInst, HWND parent)
 	{
 		StaticDialog::init(hInst, parent);
-		::GetModuleFileName((HMODULE)hInst, _moduleName, MAX_PATH);
-		lstrcpy(_moduleName, PathFindFileName(_moduleName));
+		::GetModuleFileName((HMODULE)hInst, _modulePath, MAX_PATH);
+		lstrcpy(_moduleName, PathFindFileName(_modulePath));
+		PathRemoveFileSpec(_modulePath);
 	}
 
     void create(tTbData * data, bool isRTL = false){
@@ -69,6 +70,10 @@ public:
 
 	const TCHAR * getPluginFileName() const {
 		return _moduleName;
+	};
+
+	const TCHAR * getPluginPath() const {
+		return _modulePath;
 	};
 
 protected :
@@ -116,8 +121,9 @@ protected :
 	tTbData*		_data;
 	int				_dlgID;
 	bool            _isFloating;
-	TCHAR            _moduleName[MAX_PATH];
+	TCHAR           _moduleName[MAX_PATH];
 	TCHAR			_pluginName[MAX_PATH];
+	TCHAR           _modulePath[MAX_PATH];
 };
 
 #endif // DOCKINGDLGINTERFACE_H

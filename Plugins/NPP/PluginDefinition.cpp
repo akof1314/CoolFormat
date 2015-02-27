@@ -214,7 +214,9 @@ void loadCFDll()
 {
 	if (hInstCF == NULL)
 	{
-		hInstCF = LoadLibrary(TEXT("plugins\\CoolFormatLib\\cf_windows_x32\\CoolFormatLib.dll"));
+		TCHAR cfDllPath[MAX_PATH];
+		lstrcpy(cfDllPath, outputDlg.getPluginPath());
+		hInstCF = LoadLibrary(lstrcat(cfDllPath, TEXT("\\CoolFormatLib\\cf_windows_x32\\CoolFormatLib.dll")));
 		if (hInstCF)
 		{
 			DoFormatter = (DoFormatterProc)GetProcAddress(hInstCF, "DoFormatter");
