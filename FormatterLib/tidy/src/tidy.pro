@@ -7,6 +7,8 @@ CONFIG += staticlib
 DEFINES += SUPPORT_UTF16_ENCODINGS SUPPORT_ASIAN_ENCODINGS SUPPORT_ACCESSIBILITY_CHECKS
 INCLUDEPATH += ../include
 DESTDIR = $$_PRO_FILE_PWD_/../../../Lib
+QMAKE_POST_LINK += $$sprintf($$QMAKE_MKDIR_CMD, $$shell_path($$quote($$_PRO_FILE_PWD_/../../../Include))) $$escape_expand(\\n\\t)
+QMAKE_POST_LINK += $$QMAKE_COPY $$shell_path($$quote($$_PRO_FILE_PWD_/CFHtmlTidy.h)) $$shell_path($$quote($$_PRO_FILE_PWD_/../../../Include)) $$escape_expand(\\n\\t)
 
 SOURCES += \
     CFBaseTidy.cpp \
