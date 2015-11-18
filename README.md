@@ -23,6 +23,7 @@ Check out the [instructions for use](https://github.com/akof1314/CoolFormat/wiki
 
 # How To Build #
 Development tools and third-parties:
+
 开发工具及第三方库：
 
 - Visual Studio 2013
@@ -30,6 +31,7 @@ Development tools and third-parties:
 - Qt Creator (Optional)
 
 Compiling the third-parties:
+
 编译第三方库：
 
 BCGControlBarPro 文件夹放到 CoolFormat 同级目录。编译 BCGCBProStatic120.sln 的 Unicode Debug 版本 和 Unicode Release 版本，“平台工具集”选择“Visual Studio 2013 - Windows XP (v120_xp)”
