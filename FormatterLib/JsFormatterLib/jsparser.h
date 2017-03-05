@@ -20,7 +20,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 #ifndef _JS_PARSER_H_
 #define _JS_PARSER_H_
-#include <ctime>
+#include <stdio.h>
+#include <time.h>
 #include <string>
 #include <stack>
 #include <queue>
@@ -28,6 +29,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include <set>
 
 using namespace std;
+
+#if defined (WIN32)
+#define SNPRINTF sprintf_s
+#else
+#define SNPRINTF snprintf
+#endif
 
 template<class T>
 bool GetStackTop(const stack<T>& stk, T& ret)
@@ -46,6 +53,7 @@ bool StackTopEq(const stack<T>& stk, T eq)
 	return (eq == stk.top());
 }
 
+#define NOT_TOKEN -1
 #define STRING_TYPE 0
 #define OPER_TYPE 1
 #define REGULAR_TYPE 2
@@ -70,11 +78,13 @@ bool StackTopEq(const stack<T>& stk, T eq)
 #define JS_TRY 'r'
 #define JS_CATCH 'h'
 #define JS_FUNCTION 'n'
-#define JS_ASSIGN '='
 #define JS_BLOCK '{'
 #define JS_BRACKET '('
 #define JS_SQUARE '['
+#define JS_ASSIGN '='
+#define JS_QUEST_MARK '?'
 #define JS_HELPER '\\'
+#define JS_STUB ' '
 #define JS_EMPTY 0
 
 class JSParser
@@ -84,12 +94,15 @@ protected:
 	{
 		string code; // 代码内容
 		int type; // Token 类型
+		bool inlineComment; // COMMENT_TYPE_2 的 inline 模式
 		long line; // 行号
 	};
 
 public:
 	typedef stack<char> CharStack;
 	typedef stack<bool> BoolStack;
+	typedef stack<int> IntStack;
+	typedef stack<size_t> SizeStack;
 	typedef queue<Token> TokenQueue;
 	typedef map<string, char> StrCharMap;
 	typedef set<string> StrSet;
@@ -101,7 +114,10 @@ public:
 
 	bool m_debug;
 	inline const char *GetDebugOutput()
-	{ return m_debugOutput; }
+	{ return m_strDebugOutput.c_str(); }
+
+private:
+	Token m_tokenABeforeComment;
 
 protected:
 	int m_charA;
@@ -111,11 +127,42 @@ protected:
 	long m_lineCount;
 	long m_tokenCount;
 
-	bool inline IsNormalChar(int ch);
-	bool inline IsNumChar(int ch);
-	bool inline IsBlankChar(int ch);
-	bool inline IsSingleOper(int ch);
-	bool inline IsQuote(int ch);
+	bool inline IsNormalChar(int ch)
+	{
+		// 一般字符
+		return ((ch >= 'a' && ch <= 'z') || (ch >= '0' && ch <= '9') ||
+				(ch >= 'A' && ch <= 'Z') || ch == '_' || ch == '$' ||
+				ch > 126 || ch < 0);
+	}
+
+	bool inline IsNumChar(int ch)
+	{
+		// 数字和.
+		return ((ch >= '0' && ch <= '9') || ch == '.');
+	}
+
+	bool inline IsBlankChar(int ch)
+	{
+		// 空白字符
+		return (ch == ' ' || ch == '\t' || ch == '\r');
+	}
+
+	bool inline IsSingleOper(int ch)
+	{
+		// 单字符符号
+		return (ch == '.' || ch == '(' || ch == ')' ||
+				ch == '[' || ch == ']' || ch == '{' || ch == '}' ||
+				ch == ',' || ch == ';' || ch == '~' ||
+				ch == '\n');
+	}
+
+	bool inline IsQuote(int ch)
+	{
+		// 引号
+		return (ch == '\'' || ch == '\"' || ch == '`');
+	}
+
+	bool IsInlineComment(const Token& token);
 
 	bool GetToken(); // 处理过负数, 正则等等的 GetToken 函数
 
@@ -144,6 +191,7 @@ private:
 	void PrepareTokenB();
 
 	void PrintDebug();
+	virtual void PrintAdditionalDebug(string& strDebugOutput) {}
 
 	string m_strBeforeReg; // 判断正则时，正则前面可以出现的字符
 
@@ -159,7 +207,7 @@ private:
 	clock_t m_startClock;
 	clock_t m_endClock;
 	double m_duration;
-	char m_debugOutput[1024];
+	string m_strDebugOutput;
 
 private:
 	// 阻止拷贝

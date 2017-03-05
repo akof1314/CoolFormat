@@ -2,6 +2,7 @@
 #include <cstring>
 #include "jsformatString.h"
 #include "jsminCharArray.h"
+#include "jsformatter.h"
 
 CCFJsTidy::CCFJsTidy(void)
 {
@@ -15,7 +16,7 @@ struct STTidyOptions
 {
 	bool bFormatter;
 	bool bKeepTopComt;
-	RealJSFormatter::FormatterOption formatterOptions;
+	FormatterOption formatterOptions;
 };
 
 bool CCFJsTidy::TidyMain(const char* pSourceIn, const char* pOptions, std::string &strOut, std::string &/*strErr*/)
@@ -60,8 +61,8 @@ void CCFJsTidy::InitTidyDefault()
 	formatter->bKeepTopComt = false;
 	formatter->formatterOptions.chIndent = ' ';
 	formatter->formatterOptions.nChPerInd = 4;
-	formatter->formatterOptions.eBracNL = RealJSFormatter::NO_NEWLINE_BRAC;
-	formatter->formatterOptions.eEmpytIndent = RealJSFormatter::NO_INDENT_IN_EMPTYLINE;
+	formatter->formatterOptions.eBracNL = NO_NEWLINE_BRAC;
+	formatter->formatterOptions.eEmpytIndent = NO_INDENT_IN_EMPTYLINE;
 }
 
 void CCFJsTidy::SetTidyProp(const std::string& strParam, int nNumValue, const std::string& /*strNumValue*/, const std::string& /*strTextValue*/)
@@ -81,11 +82,11 @@ void CCFJsTidy::SetTidyProp(const std::string& strParam, int nNumValue, const st
 	}
 	else if ("nb" == strParam)
 	{
-		formatter->formatterOptions.eBracNL = RealJSFormatter::NEWLINE_BRAC;
+		formatter->formatterOptions.eBracNL = NEWLINE_BRAC;
 	}
 	else if ("ei" == strParam)
 	{
-		formatter->formatterOptions.eEmpytIndent = RealJSFormatter::INDENT_IN_EMPTYLINE;
+		formatter->formatterOptions.eEmpytIndent = INDENT_IN_EMPTYLINE;
 	}
 	else if ("mi" == strParam)
 	{

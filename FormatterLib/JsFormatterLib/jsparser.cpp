@@ -47,57 +47,35 @@ void JSParser::Init()
 
 void JSParser::PrintDebug()
 {
-	if(m_debug)
+	if (m_debug)
 	{
-		char buf[500] = {0};
-		sprintf(m_debugOutput, "Processed tokens: %ld\n", m_tokenCount);
-		sprintf(buf, "Time used: %.3fs\n", m_duration);
-		strcat(m_debugOutput, buf);
-		sprintf(buf, "%.3f tokens/second\n", m_tokenCount / m_duration);
-		strcat(m_debugOutput, buf);
-		printf("%s", m_debugOutput);
+		m_strDebugOutput = "";
+		char buf[1024] = {0};
+		SNPRINTF(buf, 1000, "Processed tokens: %ld\n", m_tokenCount);
+		m_strDebugOutput.append(buf);
+		SNPRINTF(buf, 1000, "Time used: %.3fs\n", m_duration);
+		m_strDebugOutput.append(buf);
+		SNPRINTF(buf, 1000, "%.3f tokens/second\n", m_tokenCount / m_duration);
+		m_strDebugOutput.append(buf);
+
+		PrintAdditionalDebug(m_strDebugOutput);
+
+		printf("%s", m_strDebugOutput.c_str());
 	}
-}
-
-bool JSParser::IsNormalChar(int ch)
-{
-	// 一般字符
-	return ((ch >= 'a' && ch <= 'z') || (ch >= '0' && ch <= '9') ||
-		(ch >= 'A' && ch <= 'Z') || ch == '_' || ch == '$' ||
-		ch > 126 || ch < 0);
-}
-
-bool JSParser::IsNumChar(int ch)
-{
-	// 数字和.
-	return ((ch >= '0' && ch <= '9') || ch == '.');
-}
-
-bool JSParser::IsBlankChar(int ch)
-{
-	// 空白字符
-	return (ch == ' ' || ch == '\t' || ch == '\r');
-}
-
-bool JSParser::IsSingleOper(int ch)
-{
-	// 单字符符号
-	return (ch == '.' || ch == '(' || ch == ')' ||
-		ch == '[' || ch == ']' || ch == '{' || ch == '}' ||
-		ch == ',' || ch == ';' || ch == '~' ||
-		ch == '\n');
-}
-
-bool JSParser::IsQuote(int ch)
-{
-	// 引号
-	return (ch == '\'' || ch == '\"');
 }
 
 bool JSParser::IsComment()
 {
 	// 注释
 	return (m_charA == '/' && (m_charB == '/' || m_charB == '*'));
+}
+
+bool JSParser::IsInlineComment(const Token& token)
+{
+	if(token.type != COMMENT_TYPE_2)
+		return false;
+
+	return token.inlineComment;
 }
 
 void JSParser::GetTokenRaw()
@@ -191,7 +169,7 @@ void JSParser::GetTokenRaw()
 			}
 
 			if(m_charA == '/' && 
-				(m_charB != '*' && m_charB != '|')) // 正则可能结束
+				(m_charB != '*' && m_charB != '|' && m_charB != '?')) // 正则可能结束
 			{
 				if(!bRegularFlags && 
 					(IsNormalChar(m_charB) || m_iRegBracket > 0))
@@ -259,10 +237,14 @@ void JSParser::GetTokenRaw()
 			{
 				// 直到 */
 				m_tokenB.type = COMMENT_TYPE_2;
+				m_tokenB.inlineComment = false;
 				if(m_charA == '*' && m_charB == '/')
 				{
 					m_tokenB.code.push_back(m_charB);
 					m_charB = GetChar();
+
+					m_tokenABeforeComment = m_tokenA;
+
 					return;
 				}
 			}
@@ -270,6 +252,7 @@ void JSParser::GetTokenRaw()
 			{
 				// 直到换行
 				m_tokenB.type = COMMENT_TYPE_1;
+				m_tokenB.inlineComment = false;
 				if(m_charA == '\n')
 					return;
 			}
@@ -315,7 +298,7 @@ void JSParser::GetTokenRaw()
 			if(IsQuote(m_charA))
 			{
 				// 引号
-				bQuote= true;
+				bQuote = true;
 				chQuote = m_charA;
 
 				m_tokenB.type = STRING_TYPE;
@@ -344,7 +327,7 @@ void JSParser::GetTokenRaw()
 
 			// 多字符符号
 			if((m_charB == '=' || m_charB == m_charA) || 
-				(m_charA == '-' && m_charB == '>'))
+				((m_charA == '-' || m_charA == '=') && m_charB == '>'))
 			{
 				// 的确是多字符符号
 				m_tokenB.type = OPER_TYPE;
@@ -446,13 +429,17 @@ void JSParser::PreparePosNeg()
 	 * 而且 m_charB 是一个 NormalChar
 	 * 那么 m_tokenB 实际上是一个正负数
 	 */
+	Token tokenRealPre = m_tokenA;
+	if(m_tokenA.type == COMMENT_TYPE_2)
+		tokenRealPre = m_tokenABeforeComment;
+
 	if(m_tokenB.type == OPER_TYPE && (m_tokenB.code == "-" || m_tokenB.code == "+") &&
-		(m_tokenA.type != STRING_TYPE || 
-		m_tokenA.code == "return" || m_tokenA.code == "case" ||
-		m_tokenA.code == "delete" || m_tokenA.code == "throw") && 
-		m_tokenA.type != REGULAR_TYPE &&
-		m_tokenA.code != "++" && m_tokenA.code != "--" &&
-		m_tokenA.code != "]" && m_tokenA.code != ")" &&
+		(tokenRealPre.type != STRING_TYPE || 
+		tokenRealPre.code == "return" || tokenRealPre.code == "case" ||
+		tokenRealPre.code == "delete" || tokenRealPre.code == "throw") && 
+		tokenRealPre.type != REGULAR_TYPE &&
+		tokenRealPre.code != "++" && tokenRealPre.code != "--" &&
+		tokenRealPre.code != "]" && tokenRealPre.code != ")" &&
 		IsNormalChar(m_charB))
 	{
 		// m_tokenB 实际上是正负数
@@ -474,6 +461,16 @@ void JSParser::PrepareTokenB()
 	{
 		++c;
 		GetTokenRaw();
+	}
+
+	if(c == 0 && 
+		m_tokenA.type != COMMENT_TYPE_1 &&
+		m_tokenB.type == COMMENT_TYPE_2 && 
+		m_tokenB.code.find("\r") == string::npos &&
+		m_tokenB.code.find("\n") == string::npos)
+	{
+		// COMMENT_TYPE_2 之前没有换行, 自己也没有换行
+		m_tokenB.inlineComment = true;
 	}
 
 	if(m_tokenB.code != "else" && m_tokenB.code != "while" && m_tokenB.code != "catch" &&

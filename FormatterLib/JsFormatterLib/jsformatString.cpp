@@ -2,7 +2,7 @@
 
 JSFormatString::JSFormatString(const char *input, 
 								string *output,
-								RealJSFormatter::FormatterOption option):
+								const FormatterOption& option):
 				RealJSFormatter(option), 
 				in(), out(output), getPos(0), putPos(0)
 {

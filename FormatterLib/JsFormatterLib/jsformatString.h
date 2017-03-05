@@ -2,7 +2,7 @@
 #define _JSFORMATSTRING_H_
 
 #include <string>
-
+#include "jsformatter.h"
 #include "realjsformatter.h"
 
 using namespace std;
@@ -12,7 +12,7 @@ class JSFormatString: public RealJSFormatter
 public:
 	JSFormatString(const char *input, 
 				string *output,
-				RealJSFormatter::FormatterOption option);
+				const FormatterOption& option);
 
 private:
 	string in;

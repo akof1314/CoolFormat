@@ -1,5 +1,4 @@
 #include "jsminCharArray.h"
-#include <cstring>
 
 JSMinCharArray::JSMinCharArray(const unsigned char *input, unsigned char *output, bool bPutCR, bool bKeepTopComt)
 		:JSMin(bKeepTopComt), in(input), out(output), getPos(0), putPos(0), bPutCR(bPutCR)

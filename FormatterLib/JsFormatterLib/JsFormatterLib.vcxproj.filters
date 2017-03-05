@@ -53,6 +53,9 @@
     <ClInclude Include="jsminCharArray.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="jsformatter.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

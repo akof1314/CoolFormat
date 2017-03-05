@@ -1,6 +1,7 @@
 /* jsmin.cpp
    2008-08-03
    2010-09
+   2013-03-29
 
 Copyright (c) 2002 Douglas Crockford  (www.crockford.com)
 Copyright (c) 2010 Sun Junwen
@@ -25,11 +26,21 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-#include <stdexcept> 
 
 #include "jsmin.h"
+#include <stdlib.h>
+#include <stdio.h>
+#include <stdexcept>
 
 using namespace std;
+
+void JSMin::error(char* s)
+{
+    fputs("JSMIN Error: ", stderr);
+    fputs(s, stderr);
+    fputc('\n', stderr);
+    exit(1);
+}
 
 /* isAlphanum -- return true if the character is a letter, digit, underscore,
         dollar sign, or non-ASCII character.
@@ -49,7 +60,6 @@ int JSMin::isBlank(int c)
 	return (c == ' ' || c == '\t' || c == '\r' || c == '\n');
 }
 
-
 /* get -- return the next character from stdin. Watch out for lookahead. If
         the character is a control character, translate it to a space or
         linefeed.
@@ -59,16 +69,13 @@ int JSMin::get()
 {
     int c = theLookahead;
     theLookahead = EOF;
-    if (c == EOF) 
-	{
+    if (c == EOF) {
         c = getChar();
     }
-    if (c >= ' ' || c == '\n' || c == EOF) 
-	{
+    if (c >= ' ' || c == '\n' || c == EOF) {
         return c;
     }
-    if (c == '\r') 
-	{
+    if (c == '\r') {
 		return keepFirstComt ? '\r' : '\n';
     }
     return ' ';
@@ -93,38 +100,31 @@ int JSMin::next()
     int c = get();
 	if(keepFirstComt && c != '/' && !isBlank(c))
 		keepFirstComt = false;
-    if (c == '/') 
-	{
-        switch (peek()) 
-		{
+    if (c == '/') {
+        switch (peek()) {
         case '/':
 			keepFirstComt = false;
-            for (;;) 
-			{
+            for (;;) {
                 c = get();
-                if (c <= '\n') 
-				{
-                    return c;
+                if (c <= '\n') {
+                    break;
                 }
             }
+            break;
         case '*':
-			c = get();
+			get();
 			
-			if(keepFirstComt)
-			{
+			if(keepFirstComt) {
 				put('/');
 				put('*');
 			}
 
-            for (;;) 
-			{
-                switch (c = get()) 
-				{
+            while (c != ' ') {
+				char comtContent;
+                switch (comtContent = get()) {
                 case '*':
-                    if (peek() == '/') 
-					{
-						if(keepFirstComt)
-						{
+                    if (peek() == '/') {
+						if (keepFirstComt) {
 							put('*');
 							put('/');
 							//put('\n');
@@ -132,7 +132,7 @@ int JSMin::next()
 						}
 
                         get();
-                        return ' ';
+                        c = ' ';
                     }
                     break;
                 case EOF:
@@ -140,14 +140,15 @@ int JSMin::next()
                     /*fprintf(stderr, "Error: JSMIN Unterminated comment.\n");
                     exit(1);*/
                 }
-				if(keepFirstComt && c != '\r')
-					put(c);
+				if(keepFirstComt && comtContent != '\r') {
+					put(comtContent);
+                }
             }
-        default:
-			keepFirstComt = false;
-            return c;
+            break;
         }
     }
+    theY = theX;
+    theX = c;
     return c;
 }
 
@@ -162,30 +163,31 @@ int JSMin::next()
 
 void JSMin::action(int d)
 {
-    switch (d) 
-	{
+    switch (d) {
     case 1:
         put(theA);
+        if (
+            (theY == '\n' || theY == ' ') &&
+            (theA == '+' || theA == '-' || theA == '*' || theA == '/') &&
+            (theB == '+' || theB == '-' || theB == '*' || theB == '/')
+        ) {
+            put(theY);
+        }
     case 2:
         theA = theB;
-        if (theA == '\'' || theA == '"') 
-		{
-            for (;;) 
-			{
+        if (theA == '\'' || theA == '"' || theA == '`') {
+            for (;;) {
                 put(theA);
                 theA = get();
-                if (theA == theB) 
-				{
+                if (theA == theB) {
                     break;
                 }
-                if (theA == '\\') 
-				{
+                if (theA == '\\') {
                     put(theA);
                     theA = get();
                 }
-                if (theA == EOF) 
-				{
-					throw runtime_error("Error: JSMIN Unterminated comment.");
+                if (theA == EOF) {
+					throw runtime_error("Error: JSMIN unterminated string literal.");
                     /*fprintf(stderr, "Error: JSMIN unterminated string literal.");
                     exit(1);*/
                 }
@@ -193,31 +195,50 @@ void JSMin::action(int d)
         }
     case 3:
         theB = next();
-        if (theB == '/' && (theA == '(' || theA == ',' || theA == '=' ||
-                            theA == ':' || theA == '[' || theA == '!' ||
-                            theA == '&' || theA == '|' || theA == '?' ||
-                            theA == '{' || theA == '}' || theA == ';' ||
-                            theA == '\n')) 
-		{
+        if (theB == '/' && (
+            theA == '(' || theA == ',' || theA == '=' || theA == ':' ||
+            theA == '[' || theA == '!' || theA == '&' || theA == '|' ||
+            theA == '?' || theA == '+' || theA == '-' || theA == '~' ||
+            theA == '*' || theA == '/' || theA == '{' || theA == '\n'
+        )) {
             put(theA);
+            if (theA == '/' || theA == '*') {
+                put(' ');
+            }
             put(theB);
-            for (;;) 
-			{
+            for (;;) {
                 theA = get();
-                if (theA == '/') 
-				{
+                if (theA == '[') {
+                    for (;;) {
+                        put(theA);
+                        theA = get();
+                        if (theA == ']') {
+                            break;
+                        }
+                        if (theA == '\\') {
+                            put(theA);
+                            theA = get();
+                        }
+                        if (theA == EOF) {
+                            throw runtime_error("Error: JSMIN Unterminated set in Regular Expression literal.");
+                            //error("Unterminated set in Regular Expression literal.");
+                        }
+                    }
+                } else if (theA == '/') {
+                    switch (peek()) {
+                    case '/':
+                    case '*':
+                        throw runtime_error("Error: JSMIN Unterminated set in Regular Expression literal.");
+                        //error("Unterminated set in Regular Expression literal.");
+                    }
                     break;
-                }
-                if (theA =='\\') 
-				{
+                } else if (theA =='\\') {
                     put(theA);
                     theA = get();
                 }
-                if (theA == EOF) 
-				{
-					throw runtime_error("Error: JSMIN Unterminated comment.");
-                    /*fprintf(stderr, "Error: JSMIN unterminated Regular Expression literal.\n");
-                    exit(1);*/
+                if (theA == EOF) {
+                    throw runtime_error("Error: JSMIN Unterminated Regular Expression literal.");
+                    //error("Unterminated Regular Expression literal.");
                 }
                 put(theA);
             }
@@ -235,58 +256,43 @@ void JSMin::action(int d)
 
 void JSMin::go()
 {
+    if (peek() == 0xEF) {
+        get();
+        get();
+        get();
+    }
     theA = '\n';
     action(3);
-    while (theA != EOF) 
-	{
-        switch (theA) 
-		{
+    while (theA != EOF) {
+        switch (theA) {
         case ' ':
-            if (isAlphanum(theB)) 
-			{
-                action(1);
-            } else 
-			{
-                action(2);
-            }
+            action(isAlphanum(theB) ? 1 : 2);
             break;
         case '\n':
-            switch (theB) 
-			{
+            switch (theB) {
             case '{':
             case '[':
             case '(':
             case '+':
             case '-':
+            case '!':
+            case '~':
                 action(1);
                 break;
             case ' ':
                 action(3);
                 break;
             default:
-                if (isAlphanum(theB)) 
-				{
-                    action(1);
-                } else 
-				{
-                    action(2);
-                }
+                action(isAlphanum(theB) ? 1 : 2);
             }
             break;
         default:
-            switch (theB) 
-			{
+            switch (theB) {
             case ' ':
-                if (isAlphanum(theA)) 
-				{
-                    action(1);
-                    break;
-                }
-                action(3);
+                action(isAlphanum(theA) ? 1 : 3);
                 break;
             case '\n':
-                switch (theA) 
-				{
+                switch (theA) {
                 case '}':
                 case ']':
                 case ')':
@@ -294,16 +300,11 @@ void JSMin::go()
                 case '-':
                 case '"':
                 case '\'':
+                case '`':
                     action(1);
                     break;
                 default:
-                    if (isAlphanum(theA)) 
-					{
-                        action(1);
-                    } else 
-					{
-                        action(3);
-                    }
+                    action(isAlphanum(theA) ? 1 : 3);
                 }
                 break;
             default:

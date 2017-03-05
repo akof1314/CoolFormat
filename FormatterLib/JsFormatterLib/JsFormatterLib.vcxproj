@@ -169,6 +169,7 @@ echo D | xcopy "$(ProjectDir)CFJsTidy.h" "$(SolutionDir)Include" /y </Command>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="jsformatString.h" />
+    <ClInclude Include="jsformatter.h" />
     <ClInclude Include="jsmin.h" />
     <ClInclude Include="jsminCharArray.h" />
     <ClInclude Include="jsparser.h" />
