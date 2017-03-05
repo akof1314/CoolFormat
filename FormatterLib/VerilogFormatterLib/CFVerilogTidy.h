@@ -1,5 +1,5 @@
-#ifndef CFJSTIDY_H
-#define CFJSTIDY_H
+#ifndef CFVERILOGTIDY_H
+#define CFVERILOGTIDY_H
 #include "CFBaseTidy.h"
 
 class CCFVerilogTidy : public CCFBaseTidy

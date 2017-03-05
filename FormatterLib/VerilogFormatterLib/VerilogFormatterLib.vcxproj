@@ -86,7 +86,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;ASTYLE_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -127,7 +127,7 @@ echo D | xcopy "$(ProjectDir)CFVerilogTidy.h" "$(SolutionDir)Include" /y </Comma
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;ASTYLE_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FunctionLevelLinking>false</FunctionLevelLinking>
       <PrecompiledHeader />
@@ -163,12 +163,20 @@ echo D | xcopy "$(ProjectDir)CFVerilogTidy.h" "$(SolutionDir)Include" /y </Comma
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ASBeautifier.cpp" />
+    <ClCompile Include="ASFormatter.cpp" />
+    <ClCompile Include="ASResource.cpp" />
+    <ClCompile Include="ASStreamIterator.cpp" />
+    <ClCompile Include="astyle_main.cpp" />
     <ClCompile Include="CFBaseTidy.cpp" />
     <ClCompile Include="CFVerilogTidy.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="astyle.h" />
+    <ClInclude Include="astyle_main.h" />
     <ClInclude Include="CFBaseTidy.h" />
     <ClInclude Include="CFVerilogTidy.h" />
+    <ClInclude Include="compiler_defines.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

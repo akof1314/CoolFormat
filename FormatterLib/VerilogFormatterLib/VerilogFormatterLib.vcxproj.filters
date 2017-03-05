@@ -24,12 +24,36 @@
     <ClCompile Include="CFBaseTidy.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="ASBeautifier.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ASFormatter.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ASResource.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ASStreamIterator.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="astyle_main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CFVerilogTidy.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="CFBaseTidy.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="astyle.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="compiler_defines.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="astyle_main.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
