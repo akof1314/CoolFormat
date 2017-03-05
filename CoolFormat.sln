@@ -32,6 +32,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CoolFormatUnitTest", "Tools
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CoolFormatLib", "CoolFormatLib\CoolFormatLib.vcxproj", "{A4C1F04C-5512-4741-B759-4AF0F8BE8380}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "VerilogFormatterLib", "FormatterLib\VerilogFormatterLib\VerilogFormatterLib.vcxproj", "{51E14B2B-1E01-4A0B-A43E-3D57851DB43F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug Static|Win32 = Debug Static|Win32
@@ -186,6 +188,18 @@ Global
 		{A4C1F04C-5512-4741-B759-4AF0F8BE8380}.Release|Win32.ActiveCfg = Release|Win32
 		{A4C1F04C-5512-4741-B759-4AF0F8BE8380}.Release|Win32.Build.0 = Release|Win32
 		{A4C1F04C-5512-4741-B759-4AF0F8BE8380}.Release|x64.ActiveCfg = Release|Win32
+		{51E14B2B-1E01-4A0B-A43E-3D57851DB43F}.Debug Static|Win32.ActiveCfg = Debug|Win32
+		{51E14B2B-1E01-4A0B-A43E-3D57851DB43F}.Debug Static|Win32.Build.0 = Debug|Win32
+		{51E14B2B-1E01-4A0B-A43E-3D57851DB43F}.Debug Static|x64.ActiveCfg = Debug|Win32
+		{51E14B2B-1E01-4A0B-A43E-3D57851DB43F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{51E14B2B-1E01-4A0B-A43E-3D57851DB43F}.Debug|Win32.Build.0 = Debug|Win32
+		{51E14B2B-1E01-4A0B-A43E-3D57851DB43F}.Debug|x64.ActiveCfg = Debug|Win32
+		{51E14B2B-1E01-4A0B-A43E-3D57851DB43F}.Release Static|Win32.ActiveCfg = Release|Win32
+		{51E14B2B-1E01-4A0B-A43E-3D57851DB43F}.Release Static|Win32.Build.0 = Release|Win32
+		{51E14B2B-1E01-4A0B-A43E-3D57851DB43F}.Release Static|x64.ActiveCfg = Release|Win32
+		{51E14B2B-1E01-4A0B-A43E-3D57851DB43F}.Release|Win32.ActiveCfg = Release|Win32
+		{51E14B2B-1E01-4A0B-A43E-3D57851DB43F}.Release|Win32.Build.0 = Release|Win32
+		{51E14B2B-1E01-4A0B-A43E-3D57851DB43F}.Release|x64.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
