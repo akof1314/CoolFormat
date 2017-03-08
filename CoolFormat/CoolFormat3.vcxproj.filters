@@ -553,5 +553,8 @@
     <Xml Include="res\SetConfig\CSS.xml">
       <Filter>配置文件</Filter>
     </Xml>
+    <Xml Include="res\SetConfig\Verilog.xml">
+      <Filter>配置文件</Filter>
+    </Xml>
   </ItemGroup>
 </Project>

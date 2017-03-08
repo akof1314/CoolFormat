@@ -33,7 +33,7 @@ TidyDeafult GlobalTidy::m_TidyNames[MAX_SYN_LANG] = {
 	{_T("Ruby"),				_T("*.rb;*.rbw;"),																			SYN_RUBY},
 	{_T("SQL"),					_T("-cn2-el-ml0"),																			SYN_SQL},
 	{_T("VB"),					_T("*.vb;*.bas;*.frm;*.cls;*.ctl;*.pag;*.dsr;*.dob;*.vbs;*.dsm;*.vbp;*.vbg;*.mak;*.vbw;"),	SYN_VB},
-	{_T("Verilog"),				_T("*.v;*.vl;*.vmd;"),																		SYN_VERILOG},
+	{_T("Verilog"),				_T("-A1"),																		                SYN_VERILOG},
 	{_T("VHDL"),				_T("*.vhd;*.vhdl;*.vho;"),																	SYN_VHDL},
 	{_T("XML"),					_T("-aan-dep-fb-fbc-js-ll-n-ix-qa-qn-m-wa-wj-wp-ws-sw-fo-i1-ce0-ie0-oe0-w0"),				SYN_XML}
 };
@@ -140,6 +140,12 @@ void GlobalTidy::InitGlobalTidy()
 			strTidy = m_TidyNames[SYN_SQL].tidyName;
 		}
 		m_TidySql = strTidy;
+
+        if (!reg.Read(m_TidyNames[SYN_VERILOG].langName, strTidy))
+        {
+            strTidy = m_TidyNames[SYN_VERILOG].tidyName;
+        }
+        m_TidyVerilog = strTidy;
 	}
 	else
 	{
@@ -153,6 +159,7 @@ void GlobalTidy::InitGlobalTidy()
 		m_TidyJs = m_TidyNames[SYN_JAVASCRIPT].tidyName;
 		m_TidyCss = m_TidyNames[SYN_CSS].tidyName;
 		m_TidyJson = m_TidyNames[SYN_JSON].tidyName;
-		m_TidySql = m_TidyNames[SYN_SQL].tidyName;
+        m_TidySql = m_TidyNames[SYN_SQL].tidyName;
+        m_TidyVerilog = m_TidyNames[SYN_VERILOG].tidyName;
 	}
 }

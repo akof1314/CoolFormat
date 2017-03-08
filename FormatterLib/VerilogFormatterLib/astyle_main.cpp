@@ -120,6 +120,34 @@ bool parseOption(ASFormatter &formatter, const string &arg, const string &/*erro
         formatter.setBracketFormatMode(ATTACH_MODE);
         formatter.setSwitchIndent(false);
     }
+    else if (IS_PARAM_OPTION(arg, "A"))
+    {
+        int style = 0;
+        string styleParam = GET_PARAM(arg, "A");
+        if (styleParam.length() > 0)
+            style = atoi(styleParam.c_str());
+        if (style == 1)//Ansi
+        {
+            formatter.setBracketIndent(false);
+            formatter.setSpaceIndentation(4);
+            formatter.setBracketFormatMode(BREAK_MODE);
+            formatter.setSwitchIndent(false);
+        }
+        else if (style == 2)//KR
+        {
+            formatter.setBracketIndent(false);
+            formatter.setSpaceIndentation(4);
+            formatter.setBracketFormatMode(ATTACH_MODE);
+            formatter.setSwitchIndent(false);
+        }
+        else if (style == 3)
+        {
+            formatter.setBlockIndent(true);
+            formatter.setSpaceIndentation(2);
+            formatter.setBracketFormatMode(BREAK_MODE);
+            formatter.setSwitchIndent(false);
+        }
+    }
     else if ( IS_PARAM_OPTIONS(arg, "t", "indent=tab=") )
     {
         int spaceNum = 4;
@@ -179,9 +207,12 @@ bool parseOption(ASFormatter &formatter, const string &arg, const string &/*erro
         string maxIndentParam = GET_PARAMS(arg, "M", "max-instatement-indent=");
         if (maxIndentParam.length() > 0)
             maxIndent = atoi(maxIndentParam.c_str());
-        if(maxIndent==0)
+        if (maxIndent < 40)
         {
-            //(*_err) << errorInfo << arg << endl;
+            return false; // unknown option
+        }
+        if (maxIndent > 120)
+        {
             return false; // unknown option
         }
 
@@ -194,78 +225,77 @@ bool parseOption(ASFormatter &formatter, const string &arg, const string &/*erro
         if (minIndentParam.length() > 0)
         {
             minIndent = atoi(minIndentParam.c_str());
-            if(minIndent==0)
+            if(minIndent > 20)
             {
-                //(*_err) << errorInfo << arg << endl;
                 return false; // unknown option
             }
         }
         formatter.setMinConditionalIndentLength(minIndent);
     }
-    else if ( (arg == "B") || (arg == "indent-brackets") )
+    else if (IS_PARAM_OPTIONS(arg, "B", "indent-brackets"))
     {
         formatter.setBracketIndent(true);
     }
-    else if ( (arg == "G") || (arg == "indent-blocks") )
+    else if (IS_PARAM_OPTIONS(arg, "G", "indent-blocks"))
     {
         formatter.setBlockIndent(true);
     }
-    else if ( (arg == "b") || (arg == "brackets=break") )
+    else if (IS_PARAM_OPTIONS(arg, "b", "brackets=break"))
     {
         formatter.setBracketFormatMode(BREAK_MODE);
     }
-    else if ( (arg == "a") || (arg == "brackets=attach") )
+    else if (IS_PARAM_OPTIONS(arg, "a", "brackets=attach"))
     {
         formatter.setBracketFormatMode(ATTACH_MODE);
     }
-    else if ( (arg == "O") || (arg == "one-line=keep-blocks") )
+    else if (IS_PARAM_OPTIONS(arg, "O", "one-line=keep-blocks"))
     {
         formatter.setBreakOneLineBlocksMode(false);
     }
-    else if ( (arg == "o") || (arg == "one-line=keep-statements") )
+    else if (IS_PARAM_OPTIONS(arg, "o", "one-line=keep-statements"))
     {
         formatter.setSingleStatementsMode(false);
     }
-    else if ( arg == "pad=paren" )
+    else if (IS_PARAM_OPTIONS(arg, "L", "pad=paren"))
     {
         formatter.setParenthesisPaddingMode(true);
     }
-    else if ((arg == "l") || ( arg == "pad=block" ))
+    else if (IS_PARAM_OPTIONS(arg, "l", "pad=block"))
     {
         formatter.setBlockPaddingMode(true);
     }
-    else if ( (arg == "P") || (arg == "pad=all") )
+    else if (IS_PARAM_OPTIONS(arg, "P", "pad=all"))
     {
         formatter.setOperatorPaddingMode(true);
         formatter.setParenthesisPaddingMode(true);
         formatter.setBlockPaddingMode(true);
     }
-    else if ( (arg == "p") || (arg == "pad=oper") )
+    else if (IS_PARAM_OPTIONS(arg, "p", "pad=oper"))
     {
         formatter.setOperatorPaddingMode(true);
     }
-    else if ( (arg == "E") || (arg == "fill-empty-lines") )
+    else if (IS_PARAM_OPTIONS(arg, "E", "fill-empty-lines"))
     {
         formatter.setEmptyLineFill(true);
     }
-    else if (arg == "indent-preprocessor")
+    else if (IS_PARAM_OPTIONS(arg, "w", "indent-preprocessor"))
     {
         formatter.setPreprocessorIndent(true);
     }
-    else if (arg == "convert-tabs")
+    else if (IS_PARAM_OPTIONS(arg, "c", "convert-tabs"))
     {
         formatter.setTabSpaceConversionMode(true);
     }
-    else if (arg == "break-blocks=all")
+    else if (IS_PARAM_OPTIONS(arg, "F", "break-blocks=all"))
     {
         formatter.setBreakBlocksMode(true);
         formatter.setBreakClosingHeaderBlocksMode(true);
     }
-    else if (arg == "break-blocks")
+    else if (IS_PARAM_OPTIONS(arg, "f", "break-blocks"))
     {
         formatter.setBreakBlocksMode(true);
     }
-    else if (arg == "break-elseifs")
+    else if (IS_PARAM_OPTIONS(arg, "e", "break-elseifs"))
     {
         formatter.setBreakElseIfsMode(true);
     }
@@ -619,18 +649,7 @@ bool VerilogTidyMain(const char* pSourceIn, const char* pOptions, std::string &s
     {
         out << formatter.nextLine();
         if (formatter.hasMoreLines())
-        {
             out << "\n";
-        }
-        else
-        {
-            // this can happen if the file if missing a closing bracket and break-blocks is requested
-            if (formatter.getIsLineReady())
-            {
-                out << "\n";
-                out << formatter.nextLine();
-            }
-        }
     }
     strOut = out.str();
     return true;

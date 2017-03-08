@@ -1,0 +1,306 @@
+<SETCONFIG>
+	<VERSION>1</VERSION>
+	<PROPERTYS>
+		<PROPERTY>
+			<NAME>Bracket</NAME>
+			<GROUP>TRUE</GROUP>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Bracket style</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>None</VALUE>
+			<ITEM>
+				<VALUE>Ansi</VALUE>
+				<SHORT>A1</SHORT>
+				<PREVIEW>initial\r\nbegin\r\n    areg = 0;\r\nend</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>KR</VALUE>
+				<SHORT>A2</SHORT>
+				<PREVIEW>initial begin\r\n    areg = 0;\r\nend</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>GNU</VALUE>
+				<SHORT>A3</SHORT>
+				<PREVIEW>initial\r\n  begin\r\n    areg = 0;\r\n  end</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>None</VALUE>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Indentation</NAME>
+			<GROUP>TRUE</GROUP>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Indent using</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>Spaces</VALUE>
+			<ITEM>
+				<VALUE>Spaces</VALUE>
+				<SHORT>s</SHORT>
+				<PREVIEW>initial\r\nbegin\r\n****$display(&quot;a=%h*b=%d&quot;,\r\n*************rval,\r\n*************rval);\r\nend</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>Tab</VALUE>
+				<SHORT>t</SHORT>
+				<PREVIEW>initial\r\nbegin\r\n---&gt;$display(&quot;a=%h*b=%d&quot;,\r\n---&gt;*********rval,\r\n---&gt;*********rval);\r\nend</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>Force tab</VALUE>
+				<SHORT>T</SHORT>
+				<PREVIEW>initial\r\nbegin\r\n---&gt;$display(&quot;a=%h*b=%d&quot;,\r\n---&gt;---&gt;---&gt;*rval,\r\n---&gt;---&gt;---&gt;*rval);\r\nend</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Indent number</NAME>
+			<TYPE>Number</TYPE>
+			<VALUE>4</VALUE>
+			<RANGE>2, 20</RANGE>
+			<BUDDY>TRUE</BUDDY>
+			<PREVIEW>//indent_number4\r\ninitial\r\nbegin\r\n    areg = 0;\r\nend\r\n\r\n//indent_number5\r\ninitial\r\nbegin\r\n     areg = 0;\r\nend</PREVIEW>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Indent brackets</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>B</SHORT>
+				<PREVIEW>initial\r\n    begin\r\n    areg = 0;\r\n    end</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>initial\r\nbegin\r\n    areg = 0;\r\nend</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Indent blocks</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>G</SHORT>
+				<PREVIEW>initial\r\n    begin\r\n        areg = 0;\r\n    end</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>initial\r\nbegin\r\n    areg = 0;\r\nend</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Min conditional indent</NAME>
+			<TYPE>Number</TYPE>
+			<VALUE>0</VALUE>
+			<RANGE>0, 20</RANGE>
+			<SHORT>m</SHORT>
+			<PREVIEW>//min-conditional-indent0\r\nif (a &gt; b\r\n    || c &gt; d)\r\n    out1 &lt;= int1;\r\n\r\n//min-conditional-indent6\r\nif (a &gt; b\r\n      || c &gt; d)\r\n    out1 &lt;= int1;</PREVIEW>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Max instatement indent</NAME>
+			<TYPE>Number</TYPE>
+			<VALUE>40</VALUE>
+			<RANGE>40, 120</RANGE>
+			<SHORT>M</SHORT>
+			<PREVIEW>fooFunction(barArg1,\r\n         barArg2,\r\n         barArg3);\r\n\r\nbecomes (with larger value)\r\n\r\nfooFunction(barArg1,\r\n            barArg2,\r\n            barArg3);</PREVIEW>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Fill empty lines</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>E</SHORT>
+				<PREVIEW>initial\r\nbegin\r\n****areg*=*0;\r\n****\r\n****areg*=*1;\r\nend</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>initial\r\nbegin\r\n****areg*=*0;\r\n\r\n****areg*=*1;\r\nend</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Indent preprocessor</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>w</SHORT>
+				<PREVIEW>`define aa \\r\n        a + b</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>`define aa \\r\na + b</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Formatting</NAME>
+			<GROUP>TRUE</GROUP>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Brackets break</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>b</SHORT>
+				<PREVIEW>// ANSI\r\ninitial\r\nbegin\r\n    areg = 0;\r\nend</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Brackets attach</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>a</SHORT>
+				<PREVIEW>// KR\r\ninitial begin\r\n    areg = 0;\r\nend</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Keep one line statements</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>o</SHORT>
+				<PREVIEW>initial\r\nbegin\r\n    areg = 0;areg = 1;\r\nend\r\n\r\n//remains unchanged.</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>initial\r\nbegin\r\n    areg = 0;\r\n    areg = 1;\r\nend</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Keep one line blocks</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>O</SHORT>
+				<PREVIEW>initial\r\nbegin\r\n    areg = 0;areg = 1;\r\nend\r\n\r\n//remains unchanged.</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>initial\r\nbegin\r\n    areg = 0;\r\n    areg = 1;\r\nend</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Pad operators</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>p</SHORT>
+				<PREVIEW>if (a &gt; b)\r\n    out1 &lt;= int1;</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>if (a&gt;b)\r\n    out1&lt;=int1;</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Pad parens</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>L</SHORT>
+				<PREVIEW>if ( isFoo( a, b ) )\r\n    bar( a, b );</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>if (isFoo(a, b))\r\n    bar(a, b);</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Pad block</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>l</SHORT>
+				<PREVIEW>if (isFoo(a, b))\r\nbegin bar(a, b);\r\nend</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>if (isFoo(a, b))\r\n    bar(a, b);</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Pad all</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>P</SHORT>
+				<PREVIEW>if ( isFoo( a, b ) )\r\nbegin bar( a, b );\r\nend</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>if (isFoo(a, b))\r\n    bar(a, b);</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Convert tabs</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>c</SHORT>
+				<PREVIEW>initial\r\nbegin\r\n****areg****=*0;\r\nend</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>initial\r\nbegin\r\n****areg---&gt;=*0;\r\nend</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Break blocks</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>f</SHORT>
+				<PREVIEW>initial\r\nbegin\r\n    areg = 0;\r\n\r\n    if (a &gt; b)\r\n    begin\r\n        areg = 1;\r\n    end\r\n\r\n    areg = 2;\r\nend</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>initial\r\nbegin\r\n    areg = 0;\r\n    if (a &gt; b)\r\n    begin\r\n        areg = 1;\r\n    end\r\n    areg = 2;\r\nend</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Break all blocks</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>F</SHORT>
+				<PREVIEW>initial\r\nbegin\r\n    areg = 0;\r\n\r\n    if (a &gt; b)\r\n    begin\r\n        areg = 1;\r\n    end\r\n\r\n    else if (a &lt; b)\r\n    begin\r\n        areg = 1;\r\n    end\r\n\r\n    areg = 2;\r\nend</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>initial\r\nbegin\r\n    areg = 0;\r\n    if (a &gt; b)\r\n    begin\r\n        areg = 1;\r\n    end\r\n    else if (a &lt; b)\r\n    begin\r\n        areg = 1;\r\n    end\r\n    areg = 2;\r\nend</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Break elseifs</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>e</SHORT>
+				<PREVIEW>initial\r\nbegin\r\n    if (a &gt; b)\r\n    begin\r\n        areg = 1;\r\n    end\r\n    else\r\n        if (a &lt; b)\r\n        begin\r\n            areg = 1;\r\n        end\r\nend</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>initial\r\nbegin\r\n    if (a &gt; b)\r\n    begin\r\n        areg = 1;\r\n    end\r\n    else if (a &lt; b)\r\n    begin\r\n        areg = 1;\r\n    end\r\nend</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+	</PROPERTYS>
+</SETCONFIG>

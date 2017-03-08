@@ -30,14 +30,14 @@ TidyDeafult GlobalTidy::m_TidyNames[MAX_SYN_LANG] = {
     {"Objective-C",					("-A1-p-N-Y-k3"),																			SYN_OBJECTIVEC},
     {"Pasca",						("*.dpr;*.dpk;*.pas;*.dfm;*.inc;*.pp;"),													SYN_PASCAL},
     {"Per",							("*.pl;*.pm;*.plx;"),																		SYN_PERL},
-    {"PHP",							("-sas-icd-samt-salo-saeo-saro-sabo-saao-samp-aas-rsl-iel-rpc-rst-st"),					SYN_PHP},
+    {"PHP",							("-sas-icd-samt-salo-saeo-saro-sabo-saao-samp-aas-rsl-iel-rpc-rst-st"),					    SYN_PHP},
     {"Python",                      ("*.py;*.pyw;"),																			SYN_PYTHON},
     {"Ruby",						("*.rb;*.rbw;"),																			SYN_RUBY},
     {"SQ",							("-cn2-el-ml0"),																			SYN_SQL},
     {"VB",                          ("*.vb;*.bas;*.frm;*.cls;*.ctl;*.pag;*.dsr;*.dob;*.vbs;*.dsm;*.vbp;*.vbg;*.mak;*.vbw;"),	SYN_VB},
-    {"Verilog",						("*.v;*.vl;*.vmd;"),																		SYN_VERILOG},
+    {"Verilog",						("-A1"),																		            SYN_VERILOG},
     {"VHD",							("*.vhd;*.vhdl;*.vho;"),																	SYN_VHDL},
-    {"XM",							("-aan-dep-fb-fbc-js-ll-n-ix-qa-qn-m-wa-wj-wp-ws-sw-fo-i1-ce0-ie0-oe0-w0"),				SYN_XML}
+    {"XM",							("-aan-dep-fb-fbc-js-ll-n-ix-qa-qn-m-wa-wj-wp-ws-sw-fo-i1-ce0-ie0-oe0-w0"),				    SYN_XML}
 };
 
 GlobalTidy g_GlobalTidy;
@@ -67,6 +67,7 @@ void GlobalTidy::InitGlobalTidy(const std::string &strDllPath)
     m_bTidySyn[SYN_CSS] = true;
     m_bTidySyn[SYN_JSON] = true;
     m_bTidySyn[SYN_SQL] = true;
+    m_bTidySyn[SYN_VERILOG] = true;
 
 	m_TidyCpp = m_TidyNames[SYN_CPP].tidyName;
 	m_TidyJava = m_TidyNames[SYN_JAVA].tidyName;
@@ -78,7 +79,8 @@ void GlobalTidy::InitGlobalTidy(const std::string &strDllPath)
 	m_TidyJs = m_TidyNames[SYN_JAVASCRIPT].tidyName;
 	m_TidyCss = m_TidyNames[SYN_CSS].tidyName;
 	m_TidyJson = m_TidyNames[SYN_JSON].tidyName;
-	m_TidySql = m_TidyNames[SYN_SQL].tidyName;
+    m_TidySql = m_TidyNames[SYN_SQL].tidyName;
+    m_TidyVerilog = m_TidyNames[SYN_VERILOG].tidyName;
 	LoadGlobalTidy(strDllPath);
 }
 
@@ -192,6 +194,11 @@ bool GlobalTidy::LoadFromReg()
 			m_TidySql = strTidy;
 		}
 
+        if (readKey(m_TidyNames[SYN_VERILOG].langName, strTidy))
+        {
+            m_TidyVerilog = strTidy;
+        }
+
 		RegCloseKey(hKEY);
 		return true;
 	}
@@ -284,6 +291,10 @@ bool GlobalTidy::LoadFromFile(const std::string &strDllPath)
 					{
 						m_TidyXml = strTidy;
 					}
+                    else if (strLang == "Verilog")
+                    {
+                        m_TidyVerilog = strTidy;
+                    }
 				}
 			}
 		}

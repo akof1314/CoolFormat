@@ -54,6 +54,9 @@ public:
 	/** SqlFormatter选项类 */
 	CString m_TidySql;
 
+    /** VerilogFormatterLib选项类 */
+    CString m_TidyVerilog;
+
 	/** 默认的语言结构体数组 */
 	static TidyDeafult m_TidyNames[MAX_SYN_LANG];
 };

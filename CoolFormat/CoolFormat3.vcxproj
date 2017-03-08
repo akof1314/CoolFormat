@@ -543,6 +543,7 @@
     <Xml Include="res\SetConfig\JSON.xml" />
     <Xml Include="res\SetConfig\PHP.xml" />
     <Xml Include="res\SetConfig\SQL.xml" />
+    <Xml Include="res\SetConfig\Verilog.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

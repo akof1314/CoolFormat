@@ -7,6 +7,7 @@
 #include "CFPhpTidy.h"
 #include "CFHtmlTidy.h"
 #include "CFCppTidy.h"
+#include "CFVerilogTidy.h"
 
 #ifdef _DEBUG
 #pragma comment(lib, "CssTidyLibd.lib")
@@ -16,6 +17,7 @@
 #pragma comment(lib, "PhpFormatterLibd.lib")
 #pragma comment(lib, "tidylibd.lib")
 #pragma comment(lib, "AStyleLibd.lib")
+#pragma comment(lib, "VerilogFormatterLibd.lib")
 #else
 #pragma comment(lib, "CssTidyLib.lib")
 #pragma comment(lib, "SqlFormatterLib.lib")
@@ -24,6 +26,7 @@
 #pragma comment(lib, "PhpFormatterLib.lib")
 #pragma comment(lib, "tidylib.lib")
 #pragma comment(lib, "AStyleLib.lib")
+#pragma comment(lib, "VerilogFormatterLib.lib")
 #endif // _DEBUG
 
 CFormatterHelp::CFormatterHelp(void)
@@ -119,6 +122,12 @@ BOOL CFormatterHelp::DoFormatter(UINT nLanguage, const CString &strTextIn, CStri
 		strTidy = CT2A(g_GlobalTidy.m_TidySql);
 	}
 	break;
+    case SYN_VERILOG:
+    {
+        pTidy = new CCFVerilogTidy();
+        strTidy = CT2A(g_GlobalTidy.m_TidyVerilog);
+    }
+    break;
 	default:
 		return FALSE;
 	}
