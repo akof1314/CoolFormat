@@ -125,7 +125,9 @@ BOOL CFormatterHelp::DoFormatter(UINT nLanguage, const CString &strTextIn, CStri
     case SYN_VERILOG:
     {
         pTidy = new CCFVerilogTidy();
-        strTidy = CT2A(g_GlobalTidy.m_TidyVerilog);
+        CString strNewTidy(g_GlobalTidy.m_TidyVerilog);
+        strNewTidy.Replace(_T("-"), _T(" -"));
+        strTidy = CT2A(strNewTidy);
     }
     break;
 	default:
