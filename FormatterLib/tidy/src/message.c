@@ -285,10 +285,14 @@ static void messagePos( TidyDocImpl* doc, TidyReportLevel level, uint code,
             b = (*cp & 0xff);
             outp->putByte( outp->sinkData, b );
         }
+        tchar c;
         for ( cp = messageBuf; *cp; ++cp )
         {
             b = (*cp & 0xff);
-            outp->putByte( outp->sinkData, b );
+            c = (unsigned char)b;
+            if (c > 0x7F)
+                cp += TY_(GetUTF8)(cp, &c);
+            outp->putByte( outp->sinkData, c );
         }
         TY_(WriteChar)( '\n', doc->errout );
         TidyDocFree(doc, buf);
