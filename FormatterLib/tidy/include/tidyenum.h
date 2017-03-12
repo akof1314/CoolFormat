@@ -1,61 +1,13 @@
 #ifndef __TIDYENUM_H__
 #define __TIDYENUM_H__
 
-/* @file tidyenum.h -- Split public enums into separate header
+/** @file tidyenum.h - Separated public enumerations header
 
   Simplifies enum re-use in various wrappers.  e.g. SWIG
   generated wrappers and COM IDL files.
 
-  Copyright (c) 1998-2008 World Wide Web Consortium
-  (Massachusetts Institute of Technology, European Research 
-  Consortium for Informatics and Mathematics, Keio University).
-  All Rights Reserved.
-
-  CVS Info :
-
-    $Author: arnaud02 $ 
-    $Date: 2008/06/18 20:18:54 $ 
-    $Revision: 1.18 $ 
-
-  Contributing Author(s):
-
-     Dave Raggett <dsr@w3.org>
-
-  The contributing author(s) would like to thank all those who
-  helped with testing, bug fixes and suggestions for improvements. 
-  This wouldn't have been possible without your help.
-
-  COPYRIGHT NOTICE:
- 
-  This software and documentation is provided "as is," and
-  the copyright holders and contributing author(s) make no
-  representations or warranties, express or implied, including
-  but not limited to, warranties of merchantability or fitness
-  for any particular purpose or that the use of the software or
-  documentation will not infringe any third party patents,
-  copyrights, trademarks or other rights. 
-
-  The copyright holders and contributing author(s) will not be held
-  liable for any direct, indirect, special or consequential damages
-  arising out of any use of the software or documentation, even if
-  advised of the possibility of such damage.
-
-  Permission is hereby granted to use, copy, modify, and distribute
-  this source code, or portions hereof, documentation and executables,
-  for any purpose, without fee, subject to the following restrictions:
-
-  1. The origin of this source code must not be misrepresented.
-  2. Altered versions must be plainly marked as such and must
-     not be misrepresented as being the original source.
-  3. This Copyright notice may not be removed or altered from any
-     source or altered source distribution.
- 
-  The copyright holders and contributing author(s) specifically
-  permit, without fee, and encourage the use of this source code
-  as a component for supporting the Hypertext Markup Language in
-  commercial products. If you use this source code in a product,
-  acknowledgment is not required but would be appreciated.
-
+  (c) 1998-2016 (W3C) MIT, ERCIM, Keio University
+  See tidy.h for the full copyright notice.
 
   Created 2001-05-20 by Charles Reitzel
   Updated 2002-07-01 by Charles Reitzel - 1st Implementation
@@ -82,17 +34,23 @@ typedef enum
 
 
 /** Option IDs Used to get/set option values.
+
+    These TidyOptionId are used throughout libtidy, and also
+    have associated localized strings to describe them.
+ 
+    Note this enum MUST start at zero due to historical design-time
+    decisions that make assumptions about this starting value.
 */
 typedef enum
 {
   TidyUnknownOption,   /**< Unknown option! */
-  TidyIndentSpaces,    /**< Indentation n spaces */
+  TidyIndentSpaces,    /**< Indentation n spaces/tabs */
   TidyWrapLen,         /**< Wrap margin */
   TidyTabSize,         /**< Expand tabs to n spaces */
 
   TidyCharEncoding,    /**< In/out character encoding */
   TidyInCharEncoding,  /**< Input character encoding (if different) */
-  TidyOutCharEncoding, /**< Output character encoding (if different) */    
+  TidyOutCharEncoding, /**< Output character encoding (if different) */
   TidyNewline,         /**< Output line ending (default to platform) */
 
   TidyDoctypeMode,     /**< See doctype property */
@@ -100,7 +58,7 @@ typedef enum
 
   TidyDuplicateAttrs,  /**< Keep first or last duplicate attribute */
   TidyAltText,         /**< Default text for alt attribute */
-  
+
   /* obsolete */
   TidySlideStyle,      /**< Style sheet for slides: not used for anything yet */
 
@@ -108,11 +66,14 @@ typedef enum
   TidyOutFile,         /**< File name to write markup to */
   TidyWriteBack,       /**< If true then output tidied markup */
   TidyShowMarkup,      /**< If false, normal output is suppressed */
+  TidyShowInfo,        /**< If true, info-level messages are shown */
   TidyShowWarnings,    /**< However errors are always shown */
   TidyQuiet,           /**< No 'Parsing X', guessed DTD or summary */
   TidyIndentContent,   /**< Indent content of appropriate tags */
                        /**< "auto" does text/block level content indentation */
-  TidyHideEndTags,     /**< Suppress optional end tags */
+  TidyCoerceEndTags,   /**< Coerce end tags from start tags where probably intended */
+  TidyOmitOptionalTags,/**< Suppress optional start tags and end tags */
+  TidyHideEndTags,     /**< Legacy name for TidyOmitOptionalTags */
   TidyXmlTags,         /**< Treat input as XML */
   TidyXmlOut,          /**< Create output as XML */
   TidyXhtmlOut,        /**< Output extensible HTML */
@@ -123,9 +84,11 @@ typedef enum
   TidyUpperCaseAttrs,  /**< Output attributes in upper not lower case */
   TidyMakeBare,        /**< Make bare HTML: remove Microsoft cruft */
   TidyMakeClean,       /**< Replace presentational clutter by style rules */
+  TidyGDocClean,       /**< Clean up HTML exported from Google Docs */
   TidyLogicalEmphasis, /**< Replace i by em and b by strong */
   TidyDropPropAttrs,   /**< Discard proprietary attributes */
   TidyDropFontTags,    /**< Discard presentation tags */
+  TidyDropEmptyElems,  /**< Discard empty elements */
   TidyDropEmptyParas,  /**< Discard empty p elements */
   TidyFixComments,     /**< Fix comments with adjacent hyphens */
   TidyBreakBeforeBR,   /**< Output newline before <br> or not? */
@@ -189,7 +152,7 @@ typedef enum
   TidyEmptyTags,       /**< Declared empty tags */
   TidyPreTags,         /**< Declared pre tags */
 
-  TidyAccessibilityCheckLevel, /**< Accessibility check level 
+  TidyAccessibilityCheckLevel, /**< Accessibility check level
                                    0 (old style), or 1, 2, 3 */
 
   TidyVertSpace,       /**< degree to which markup is spread out vertically */
@@ -198,15 +161,21 @@ typedef enum
 #else
   TidyPunctWrapNotUsed,
 #endif
-  TidyMergeDivs,       /**< Merge multiple DIVs */
+  TidyMergeEmphasis,       /**< Merge nested B and I elements */
+  TidyMergeDivs,           /**< Merge multiple DIVs */
   TidyDecorateInferredUL,  /**< Mark inferred UL elements with no indent CSS */
   TidyPreserveEntities,    /**< Preserve entities */
   TidySortAttributes,      /**< Sort attributes */
-  TidyMergeSpans,       /**< Merge multiple SPANs */
-  TidyAnchorAsName,    /**< Define anchors as name attributes */
-  N_TIDY_OPTIONS       /**< Must be last */
+  TidyMergeSpans,          /**< Merge multiple SPANs */
+  TidyAnchorAsName,        /**< Define anchors as name attributes */
+  TidyPPrintTabs,          /**< Indent using tabs istead of spaces */
+  TidySkipNested,          /**< Skip nested tags in script and style CDATA */
+  TidyStrictTagsAttr,      /**< Ensure tags and attributes match output HTML version */
+  TidyEscapeScripts,       /**< Escape items that look like closing tags in script tags */
+  N_TIDY_OPTIONS           /**< Must be last */
 } TidyOptionId;
 
+    
 /** Option data types
 */
 typedef enum
@@ -240,6 +209,7 @@ typedef enum
 */
 typedef enum
 {
+    TidyDoctypeHtml5,   /**< <!DOCTYPE html> */
     TidyDoctypeOmit,    /**< Omit DOCTYPE altogether */
     TidyDoctypeAuto,    /**< Keep DOCTYPE in input.  Set version to content */
     TidyDoctypeStrict,  /**< Convert document to HTML 4 strict content model */
@@ -264,10 +234,11 @@ typedef enum
     TidySortAttrAlpha
 } TidyAttrSortStrategy;
 
+
 /* I/O and Message handling interface
 **
-** By default, Tidy will define, create and use 
-** instances of input and output handlers for 
+** By default, Tidy will define, create and use
+** instances of input and output handlers for
 ** standard C buffered I/O (i.e. FILE* stdin,
 ** FILE* stdout and FILE* stderr for content
 ** input, content output and diagnostic output,
@@ -277,8 +248,13 @@ typedef enum
 */
 
 /** Message severity level
+ *  These TidyReportLevel are used throughout libtidy, but don't
+ *  have associated localized strings to describe them because
+ *  TidyReportLevel is externally-facing, and changing the enum
+ *  starting int can break existing API's for poorly-written
+ *  applications using libtidy. See enum `TidyReportLevelKeys`.
 */
-typedef enum 
+typedef enum
 {
   TidyInfo,             /**< Information about markup usage */
   TidyWarning,          /**< Warning message */
@@ -289,13 +265,29 @@ typedef enum
   TidyFatal             /**< Crash! */
 } TidyReportLevel;
 
+/** Message severity level - string lookup keys
+ *  These TidyReportLevelKeys are used throughout libtidy, and
+ *  have associated localized strings to describe them. They
+ *  correspond to enum `TidyReportLevel`.
+*/
+typedef enum
+{
+  TidyInfoString = 600,
+  TidyWarningString,
+  TidyConfigString,
+  TidyAccessString,
+  TidyErrorString,
+  TidyBadDocumentString,
+  TidyFatalString
+} TidyReportLevelKeys;
+
 
 /* Document tree traversal functions
 */
 
 /** Node types
 */
-typedef enum 
+typedef enum
 {
   TidyNode_Root,        /**< Root */
   TidyNode_DocType,     /**< DOCTYPE */
@@ -383,6 +375,7 @@ typedef enum
   TidyTag_LINK,     /**< LINK */
   TidyTag_LISTING,  /**< LISTING */
   TidyTag_MAP,      /**< MAP */
+  TidyTag_MATHML,   /**< MATH  (HTML5) [i_a]2 MathML embedded in [X]HTML */
   TidyTag_MARQUEE,  /**< MARQUEE */
   TidyTag_MENU,     /**< MENU */
   TidyTag_META,     /**< META */
@@ -399,6 +392,7 @@ typedef enum
   TidyTag_OPTION,   /**< OPTION */
   TidyTag_P,        /**< P */
   TidyTag_PARAM,    /**< PARAM */
+  TidyTag_PICTURE,  /**< PICTURE (HTML5) */
   TidyTag_PLAINTEXT,/**< PLAINTEXT */
   TidyTag_PRE,      /**< PRE */
   TidyTag_Q,        /**< Q */
@@ -422,6 +416,7 @@ typedef enum
   TidyTag_STYLE,    /**< STYLE */
   TidyTag_SUB,      /**< SUB */
   TidyTag_SUP,      /**< SUP */
+  TidyTag_SVG,      /**< SVG  (HTML5) */
   TidyTag_TABLE,    /**< TABLE */
   TidyTag_TBODY,    /**< TBODY */
   TidyTag_TD,       /**< TD */
@@ -438,6 +433,35 @@ typedef enum
   TidyTag_WBR,      /**< WBR */
   TidyTag_XMP,      /**< XMP */
   TidyTag_NEXTID,   /**< NEXTID */
+
+  TidyTag_ARTICLE,
+  TidyTag_ASIDE,
+  TidyTag_AUDIO,
+  TidyTag_BDI,
+  TidyTag_CANVAS,
+  TidyTag_COMMAND,
+  TidyTag_DATALIST,
+  TidyTag_DETAILS,
+  TidyTag_DIALOG,
+  TidyTag_FIGCAPTION,
+  TidyTag_FIGURE,
+  TidyTag_FOOTER,
+  TidyTag_HEADER,
+  TidyTag_HGROUP,
+  TidyTag_MAIN,
+  TidyTag_MARK,
+  TidyTag_MENUITEM,
+  TidyTag_METER,
+  TidyTag_NAV,
+  TidyTag_OUTPUT,
+  TidyTag_PROGRESS,
+  TidyTag_SECTION,
+  TidyTag_SOURCE,
+  TidyTag_SUMMARY,
+  TidyTag_TEMPLATE,
+  TidyTag_TIME,
+  TidyTag_TRACK,
+  TidyTag_VIDEO,
 
   N_TIDY_TAGS       /**< Must be last */
 } TidyTagId;
@@ -458,6 +482,7 @@ typedef enum
   TidyAttr_ADD_DATE,          /**< ADD_DATE= */
   TidyAttr_ALIGN,             /**< ALIGN= */
   TidyAttr_ALINK,             /**< ALINK= */
+  TidyAttr_ALLOWFULLSCREEN,   /**< ALLOWFULLSCREEN= */
   TidyAttr_ALT,               /**< ALT= */
   TidyAttr_ARCHIVE,           /**< ARCHIVE= */
   TidyAttr_AXIS,              /**< AXIS= */
@@ -513,6 +538,11 @@ typedef enum
   TidyAttr_HTTP_EQUIV,        /**< HTTP_EQUIV= */
   TidyAttr_ID,                /**< ID= */
   TidyAttr_ISMAP,             /**< ISMAP= */
+  TidyAttr_ITEMID,            /**< ITEMID= */
+  TidyAttr_ITEMPROP,          /**< ITEMPROP= */
+  TidyAttr_ITEMREF,           /**< ITEMREF= */
+  TidyAttr_ITEMSCOPE,         /**< ITEMSCOPE= */
+  TidyAttr_ITEMTYPE,          /**< ITEMTYPE= */
   TidyAttr_LABEL,             /**< LABEL= */
   TidyAttr_LANG,              /**< LANG= */
   TidyAttr_LANGUAGE,          /**< LANGUAGE= */
@@ -568,6 +598,7 @@ typedef enum
   TidyAttr_REL,               /**< REL= */
   TidyAttr_REV,               /**< REV= */
   TidyAttr_RIGHTMARGIN,       /**< RIGHTMARGIN= */
+  TidyAttr_ROLE,              /**< ROLE= */
   TidyAttr_ROWS,              /**< ROWS= */
   TidyAttr_ROWSPAN,           /**< ROWSPAN= */
   TidyAttr_RULES,             /**< RULES= */
@@ -582,6 +613,7 @@ typedef enum
   TidyAttr_SIZE,              /**< SIZE= */
   TidyAttr_SPAN,              /**< SPAN= */
   TidyAttr_SRC,               /**< SRC= */
+  TidyAttr_SRCSET,            /**< SRCSET= (HTML5) */
   TidyAttr_STANDBY,           /**< STANDBY= */
   TidyAttr_START,             /**< START= */
   TidyAttr_STYLE,             /**< STYLE= */
@@ -591,6 +623,7 @@ typedef enum
   TidyAttr_TEXT,              /**< TEXT= */
   TidyAttr_TITLE,             /**< TITLE= */
   TidyAttr_TOPMARGIN,         /**< TOPMARGIN= */
+  TidyAttr_TRANSLATE,         /**< TRANSLATE= */
   TidyAttr_TYPE,              /**< TYPE= */
   TidyAttr_USEMAP,            /**< USEMAP= */
   TidyAttr_VALIGN,            /**< VALIGN= */
@@ -613,6 +646,170 @@ typedef enum
   TidyAttr_SDASUFF,           /**< SDASUFF= */
   TidyAttr_URN,               /**< URN= */
 
+  TidyAttr_ASYNC,
+  TidyAttr_AUTOCOMPLETE,
+  TidyAttr_AUTOFOCUS,
+  TidyAttr_AUTOPLAY,
+  TidyAttr_CHALLENGE,
+  TidyAttr_CONTENTEDITABLE,
+  TidyAttr_CONTEXTMENU,
+  TidyAttr_CONTROLS,
+  TidyAttr_CROSSORIGIN,       /**< CROSSORIGIN= */
+  TidyAttr_DEFAULT,
+  TidyAttr_DIRNAME,
+  TidyAttr_DRAGGABLE,
+  TidyAttr_DROPZONE,
+  TidyAttr_FORM,
+  TidyAttr_FORMACTION,
+  TidyAttr_FORMENCTYPE,
+  TidyAttr_FORMMETHOD,
+  TidyAttr_FORMNOVALIDATE,
+  TidyAttr_FORMTARGET,
+  TidyAttr_HIDDEN,
+  TidyAttr_HIGH,
+  TidyAttr_ICON,
+  TidyAttr_KEYTYPE,
+  TidyAttr_KIND,
+  TidyAttr_LIST,
+  TidyAttr_LOOP,
+  TidyAttr_LOW,
+  TidyAttr_MANIFEST,
+  TidyAttr_MAX,
+  TidyAttr_MEDIAGROUP,
+  TidyAttr_MIN,
+  TidyAttr_NOVALIDATE,
+  TidyAttr_OPEN,
+  TidyAttr_OPTIMUM,
+  TidyAttr_OnABORT,
+  TidyAttr_OnAFTERPRINT,
+  TidyAttr_OnBEFOREPRINT,
+  TidyAttr_OnCANPLAY,
+  TidyAttr_OnCANPLAYTHROUGH,
+  TidyAttr_OnCONTEXTMENU,
+  TidyAttr_OnCUECHANGE,
+  TidyAttr_OnDRAG,
+  TidyAttr_OnDRAGEND,
+  TidyAttr_OnDRAGENTER,
+  TidyAttr_OnDRAGLEAVE,
+  TidyAttr_OnDRAGOVER,
+  TidyAttr_OnDRAGSTART,
+  TidyAttr_OnDROP,
+  TidyAttr_OnDURATIONCHANGE,
+  TidyAttr_OnEMPTIED,
+  TidyAttr_OnENDED,
+  TidyAttr_OnERROR,
+  TidyAttr_OnHASHCHANGE,
+  TidyAttr_OnINPUT,
+  TidyAttr_OnINVALID,
+  TidyAttr_OnLOADEDDATA,
+  TidyAttr_OnLOADEDMETADATA,
+  TidyAttr_OnLOADSTART,
+  TidyAttr_OnMESSAGE,
+  TidyAttr_OnMOUSEWHEEL,
+  TidyAttr_OnOFFLINE,
+  TidyAttr_OnONLINE,
+  TidyAttr_OnPAGEHIDE,
+  TidyAttr_OnPAGESHOW,
+  TidyAttr_OnPAUSE,
+  TidyAttr_OnPLAY,
+  TidyAttr_OnPLAYING,
+  TidyAttr_OnPOPSTATE,
+  TidyAttr_OnPROGRESS,
+  TidyAttr_OnRATECHANGE,
+  TidyAttr_OnREADYSTATECHANGE,
+  TidyAttr_OnREDO,
+  TidyAttr_OnRESIZE,
+  TidyAttr_OnSCROLL,
+  TidyAttr_OnSEEKED,
+  TidyAttr_OnSEEKING,
+  TidyAttr_OnSHOW,
+  TidyAttr_OnSTALLED,
+  TidyAttr_OnSTORAGE,
+  TidyAttr_OnSUSPEND,
+  TidyAttr_OnTIMEUPDATE,
+  TidyAttr_OnUNDO,
+  TidyAttr_OnVOLUMECHANGE,
+  TidyAttr_OnWAITING,
+  TidyAttr_PATTERN,
+  TidyAttr_PLACEHOLDER,
+  TidyAttr_POSTER,
+  TidyAttr_PRELOAD,
+  TidyAttr_PUBDATE,
+  TidyAttr_RADIOGROUP,
+  TidyAttr_REQUIRED,
+  TidyAttr_REVERSED,
+  TidyAttr_SANDBOX,
+  TidyAttr_SCOPED,
+  TidyAttr_SEAMLESS,
+  TidyAttr_SIZES,
+  TidyAttr_SPELLCHECK,
+  TidyAttr_SRCDOC,
+  TidyAttr_SRCLANG,
+  TidyAttr_STEP,
+  TidyAttr_ARIA_ACTIVEDESCENDANT,
+  TidyAttr_ARIA_ATOMIC,
+  TidyAttr_ARIA_AUTOCOMPLETE,
+  TidyAttr_ARIA_BUSY,
+  TidyAttr_ARIA_CHECKED,
+  TidyAttr_ARIA_CONTROLS,
+  TidyAttr_ARIA_DESCRIBEDBY,
+  TidyAttr_ARIA_DISABLED,
+  TidyAttr_ARIA_DROPEFFECT,
+  TidyAttr_ARIA_EXPANDED,
+  TidyAttr_ARIA_FLOWTO,
+  TidyAttr_ARIA_GRABBED,
+  TidyAttr_ARIA_HASPOPUP,
+  TidyAttr_ARIA_HIDDEN,
+  TidyAttr_ARIA_INVALID,
+  TidyAttr_ARIA_LABEL,
+  TidyAttr_ARIA_LABELLEDBY,
+  TidyAttr_ARIA_LEVEL,
+  TidyAttr_ARIA_LIVE,
+  TidyAttr_ARIA_MULTILINE,
+  TidyAttr_ARIA_MULTISELECTABLE,
+  TidyAttr_ARIA_ORIENTATION,
+  TidyAttr_ARIA_OWNS,
+  TidyAttr_ARIA_POSINSET,
+  TidyAttr_ARIA_PRESSED,
+  TidyAttr_ARIA_READONLY,
+  TidyAttr_ARIA_RELEVANT,
+  TidyAttr_ARIA_REQUIRED,
+  TidyAttr_ARIA_SELECTED,
+  TidyAttr_ARIA_SETSIZE,
+  TidyAttr_ARIA_SORT,
+  TidyAttr_ARIA_VALUEMAX,
+  TidyAttr_ARIA_VALUEMIN,
+  TidyAttr_ARIA_VALUENOW,
+  TidyAttr_ARIA_VALUETEXT,
+
+  /* SVG attributes (SVG 1.1) */
+  TidyAttr_X,                   /**< X= */
+  TidyAttr_Y,                   /**< Y= */
+  TidyAttr_VIEWBOX,             /**< VIEWBOX= */
+  TidyAttr_PRESERVEASPECTRATIO, /**< PRESERVEASPECTRATIO= */
+  TidyAttr_ZOOMANDPAN,          /**< ZOOMANDPAN= */
+  TidyAttr_BASEPROFILE,         /**< BASEPROFILE= */
+  TidyAttr_CONTENTSCRIPTTYPE,   /**< CONTENTSCRIPTTYPE= */
+  TidyAttr_CONTENTSTYLETYPE,    /**< CONTENTSTYLETYPE= */
+  /* MathML <math> attributes */
+  TidyAttr_DISPLAY,             /**< DISPLAY= (html5) */
+
+  /* RDFa global attributes */
+  TidyAttr_ABOUT,             /**< ABOUT= */
+  TidyAttr_DATATYPE,          /**< DATATYPE= */
+  TidyAttr_INLIST,            /**< INLIST= */
+  TidyAttr_PREFIX,            /**< PREFIX= */
+  TidyAttr_PROPERTY,          /**< PROPERTY= */
+  TidyAttr_RESOURCE,          /**< RESOURCE= */
+  TidyAttr_TYPEOF,            /**< TYPEOF= */
+  TidyAttr_VOCAB,             /**< VOCAB= */
+
+  TidyAttr_INTEGRITY,         /**< INTEGRITY= */
+
+  TidyAttr_AS,               /**< AS= */
+
+  TidyAttr_XMLNSXLINK,        /**< svg xmls:xlink="url" */
+
   N_TIDY_ATTRIBS              /**< Must be last */
 } TidyAttrId;
 
@@ -620,3 +817,4 @@ typedef enum
 }  /* extern "C" */
 #endif
 #endif /* __TIDYENUM_H__ */
+

@@ -96,6 +96,20 @@
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
+			<NAME>Coerce endtags</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>Yes</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>cet</SHORT>
+				<PREVIEW>&lt;span&gt;foo &lt;b&gt;bar&lt;/b&gt; baz&lt;/span&gt;</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>&lt;span&gt;foo &lt;b&gt;bar&lt;b&gt; baz&lt;/span&gt;</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
 			<NAME>CSS-prefix</NAME>
 			<TYPE>Text</TYPE>
 			<SHORT>cp</SHORT>
@@ -144,12 +158,31 @@
 				<SHORT>d4</SHORT>
 				<PREVIEW>use Doctype User</PREVIEW>
 			</ITEM>
+			<ITEM>
+				<VALUE>Html5</VALUE>
+				<SHORT>d5</SHORT>
+				<PREVIEW>&lt;!DOCTYPE html&gt;</PREVIEW>
+			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
 			<NAME>Doctype User</NAME>
 			<TYPE>Text</TYPE>
 			<SHORT>du</SHORT>
 			<PREVIEW>&quot;-//ACME//DTD HTML 3.14159//EN&quot;</PREVIEW>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Drop empty elements</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>dee</SHORT>
+				<PREVIEW>&lt;span&gt;foo baz&lt;/span&gt;</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>&lt;span&gt;foo &lt;b&gt;&lt;/b&gt; baz&lt;/span&gt;</PREVIEW>
+			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
 			<NAME>Drop empty paras</NAME>
@@ -186,11 +219,11 @@
 			<ITEM>
 				<VALUE>Yes</VALUE>
 				<SHORT>dpa</SHORT>
-				<PREVIEW>Strip out proprietary attributes</PREVIEW>
+				<PREVIEW>&lt;form&gt;\r\n  &lt;input type=&quot;text&quot;&gt;\r\n&lt;/form&gt;\r\n</PREVIEW>
 			</ITEM>
 			<ITEM>
 				<VALUE>No</VALUE>
-				<PREVIEW>No strip out proprietary attributes</PREVIEW>
+				<PREVIEW>&lt;form&gt;\r\n  &lt;input type=&quot;text&quot; hidefocus=&quot;on&quot;&gt;\r\n&lt;/form&gt;</PREVIEW>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
@@ -275,6 +308,19 @@
 			<ITEM>
 				<VALUE>No</VALUE>
 				<PREVIEW>&lt;img src=&quot;/i/eg tulip.jpg&quot; /&gt;</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Gdoc</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>gdc</SHORT>
+				<PREVIEW>This option specifies if Tidy should enable specific behavior for cleaning up HTML exported from Google Docs.</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
@@ -424,6 +470,20 @@
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
+			<NAME>Merge emphasis</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>me</SHORT>
+				<PREVIEW>&lt;b class=&quot;rtop-2&quot;&gt;foo bar baz&lt;/b&gt;.</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>&lt;b class=&quot;rtop-2&quot;&gt;foo &lt;b class=&quot;r2-2&quot;&gt;bar&lt;/b&gt; baz&lt;/b&gt;</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
 			<NAME>Merge spans</NAME>
 			<TYPE>Combo</TYPE>
 			<VALUE>Auto</VALUE>
@@ -493,6 +553,19 @@
 			<ITEM>
 				<VALUE>No</VALUE>
 				<PREVIEW>&lt;q&gt;&amp;Agrave;&lt;/q&gt;</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Omit optional tags</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>oot</SHORT>
+				<PREVIEW>This option specifies if Tidy should omit optional start tags and end tags when generating output.</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
@@ -640,6 +713,32 @@
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
+			<NAME>Skip nested</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>sn</SHORT>
+				<PREVIEW>This option specifies that Tidy should skip nested tags when parsing script and style data.</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Strict tags attributes</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>sta</SHORT>
+				<PREVIEW>This options ensures that tags and attributes are applicable for the version of HTML that Tidy outputs.</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
 			<NAME>Uppercase attributes</NAME>
 			<TYPE>Combo</TYPE>
 			<VALUE>No</VALUE>
@@ -679,7 +778,7 @@
 			<ITEM>
 				<VALUE>No</VALUE>
 			</ITEM>
-		</PROPERTY>		
+		</PROPERTY>
 		<PROPERTY>
 			<NAME>Pretty Print</NAME>
 			<GROUP>TRUE</GROUP>
@@ -696,6 +795,19 @@
 			<ITEM>
 				<VALUE>No</VALUE>
 				<PREVIEW>123&lt;br /&gt;\r\n123&lt;br /&gt;</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Escape scripts</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>es</SHORT>
+				<PREVIEW>This option causes items that look like closing tags, like &lt;/g to be escaped to &lt;\/g. Set this option to &apos;no&apos; if you do not want this.</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
@@ -739,6 +851,20 @@
 			<RANGE>0, 100</RANGE>
 			<SHORT>is</SHORT>
 			<PREVIEW>//Indent spaces 3\r\n&lt;ol&gt;\r\n   &lt;li&gt;Coffee&lt;/li&gt;\r\n&lt;/ol&gt;\r\n\r\n//Indent spaces 2\r\n&lt;ol&gt;\r\n  &lt;li&gt;Coffee&lt;/li&gt;\r\n&lt;/ol&gt;</PREVIEW>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Indent with tabs</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>tb</SHORT>
+				<PREVIEW>&lt;ol&gt;\r\n---&gt;---&gt;&lt;li&gt;Coffee&lt;/li&gt;\r\n&lt;/ol&gt;</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>&lt;ol&gt;\r\n**&lt;li&gt;Coffee&lt;/li&gt;\r\n&lt;/ol&gt;</PREVIEW>
+			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
 			<NAME>Markup</NAME>
@@ -1113,6 +1239,27 @@
 			<GROUP>TRUE</GROUP>
 		</PROPERTY>
 		<PROPERTY>
+			<NAME>Show errors</NAME>
+			<TYPE>Number</TYPE>
+			<VALUE>6</VALUE>
+			<RANGE>0, 100</RANGE>
+			<SHORT>se</SHORT>
+			<PREVIEW>Specifies the number Tidy uses to determine if further errors should be shown</PREVIEW>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Show info</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>si</SHORT>
+				<PREVIEW>This option specifies if Tidy should display info-level messages.</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
 			<NAME>Show warnings</NAME>
 			<TYPE>Combo</TYPE>
 			<VALUE>No</VALUE>
@@ -1125,14 +1272,6 @@
 				<VALUE>No</VALUE>
 				<PREVIEW>No specifies if Tidy should suppress warnings</PREVIEW>
 			</ITEM>
-		</PROPERTY>
-		<PROPERTY>
-			<NAME>Show errors</NAME>
-			<TYPE>Number</TYPE>
-			<VALUE>6</VALUE>
-			<RANGE>0, 100</RANGE>
-			<SHORT>se</SHORT>
-			<PREVIEW>Specifies the number Tidy uses to determine if further errors should be shown</PREVIEW>
 		</PROPERTY>
 		<PROPERTY>
 			<NAME>Miscellaneous</NAME>

@@ -3,12 +3,6 @@
   (c) 1998-2006 (W3C) MIT, ERCIM, Keio University
   See tidy.h for the copyright notice.
   
-  CVS Info :
-
-    $Author: arnaud02 $ 
-    $Date: 2006/12/29 16:31:08 $ 
-    $Revision: 1.21 $ 
-
 */
 
 #include "tidy-int.h"
@@ -16,6 +10,9 @@
 #include "attrs.h"
 #include "streamio.h"
 #include "tmbstr.h"
+#if !defined(NDEBUG) && defined(_MSC_VER)
+#include "sprtf.h"
+#endif
 
 /* duplicate attributes */
 AttVal *TY_(DupAttrs)( TidyDocImpl* doc, AttVal *attrs)
@@ -45,6 +42,12 @@ static Bool IsNodePushable( Node *node )
         return no;
 
     if (node->tag->model & CM_OBJECT)
+        return no;
+
+    /*\ Issue #92: OLD problem of ins and del which are marked as both
+     *  inline and block, thus should NOT ever be 'inserted'
+    \*/
+    if (nodeIsINS(node) || nodeIsDEL(node))
         return no;
 
     return yes;
@@ -115,6 +118,7 @@ static void PopIStack( TidyDocImpl* doc )
         TY_(FreeAttribute)( doc, av );
     }
     TidyDocFree(doc, istack->element);
+    istack->element = NULL; /* remove the freed element */
 }
 
 static void PopIStackUntil( TidyDocImpl* doc, TidyTagId tid )
@@ -267,9 +271,12 @@ Node *TY_(InsertedToken)( TidyDocImpl* doc )
     node->end = lexer->txtend; /* was : lexer->txtstart; */
     istack = lexer->insert;
 
-#if 0 && defined(_DEBUG)
+/* #if 0 && defined(_DEBUG) */
+#if !defined(NDEBUG) && defined(_MSC_VER)
     if ( lexer->istacksize == 0 )
-        fprintf( stderr, "0-size istack!\n" );
+    {
+        SPRTF( "WARNING: ZERO sized istack!\n" );
+    }
 #endif
 
     node->element = TY_(tmbstrdup)(doc->allocator, istack->element);

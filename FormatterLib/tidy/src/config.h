@@ -6,12 +6,6 @@
   (c) 1998-2006 (W3C) MIT, ERCIM, Keio University
   See tidy.h for the copyright notice.
 
-  CVS Info :
-
-    $Author: arnaud02 $ 
-    $Date: 2006/12/29 16:31:08 $ 
-    $Revision: 1.14 $ 
-
   config files associate a property name with a value.
 
   // comments can start at the beginning of a line
@@ -68,11 +62,10 @@ typedef struct _tidy_config
 } TidyConfigImpl;
 
 
+/* Used to build a table of documentation cross-references. */
 typedef struct {
   TidyOptionId opt;          /**< Identifier. */
-  ctmbstr doc;               /**< HTML text */
-  TidyOptionId const *links; /**< Cross references.
-                             Last element must be 'TidyUnknownOption'. */
+  TidyOptionId const *links; /**< Cross references. Last element must be 'TidyUnknownOption'. */
 } TidyOptionDoc;
 
 

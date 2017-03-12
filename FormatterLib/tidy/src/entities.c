@@ -3,12 +3,6 @@
   (c) 1998-2008 (W3C) MIT, ERCIM, Keio University
   See tidy.h for the copyright notice.
 
-  CVS Info :
-
-    $Author: hoehrmann $ 
-    $Date: 2008/08/09 11:55:27 $ 
-    $Revision: 1.19 $ 
-
   Entity handling can be static because there are no config or
   document-specific values.  Lookup table is 100% defined at 
   compile time.
@@ -262,8 +256,8 @@ static const entity entities[] =
     { "rceil",    VERS_FROM40,  8969 },
     { "lfloor",   VERS_FROM40,  8970 },
     { "rfloor",   VERS_FROM40,  8971 },
-    { "lang",     VERS_FROM40,  9001 },
-    { "rang",     VERS_FROM40,  9002 },
+    { "lang",     VERS_FROM40, 10216 },
+    { "rang",     VERS_FROM40, 10217 },
     { "loz",      VERS_FROM40,  9674 },
     { "spades",   VERS_FROM40,  9824 },
     { "clubs",    VERS_FROM40,  9827 },
@@ -358,6 +352,7 @@ uint EntityCode( ctmbstr name, uint versions )
 Bool TY_(EntityInfo)( ctmbstr name, Bool isXml, uint* code, uint* versions )
 {
     const entity* np;
+    int res;
     assert( name && name[0] == '&' );
     assert( code != NULL );
     assert( versions != NULL );
@@ -369,13 +364,23 @@ Bool TY_(EntityInfo)( ctmbstr name, Bool isXml, uint* code, uint* versions )
 
         /* 'x' prefix denotes hexadecimal number format */
         if ( name[2] == 'x' || (!isXml && name[2] == 'X') )
-            sscanf( name+3, "%x", &c );
+            res = sscanf( name+3, "%x", &c );
         else
-            sscanf( name+2, "%u", &c );
+            res = sscanf( name+2, "%u", &c );
 
-        *code = c;
-        *versions = VERS_ALL;
-        return yes;
+        /*  Issue #373 - Null Char in XML result doc - sf905 2009 */
+        if ( res == 1 )
+        {
+            *code = c;
+            *versions = VERS_ALL;
+            return yes;
+        }
+        else
+        {
+            *code = 0;
+            *versions = ( isXml ? VERS_XML : VERS_PROPRIETARY );
+            return no;
+        }
     }
 
     /* Named entity: name ="&" followed by a name */

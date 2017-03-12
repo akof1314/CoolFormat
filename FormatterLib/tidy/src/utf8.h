@@ -6,16 +6,10 @@
   (c) 1998-2006 (W3C) MIT, ERCIM, Keio University
   See tidy.h for the copyright notice.
 
-  CVS Info :
-
-    $Author: arnaud02 $ 
-    $Date: 2006/09/12 15:14:44 $ 
-    $Revision: 1.5 $ 
-
 */
 
-#include "platform.h"
-#include "buffio.h"
+#include "tidyplatform.h"
+#include "tidybuffio.h"
 
 /* UTF-8 encoding/decoding support
 ** Does not convert character "codepoints", i.e. to/from 10646.

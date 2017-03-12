@@ -6,7 +6,6 @@
    (c) 1998-2006 (W3C) MIT, ERCIM, Keio University
    See tidy.h for the copyright notice.
 
-   $Id: attrdict.h,v 1.4 2006/09/12 15:14:44 arnaud02 Exp $
 */
 
 #include "tidy.h"
@@ -73,6 +72,7 @@ extern const AttrVersion TY_(W3CAttrsFor_LI)[];
 extern const AttrVersion TY_(W3CAttrsFor_LINK)[];
 extern const AttrVersion TY_(W3CAttrsFor_LISTING)[];
 extern const AttrVersion TY_(W3CAttrsFor_MAP)[];
+extern const AttrVersion TY_(W3CAttrsFor_MATHML)[]; /* [i_a]2 */
 extern const AttrVersion TY_(W3CAttrsFor_MENU)[];
 extern const AttrVersion TY_(W3CAttrsFor_META)[];
 extern const AttrVersion TY_(W3CAttrsFor_NEXTID)[];
@@ -84,6 +84,7 @@ extern const AttrVersion TY_(W3CAttrsFor_OPTGROUP)[];
 extern const AttrVersion TY_(W3CAttrsFor_OPTION)[];
 extern const AttrVersion TY_(W3CAttrsFor_P)[];
 extern const AttrVersion TY_(W3CAttrsFor_PARAM)[];
+extern const AttrVersion TY_(W3CAttrsFor_PICTURE)[]; /* Issue #151 - html5 */
 extern const AttrVersion TY_(W3CAttrsFor_PLAINTEXT)[];
 extern const AttrVersion TY_(W3CAttrsFor_PRE)[];
 extern const AttrVersion TY_(W3CAttrsFor_Q)[];
@@ -104,6 +105,7 @@ extern const AttrVersion TY_(W3CAttrsFor_STRONG)[];
 extern const AttrVersion TY_(W3CAttrsFor_STYLE)[];
 extern const AttrVersion TY_(W3CAttrsFor_SUB)[];
 extern const AttrVersion TY_(W3CAttrsFor_SUP)[];
+extern const AttrVersion TY_(W3CAttrsFor_SVG)[];
 extern const AttrVersion TY_(W3CAttrsFor_TABLE)[];
 extern const AttrVersion TY_(W3CAttrsFor_TBODY)[];
 extern const AttrVersion TY_(W3CAttrsFor_TD)[];
@@ -118,5 +120,37 @@ extern const AttrVersion TY_(W3CAttrsFor_U)[];
 extern const AttrVersion TY_(W3CAttrsFor_UL)[];
 extern const AttrVersion TY_(W3CAttrsFor_VAR)[];
 extern const AttrVersion TY_(W3CAttrsFor_XMP)[];
+
+extern const AttrVersion TY_(W3CAttrsFor_TRACK)[];
+extern const AttrVersion TY_(W3CAttrsFor_SUMMARY)[];
+extern const AttrVersion TY_(W3CAttrsFor_FIGCAPTION)[];
+extern const AttrVersion TY_(W3CAttrsFor_HGROUP)[];
+extern const AttrVersion TY_(W3CAttrsFor_FIGURE)[];
+extern const AttrVersion TY_(W3CAttrsFor_ARTICLE)[];
+extern const AttrVersion TY_(W3CAttrsFor_ASIDE)[];
+extern const AttrVersion TY_(W3CAttrsFor_BDI)[];
+extern const AttrVersion TY_(W3CAttrsFor_NAV)[];
+extern const AttrVersion TY_(W3CAttrsFor_SECTION)[];
+extern const AttrVersion TY_(W3CAttrsFor_FOOTER)[];
+extern const AttrVersion TY_(W3CAttrsFor_HEADER)[];
+extern const AttrVersion TY_(W3CAttrsFor_DETAILS)[];
+extern const AttrVersion TY_(W3CAttrsFor_DIALOG)[];
+extern const AttrVersion TY_(W3CAttrsFor_COMMAND)[];
+extern const AttrVersion TY_(W3CAttrsFor_MAIN)[];
+extern const AttrVersion TY_(W3CAttrsFor_MARK)[];
+extern const AttrVersion TY_(W3CAttrsFor_OUTPUT)[];
+extern const AttrVersion TY_(W3CAttrsFor_MENUITEM)[];
+extern const AttrVersion TY_(W3CAttrsFor_METER)[];
+extern const AttrVersion TY_(W3CAttrsFor_PROGRESS)[];
+extern const AttrVersion TY_(W3CAttrsFor_TEMPLATE)[];
+extern const AttrVersion TY_(W3CAttrsFor_TIME)[];
+extern const AttrVersion TY_(W3CAttrsFor_DATALIST)[];
+extern const AttrVersion TY_(W3CAttrsFor_AUDIO)[];
+extern const AttrVersion TY_(W3CAttrsFor_VIDEO)[];
+extern const AttrVersion TY_(W3CAttrsFor_CANVAS)[];
+extern const AttrVersion TY_(W3CAttrsFor_SOURCE)[];
+extern const AttrVersion TY_(W3CAttrsFor_EMBED)[];
+extern const AttrVersion TY_(W3CAttrsFor_KEYGEN)[];
+extern const AttrVersion TY_(W3CAttrsFor_WBR)[];
 
 #endif /* __ATTRDICT_H__ */

@@ -4,12 +4,6 @@
   Portions (c) 1998-2009 (W3C) MIT, ERCIM, Keio University
   See tidy.h for the copyright notice.
   
-  CVS Info :
-
-    $Author: arnaud02 $ 
-    $Date: 2009/03/25 22:04:35 $ 
-    $Revision: 1.42 $ 
-
 */
 
 /*********************************************************************
@@ -1576,6 +1570,7 @@ static void CheckMultiHeaders( TidyDocImpl* doc, Node* node )
             {
                 if ( nodeIsTR(TNode) )
                 {
+                    flag = 0; /* Issue #168 - access test 5-2-1-2 */
                     if (TNode->content != NULL)
                     {
                         temp = TNode->content;

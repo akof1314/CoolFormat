@@ -6,12 +6,6 @@
   (c) 1998-2007 (W3C) MIT, ERCIM, Keio University
   See tidy.h for the copyright notice.
 
-  CVS Info :
-
-    $Author: arnaud02 $ 
-    $Date: 2007/02/11 09:45:52 $ 
-    $Revision: 1.13 $ 
-
 */
 
 #include "tidy.h"
@@ -28,6 +22,15 @@
 #ifndef MIN
 #define MIN(a,b) (((a) < (b))?(a):(b))
 #endif
+
+/*\
+ *  Issue #166 - repeated <main> element
+ *  Change the previous on/off uint flag badForm
+ *  to a BIT flag to support other than <form>
+ *  errors. This could be extended more...
+\*/
+#define flg_BadForm     0x00000001
+#define flg_BadMain     0x00000002
 
 struct _TidyDocImpl
 {
@@ -54,7 +57,10 @@ struct _TidyDocImpl
     StreamOut*          docOut;
     StreamOut*          errout;
     TidyReportFilter    mssgFilt;
+    TidyReportFilter2   mssgFilt2;
+    TidyReportFilter3   mssgFilt3;
     TidyOptCallback     pOptCallback;
+    TidyPPProgress      progressCallback;
 
     /* Parse + Repair Results */
     uint                optionErrors;
@@ -68,7 +74,9 @@ struct _TidyDocImpl
     uint                badAccess;   /* for accessibility errors */
     uint                badLayout;   /* for bad style errors */
     uint                badChars;    /* for bad char encodings */
-    uint                badForm;     /* for badly placed form tags */
+    uint                badForm;     /* bit field, for badly placed form tags, or other format errors */
+
+    Bool                HTML5Mode;  /* current mode is html5 */
 
     /* Memory allocator */
     TidyAllocator*      allocator;
@@ -125,5 +133,27 @@ TidyOption   tidyImplToOption( const TidyOptionImpl* option );
 #define TidyDocPanic(doc, msg) TidyPanic((doc)->allocator, msg)
 
 int          TY_(DocParseStream)( TidyDocImpl* impl, StreamIn* in );
+
+/*
+   [i_a] generic node tree traversal code; used in several spots.
+
+   Define your own callback, which returns one of the NodeTraversalSignal values
+   to instruct the tree traversal routine TraverseNodeTree() what to do.
+
+   Pass custom data to/from the callback using the 'propagate' reference.
+ */
+typedef enum
+{
+    ContinueTraversal,       /* visit siblings and children */
+    SkipChildren,            /* visit siblings of this node; ignore its children */
+    SkipSiblings,            /* ignore subsequent siblings of this node; ignore their children; traverse  */
+    SkipChildrenAndSiblings, /* visit siblings of this node; ignore its children */
+    VisitParent,             /* REVERSE traversal: visit the parent of the current node */
+    ExitTraversal            /* terminate traversal on the spot */
+} NodeTraversalSignal;
+
+typedef NodeTraversalSignal NodeTraversalCallBack(TidyDocImpl* doc, Node* node, void *propagate);
+
+NodeTraversalSignal TY_(TraverseNodeTree)(TidyDocImpl* doc, Node* node, NodeTraversalCallBack *cb, void *propagate);
 
 #endif /* __TIDY_INT_H__ */

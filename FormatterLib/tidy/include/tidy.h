@@ -11,16 +11,10 @@
   this-equivalent as 1st arg.
 
 
-  Copyright (c) 1998-2008 World Wide Web Consortium
+  Copyright (c) 1998-2016 World Wide Web Consortium
   (Massachusetts Institute of Technology, European Research 
   Consortium for Informatics and Mathematics, Keio University).
   All Rights Reserved.
-
-  CVS Info :
-
-    $Author: arnaud02 $ 
-    $Date: 2008/04/22 11:00:42 $ 
-    $Revision: 1.22 $ 
 
   Contributing Author(s):
 
@@ -64,10 +58,11 @@
 
   Created 2001-05-20 by Charles Reitzel
   Updated 2002-07-01 by Charles Reitzel - 1st Implementation
+  Updated 2015-06-09 by Geoff R. McLane - Add more doxygen syntax
 
 */
 
-#include "platform.h"
+#include "tidyplatform.h"
 #include "tidyenum.h"
 
 #ifdef __cplusplus
@@ -166,7 +161,7 @@ struct _TidyAllocator;
 /** The allocator **/
 typedef struct _TidyAllocator TidyAllocator;
 
-/** An allocator's function table.  All functions here must
+/**  An allocator's function table.  All functions here must
     be provided.
  */
 struct _TidyAllocatorVtbl {
@@ -193,7 +188,7 @@ struct _TidyAllocatorVtbl {
 
 /** An allocator.  To create your own allocator, do something like
     the following:
-    
+    \code
     typedef struct _MyAllocator {
        TidyAllocator base;
        ...other custom allocator state...
@@ -219,7 +214,7 @@ struct _TidyAllocatorVtbl {
     allocator.base.vtbl = &amp;MyAllocatorVtbl;
     ...initialise allocator specific state...
     doc = tidyCreateWithAllocator(&allocator);
-    ...
+    \endcode
 
     Although this looks slightly long winded, the advantage is that to create
     a custom allocator you simply need to set the vtbl pointer correctly.
@@ -267,10 +262,10 @@ TIDY_EXPORT Bool TIDY_CALL tidySetPanicCall( TidyPanic fpanic );
 The following is a short example program.
 
 <pre>
-#include &lt;tidy.h&gt;
-#include &lt;buffio.h&gt;
-#include &lt;stdio.h&gt;
-#include &lt;errno.h&gt;
+\#include &lt;tidy.h&gt;
+\#include &lt;tidybuffio.h&gt;
+\#include &lt;stdio.h&gt;
+\#include &lt;errno.h&gt;
 
 
 int main(int argc, char **argv )
@@ -318,8 +313,20 @@ int main(int argc, char **argv )
 ** @{
 */
 
+/** The primary creation of a TidyDoc.
+ ** This must be the first call before most of the Tidy API which require the TidyDoc parameter.
+ ** When completed tidyRelease( TidyDoc tdoc ); should be called to release all memory
+ */
 TIDY_EXPORT TidyDoc TIDY_CALL     tidyCreate(void);
+
+/** Create a Tidoc supplying the TidyAllocator.
+ ** See the TidyAllocator structure for creating an allocator
+ */
 TIDY_EXPORT TidyDoc TIDY_CALL     tidyCreateWithAllocator( TidyAllocator *allocator );
+
+/** Free all memory and release the TidyDoc.
+ ** TidyDoc can not be used after this call.
+ */
 TIDY_EXPORT void TIDY_CALL        tidyRelease( TidyDoc tdoc );
 
 /** Let application store a chunk of data w/ each Tidy instance.
@@ -330,8 +337,15 @@ TIDY_EXPORT void TIDY_CALL        tidySetAppData( TidyDoc tdoc, void* appData );
 /** Get application data set previously */
 TIDY_EXPORT void* TIDY_CALL       tidyGetAppData( TidyDoc tdoc );
 
-/** Get release date (version) for current library */
+/** Get release date (version) for current library 
+ ** @deprecated tidyReleaseDate() is deprecated in favor of semantic
+ ** versioning and should be replaced with tidyLibraryVersion().
+ */
+
 TIDY_EXPORT ctmbstr TIDY_CALL     tidyReleaseDate(void);
+
+/** Get version number for the current library */
+TIDY_EXPORT ctmbstr TIDY_CALL     tidyLibraryVersion(void);
 
 /* Diagnostics and Repair
 */
@@ -462,7 +476,7 @@ TIDY_EXPORT TidyIterator TIDY_CALL  tidyOptGetPickList( TidyOption opt );
 /** Get next string value of Option "pick list" */
 TIDY_EXPORT ctmbstr TIDY_CALL       tidyOptGetNextPick( TidyOption opt, TidyIterator* pos );
 
-/** Get current Option value as a string */
+/** Get string Option current value. Note, the optID "must" be a type 'TidyString'! */
 TIDY_EXPORT ctmbstr TIDY_CALL       tidyOptGetValue( TidyDoc tdoc, TidyOptionId optId );
 /** Set Option value as a string */
 TIDY_EXPORT Bool TIDY_CALL          tidyOptSetValue( TidyDoc tdoc, TidyOptionId optId, ctmbstr val );
@@ -617,6 +631,9 @@ TIDY_EXPORT Bool TIDY_CALL tidyInitSink( TidyOutputSink* sink,
 TIDY_EXPORT void TIDY_CALL tidyPutByte( TidyOutputSink* sink, uint byteValue );
 
 
+/****************
+   Errors
+****************/
 /** Callback to filter messages by diagnostic level:
 **  info, warning, etc.  Just set diagnostic output 
 **  handler to redirect all diagnostics output.  Return true
@@ -625,9 +642,21 @@ TIDY_EXPORT void TIDY_CALL tidyPutByte( TidyOutputSink* sink, uint byteValue );
 typedef Bool (TIDY_CALL *TidyReportFilter)( TidyDoc tdoc, TidyReportLevel lvl,
                                            uint line, uint col, ctmbstr mssg );
 
+typedef Bool (TIDY_CALL *TidyReportFilter2)( TidyDoc tdoc, TidyReportLevel lvl,
+                                           uint line, uint col, ctmbstr mssg, va_list args );
+
+typedef Bool (TIDY_CALL *TidyReportFilter3)( TidyDoc tdoc, TidyReportLevel lvl,
+                                                uint line, uint col, ctmbstr code, va_list args );
+
 /** Give Tidy a filter callback to use */
 TIDY_EXPORT Bool TIDY_CALL    tidySetReportFilter( TidyDoc tdoc,
                                                   TidyReportFilter filtCallback );
+
+TIDY_EXPORT Bool TIDY_CALL    tidySetReportFilter2( TidyDoc tdoc,
+                                                  TidyReportFilter2 filtCallback );
+
+TIDY_EXPORT Bool TIDY_CALL    tidySetReportFilter3( TidyDoc tdoc,
+                                                       TidyReportFilter3 filtCallback );
 
 /** Set error sink to named file */
 TIDY_EXPORT FILE* TIDY_CALL   tidySetErrorFile( TidyDoc tdoc, ctmbstr errfilnam );
@@ -635,6 +664,18 @@ TIDY_EXPORT FILE* TIDY_CALL   tidySetErrorFile( TidyDoc tdoc, ctmbstr errfilnam 
 TIDY_EXPORT int TIDY_CALL     tidySetErrorBuffer( TidyDoc tdoc, TidyBuffer* errbuf );
 /** Set error sink to given generic sink */
 TIDY_EXPORT int TIDY_CALL     tidySetErrorSink( TidyDoc tdoc, TidyOutputSink* sink );
+
+
+/****************
+   Printing
+****************/
+/** Callback to track the progress of the pretting printing process.
+**
+*/
+typedef void (TIDY_CALL *TidyPPProgress)( TidyDoc tdoc, uint line, uint col, uint destLine );
+
+TIDY_EXPORT Bool TIDY_CALL   tidySetPrettyPrinterCallback( TidyDoc tdoc,
+                                                  TidyPPProgress callback );
 
 /** @} end IO group */
 
@@ -682,6 +723,8 @@ TIDY_EXPORT int TIDY_CALL         tidyCleanAndRepair( TidyDoc tdoc );
 */
 TIDY_EXPORT int TIDY_CALL         tidyRunDiagnostics( TidyDoc tdoc );
 
+TIDY_EXPORT int TIDY_CALL         tidyReportDoctype( TidyDoc tdoc );
+
 /** @} end Clean group */
 
 
@@ -701,9 +744,13 @@ TIDY_EXPORT int TIDY_CALL         tidySaveStdout( TidyDoc tdoc );
 /** Save to given TidyBuffer object */
 TIDY_EXPORT int TIDY_CALL         tidySaveBuffer( TidyDoc tdoc, TidyBuffer* buf );
 
-/** Save document to application buffer.  If buffer is not big enough,
-**  ENOMEM will be returned and the necessary buffer size will be placed
-**  in *buflen.
+/** Save document to application buffer.  If TidyShowMarkup and
+**  the document has no errors, or TidyForceOutput, the current 
+**  document, per the current configuration, will be Pretty Printed
+**  to the application buffer.  The document byte length,
+**  not character length, will be placed in *buflen. The document 
+**  will not be null terminated. If the buffer is not big enough,
+**  ENOMEM will be returned, else the actual document status.
 */
 TIDY_EXPORT int TIDY_CALL         tidySaveString( TidyDoc tdoc,
                                                  tmbstr buffer, uint* buflen );
@@ -801,6 +848,9 @@ TIDY_EXPORT TidyNode TIDY_CALL    tidyGetHtml( TidyDoc tdoc );
 TIDY_EXPORT TidyNode TIDY_CALL    tidyGetHead( TidyDoc tdoc );
 TIDY_EXPORT TidyNode TIDY_CALL    tidyGetBody( TidyDoc tdoc );
 
+/* remove a node */
+TIDY_EXPORT TidyNode TIDY_CALL    tidyDiscardElement( TidyDoc tdoc, TidyNode tnod );
+
 /* parent / child */
 TIDY_EXPORT TidyNode TIDY_CALL    tidyGetParent( TidyNode tnod );
 TIDY_EXPORT TidyNode TIDY_CALL    tidyGetChild( TidyNode tnod );
@@ -821,6 +871,8 @@ TIDY_EXPORT TidyAttr TIDY_CALL    tidyAttrNext( TidyAttr tattr );
 
 TIDY_EXPORT ctmbstr TIDY_CALL     tidyAttrName( TidyAttr tattr );
 TIDY_EXPORT ctmbstr TIDY_CALL     tidyAttrValue( TidyAttr tattr );
+
+TIDY_EXPORT void TIDY_CALL        tidyAttrDiscard( TidyDoc itdoc, TidyNode tnod, TidyAttr tattr );
 
 /* Null for pure HTML
 TIDY_EXPORT ctmbstr     tidyAttrNsLocal( TidyAttr tattr );
@@ -942,6 +994,10 @@ TIDY_EXPORT Bool TIDY_CALL tidyNodeIsS( TidyNode tnod );
 TIDY_EXPORT Bool TIDY_CALL tidyNodeIsSTRIKE( TidyNode tnod );
 TIDY_EXPORT Bool TIDY_CALL tidyNodeIsU( TidyNode tnod );
 TIDY_EXPORT Bool TIDY_CALL tidyNodeIsMENU( TidyNode tnod );
+
+/* HTML5 */
+TIDY_EXPORT Bool TIDY_CALL tidyNodeIsDATALIST( TidyNode tnod ); /* bit like OPTIONS */
+
 
 /** @} End NodeIsElementName group */
 

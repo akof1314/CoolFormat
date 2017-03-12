@@ -5,15 +5,7 @@
   
    (c) 1998-2008 (W3C) MIT, ERCIM, Keio University
    See tidy.h for the copyright notice.
-  
-   CVS Info:
-    $Author: arnaud02 $ 
-    $Date: 2008/03/22 21:06:11 $ 
-    $Revision: 1.41 $ 
 
-*/
-
-/*
   Given an input source, it returns a sequence of tokens.
 
      GetToken(source) gets the next token
@@ -194,6 +186,10 @@ typedef enum
 /* special flag */
 #define VERS_XML           65536u
 
+/* HTML5 */
+#define HT50              131072u
+#define XH50              262144u
+
 /* compatibility symbols */
 #define VERS_UNKNOWN       (xxxx)
 #define VERS_HTML20        (HT20)
@@ -203,6 +199,8 @@ typedef enum
 #define VERS_FRAMESET      (H40F|H41F|X10F)
 #define VERS_XHTML11       (XH11)
 #define VERS_BASIC         (XB10)
+/* HTML5 */
+#define VERS_HTML5         (HT50|XH50)
 
 /* meta symbols */
 #define VERS_HTML40        (VERS_HTML40_STRICT|VERS_HTML40_LOOSE|VERS_FRAMESET)
@@ -211,10 +209,13 @@ typedef enum
 #define VERS_EVENTS        (VERS_HTML40|VERS_XHTML11)
 #define VERS_FROM32        (VERS_HTML32|VERS_HTML40)
 #define VERS_FROM40        (VERS_HTML40|VERS_XHTML11|VERS_BASIC)
-#define VERS_XHTML         (X10S|X10T|X10F|XH11|XB10)
+#define VERS_XHTML         (X10S|X10T|X10F|XH11|XB10|XH50)
+
+/* strict */
+#define VERS_STRICT        (VERS_HTML5|VERS_HTML40_STRICT)
 
 /* all W3C defined document types */
-#define VERS_ALL           (VERS_HTML20|VERS_HTML32|VERS_FROM40)
+#define VERS_ALL           (VERS_HTML20|VERS_HTML32|VERS_FROM40|XH50|HT50)
 
 /* all proprietary types */
 #define VERS_PROPRIETARY   (VERS_NETSCAPE|VERS_MICROSOFT|VERS_SUN)
@@ -412,6 +413,7 @@ void TY_(ConstrainVersion)( TidyDocImpl* doc, uint vers );
 Bool TY_(IsWhite)(uint c);
 Bool TY_(IsDigit)(uint c);
 Bool TY_(IsLetter)(uint c);
+Bool TY_(IsHTMLSpace)(uint c);
 Bool TY_(IsNewline)(uint c);
 Bool TY_(IsNamechar)(uint c);
 Bool TY_(IsXMLLetter)(uint c);
@@ -526,6 +528,7 @@ typedef enum
   MixedContent,
   Preformatted,
   IgnoreMarkup,
+  OtherNamespace,
   CdataContent
 } GetTokenMode;
 

@@ -3,12 +3,6 @@
   (c) 1998-2006 (W3C) MIT, ERCIM, Keio University
   See tidy.h for the copyright notice.
 
-  CVS Info :
-
-    $Author: arnaud02 $ 
-    $Date: 2006/12/29 16:31:08 $ 
-    $Revision: 1.13 $ 
-
 */
 
 #include "forward.h"
@@ -270,6 +264,7 @@ Bool TY_(tmbsamefile)( ctmbstr filename1, ctmbstr filename2 )
 int TY_(tmbvsnprintf)(tmbstr buffer, size_t count, ctmbstr format, va_list args)
 {
     int retval;
+
 #if HAS_VSNPRINTF
     retval = vsnprintf(buffer, count - 1, format, args);
     /* todo: conditionally null-terminate the string? */
@@ -285,13 +280,7 @@ int TY_(tmbsnprintf)(tmbstr buffer, size_t count, ctmbstr format, ...)
     int retval;
     va_list args;
     va_start(args, format);
-#if HAS_VSNPRINTF
-    retval = vsnprintf(buffer, count - 1, format, args);
-    /* todo: conditionally null-terminate the string? */
-    buffer[count - 1] = 0;
-#else
-    retval = vsprintf(buffer, format, args);
-#endif /* HAS_VSNPRINTF */
+    retval = TY_(tmbvsnprintf)(buffer, count, format, args);
     va_end(args);
     return retval;
 }

@@ -3,21 +3,15 @@
   (c) 1998-2008 (W3C) MIT, ERCIM, Keio University
   See tidy.h for the copyright notice.
 
-  CVS Info :
-
-    $Author: arnaud02 $ 
-    $Date: 2008/06/18 20:18:54 $ 
-    $Revision: 1.75 $ 
-
   Defines HTML Tidy API implemented by tidy library.
-  
+
   Very rough initial cut for discussion purposes.
 
   Public interface is const-correct and doesn't explicitly depend
   on any globals.  Thus, thread-safety may be introduced w/out
   changing the interface.
 
-  Looking ahead to a C++ wrapper, C functions always pass 
+  Looking ahead to a C++ wrapper, C functions always pass
   this-equivalent as 1st arg.
 
   Created 2001-05-20 by Charles Reitzel
@@ -29,6 +23,7 @@
 #include "tidy-int.h"
 #include "parser.h"
 #include "clean.h"
+#include "gdoc.h"
 #include "config.h"
 #include "message.h"
 #include "pprint.h"
@@ -39,6 +34,9 @@
 
 #ifdef TIDY_WIN32_MLANG_SUPPORT
 #include "win32tc.h"
+#endif
+#if !defined(NDEBUG) && defined(_MSC_VER)
+#include "sprtf.h"
 #endif
 
 /* Create/Destroy a Tidy "document" object */
@@ -61,6 +59,7 @@ static int          tidyDocParseSource( TidyDocImpl* impl, TidyInputSource* docI
 ** pre-or-post repair.
 */
 static int          tidyDocRunDiagnostics( TidyDocImpl* doc );
+static void         tidyDocReportDoctype( TidyDocImpl* doc );
 static int          tidyDocCleanAndRepair( TidyDocImpl* doc );
 
 
@@ -117,7 +116,7 @@ TidyOption   tidyImplToOption( const TidyOptionImpl* option )
 ** 0    -> SUCCESS
 ** >0   -> WARNING
 ** <0   -> ERROR
-** 
+**
 */
 
 TidyDoc TIDY_CALL       tidyCreate(void)
@@ -172,7 +171,6 @@ void          tidyDocRelease( TidyDocImpl* doc )
         doc->errout = NULL;
 
         TY_(FreePrintBuf)( doc );
-        TY_(FreeLexer)( doc );
         TY_(FreeNode)(doc, &doc->root);
         TidyClearMemory(&doc->root, sizeof(Node));
 
@@ -182,6 +180,11 @@ void          tidyDocRelease( TidyDocImpl* doc )
         TY_(FreeConfig)( doc );
         TY_(FreeAttrTable)( doc );
         TY_(FreeTags)( doc );
+        /*\ 
+         *  Issue #186 - Now FreeNode depend on the doctype, so the lexer is needed
+         *  to determine which hash is to be used, so free it last.
+        \*/
+        TY_(FreeLexer)( doc );
         TidyDocFree( doc, doc );
     }
 }
@@ -352,7 +355,7 @@ ctmbstr TIDY_CALL       tidyOptGetDefault( TidyOption topt )
 {
     const TidyOptionImpl* option = tidyOptionToImpl( topt );
     if ( option && option->type == TidyString )
-        return (ctmbstr) option->dflt;
+        return option->pdflt; /* Issue #306 - fix an old typo hidden by a cast! */
     return NULL;
 }
 ulong TIDY_CALL          tidyOptGetDefaultInt( TidyOption topt )
@@ -513,8 +516,7 @@ ctmbstr TIDY_CALL       tidyOptGetNextDeclTag( TidyDoc tdoc, TidyOptionId optId,
 ctmbstr TIDY_CALL tidyOptGetDoc( TidyDoc ARG_UNUSED(tdoc), TidyOption opt )
 {
     const TidyOptionId optId = tidyOptGetId( opt );
-    const TidyOptionDoc* docDesc = TY_(OptGetDocDesc)( optId );
-    return docDesc ? docDesc->doc : NULL;
+    return tidyLocalizedString(optId);
 }
 
 TidyIterator TIDY_CALL tidyOptGetDocLinksList( TidyDoc ARG_UNUSED(tdoc), TidyOption opt )
@@ -628,8 +630,8 @@ Bool TIDY_CALL tidyOptCopyConfig( TidyDoc to, TidyDoc from )
 
 /* I/O and Message handling interface
 **
-** By default, Tidy will define, create and use 
-** tdocances of input and output handlers for 
+** By default, Tidy will define, create and use
+** tdocances of input and output handlers for
 ** standard C buffered I/O (i.e. FILE* stdin,
 ** FILE* stdout and FILE* stderr for content
 ** input, content output and diagnostic output,
@@ -639,7 +641,7 @@ Bool TIDY_CALL tidyOptCopyConfig( TidyDoc to, TidyDoc from )
 */
 
 /* Use TidyReportFilter to filter messages by diagnostic level:
-** info, warning, etc.  Just set diagnostic output 
+** info, warning, etc.  Just set diagnostic output
 ** handler to redirect all diagnostics output.  Return true
 ** to proceed with output, false to cancel.
 */
@@ -649,6 +651,38 @@ Bool TIDY_CALL        tidySetReportFilter( TidyDoc tdoc, TidyReportFilter filt )
   if ( impl )
   {
     impl->mssgFilt = filt;
+    return yes;
+  }
+  return no;
+}
+
+/* TidyReportFilter2 functions similar to TidyReportFilter, but provides the
+** built-in English format string and va_list so that LibTidy users can use
+** the format string as a lookup key for providing their own error 
+** localizations.
+*/
+Bool TIDY_CALL        tidySetReportFilter2( TidyDoc tdoc, TidyReportFilter2 filt )
+{
+  TidyDocImpl* impl = tidyDocToImpl( tdoc );
+  if ( impl )
+  {
+    impl->mssgFilt2 = filt;
+    return yes;
+  }
+  return no;
+}
+
+/* TidyReportFilter3 functions similar to TidyReportFilter, but provides the
+ * string version of the internal enum name so that LibTidy users can use
+** the string as a lookup key for providing their own error localizations.
+** See the string definitions in language.h
+*/
+Bool TIDY_CALL        tidySetReportFilter3( TidyDoc tdoc, TidyReportFilter3 filt )
+{
+  TidyDocImpl* impl = tidyDocToImpl( tdoc );
+  if ( impl )
+  {
+    impl->mssgFilt3 = filt;
     return yes;
   }
   return no;
@@ -738,6 +772,19 @@ int TIDY_CALL    tidySetErrorSink( TidyDoc tdoc, TidyOutputSink* sink )
     return -EINVAL;
 }
 
+/* Use TidyPPProgress to monitor the progress of the pretty printer.
+ */
+Bool TIDY_CALL        tidySetPrettyPrinterCallback(TidyDoc tdoc, TidyPPProgress callback)
+{
+    TidyDocImpl* impl = tidyDocToImpl( tdoc );
+    if ( impl )
+    {
+        impl->progressCallback = callback;
+        return yes;
+    }
+    return no;
+}
+
 
 /* Document info */
 int TIDY_CALL        tidyStatus( TidyDoc tdoc )
@@ -798,7 +845,7 @@ uint TIDY_CALL       tidyConfigErrorCount( TidyDoc tdoc )
 }
 
 
-/* Error reporting functions 
+/* Error reporting functions
 */
 void TIDY_CALL         tidyErrorSummary( TidyDoc tdoc )
 {
@@ -974,7 +1021,7 @@ int         tidyDocSaveFile( TidyDocImpl* doc, ctmbstr filnam )
     if ( doc->errors > 0 &&
          cfgBool(doc, TidyWriteBack) && !cfgBool(doc, TidyForceOutput) )
         status = tidyDocStatus( doc );
-    else 
+    else
         fout = fopen( filnam, "wb" );
 
     if ( fout )
@@ -1008,7 +1055,7 @@ int         tidyDocSaveFile( TidyDocImpl* doc, ctmbstr filnam )
 ** The code has been left in in case it works w/ other compilers
 ** or operating systems.  If stdout is in Text mode, be aware that
 ** it will garble UTF16 documents.  In text mode, when it encounters
-** a single byte of value 10 (0xA), it will insert a single byte 
+** a single byte of value 10 (0xA), it will insert a single byte
 ** value 13 (0xD) just before it.  This has the effect of garbling
 ** the entire document.
 */
@@ -1073,7 +1120,7 @@ int         tidyDocSaveString( TidyDocImpl* doc, tmbstr buffer, uint* buflen )
     TidyBuffer outbuf;
     StreamOut* out;
     int status;
-    
+
     tidyBufInitWithAllocator( &outbuf, doc->allocator );
     out = TY_(BufferOutput)( doc, &outbuf, outenc, nl );
     status = tidyDocSaveStream( doc, out );
@@ -1097,7 +1144,7 @@ int         tidyDocSaveBuffer( TidyDocImpl* doc, TidyBuffer* outbuf )
         uint outenc = cfg( doc, TidyOutCharEncoding );
         uint nl = cfg( doc, TidyNewline );
         StreamOut* out = TY_(BufferOutput)( doc, outbuf, outenc, nl );
-    
+
         status = tidyDocSaveStream( doc, out );
         TidyDocFree( doc, out );
     }
@@ -1141,10 +1188,20 @@ int TIDY_CALL        tidyRunDiagnostics( TidyDoc tdoc )
     return -EINVAL;
 }
 
+int TIDY_CALL        tidyReportDoctype( TidyDoc tdoc )
+{
+    int iret = -EINVAL;
+    TidyDocImpl* impl = tidyDocToImpl( tdoc );
+    if ( impl ) {
+      tidyDocReportDoctype( impl );
+      iret = 0;
+    }
+    return iret;
+}
 
 /* Workhorse functions.
 **
-** Parse requires input source, all input config items 
+** Parse requires input source, all input config items
 ** and diagnostic sink to have all been set before calling.
 **
 ** Emit likewise requires that document sink and all
@@ -1161,8 +1218,8 @@ int         TY_(DocParseStream)( TidyDocImpl* doc, StreamIn* in )
     assert( doc->docIn == NULL );
     doc->docIn = in;
 
+    TY_(ResetTags)(doc);    /* reset table to html5 mode */
     TY_(TakeConfigSnapshot)( doc );    /* Save config state */
-    TY_(FreeLexer)( doc );
     TY_(FreeAnchors)( doc );
 
     TY_(FreeNode)(doc, &doc->root);
@@ -1170,7 +1227,11 @@ int         TY_(DocParseStream)( TidyDocImpl* doc, StreamIn* in )
 
     if (doc->givenDoctype)
         TidyDocFree(doc, doc->givenDoctype);
-
+    /*\ 
+     *  Issue #186 - Now FreeNode depend on the doctype, so the lexer is needed
+     *  to determine which hash is to be used, so free it last.
+    \*/
+    TY_(FreeLexer)( doc );
     doc->givenDoctype = NULL;
 
     doc->lexer = TY_(NewLexer)( doc );
@@ -1226,18 +1287,508 @@ int         tidyDocRunDiagnostics( TidyDocImpl* doc )
         TY_(ReportMarkupVersion)( doc );
         TY_(ReportNumWarnings)( doc );
     }
-    
+
     if ( doc->errors > 0 && !force )
         TY_(NeedsAuthorIntervention)( doc );
 
      return tidyDocStatus( doc );
 }
 
+void         tidyDocReportDoctype( TidyDocImpl* doc )
+{
+        TY_(ReportMarkupVersion)( doc );
+}
+
+
+/*****************************************************************************
+ *  HTML5 STUFF
+ *****************************************************************************/
+#if !defined(NDEBUG) && defined(_MSC_VER)
+extern void show_not_html5(void);
+/* -----------------------------
+List tags that do not have version HTML5 (HT50|XH50)
+
+acronym applet basefont big center dir font frame frameset isindex
+listing noframes plaintext rb rbc rtc strike tt xmp nextid
+align bgsound blink comment ilayer layer marquee multicol nobr noembed
+nolayer nosave server servlet spacer
+
+Listed total 35 tags that do not have version 393216
+   ------------------------------ */
+
+static void list_not_html5(void)
+{
+    static Bool done_list = no;
+    if (done_list == no) {
+        done_list = yes;
+        show_not_html5();
+    }
+}
+#endif
+
+/* What about <blink>, <s> stike-through, <u> underline */
+static struct _html5Info
+{
+    const char *tag;
+    uint id;
+} const html5Info[] = {
+    {"acronym", TidyTag_ACRONYM},
+    {"applet", TidyTag_APPLET  },
+    {"basefont",TidyTag_BASEFONT },
+    { "big", TidyTag_BIG },
+    { "center", TidyTag_CENTER },
+    { "dir", TidyTag_DIR },
+    { "font", TidyTag_FONT },
+    { "frame", TidyTag_FRAME},
+    { "frameset", TidyTag_FRAMESET},
+    { "noframes", TidyTag_NOFRAMES },
+    { "strike", TidyTag_STRIKE },
+    { "tt", TidyTag_TT },
+    { 0, 0 }
+};
+Bool inRemovedInfo( uint tid )
+{
+    int i;
+    for (i = 0; ; i++) {
+        if (html5Info[i].tag == 0)
+            break;
+        if (html5Info[i].id == tid)
+            return yes;
+    }
+    return no;
+}
+
+/* Things that should not be in an HTML5 body. This is special for CheckHTML5(),
+ and we might just want to remove CheckHTML5()'s output altogether and count
+ on the default --strict-tags-attributes.
+ */
+static int BadBody5Attribs[] = {
+    TidyAttr_BACKGROUND,
+    TidyAttr_BGCOLOR,
+    TidyAttr_TEXT,
+    TidyAttr_LINK,
+    TidyAttr_VLINK,
+    TidyAttr_ALINK,
+    TidyAttr_UNKNOWN /* Must be last! */
+};
+
+static Bool nodeHasAlignAttr( Node *node )
+{
+    /* #define attrIsALIGN(av) AttrIsId( av, TidyAttr_ALIGN  ) */
+    AttVal* av;
+    for ( av = node->attributes; av != NULL; av = av->next ) {
+        if (attrIsALIGN(av))
+            return yes;
+    }
+    return no;
+}
+
+/*
+ *  Perform special checks for HTML, even when we're not using the default
+ *  option `--strict-tags-attributes yes`. This will ensure that HTML5 warning
+ *  and error output is given regardless of the new option, and ensure that
+ *  cleanup takes place. This provides mostly consistent Tidy behavior even with
+ *  the introduction of this new option. Note that strings have changed, though,
+ *  in order to maintain consistency with the `--strict-tags-attributes` 
+ *  messages.
+ *
+ *  See also: http://www.whatwg.org/specs/web-apps/current-work/multipage/obsolete.html#obsolete
+ */
+void TY_(CheckHTML5)( TidyDocImpl* doc, Node* node )
+{
+    Bool clean = cfgBool( doc, TidyMakeClean );
+    Bool already_strict = cfgBool( doc, TidyStrictTagsAttr );
+    Node* body = TY_(FindBody)( doc );
+    Bool warn = yes;    /* should this be a warning, error, or report??? */
+    AttVal* attr = NULL;
+    int i = 0;
+#if !defined(NDEBUG) && defined(_MSC_VER)
+    //    list_not_html5();
+#endif
+    while (node)
+    {
+        if ( nodeHasAlignAttr( node ) ) {
+            /* @todo: Is this for ALL elements that accept an 'align' attribute,
+             * or should this be a sub-set test?
+             */
+
+            /* We will only emit this message if `--strict-tags-attributes==no`;
+             * otherwise if yes this message will be output during later
+             * checking.
+             */
+            if ( !already_strict )
+                TY_(ReportAttrError)(doc, node, TY_(AttrGetById)(node, TidyAttr_ALIGN), MISMATCHED_ATTRIBUTE_WARN);
+        }
+        if ( node == body ) {
+            i = 0;
+            /* We will only emit these messages if `--strict-tags-attributes==no`;
+             * otherwise if yes these messages will be output during later
+             * checking.
+             */
+            if ( !already_strict ) {
+                while ( BadBody5Attribs[i] != TidyAttr_UNKNOWN ) {
+                    attr = TY_(AttrGetById)(node, BadBody5Attribs[i]);
+                    if ( attr )
+                        TY_(ReportAttrError)(doc, node, attr , MISMATCHED_ATTRIBUTE_WARN);
+                    i++;
+                }
+            }
+        } else
+        if ( nodeIsACRONYM(node) ) {
+            if (clean) {
+                /* Replace with 'abbr' with warning to that effect.
+                 * Maybe should use static void RenameElem( TidyDocImpl* doc, Node* node, TidyTagId tid )
+                 */
+                TY_(CoerceNode)(doc, node, TidyTag_ABBR, warn, no);
+            } else {
+                if ( !already_strict )
+                    TY_(ReportWarning)(doc, node, node, REMOVED_HTML5);
+            }
+        } else
+        if ( nodeIsAPPLET(node) ) {
+            if (clean) {
+                /* replace with 'object' with warning to that effect
+                 * maybe should use static void RenameElem( TidyDocImpl* doc, Node* node, TidyTagId tid )
+                 */
+                TY_(CoerceNode)(doc, node, TidyTag_OBJECT, warn, no);
+            } else {
+                if ( !already_strict )
+                    TY_(ReportWarning)(doc, node, node, REMOVED_HTML5);
+            }
+        } else
+        if ( nodeIsBASEFONT(node) ) {
+            /* basefont: CSS equivalent 'font-size', 'font-family' and 'color' 
+             * on body or class on each subsequent element.
+             * Difficult - If it is the first body element, then could consider
+             * adding that to the <body> as a whole, else could perhaps apply it
+             * to all subsequent elements. But also in consideration is the fact
+             * that it was NOT supported in many browsers.
+             * - For now just report a warning
+             */
+            if ( !already_strict )
+                TY_(ReportWarning)(doc, node, node, REMOVED_HTML5);
+        } else
+        if ( nodeIsBIG(node) ) {
+            /* big: CSS equivalent 'font-size:larger'
+             * so could replace the <big> ... </big> with
+             * <span style="font-size: larger"> ... </span>
+             * then replace <big> with <span>
+             * Need to think about that...
+             * Could use -
+             *   TY_(AddStyleProperty)( doc, node, "font-size: larger" );
+             *   TY_(CoerceNode)(doc, node, TidyTag_SPAN, no, no);
+             * Alternatively generated a <style> but how to get the style name
+             * TY_(AddAttribute)( doc, node, "class", "????" );
+             * Also maybe need a specific message like
+             * Element '%s' replaced with 'span' with a 'font-size: larger style attribute
+             * maybe should use static void RenameElem( TidyDocImpl* doc, Node* node, TidyTagId tid )
+             */
+            if (clean) {
+                TY_(AddStyleProperty)( doc, node, "font-size: larger" );
+                TY_(CoerceNode)(doc, node, TidyTag_SPAN, warn, no);
+            } else {
+                if ( !already_strict )
+                    TY_(ReportWarning)(doc, node, node, REMOVED_HTML5);
+            }
+        } else
+        if ( nodeIsCENTER(node) ) {
+            /* center: CSS equivalent 'text-align:center'
+             * and 'margin-left:auto; margin-right:auto' on descendant blocks
+             * Tidy already handles this if 'clean' by SILENTLY generating the
+             * <style> and adding a <div class="c1"> around the elements.
+             * see: static Bool Center2Div( TidyDocImpl* doc, Node *node, Node **pnode)
+             */
+            if ( !already_strict )
+                TY_(ReportWarning)(doc, node, node, REMOVED_HTML5);
+        } else
+        if ( nodeIsDIR(node) ) {
+            /* dir: replace by <ul>
+             * Tidy already actions this and issues a warning
+             * Should this be CHANGED???
+             */
+            if ( !already_strict )
+                TY_(ReportWarning)(doc, node, node, REMOVED_HTML5);
+        } else
+        if ( nodeIsFONT(node) ) {
+            /* Tidy already handles this -
+             * If 'clean' replaced by CSS, else
+             * if is NOT clean, and doctype html5 then warnings issued
+             * done in Bool Font2Span( TidyDocImpl* doc, Node *node, Node **pnode ) (I think?)
+             */
+            if ( !already_strict )
+                TY_(ReportWarning)(doc, node, node, REMOVED_HTML5);
+        } else
+        if (( nodesIsFRAME(node) ) || ( nodeIsFRAMESET(node) ) || ( nodeIsNOFRAMES(node) )) {
+            /* YOW: What to do here?????? Maybe <iframe>????
+             */
+            if ( !already_strict )
+                TY_(ReportWarning)(doc, node, node, REMOVED_HTML5);
+        } else
+        if ( nodeIsSTRIKE(node) ) {
+            /* strike: CSS equivalent 'text-decoration:line-through'
+             * maybe should use static void RenameElem( TidyDocImpl* doc, Node* node, TidyTagId tid )
+             */
+            if (clean) {
+                TY_(AddStyleProperty)( doc, node, "text-decoration: line-through" );
+                TY_(CoerceNode)(doc, node, TidyTag_SPAN, warn, no);
+            } else {
+                if ( !already_strict )
+                    TY_(ReportWarning)(doc, node, node, REMOVED_HTML5);
+            }
+        } else
+        if ( nodeIsTT(node) ) {
+            /* tt: CSS equivalent 'font-family:monospace'
+             * Tidy presently does nothing. Tidy5 issues a warning
+             * But like the 'clean' <font> replacement this could also be replaced with CSS
+             * maybe should use static void RenameElem( TidyDocImpl* doc, Node* node, TidyTagId tid )
+             */
+            if (clean) {
+                TY_(AddStyleProperty)( doc, node, "font-family: monospace" );
+                TY_(CoerceNode)(doc, node, TidyTag_SPAN, warn, no);
+            } else {
+                if ( !already_strict )
+                    TY_(ReportWarning)(doc, node, node, REMOVED_HTML5);
+            }
+        } else
+            if (TY_(nodeIsElement)(node)) {
+                if (node->tag) {
+                    if ( (!(node->tag->versions & VERS_HTML5) && !(node->tag->versions & VERS_PROPRIETARY)) || (inRemovedInfo(node->tag->id)) ) {
+                        if ( !already_strict )
+                            TY_(ReportWarning)(doc, node, node, REMOVED_HTML5);
+                    }
+                }
+            }
+
+        if (node->content)
+            TY_(CheckHTML5)( doc, node->content );
+        
+        node = node->next;
+    }
+}
+/*****************************************************************************
+ *  END HTML5 STUFF
+ *****************************************************************************/
+
+
+/*
+ * Check and report HTML tags and attributes that are:
+ *  - Proprietary, and/or
+ *  - Not supported in the current version of HTML, defined as the version
+ *    of HTML that we are emitting.
+ * Proprietary items are reported as WARNINGS, and version mismatches will
+ * be reported as WARNING or ERROR in the following conditions:
+ *  - ERROR if the emitted doctype is a strict doctype.
+ *  - WARNING if the emitted doctype is a non-strict doctype.
+ * The propriety checks are *always* run as they have always been an integral
+ * part of Tidy. The version checks are controlled by `strict-tags-attributes`.
+ */
+void TY_(CheckHTMLTagsAttribsVersions)( TidyDocImpl* doc, Node* node )
+{
+    uint versionEmitted = doc->lexer->versionEmitted;
+    uint declared = doc->lexer->doctype;
+    uint version = versionEmitted == 0 ? declared : versionEmitted;
+    int tagReportType = VERS_STRICT & version ? ELEMENT_VERS_MISMATCH_ERROR : ELEMENT_VERS_MISMATCH_WARN;
+    int attrReportType = VERS_STRICT & version ? MISMATCHED_ATTRIBUTE_ERROR : MISMATCHED_ATTRIBUTE_WARN;
+    Bool check_versions = cfgBool( doc, TidyStrictTagsAttr );
+    AttVal *next_attr, *attval;
+    Bool attrIsProprietary = no;
+    Bool attrIsMismatched = yes;
+
+    while (node)
+    {
+        /* This bit here handles our HTML tags */
+        if ( TY_(nodeIsElement)(node) && node->tag ) {
+
+            /* Leave XML stuff alone. */
+            if ( !cfgBool(doc, TidyXmlTags) )
+            {
+                /* Version mismatches take priority. */
+                if ( check_versions && !(node->tag->versions & version) )
+                {
+                    TY_(ReportError)(doc, NULL, node, tagReportType );
+                }
+                /* If it's not mismatched, it could still be proprietary. */
+                else if ( node->tag->versions & VERS_PROPRIETARY )
+                {
+                    if ( !cfgBool(doc, TidyMakeClean) ||
+                        ( !nodeIsNOBR(node) && !nodeIsWBR(node) ) )
+                    {
+                        TY_(ReportError)(doc, NULL, node, PROPRIETARY_ELEMENT );
+
+                        if ( nodeIsLAYER(node) )
+                            doc->badLayout |= USING_LAYER;
+                        else if ( nodeIsSPACER(node) )
+                            doc->badLayout |= USING_SPACER;
+                        else if ( nodeIsNOBR(node) )
+                            doc->badLayout |= USING_NOBR;
+                    }
+                }
+            }
+        }
+
+        /* And this bit here handles our attributes */
+        if (TY_(nodeIsElement)(node))
+        {
+            attval = node->attributes;
+
+            while (attval)
+            {
+                next_attr = attval->next;
+
+                attrIsProprietary = TY_(AttributeIsProprietary)(node, attval);
+                attrIsMismatched = check_versions ? TY_(AttributeIsMismatched)(node, attval, doc) : no;
+                /* Let the PROPRIETARY_ATTRIBUTE warning have precedence. */
+                if ( attrIsProprietary )
+                    TY_(ReportAttrError)(doc, node, attval, PROPRIETARY_ATTRIBUTE);
+                else if ( attrIsMismatched )
+                {
+                    TY_(ReportAttrError)(doc, node, attval, attrReportType);
+                }
+
+                /* @todo: do we need a new option to drop mismatches? Or should we
+                 simply drop them? */
+                if ( ( attrIsProprietary || attrIsMismatched ) && cfgBool(doc, TidyDropPropAttrs) )
+                    TY_(RemoveAttribute)( doc, node, attval );
+
+                attval = next_attr;
+            }
+        }
+
+        if (node->content)
+            TY_(CheckHTMLTagsAttribsVersions)( doc, node->content );
+        
+        node = node->next;
+    }
+}
+
+
+#if !defined(NDEBUG) && defined(_MSC_VER)
+/* *** FOR DEBUG ONLY *** */
+const char *dbg_get_lexer_type( void *vp )
+{
+    Node *node = (Node *)vp;
+    switch ( node->type )
+    {
+    case RootNode:      return "Root";
+    case DocTypeTag:    return "DocType";
+    case CommentTag:    return "Comment";
+    case ProcInsTag:    return "ProcIns";
+    case TextNode:      return "Text";
+    case StartTag:      return "StartTag";
+    case EndTag:        return "EndTag";
+    case StartEndTag:   return "StartEnd";
+    case CDATATag:      return "CDATA";
+    case SectionTag:    return "Section";
+    case AspTag:        return "Asp";
+    case JsteTag:       return "Jste";
+    case PhpTag:        return "Php";
+    case XmlDecl:       return "XmlDecl";
+    }
+    return "Uncased";
+}
+
+/* NOTE: THis matches the above lexer type, except when element has a name */
+const char *dbg_get_element_name( void *vp )
+{
+    Node *node = (Node *)vp;
+    switch ( node->type )
+    {
+    case TidyNode_Root:       return "Root";
+    case TidyNode_DocType:    return "DocType";
+    case TidyNode_Comment:    return "Comment";
+    case TidyNode_ProcIns:    return "ProcIns";
+    case TidyNode_Text:       return "Text";
+    case TidyNode_CDATA:      return "CDATA";
+    case TidyNode_Section:    return "Section";
+    case TidyNode_Asp:        return "Asp";
+    case TidyNode_Jste:       return "Jste";
+    case TidyNode_Php:        return "Php";
+    case TidyNode_XmlDecl:    return "XmlDecl";
+
+    case TidyNode_Start:
+    case TidyNode_End:
+    case TidyNode_StartEnd:
+    default:
+        if (node->element)
+            return node->element;
+    }
+    return "Unknown";
+}
+
+void dbg_show_node( TidyDocImpl* doc, Node *node, int caller, int indent )
+{
+    AttVal* av;
+    Lexer* lexer = doc->lexer;
+    ctmbstr call = "";
+    ctmbstr name = dbg_get_element_name(node);
+    ctmbstr type = dbg_get_lexer_type(node);
+    ctmbstr impl = node->implicit ? "implicit" : "";
+    switch ( caller )
+    {
+    case 1: call = "discard";   break;
+    case 2: call = "trim";      break;
+    case 3: call = "test";      break;
+    }
+    while (indent--)
+        SPRTF(" ");
+    if (strcmp(type,name))
+        SPRTF("%s %s %s %s", type, name, impl, call );
+    else
+        SPRTF("%s %s %s", name, impl, call );
+    if (lexer && (strcmp("Text",name) == 0)) {
+        uint len = node->end - node->start;
+        uint i;
+        SPRTF(" (%d) '", len);
+        if (len < 40) {
+            /* show it all */
+            for (i = node->start; i < node->end; i++) {
+                SPRTF("%c", lexer->lexbuf[i]);
+            }
+        } else {
+            /* partial display */
+            uint max = 19;
+            for (i = node->start; i < max; i++) {
+                SPRTF("%c", lexer->lexbuf[i]);
+            }
+            SPRTF("...");
+            i = node->end - 19;
+            for (; i < node->end; i++) {
+                SPRTF("%c", lexer->lexbuf[i]);
+            }
+        }
+        SPRTF("'");
+    }
+    for (av = node->attributes; av; av = av->next) {
+        name = av->attribute;
+        if (name) {
+            SPRTF(" %s",name);
+            if (av->value) {
+                SPRTF("=\"%s\"", av->value);
+            }
+        }
+    }
+
+    SPRTF("\n");
+}
+
+void dbg_show_all_nodes( TidyDocImpl* doc, Node *node, int indent )
+{
+    while (node)
+    {
+        dbg_show_node( doc, node, 0, indent );
+        dbg_show_all_nodes( doc, node->content, indent + 1 );
+        node = node->next;
+    }
+}
+
+#endif
+
 int         tidyDocCleanAndRepair( TidyDocImpl* doc )
 {
     Bool word2K   = cfgBool( doc, TidyWord2000 );
     Bool logical  = cfgBool( doc, TidyLogicalEmphasis );
     Bool clean    = cfgBool( doc, TidyMakeClean );
+    Bool gdoc     = cfgBool( doc, TidyGDocClean );
     Bool dropFont = cfgBool( doc, TidyDropFontTags );
     Bool htmlOut  = cfgBool( doc, TidyHtmlOut );
     Bool xmlOut   = cfgBool( doc, TidyXmlOut );
@@ -1246,13 +1797,19 @@ int         tidyDocCleanAndRepair( TidyDocImpl* doc )
     Bool tidyMark = cfgBool( doc, TidyMark );
     Bool tidyXmlTags = cfgBool( doc, TidyXmlTags );
     Bool wantNameAttr = cfgBool( doc, TidyAnchorAsName );
+    Bool mergeEmphasis = cfgBool( doc, TidyMergeEmphasis );
     Node* node;
 
+#if !defined(NDEBUG) && defined(_MSC_VER)
+    SPRTF("All nodes BEFORE clean and repair\n");
+    dbg_show_all_nodes( doc, &doc->root, 0  );
+#endif
     if (tidyXmlTags)
        return tidyDocStatus( doc );
 
     /* simplifies <b><b> ... </b> ...</b> etc. */
-    TY_(NestedEmphasis)( doc, &doc->root );
+    if ( mergeEmphasis )
+        TY_(NestedEmphasis)( doc, &doc->root );
 
     /* cleans up <dir>indented text</dir> etc. */
     TY_(List2BQ)( doc, &doc->root );
@@ -1276,6 +1833,10 @@ int         tidyDocCleanAndRepair( TidyDocImpl* doc )
     if ( clean || dropFont )
         TY_(CleanDocument)( doc );
 
+    /* clean up html exported by Google Docs */
+    if ( gdoc )
+        TY_(CleanGoogleDocument)( doc );
+
     /*  Move terminating <br /> tags from out of paragraphs  */
     /*!  Do we want to do this for all block-level elements?  */
 
@@ -1297,6 +1858,7 @@ int         tidyDocCleanAndRepair( TidyDocImpl* doc )
 
     /* remember given doctype for reporting */
     node = TY_(FindDocType)(doc);
+
     if (node)
     {
         AttVal* fpi = TY_(GetAttrByName)(node, "PUBLIC");
@@ -1342,6 +1904,27 @@ int         tidyDocCleanAndRepair( TidyDocImpl* doc )
     if ( xmlOut && xmlDecl )
         TY_(FixXmlDecl)( doc );
 
+    /* At this point the apparent doctype is going to be as stable as
+       it can ever be, so we can start detecting things that shouldn't
+       be in this version of HTML
+     */
+    if (doc->lexer) 
+    {
+        /*\ 
+         *  Issue #429 #426 - These services can only be used
+         *  when there is a document loaded, ie a lexer created.
+         *  But really should not be calling a Clean and Repair
+         *  service with no doc!
+        \*/
+        if (doc->lexer->versionEmitted & VERS_HTML5)
+            TY_(CheckHTML5)( doc, &doc->root );
+        TY_(CheckHTMLTagsAttribsVersions)( doc, &doc->root );
+    }
+
+#if !defined(NDEBUG) && defined(_MSC_VER)
+    SPRTF("All nodes AFTER clean and repair\n");
+    dbg_show_all_nodes( doc, &doc->root, 0  );
+#endif
     return tidyDocStatus( doc );
 }
 
@@ -1382,7 +1965,13 @@ int         tidyDocSaveStream( TidyDocImpl* doc, StreamOut* out )
     Bool asciiChars   = cfgBool(doc, TidyAsciiChars);
     Bool makeBare     = cfgBool(doc, TidyMakeBare);
     Bool escapeCDATA  = cfgBool(doc, TidyEscapeCdata);
+    Bool ppWithTabs   = cfgBool(doc, TidyPPrintTabs);
     TidyAttrSortStrategy sortAttrStrat = cfg(doc, TidySortAttributes);
+
+    if (ppWithTabs)
+        TY_(PPrintTabs)();
+    else
+        TY_(PPrintSpaces)();
 
     if (escapeCDATA)
         TY_(ConvertCDATANodes)(doc, &doc->root);
@@ -1394,7 +1983,6 @@ int         tidyDocSaveStream( TidyDocImpl* doc, StreamOut* out )
     {
         /* noop */
         TY_(DropFontElements)(doc, &doc->root, NULL);
-        TY_(WbrToSpace)(doc, &doc->root);
     }
 
     if ((makeClean && asciiChars) || makeBare)
@@ -1445,8 +2033,8 @@ int         tidyDocSaveStream( TidyDocImpl* doc, StreamOut* out )
 **
 ** The big issue here is the degree to which we should mimic
 ** a DOM and/or SAX nodes.
-** 
-** Is it 100% possible (and, if so, how difficult is it) to 
+**
+** Is it 100% possible (and, if so, how difficult is it) to
 ** emit SAX events from this API?  If SAX events are possible,
 ** is that 100% of data needed to build a DOM?
 */
@@ -1497,6 +2085,15 @@ TidyNode TIDY_CALL    tidyGetChild( TidyNode tnod )
 {
   Node* nimp = tidyNodeToImpl( tnod );
   return tidyImplToNode( nimp->content );
+}
+
+/* remove a node */
+TidyNode TIDY_CALL    tidyDiscardElement( TidyDoc tdoc, TidyNode tnod )
+{
+  TidyDocImpl* doc = tidyDocToImpl( tdoc );
+  Node* nimp = tidyNodeToImpl( tnod );
+  Node* next = TY_(DiscardElement)( doc, nimp );
+  return tidyImplToNode( next );
 }
 
 /* siblings */
@@ -1577,7 +2174,7 @@ Bool TIDY_CALL  tidyNodeGetText( TidyDoc tdoc, TidyNode tnod, TidyBuffer* outbuf
 
       TY_(PFlushLine)( doc, 0 );
       doc->docOut = NULL;
-  
+
       TidyDocFree( doc, out );
       return yes;
   }
@@ -1710,6 +2307,14 @@ ctmbstr TIDY_CALL       tidyAttrValue( TidyAttr tattr )
   return aval;
 }
 
+void TIDY_CALL           tidyAttrDiscard( TidyDoc tdoc, TidyNode tnod, TidyAttr tattr )
+{
+  TidyDocImpl* impl = tidyDocToImpl( tdoc );
+  Node* nimp = tidyNodeToImpl( tnod );
+  AttVal* attval = tidyAttrToImpl( tattr );
+  TY_(RemoveAttribute)( impl, nimp, attval );
+}
+
 /* Null for pure HTML
 ctmbstr       tidyAttrNsLocal( TidyAttr tattr )
 {
@@ -1732,13 +2337,13 @@ TidyAttrId TIDY_CALL tidyAttrGetId( TidyAttr tattr )
 }
 Bool TIDY_CALL tidyAttrIsProp( TidyAttr tattr )
 {
-  AttVal* attval = tidyAttrToImpl( tattr );
-  Bool isProprietary = yes;
-  if ( attval )
-    isProprietary = ( attval->dict 
-                      ? (attval->dict->versions & VERS_PROPRIETARY) != 0
-                      : yes );
-  return isProprietary;
+  /*
+    You cannot tell whether an attribute is proprietary without
+    knowing on which element it occurs in the general case, but
+    this function cannot know the element. As a result, it does
+    not work anymore. Do not use.
+  */
+  return no;
 }
 
 /*

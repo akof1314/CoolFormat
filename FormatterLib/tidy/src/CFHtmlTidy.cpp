@@ -1,5 +1,5 @@
 #include "CFHtmlTidy.h"
-#include "buffio.h"
+#include "tidybuffio.h"
 #include "tidy-int.h"
 
 CCFHtmlTidy::CCFHtmlTidy(void)
@@ -77,6 +77,12 @@ void CCFHtmlTidy::InitTidyDefault()
 	tidyOptSetBool(formatter, TidyNCR, no);
 	tidyOptSetBool(formatter, TidyAnchorAsName, no);
 	tidyOptSetInt(formatter, TidyNewline, 0);
+    tidyOptSetBool(formatter, TidyCoerceEndTags, no);
+    tidyOptSetBool(formatter, TidyDropEmptyElems, no);
+    tidyOptSetBool(formatter, TidyMergeEmphasis, no);
+    tidyOptSetBool(formatter, TidySkipNested, no);
+    tidyOptSetBool(formatter, TidyShowInfo, no);
+    tidyOptSetBool(formatter, TidyEscapeScripts, no);
 }
 
 void CCFHtmlTidy::SetTidyProp(const std::string& strParam, int nNumValue, const std::string& /*strNumValue*/, const std::string& strTextValue)
@@ -106,10 +112,18 @@ void CCFHtmlTidy::SetTidyProp(const std::string& strParam, int nNumValue, const 
 	{
 		tidyOptSetBool(formatter, TidyMakeClean, yes);
 	}
+    else if ("cet" == strParam)
+    {
+        tidyOptSetBool(formatter, TidyCoerceEndTags, yes);
+    }
 	else if ("diu" == strParam)
 	{
 		tidyOptSetBool(formatter, TidyDecorateInferredUL, yes);
 	}
+    else if ("dee" == strParam)
+    {
+        tidyOptSetBool(formatter, TidyDropEmptyElems, yes);
+    }
 	else if ("dep" == strParam)
 	{
 		tidyOptSetBool(formatter, TidyDropEmptyParas, yes);
@@ -146,6 +160,10 @@ void CCFHtmlTidy::SetTidyProp(const std::string& strParam, int nNumValue, const 
 	{
 		tidyOptSetBool(formatter, TidyFixUri, yes);
 	}
+    else if ("gdc" == strParam)
+    {
+        tidyOptSetBool(formatter, TidyGDocClean, yes);
+    }
 	else if ("hc" == strParam)
 	{
 		tidyOptSetBool(formatter, TidyHideComments, yes);
@@ -190,6 +208,10 @@ void CCFHtmlTidy::SetTidyProp(const std::string& strParam, int nNumValue, const 
 	{
 		tidyOptSetBool(formatter, TidyNumEntities, yes);
 	}
+    else if ("oot" == strParam)
+    {
+        tidyOptSetBool(formatter, TidyOmitOptionalTags, yes);
+    }
 	else if ("oh" == strParam)
 	{
 		tidyOptSetBool(formatter, TidyHtmlOut, yes);
@@ -222,6 +244,14 @@ void CCFHtmlTidy::SetTidyProp(const std::string& strParam, int nNumValue, const 
 	{
 		tidyOptSetBool(formatter, TidyReplaceColor, yes);
 	}
+    else if ("sn" == strParam)
+    {
+        tidyOptSetBool(formatter, TidySkipNested, yes);
+    }
+    else if ("sta" == strParam)
+    {
+        tidyOptSetBool(formatter, TidyStrictTagsAttr, yes);
+    }
 	else if ("ua" == strParam)
 	{
 		tidyOptSetBool(formatter, TidyUpperCaseAttrs, yes);
@@ -238,10 +268,18 @@ void CCFHtmlTidy::SetTidyProp(const std::string& strParam, int nNumValue, const 
 	{
 		tidyOptSetBool(formatter, TidyBreakBeforeBR, yes);
 	}
+    else if ("es" == strParam)
+    {
+        tidyOptSetBool(formatter, TidyEscapeScripts, yes);
+    }
 	else if ("ia" == strParam)
 	{
 		tidyOptSetBool(formatter, TidyIndentAttributes, yes);
 	}
+    else if ("tb" == strParam)
+    {
+        tidyOptSetBool(formatter, TidyPPrintTabs, yes);
+    }
 	else if ("m" == strParam)
 	{
 		tidyOptSetBool(formatter, TidyShowMarkup, yes);
@@ -298,6 +336,10 @@ void CCFHtmlTidy::SetTidyProp(const std::string& strParam, int nNumValue, const 
 	{
 		tidyOptSetInt(formatter, TidyMergeDivs, abs(nNumValue - 2) % 3);
 	}
+    else if ("me" == strParam)
+    {
+        tidyOptSetBool(formatter, TidyMergeEmphasis, yes);
+    }
 	else if ("ms" == strParam)
 	{
 		tidyOptSetInt(formatter, TidyMergeSpans, abs(nNumValue - 2) % 3);
@@ -308,7 +350,12 @@ void CCFHtmlTidy::SetTidyProp(const std::string& strParam, int nNumValue, const 
 	}
 	else if ("d" == strParam)
 	{
-		tidyOptSetInt(formatter, TidyDoctypeMode, nNumValue % 5);
+        ulong val = (nNumValue - 1) % 5;
+        if (nNumValue == 5)
+        {
+            val = 0;
+        }
+        tidyOptSetInt(formatter, TidyDoctypeMode, val);
 	}
 	else if ("du" == strParam)
 	{
@@ -338,6 +385,10 @@ void CCFHtmlTidy::SetTidyProp(const std::string& strParam, int nNumValue, const 
 	{
 		tidyOptSetInt(formatter, TidyShowErrors, nNumValue);
 	}
+    else if ("si" == strParam)
+    {
+        tidyOptSetBool(formatter, TidyShowInfo, yes);
+    }
 	else if ("is" == strParam)
 	{
 		tidyOptSetInt(formatter, TidyIndentSpaces, nNumValue);

@@ -5,7 +5,6 @@
 
    Originally contributed by Cory Nelson and Nuno Lopes
 
-   $Id: mappedio.c,v 1.14 2008/03/18 20:19:35 arnaud02 Exp $
 */
 
 /* keep these here to keep file non-empty */
@@ -98,15 +97,15 @@ void TY_(freeFileSource)( TidyInputSource* inp, Bool closeIt )
 
 
 #if defined(_WIN32)
-#include "streamio.h"
-#include "tidy-int.h"
-#include "message.h"
-
-#include <errno.h>
-#if _MSC_VER < 1300  /* less than msvc++ 7.0 */
+#if defined(_MSC_VER) && (_MSC_VER < 1300)  /* less than msvc++ 7.0 */
 #pragma warning(disable:4115) /* named type definition in parentheses in windows headers */
 #endif
 #include <windows.h>
+#include <errno.h>
+
+#include "streamio.h"
+#include "tidy-int.h"
+#include "message.h"
 
 typedef struct _fp_input_mapped_source
 {
@@ -192,11 +191,25 @@ static int initMappedFileSource( TidyAllocator *allocator, TidyInputSource* inp,
     fin = (MappedFileSource*) TidyAlloc( allocator, sizeof(MappedFileSource) );
     if ( !fin )
         return -1;
-    
-#if _MSC_VER < 1300  /* less than msvc++ 7.0 */
+
+#if defined(__MINGW32__)
+    {
+        DWORD lowVal, highVal;
+        lowVal = GetFileSize(fp, &highVal);
+        if ((lowVal == INVALID_FILE_SIZE) && (GetLastError() != NO_ERROR))
+        {
+            TidyFree(allocator, fin);
+            return -1;
+        }
+        fin->size = highVal;
+        fin->size = (fin->size << 32);
+        fin->size += lowVal;
+    }
+#else /* NOT a MinGW build */
+#if defined(_MSC_VER) && (_MSC_VER < 1300)  /* less than msvc++ 7.0 */
     {
         LARGE_INTEGER* pli = (LARGE_INTEGER *)&fin->size;
-        pli->LowPart = GetFileSize( fp, (DWORD *)&pli->HighPart );
+        (DWORD)pli->LowPart = GetFileSize( fp, (DWORD *)&pli->HighPart );
         if ( GetLastError() != NO_ERROR || fin->size <= 0 )
         {
             TidyFree(allocator, fin);
@@ -211,6 +224,7 @@ static int initMappedFileSource( TidyAllocator *allocator, TidyInputSource* inp,
         return -1;
     }
 #endif
+#endif /* MinGW y/n */
 
     fin->map = CreateFileMapping( fp, NULL, PAGE_READONLY, 0, 0, NULL );
 

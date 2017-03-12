@@ -6,12 +6,6 @@
   (c) 1998-2007 (W3C) MIT, ERCIM, Keio University
   See tidy.h for the copyright notice.
 
-  CVS Info :
-
-    $Author: arnaud02 $ 
-    $Date: 2007/07/22 09:33:26 $ 
-    $Revision: 1.21 $ 
-
   Wrapper around Tidy input source and output sink
   that calls appropriate interfaces, and applies 
   necessary char encoding transformations: to/from
@@ -20,7 +14,7 @@
 */
 
 #include "forward.h"
-#include "buffio.h"
+#include "tidybuffio.h"
 #include "fileio.h"
 
 #ifdef __cplusplus
@@ -186,12 +180,6 @@ int TY_(GetCharEncodingFromOptName)(ctmbstr charenc);
 #define WIN32MLANG  36
 #endif
 
-
-/* char encoding used when replacing illegal SGML chars,
-** regardless of specified encoding.  Set at compile time
-** to either Windows or Mac.
-*/
-extern const int TY_(ReplacementCharEncoding);
 
 /* Function for conversion from Windows-1252 to Unicode */
 uint TY_(DecodeWin1252)(uint c);

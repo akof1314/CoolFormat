@@ -7,12 +7,6 @@
   Portions (c) 1998-2006 (W3C) MIT, ERCIM, Keio University
   See tidy.h for the copyright notice.
   
-  CVS Info :
-
-    $Author: arnaud02 $ 
-    $Date: 2006/09/12 15:14:44 $ 
-    $Revision: 1.7 $ 
-
 */
 
 /*********************************************************************
@@ -38,6 +32,7 @@
 
 
 #include "forward.h"
+#include "message.h"
 
 #if SUPPORT_ACCESSIBILITY_CHECKS
 
@@ -120,10 +115,17 @@ struct _TidyAccessImpl
 
     Offset accessibility error codes by FIRST_ACCESS_ERR to avoid conflict with
     other error codes defined in message.h and used in localize.c.
-*/
-enum accessErrorCodes
+  
+    These accessErrorCodes are used throughout libtidy, and also
+    have associated localized strings to describe them.
+ 
+    IMPORTANT: to maintain compatability with TidyMessageFilter3, if you add
+    or remove keys from this enum, ALSO add/remove the corresponding key
+    in language.c:tidyErrorFilterKeysStruct[]!
+ */
+typedef enum
 {
-                           FIRST_ACCESS_ERR = 1000,    /* must be first */
+                           FIRST_ACCESS_ERR = CODES_TIDY_ERROR_LAST + 1,    /* must be first */
  
     /* [1.1.1.1] */        IMG_MISSING_ALT,
     /* [1.1.1.2] */        IMG_ALT_SUSPICIOUS_FILENAME,
@@ -258,7 +260,7 @@ enum accessErrorCodes
     /* [13.10.1.1] */      SKIPOVER_ASCII_ART,
     
     LAST_ACCESS_ERR    /* must be last */
-};
+} accessErrorCodes;
 
 
 void TY_(AccessibilityHelloMessage)( TidyDocImpl* doc );

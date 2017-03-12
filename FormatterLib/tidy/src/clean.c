@@ -4,12 +4,6 @@
   (c) 1998-2008 (W3C) MIT, ERCIM, Keio University
   See tidy.h for the copyright notice.
 
-  CVS Info :
-
-    $Author: arnaud02 $ 
-    $Date: 2008/10/14 12:18:10 $ 
-    $Revision: 1.111 $ 
-
   Filters from other formats such as Microsoft Word
   often make excessive use of presentation markup such
   as font tags, B, I, and the align attribute. By applying
@@ -1013,6 +1007,7 @@ static Bool Center2Div( TidyDocImpl* doc, Node *node, Node **pnode)
 {
     if ( nodeIsCENTER(node) )
     {
+#if 0 /* 00000000 what is this doing inside an nodeIsCENTER(node)??? 0000000 */
         if ( cfgBool(doc, TidyDropFontTags) )
         {
             if (node->content)
@@ -1040,7 +1035,7 @@ static Bool Center2Div( TidyDocImpl* doc, Node *node, Node **pnode)
 
             return yes;
         }
-
+#endif /* 00000000 what is this doing inside an nodeIsCENTER(node)??? 0000000 */
         RenameElem( doc, node, TidyTag_DIV );
         TY_(AddStyleProperty)( doc, node, "text-align: center" );
         return yes;
@@ -1247,6 +1242,7 @@ Bool FindCSSSpanEq( Node *node, ctmbstr *s, Bool deprecatedOnly )
 static Bool CanApplyBlockStyle( Node *node )
 {
     if (TY_(nodeHasCM)(node,CM_BLOCK | CM_LIST | CM_DEFLIST | CM_TABLE)
+        && !nodeIsDIV(node) && !nodeIsP(node)
         && !nodeIsTABLE(node) && !nodeIsTR(node) && !nodeIsLI(node) )
     {
         return yes;
@@ -1921,6 +1917,7 @@ void TY_(CleanWord2000)( TidyDocImpl* doc, Node *node)
     /* used to a list from a sequence of bulletted p's */
     Lexer* lexer = doc->lexer;
     Node* list = NULL;
+    AttVal *next_attr, *attval;
 
     while ( node )
     {
@@ -1931,6 +1928,19 @@ void TY_(CleanWord2000)( TidyDocImpl* doc, Node *node)
             if ( !TY_(GetAttrByName)(node, "xmlns:o") &&
                  !cfgBool(doc, TidyMakeBare) )
                 return;
+
+            /* Output proprietary attributes to maintain errout compatability
+             * with traditional Tidy. This is a result of moving all of the
+             * proprietary checks to near the end of the cleanup process,
+             * meaning this result would not ordinarily be displayed. 
+             */
+            attval = node->attributes;
+            while ( attval ) {
+                next_attr = attval->next;
+                if ( strcmp(attval->attribute, "xmlns") != 0 )
+                    TY_(ReportAttrError)(doc, node, attval, PROPRIETARY_ATTRIBUTE);
+                attval = next_attr;
+            }
 
             TY_(FreeAttrs)( doc, node );
         }
@@ -2005,7 +2015,13 @@ void TY_(CleanWord2000)( TidyDocImpl* doc, Node *node)
         /* discards <o:p> which encodes the paragraph mark */
         if ( node->tag && TY_(tmbstrcmp)(node->tag->name,"o:p")==0)
         {
+            /* Output proprietary elements to maintain errout compatability
+             * with traditional Tidy. This is a result of moving all of the
+             * proprietary checks to near the end of the cleanup process,
+             * meaning this result would not ordinarily be displayed.
+             */
             Node* next;
+            TY_(ReportError)(doc, NULL, node, PROPRIETARY_ELEMENT);
             DiscardContainer( doc, node, &next );
             node = next;
             continue;
@@ -2644,17 +2660,19 @@ void TY_(FixAnchors)(TidyDocImpl* doc, Node *node, Bool wantName, Bool wantId)
 
             if (id && !wantId
                 /* make sure that Name has been emitted if requested */
-                && (hadName || !wantName || NameEmitted) )
+                && (hadName || !wantName || NameEmitted) ) {
+                if (!wantId && !wantName)
+                    TY_(RemoveAnchorByNode)(doc, id->value, node);
                 TY_(RemoveAttribute)(doc, node, id);
+            }
 
             if (name && !wantName
                 /* make sure that Id has been emitted if requested */
-                && (hadId || !wantId || IdEmitted) )
+                && (hadId || !wantId || IdEmitted) ) {
+                if (!wantId && !wantName)
+                    TY_(RemoveAnchorByNode)(doc, name->value, node);
                 TY_(RemoveAttribute)(doc, node, name);
-
-            if (TY_(AttrGetById)(node, TidyAttr_NAME) == NULL &&
-                TY_(AttrGetById)(node, TidyAttr_ID) == NULL)
-                TY_(RemoveAnchorByNode)(doc, node);
+            }
         }
 
         if (node->content)
