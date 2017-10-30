@@ -149,6 +149,20 @@
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
+			<NAME>Attach closing while</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>xV</SHORT>
+				<PREVIEW>do\r\n{\r\n    bar();\r\n    ++x;\r\n} while x == 1;</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>do\r\n{\r\n    bar();\r\n    ++x;\r\n}\r\nwhile x == 1;</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
 			<NAME>Indentation</NAME>
 			<GROUP>TRUE</GROUP>
 		</PROPERTY>
@@ -248,6 +262,20 @@
 			<ITEM>
 				<VALUE>No</VALUE>
 				<PREVIEW>namespace foospace\r\n{\r\nclass Foo\r\n{\r\n    public:\r\n        Foo();\r\n        virtual ~Foo();\r\n};\r\n}</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Indent after parens</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>xU</SHORT>
+				<PREVIEW>void Foo(bool bar1,\r\n    bool bar2)\r\n{\r\n    isLongFunction(bar1,\r\n        bar2);\r\n\r\n    isLongVariable = foo1\r\n        || foo2;\r\n}</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>void Foo(bool bar1,\r\n         bool bar2)\r\n{\r\n    isLongFunction(bar1,\r\n                   bar2);\r\n\r\n    isLongVariable = foo1\r\n                     || foo2;\r\n}</PREVIEW>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
@@ -354,7 +382,7 @@
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
-			<NAME>Max instatement indent</NAME>
+			<NAME>Max continuation indent</NAME>
 			<TYPE>Number</TYPE>
 			<VALUE>40</VALUE>
 			<RANGE>40, 120</RANGE>
@@ -591,7 +619,7 @@
 			<GROUP>TRUE</GROUP>
 		</PROPERTY>
 		<PROPERTY>
-			<NAME>Break closing brackets</NAME>
+			<NAME>Break closing braces</NAME>
 			<TYPE>Combo</TYPE>
 			<VALUE>No</VALUE>
 			<ITEM>
@@ -633,7 +661,7 @@
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
-			<NAME>Add brackets</NAME>
+			<NAME>Add braces</NAME>
 			<TYPE>Combo</TYPE>
 			<VALUE>No</VALUE>
 			<ITEM>
@@ -647,7 +675,7 @@
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
-			<NAME>Add one line brackets</NAME>
+			<NAME>Add one line braces</NAME>
 			<TYPE>Combo</TYPE>
 			<VALUE>No</VALUE>
 			<ITEM>
@@ -661,7 +689,7 @@
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
-			<NAME>Remove brackets</NAME>
+			<NAME>Remove braces</NAME>
 			<TYPE>Combo</TYPE>
 			<VALUE>No</VALUE>
 			<ITEM>
