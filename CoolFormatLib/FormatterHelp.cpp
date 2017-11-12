@@ -108,7 +108,9 @@ bool CFormatterHelp::DoFormatter(unsigned int nLanguage, const std::string &strT
     case SYN_VERILOG:
     {
         pTidy = new CCFVerilogTidy();
-        strTidy = (g_GlobalTidy.m_TidyVerilog);
+        std::string strNewTidy(g_GlobalTidy.m_TidyVerilog);
+        strNewTidy = strreplace_all(strNewTidy, "-", " -");
+        strTidy = (strNewTidy);
     }
     break;
 	default:
