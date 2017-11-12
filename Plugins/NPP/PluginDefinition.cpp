@@ -110,6 +110,9 @@ bool setCommand(size_t index, TCHAR *cmdName, PFUNCPLUGINCMD pFunc, ShortcutKey 
     if (index >= nbFunc)
         return false;
 
+    if (!pFunc)
+        return false;
+
     lstrcpy(funcItem[index]._itemName, cmdName);
     funcItem[index]._pFunc = pFunc;
     funcItem[index]._init2Check = check0nInit;
@@ -142,7 +145,7 @@ struct LangSynType {
 };
 
 LangSynType langSynType[] = {
-	{ L_TXT, SYN_NORMALTEXT },
+    { L_TEXT, SYN_NORMALTEXT },
 	{ L_PHP, SYN_PHP },
 	{ L_C, SYN_CPP },
 	{ L_CPP, SYN_CPP },
@@ -156,7 +159,7 @@ LangSynType langSynType[] = {
 	{ L_PASCAL, SYN_PASCAL },
 	{ L_BATCH, SYN_BATCH },
 	{ L_INI, SYN_INI },
-	{ L_NFO, SYN_NORMALTEXT },
+    { L_ASCII, SYN_NORMALTEXT },
 	{ L_USER, SYN_NORMALTEXT },
 	{ L_ASP, SYN_ASP },
 	{ L_SQL, SYN_SQL },
@@ -216,7 +219,12 @@ void loadCFDll()
 	{
 		TCHAR cfDllPath[MAX_PATH];
 		lstrcpy(cfDllPath, outputDlg.getPluginPath());
-		hInstCF = LoadLibrary(lstrcat(cfDllPath, TEXT("\\CoolFormatLib\\cf_windows_x32\\CoolFormatLib.dll")));
+
+#ifdef _WIN64
+        hInstCF = LoadLibrary(lstrcat(cfDllPath, TEXT("\\CoolFormatLib\\cf_windows_x64\\CoolFormatLib.dll")));
+#else
+        hInstCF = LoadLibrary(lstrcat(cfDllPath, TEXT("\\CoolFormatLib\\cf_windows_x32\\CoolFormatLib.dll")));
+#endif // _WIN64
 		if (hInstCF)
 		{
 			DoFormatter = (DoFormatterProc)GetProcAddress(hInstCF, "DoFormatter");
@@ -234,7 +242,7 @@ void loadCFDll()
 		{
 			::MessageBox(NULL, TEXT("Cannot load CoolFormatLib.dll!"), NPP_PLUGIN_NAME, MB_OK);
 		}
-	}
+    }
 }
 
 void showOutput(const char *pszOutput)
@@ -309,7 +317,7 @@ void doFormat(bool bSelected)
 
 	if (DoFormatter)
 	{
-		LangType langType = L_TXT;
+        LangType langType = L_TEXT;
 		::SendMessage(nppData._nppHandle, NPPM_GETCURRENTLANGTYPE, 0, (LPARAM)&langType);
 		unsigned int uLanguage = langSynType[langType].uLanguage;
 		unsigned int uCodepage = 0;

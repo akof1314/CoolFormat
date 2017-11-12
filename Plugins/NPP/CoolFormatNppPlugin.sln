@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CoolFormatNppPlugin", "NppPluginTemplate.vcxproj", "{1590D7CD-7D3A-4AB7-A355-EE02F7FB987D}"
 EndProject
@@ -41,7 +41,8 @@ Global
 		{1590D7CD-7D3A-4AB7-A355-EE02F7FB987D}.Release|x64.ActiveCfg = ANSI Release|Win32
 		{1590D7CD-7D3A-4AB7-A355-EE02F7FB987D}.Unicode Debug|Win32.ActiveCfg = Unicode Debug|Win32
 		{1590D7CD-7D3A-4AB7-A355-EE02F7FB987D}.Unicode Debug|Win32.Build.0 = Unicode Debug|Win32
-		{1590D7CD-7D3A-4AB7-A355-EE02F7FB987D}.Unicode Debug|x64.ActiveCfg = Unicode Debug|Win32
+		{1590D7CD-7D3A-4AB7-A355-EE02F7FB987D}.Unicode Debug|x64.ActiveCfg = Unicode Debug|x64
+		{1590D7CD-7D3A-4AB7-A355-EE02F7FB987D}.Unicode Debug|x64.Build.0 = Unicode Debug|x64
 		{1590D7CD-7D3A-4AB7-A355-EE02F7FB987D}.Unicode Realeas|Win32.ActiveCfg = Unicode Realeas|Win32
 		{1590D7CD-7D3A-4AB7-A355-EE02F7FB987D}.Unicode Realeas|Win32.Build.0 = Unicode Realeas|Win32
 		{1590D7CD-7D3A-4AB7-A355-EE02F7FB987D}.Unicode Realeas|x64.ActiveCfg = Unicode Realeas|Win32
