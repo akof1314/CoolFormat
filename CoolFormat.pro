@@ -2,6 +2,7 @@ TEMPLATE = subdirs
 
 SUBDIRS += \
     FormatterLib/AStyle/src/AStyle.pro \
+    FormatterLib/VerilogFormatterLib/VerilogFormatterLib.pro \
     FormatterLib/CssTidyLib/CssTidyLib.pro \
     FormatterLib/JsFormatterLib/JsFormatterLib.pro \
     FormatterLib/JsonCppLib/JsonCppLib.pro \

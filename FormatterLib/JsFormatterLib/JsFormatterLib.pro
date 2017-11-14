@@ -24,5 +24,6 @@ HEADERS += \
     jsmin.h \
     jsminCharArray.h \
     jsparser.h \
-    realjsformatter.h
+    realjsformatter.h \
+    jsformatter.h
 

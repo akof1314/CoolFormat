@@ -4,7 +4,8 @@ CONFIG -= qt
 CONFIG += c++11
 CONFIG += staticlib
 
-DEFINES += SUPPORT_UTF16_ENCODINGS SUPPORT_ASIAN_ENCODINGS SUPPORT_ACCESSIBILITY_CHECKS
+DEFINES += SUPPORT_UTF16_ENCODINGS SUPPORT_ASIAN_ENCODINGS SUPPORT_ACCESSIBILITY_CHECKS SUPPORT_LOCALIZATIONS=0 LIBTIDY_VERSION=\\\"5.4.0\\\" RELEASE_DATE=\\\"2017/03/01\\\"
+DEFINES -= UNICODE
 INCLUDEPATH += ../include
 DESTDIR = $$_PRO_FILE_PWD_/../../../Lib
 QMAKE_POST_LINK += $$sprintf($$QMAKE_MKDIR_CMD, $$shell_path($$quote($$_PRO_FILE_PWD_/../../../Include))) $$escape_expand(\\n\\t)
@@ -26,7 +27,6 @@ SOURCES += \
     fileio.c \
     istack.c \
     lexer.c \
-    localize.c \
     mappedio.c \
     parser.c \
     pprint.c \
@@ -36,7 +36,11 @@ SOURCES += \
     tidylib.c \
     tmbstr.c \
     utf8.c \
-    win32tc.c
+    charsets.c \
+    gdoc.c \
+    language.c \
+    message.c \
+    sprtf.c
 
 HEADERS += \
     access.h \
@@ -60,9 +64,11 @@ HEADERS += \
     tmbstr.h \
     utf8.h \
     version.h \
-    win32tc.h \
-    buffio.h \
-    platform.h \
     tidy.h \
-    tidyenum.h
+    tidyenum.h \
+    sprtf.h \
+    language_en.h \
+    language.h \
+    gdoc.h \
+    charsets.h
 

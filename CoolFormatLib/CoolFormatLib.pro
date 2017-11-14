@@ -6,7 +6,7 @@ CONFIG += shared
 
 DEFINES += COOLFORMATLIB_EXPORTS
 INCLUDEPATH += ../Include
-LIBS += -L$$_PRO_FILE_PWD_/../Lib -lAStyleLib -lCssTidyLib -lJsFormatterLib -lJsonCppLib -lPhpFormatterLib -lSqlFormatterLib -ltidy
+LIBS += -L$$_PRO_FILE_PWD_/../Lib -lAStyleLib -lCssTidyLib -lJsFormatterLib -lJsonCppLib -lPhpFormatterLib -lSqlFormatterLib -ltidy -lVerilogFormatterLib
 DESTDIR = $$_PRO_FILE_PWD_/../Bin
 
 win32:QMAKE_LFLAGS += -shared
