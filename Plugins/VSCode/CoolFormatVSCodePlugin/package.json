@@ -1,24 +1,51 @@
 {
-    "name": "CoolFormatVSCodePlugin",
+    "name": "vscode-coolformat",
     "displayName": "CoolFormat",
-    "description": "CoolFormat VSCode Plugin",
+    "description": "A VSCode plugin for Source Code Formatter",
     "version": "0.0.1",
     "publisher": "WuHuan",
     "engines": {
         "vscode": "^1.18.0"
     },
     "categories": [
-        "Other"
+        "Formatters"
     ],
     "activationEvents": [
-        "onCommand:extension.sayHello"
+        "*"
     ],
     "main": "./extension",
     "contributes": {
-        "commands": [{
-            "command": "extension.sayHello",
-            "title": "Hello World"
-        }]
+        "configuration": {
+			"type": "object",
+			"title": "CoolFormat configuration",
+			"properties": {
+				"coolformat.c.enable": {
+					"type": "boolean",
+					"default": true,
+					"description": "enable C formatting"
+				},
+				"coolformat.cpp.enable": {
+					"type": "boolean",
+					"default": true,
+					"description": "enable C++ formatting"
+				},
+				"coolformat.objective-c.enable": {
+					"type": "boolean",
+					"default": false,
+					"description": "enable Object-C formatting"
+				},
+				"coolformat.csharp.enable": {
+					"type": "boolean",
+					"default": true,
+					"description": "enable C# formatting"
+				},
+				"coolformat.java.enable": {
+					"type": "boolean",
+					"default": false,
+					"description": "enable Java formatting"
+				}
+			}
+		}
     },
     "scripts": {
         "postinstall": "node ./node_modules/vscode/bin/install",
