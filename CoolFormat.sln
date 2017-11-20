@@ -35,6 +35,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CoolFormatLib", "CoolFormat
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "VerilogFormatterLib", "FormatterLib\VerilogFormatterLib\VerilogFormatterLib.vcxproj", "{51E14B2B-1E01-4A0B-A43E-3D57851DB43F}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CoolFormatExec", "CoolFormatLib\CoolFormatExec.vcxproj", "{38747FDC-9723-4B11-A467-E139D285FCE7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug Static|Win32 = Debug Static|Win32
@@ -203,6 +205,20 @@ Global
 		{51E14B2B-1E01-4A0B-A43E-3D57851DB43F}.Release|Win32.ActiveCfg = Release|Win32
 		{51E14B2B-1E01-4A0B-A43E-3D57851DB43F}.Release|Win32.Build.0 = Release|Win32
 		{51E14B2B-1E01-4A0B-A43E-3D57851DB43F}.Release|x64.ActiveCfg = Release|Win32
+		{38747FDC-9723-4B11-A467-E139D285FCE7}.Debug Static|Win32.ActiveCfg = Debug|Win32
+		{38747FDC-9723-4B11-A467-E139D285FCE7}.Debug Static|Win32.Build.0 = Debug|Win32
+		{38747FDC-9723-4B11-A467-E139D285FCE7}.Debug Static|x64.ActiveCfg = Debug|x64
+		{38747FDC-9723-4B11-A467-E139D285FCE7}.Debug Static|x64.Build.0 = Debug|x64
+		{38747FDC-9723-4B11-A467-E139D285FCE7}.Debug|Win32.ActiveCfg = Debug|Win32
+		{38747FDC-9723-4B11-A467-E139D285FCE7}.Debug|Win32.Build.0 = Debug|Win32
+		{38747FDC-9723-4B11-A467-E139D285FCE7}.Debug|x64.ActiveCfg = Debug|Win32
+		{38747FDC-9723-4B11-A467-E139D285FCE7}.Release Static|Win32.ActiveCfg = Release|Win32
+		{38747FDC-9723-4B11-A467-E139D285FCE7}.Release Static|Win32.Build.0 = Release|Win32
+		{38747FDC-9723-4B11-A467-E139D285FCE7}.Release Static|x64.ActiveCfg = Release|x64
+		{38747FDC-9723-4B11-A467-E139D285FCE7}.Release Static|x64.Build.0 = Release|x64
+		{38747FDC-9723-4B11-A467-E139D285FCE7}.Release|Win32.ActiveCfg = Release|Win32
+		{38747FDC-9723-4B11-A467-E139D285FCE7}.Release|Win32.Build.0 = Release|Win32
+		{38747FDC-9723-4B11-A467-E139D285FCE7}.Release|x64.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
