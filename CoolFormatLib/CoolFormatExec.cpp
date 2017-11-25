@@ -8,8 +8,6 @@
 #include <assert.h>
 #include <algorithm>
 
-#define USE_LOCAL_CONFIG_FILE
-
 #include "StrUseful.h"
 #include "GlobalTidy.h"
 #include "FormatterHelp.h"
@@ -510,6 +508,16 @@ bool isOption(const string& arg, const char* op)
     return arg.compare(op) == 0;
 }
 
+bool isParamOption(const string& arg, const char* option)
+{
+    bool retVal = arg.compare(0, strlen(option), option) == 0;
+    // if comparing for short option, 2nd char of arg must be numeric
+    if (retVal && strlen(option) == 1 && arg.length() > 1)
+        if (!isdigit((unsigned char)arg[1]))
+            retVal = false;
+    return retVal;
+}
+
 int processOptionMode(const string& arg)
 {
     string::size_type pos = arg.find("--mode=");
@@ -530,6 +538,7 @@ int processOptionMode(const string& arg)
 void processOptions(const vector<string>& argvOptions)
 {
     string arg;
+    string optionsFileName = "CoolFormatConfig.cfconfig";
     int mode = -1;
     vector<string> fileNameVector;
 
@@ -537,7 +546,11 @@ void processOptions(const vector<string>& argvOptions)
     {
         arg = argvOptions[i];
 
-        if (isOption(arg, "-h")
+        if (isParamOption(arg, "--options="))
+        {
+            optionsFileName = arg.substr(strlen("--options="));
+        }
+        else if (isOption(arg, "-h")
             || isOption(arg, "--help")
             || isOption(arg, "-?"))
         {
@@ -547,7 +560,7 @@ void processOptions(const vector<string>& argvOptions)
         else if (isOption(arg, "-V")
             || isOption(arg, "--version"))
         {
-            printf("CoolFormat Version %s\n", _version);
+            cout << "CoolFormat Version " << _version << endl;
             exit(EXIT_SUCCESS);
         }
         else if (arg[0] == '-')
@@ -560,14 +573,17 @@ void processOptions(const vector<string>& argvOptions)
         }
     }
 
-    for (size_t i = 0; i < fileNameVector.size(); i++)
-    {
-        formatFile(fileNameVector[i], mode);
-    }
-
     if (fileNameVector.empty())
     {
         printHelp();
+        return;
+    }
+
+    g_GlobalTidy.InitGlobalTidy("", optionsFileName);
+
+    for (size_t i = 0; i < fileNameVector.size(); i++)
+    {
+        formatFile(fileNameVector[i], mode);
     }
 }
 

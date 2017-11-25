@@ -50,7 +50,7 @@ GlobalTidy::~GlobalTidy(void)
 {
 }
 
-void GlobalTidy::InitGlobalTidy(const std::string &strDllPath)
+void GlobalTidy::InitGlobalTidy(const std::string &strDllPath, const std::string &strConfigPath)
 {
 	for(int i = 0; i <= SYN_XML; ++i)
 	{
@@ -81,13 +81,13 @@ void GlobalTidy::InitGlobalTidy(const std::string &strDllPath)
 	m_TidyJson = m_TidyNames[SYN_JSON].tidyName;
     m_TidySql = m_TidyNames[SYN_SQL].tidyName;
     m_TidyVerilog = m_TidyNames[SYN_VERILOG].tidyName;
-	LoadGlobalTidy(strDllPath);
+    LoadGlobalTidy(strDllPath, strConfigPath);
 }
 
-bool GlobalTidy::LoadGlobalTidy(const std::string &strDllPath)
+bool GlobalTidy::LoadGlobalTidy(const std::string &strDllPath, const std::string &strConfigPath)
 {
 #ifdef USE_LOCAL_CONFIG_FILE
-	return LoadFromFile(strDllPath);
+    return LoadFromFile(strDllPath, strConfigPath);
 #else
 	return LoadFromReg();
 #endif
@@ -206,16 +206,23 @@ bool GlobalTidy::LoadFromReg()
 	return false;
 }
 
-bool GlobalTidy::LoadFromFile(const std::string &strDllPath)
+bool GlobalTidy::LoadFromFile(const std::string &strDllPath, const std::string &strConfigPath)
 {
     std::string strFileName(strDllPath);
-    std::string::size_type pos = strFileName.rfind('/');
-	if (pos == std::string::npos)
-	{
-		return false;
-	}
-	strFileName.erase(pos);
-    strFileName.append("/CoolFormatConfig.cfconfig");
+    if (strConfigPath.empty())
+    {
+        std::string::size_type pos = strFileName.rfind('/');
+        if (pos == std::string::npos)
+        {
+            return false;
+        }
+        strFileName.erase(pos);
+        strFileName.append("/CoolFormatConfig.cfconfig");
+    }
+    else
+    {
+        strFileName = strConfigPath;
+    }
 
 	std::ifstream configFile(strFileName);
 	if (configFile.is_open())
@@ -259,7 +266,7 @@ bool GlobalTidy::LoadFromFile(const std::string &strDllPath)
 					{
 						m_TidyCss = strTidy;
 					}
-					else if (strLang == "HTM")
+					else if (strLang == "HTML")
 					{
 						m_TidyHtml = strTidy;
 					}
@@ -283,11 +290,11 @@ bool GlobalTidy::LoadFromFile(const std::string &strDllPath)
 					{
 						m_TidyPhp = strTidy;
 					}
-					else if (strLang == "SQ")
+					else if (strLang == "SQL")
 					{
 						m_TidySql = strTidy;
 					}
-					else if (strLang == "XM")
+					else if (strLang == "XML")
 					{
 						m_TidyXml = strTidy;
 					}

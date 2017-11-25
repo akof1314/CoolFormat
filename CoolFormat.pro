@@ -9,4 +9,5 @@ SUBDIRS += \
     FormatterLib/PhpFormatterLib/PhpFormatterLib.pro \
     FormatterLib/SqlFormatterLib/SqlFormatterLib.pro \
     FormatterLib/tidy/src/tidy.pro \
-    CoolFormatLib/CoolFormatLib.pro
+    CoolFormatLib/CoolFormatLib.pro \
+	CoolFormatLib/CoolFormatExec.pro

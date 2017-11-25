@@ -53,7 +53,7 @@ void CheckInit()
 #endif
 #endif
 
-	g_GlobalTidy.InitGlobalTidy(GetDllPath());
+	g_GlobalTidy.InitGlobalTidy(GetDllPath(), "");
 	g_InitTidy = true;
 }
 

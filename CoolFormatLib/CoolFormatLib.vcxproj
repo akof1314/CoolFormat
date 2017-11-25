@@ -100,7 +100,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)Lib\$(PlatformName)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>CssTidyLibd.lib;SqlFormatterLibd.lib;JsonCppLibd.lib;JsFormatterLibd.lib;PhpFormatterLibd.lib;tidylibd.lib;AStyleLibd.lib;VerilogFormatterLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>CssTidyLibd.lib;SqlFormatterLibd.lib;JsonCppLibd.lib;JsFormatterLibd.lib;PhpFormatterLibd.lib;tidylibd.lib;AStyleLibd.lib;VerilogFormatterLibd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>echo D | xcopy "$(TargetPath)" "$(SolutionDir)Bin\$(PlatformName)\$(Configuration)" /y
@@ -121,7 +121,7 @@ echo D | xcopy "$(TargetPath)" "$(SolutionDir)Plugins\VS\CoolFormatVSPlugin\Cool
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)Lib\$(PlatformName)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>CssTidyLibd.lib;SqlFormatterLibd.lib;JsonCppLibd.lib;JsFormatterLibd.lib;PhpFormatterLibd.lib;tidylibd.lib;AStyleLibd.lib;VerilogFormatterLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>CssTidyLibd.lib;SqlFormatterLibd.lib;JsonCppLibd.lib;JsFormatterLibd.lib;PhpFormatterLibd.lib;tidylibd.lib;AStyleLibd.lib;VerilogFormatterLibd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>echo D | xcopy "$(TargetPath)" "$(SolutionDir)Bin\$(PlatformName)\$(Configuration)" /y
