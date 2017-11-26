@@ -4,7 +4,7 @@
 #include "CoolFormat3.h"
 
 const LPCTSTR s_szURL = _T("https://sourceforge.net/projects/coolformat/rss?path=/Release&limit=1");
-const LPCTSTR s_szNowVersion = _T("3.4");
+const LPCTSTR s_szNowVersion = _T("3.5");
 
 CUpdateChecker::CUpdateChecker()
 {

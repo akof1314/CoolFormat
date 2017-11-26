@@ -1002,7 +1002,7 @@ void CMainFrame::OnTellbug()
 //////////////////////////////////////////////////////////////////////////
 void CMainFrame::OnOnlinehelp()
 {
-	ShellExecute(NULL, _T("open"), _T("http://blog.csdn.net/akof1314/archive/2010/03/08/5355948.aspx"), NULL, NULL, SW_SHOW);
+	ShellExecute(NULL, _T("open"), _T("https://github.com/akof1314/CoolFormat"), NULL, NULL, SW_SHOW);
 }
 //////////////////////////////////////////////////////////////////////////
 void CMainFrame::OnSetformatter()

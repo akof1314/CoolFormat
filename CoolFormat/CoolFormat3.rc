@@ -451,7 +451,7 @@ BEGIN
     DEFPUSHBUTTON   "确定",IDOK,178,100,50,16,WS_GROUP
     PUSHBUTTON      "http://blog.csdn.net/akof1314",IDC_COMPANY_URL,55,104,119,14
     CONTROL         IDB_BITMAP_ABOUT,IDC_STATIC,"Static",SS_BITMAP,21,21,46,46
-    LTEXT           "CoolFormat 版本 3.4       版权所有 (C) 2015",IDC_STATIC_VERSION,7,90,180,8,SS_NOPREFIX
+    LTEXT           "CoolFormat 版本 3.5       版权所有 (C) 2010-2018",IDC_STATIC_VERSION,7,90,180,8,SS_NOPREFIX
     LTEXT           "静态",IDC_STATIC_ABOUT,84,24,142,57
 END
 
@@ -623,7 +623,7 @@ BEGIN
     LTEXT           "③Q Q 方式：",IDC_STATIC_QQ,7,77,48,8
     PUSHBUTTON      "kof1234@sina.com",IDC_LINK_EMAIL,54,48,135,14
     PUSHBUTTON      "http://blog.csdn.net/akof1314",IDC_LINK_CSDN,54,62,169,14
-    PUSHBUTTON      "307458053",IDC_LINK_QQ,54,75,50,14
+    PUSHBUTTON      "https://github.com/akof1314/CoolFormat/issues",IDC_LINK_QQ,54,75,50,14
 END
 
 IDD_BATCHFORMAT DIALOGEX 0, 0, 440, 322
@@ -683,8 +683,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 3,4,0,1
- PRODUCTVERSION 3,4,0,1
+ FILEVERSION 3,5,0,1
+ PRODUCTVERSION 3,5,0,1
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -701,12 +701,12 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "无幻出品"
             VALUE "FileDescription", "源代码格式化"
-            VALUE "FileVersion", "3.4.0.1"
+            VALUE "FileVersion", "3.5.0.1"
             VALUE "InternalName", "CoolFormat.exe"
-            VALUE "LegalCopyright", "无幻 (c) 2010-2015。保留所有权利。"
+            VALUE "LegalCopyright", "无幻 (c) 2010-2018。保留所有权利。"
             VALUE "OriginalFilename", "CoolFormat.exe"
             VALUE "ProductName", "CoolFormat源代码格式化"
-            VALUE "ProductVersion", "3.4.0.1"
+            VALUE "ProductVersion", "3.5.0.1"
         END
     END
     BLOCK "VarFileInfo"
@@ -968,7 +968,7 @@ BEGIN
     IDS_STRING_WUHUAN       "无幻出品"
     IDS_STRING_CHANGELANG   "更改语言将在退出并重启程序后生效"
     IDS_STRING_HTML_AUTOCOPY "自动复制"
-    IDS_STRING_VERSION      "CoolFormat 版本 3.4       版权所有 (C) 2015"
+    IDS_STRING_VERSION      "CoolFormat 版本 3.5       版权所有 (C) 2010-2018"
 END
 
 STRINGTABLE
@@ -1282,7 +1282,7 @@ BEGIN
     IDC_STATIC_TELLBUG_TIJIAO "提交方式："
     IDC_STATIC_EMAIL        "①邮箱方式："
     IDC_STATIC_CSDN         "②网站方式："
-    IDC_STATIC_QQ           "③Q Q 方式："
+    IDC_STATIC_QQ           "③GitHub　："
     IDS_EMAIL_TIP           "点击发送邮件"
     IDS_CSDN_TIP            "点击进入网站"
     IDS_QQ_TIP              "点击进行临时对话"
@@ -1316,7 +1316,7 @@ BEGIN
     IDS_STRING_UAT_TIDY     "格式化"
     IDS_STRING_MENU_EDIT    "编辑器上下文菜单"
     IDS_STRING_MENU_HTML    "高亮上下文菜单"
-    IDS_STRING_ABOUTDESC    "    CoolFormat源代码格式化是一款C\\C++\\C#\\ CSS\\HTML\\Java\\JavaScript\\JSON\\Objective-C \\PHP\\SQL\\XML代码格式化工具，并且支持代码高亮到网页上显示，方便博客文章之类的撰写阅读。"
+    IDS_STRING_ABOUTDESC    "    CoolFormat源代码格式化是一款C\\C++\\C#\\ CSS\\HTML\\Java\\JavaScript\\JSON\\Objective-C \\PHP\\SQL\\Verilog\\XML代码格式化工具，并且支持代码高亮到网页上显示，方便博客文章之类的撰写阅读。"
     IDS_STRING_OPTIONS      "选项"
     IDS_STRING_NEEDFILE     "未指定所要打开的文件名。"
     IDS_STRING57            "打开(&O)..."
@@ -1516,8 +1516,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 3,4,0,1
- PRODUCTVERSION 3,4,0,1
+ FILEVERSION 3,5,0,1
+ PRODUCTVERSION 3,5,0,1
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -1534,12 +1534,12 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "WuHuan Product"
             VALUE "FileDescription", "Source Code Formatter"
-            VALUE "FileVersion", "3.4.0.1"
+            VALUE "FileVersion", "3.5.0.1"
             VALUE "InternalName", "CoolFormat.exe"
-            VALUE "LegalCopyright", "WuHuan (c) 2010-2015.  All rights reserved."
+            VALUE "LegalCopyright", "WuHuan (c) 2010-2018.  All rights reserved."
             VALUE "OriginalFilename", "CoolFormat.exe"
             VALUE "ProductName", "CoolFormat Source Code Formatter"
-            VALUE "ProductVersion", "3.4.0.1"
+            VALUE "ProductVersion", "3.5.0.1"
         END
     END
     BLOCK "VarFileInfo"
@@ -1572,7 +1572,7 @@ BEGIN
     IDS_STRING_WUHUAN       "WuHuan Product"
     IDS_STRING_CHANGELANG   "Change the language setting will take effect after you exit and restart the program"
     IDS_STRING_HTML_AUTOCOPY "Auto Copy"
-    IDS_STRING_VERSION      "CoolFormat Version 3.4   Copyright (C) 2015"
+    IDS_STRING_VERSION      "CoolFormat Version 3.5   Copyright (C) 2010-2018"
 END
 
 STRINGTABLE
@@ -1888,7 +1888,7 @@ BEGIN
     IDC_STATIC_TELLBUG_TIJIAO "Submitted By:"
     IDC_STATIC_EMAIL        "1.E-mail:"
     IDC_STATIC_CSDN         "2.Website:"
-    IDC_STATIC_QQ           "3.QQ:"
+    IDC_STATIC_QQ           "3.GitHub:"
     IDS_EMAIL_TIP           "Click to send a Email"
     IDS_CSDN_TIP            "Click to visit this website"
     IDS_QQ_TIP              "Click to a temporary dialogue"
@@ -1922,7 +1922,7 @@ BEGIN
     IDS_STRING_UAT_TIDY     "Formated"
     IDS_STRING_MENU_EDIT    "Editor context menu"
     IDS_STRING_MENU_HTML    "Highlight the context menu"
-    IDS_STRING_ABOUTDESC    "       CoolFormat source code formatter is a code formatter for C\\C++\\C#\\CSS \\HTML\\Java\\JavaScript\\JSON\\Objective-C \\PHP\\SQL\\XML, and support for code highlighting displayed on a Web page to facilitate the writing of a blog post like reading."
+    IDS_STRING_ABOUTDESC    "       CoolFormat source code formatter is a code formatter for C\\C++\\C#\\CSS \\HTML\\Java\\JavaScript\\JSON\\Objective-C \\PHP\\SQL\\Verilog\\XML. It supports code highlighting for web publishment which is truly convenient for writing and reading a blog post, etc."
     IDS_STRING_OPTIONS      "Options"
     IDS_STRING_NEEDFILE     "Do not specify the name of the file to open."
     IDS_STRING57            "&Open..."

@@ -55,7 +55,7 @@ void CTellBug::SetLinkBtn()
 	m_btnLinkCsdn.SetURL(_T("http://blog.csdn.net/akof1314/article/details/5355948"));
 	m_btnLinkCsdn.SizeToContent();
 
-	m_btnLinkQQ.SetURL(_T("http://wpa.qq.com/msgrd?v=3&uin=307458053&site=qq&menu=yes"));
+	m_btnLinkQQ.SetURL(_T("https://github.com/akof1314/CoolFormat/issues"));
 	m_btnLinkQQ.SizeToContent();
 }
 
@@ -98,7 +98,7 @@ void CTellBug::InitLang()
 	ASSERT(bNameVaild);
 	m_btnLinkCsdn.SetTooltip(strTemp);
 
-	bNameVaild = strTemp.LoadString(IDS_QQ_TIP);
+    bNameVaild = strTemp.LoadString(IDS_CSDN_TIP);
 	ASSERT(bNameVaild);
 	m_btnLinkQQ.SetTooltip(strTemp);
 }
