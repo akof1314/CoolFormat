@@ -443,6 +443,8 @@ BOOL CAboutDlg::OnInitDialog()
 {
 	CBCGPDialog::OnInitDialog();
 
+	SendMessageToDescendants(WM_SETFONT, (WPARAM)globalData.fontRegular.m_hObject, MAKELPARAM(FALSE, 0), FALSE);
+
 	CString strTemp;
 	BOOL bNameVaild = strTemp.LoadString(IDS_STRING_ABOUTDESC);
 	ASSERT(bNameVaild);

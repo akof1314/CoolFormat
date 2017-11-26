@@ -28,3 +28,4 @@ public:
 extern GlobalUtils g_GlobalUtils;
 
 int CFMessageBox (LPCTSTR lpText, UINT uType);
+void SetDlgItemSizeToContent(CWnd* pWnd);

@@ -47,3 +47,21 @@ int CFMessageBox( LPCTSTR lpText, UINT uType )
 	nResult = BCGPMessageBox(::GetActiveWindow(), lpText, COOLFORMAT_CLASS, uType);
 	return nResult;
 }
+
+void SetDlgItemSizeToContent(CWnd* pWnd)
+{
+	CClientDC dc(pWnd);
+
+	CFont* pOldFont = dc.SelectObject(pWnd->GetFont());
+	ASSERT(pOldFont != NULL);
+
+	CString strText;
+	pWnd->GetWindowText(strText);
+
+	CSize sizeText = dc.GetTextExtent(strText);
+
+	pWnd->SetWindowPos(NULL, -1, -1, sizeText.cx, sizeText.cy,
+		SWP_NOMOVE | SWP_NOACTIVATE | SWP_NOZORDER);
+
+	dc.SelectObject(pOldFont);
+}

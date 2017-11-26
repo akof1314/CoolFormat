@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 #include "CoolFormat3.h"
+#include "GlobalUtils.h"
 #include "TellBug.h"
 
 //////////////////////////////////////////////////////////////////////////
@@ -35,6 +36,7 @@ BOOL CTellBug::OnInitDialog()
 {
 	CBCGPDialog::OnInitDialog();
 
+	SendMessageToDescendants(WM_SETFONT, (WPARAM)globalData.fontRegular.m_hObject, MAKELPARAM(FALSE, 0), FALSE);
 	InitLang();
 	SetLinkBtn();
 
@@ -77,10 +79,12 @@ void CTellBug::InitLang()
 	bNameVaild = strTemp.LoadString(IDC_STATIC_TELLBUG_TIJIAO);
 	ASSERT(bNameVaild);
 	SetDlgItemText(IDC_STATIC_TELLBUG_TIJIAO, strTemp);
+	SetDlgItemSizeToContent(GetDlgItem(IDC_STATIC_TELLBUG_TIJIAO));
 
 	bNameVaild = strTemp.LoadString(IDC_STATIC_EMAIL);
 	ASSERT(bNameVaild);
 	SetDlgItemText(IDC_STATIC_EMAIL, strTemp);
+	SetDlgItemSizeToContent(GetDlgItem(IDC_STATIC_EMAIL));
 
 	bNameVaild = strTemp.LoadString(IDC_STATIC_CSDN);
 	ASSERT(bNameVaild);
