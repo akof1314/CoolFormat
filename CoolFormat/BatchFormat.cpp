@@ -12,9 +12,7 @@
 #define LIST_DEFAULT_NAME _T("CoolFormatList")
 #define LIST_EXT_NAME _T(".cflist")
 const TCHAR WIN_EOL[] = _T("\r\n");
-const int s_iIdList[] = { IDC_CHECK_BAT_C, IDC_CHECK_BAT_CS, IDC_CHECK_BAT_CSS, IDC_CHECK_BAT_HTML, IDC_CHECK_BAT_JAVA,
-IDC_CHECK_BAT_JAVAST, IDC_CHECK_BAT_JSON, IDC_CHECK_BAT_OBJC, IDC_CHECK_BAT_PHP, IDC_CHECK_BAT_SQL, IDC_CHECK_BAT_XML };
-const int s_iSynList[] = { SYN_CPP, SYN_CS, SYN_CSS, SYN_HTML, SYN_JAVA, SYN_JAVASCRIPT, SYN_JSON, SYN_OBJECTIVEC, SYN_PHP, SYN_SQL, SYN_XML };
+const int s_iSynList[] = { SYN_CPP, SYN_CS, SYN_CSS, SYN_HTML, SYN_JAVA, SYN_JAVASCRIPT, SYN_JSON, SYN_OBJECTIVEC, SYN_PHP, SYN_SQL, SYN_VERILOG, SYN_XML };
 
 // CBatchFormat ¶Ô»°¿ò
 
@@ -59,14 +57,6 @@ BOOL CBatchFormat::OnInitDialog()
 	m_fileNameMap.RemoveAll();
 	InitLang();
 	InitList();
-
-	int nBatchSyn = theApp.m_nBatchSyn;
-	int nSizeList = sizeof(s_iIdList) / sizeof(int);
-	for (int i = 0; i < nSizeList; ++i)
-	{
-		int nBitPow = (int)pow(2.0, i);
-		((CButton *)(GetDlgItem(s_iIdList[i])))->SetCheck((nBatchSyn & nBitPow) == nBitPow);
-	}
 
 	if (!IsVisualManagerStyle())
 	{
@@ -446,18 +436,6 @@ void CBatchFormat::OnBnClickedButtonDobatch()
 //////////////////////////////////////////////////////////////////////////
 void CBatchFormat::EnableAllWindow( BOOL bEnable )
 {
-	GetDlgItem(IDC_CHECK_BAT_C)->EnableWindow(bEnable);
-	GetDlgItem(IDC_CHECK_BAT_CS)->EnableWindow(bEnable);
-	GetDlgItem(IDC_CHECK_BAT_CSS)->EnableWindow(bEnable);
-	GetDlgItem(IDC_CHECK_BAT_HTML)->EnableWindow(bEnable);
-	GetDlgItem(IDC_CHECK_BAT_JAVA)->EnableWindow(bEnable);
-	GetDlgItem(IDC_CHECK_BAT_JAVAST)->EnableWindow(bEnable);
-	GetDlgItem(IDC_CHECK_BAT_JSON)->EnableWindow(bEnable);
-	GetDlgItem(IDC_CHECK_BAT_PHP)->EnableWindow(bEnable);
-	GetDlgItem(IDC_CHECK_BAT_OBJC)->EnableWindow(bEnable);
-	GetDlgItem(IDC_CHECK_BAT_SQL)->EnableWindow(bEnable);
-	GetDlgItem(IDC_CHECK_BAT_XML)->EnableWindow(bEnable);
-
 	GetDlgItem(IDC_LIST_BATCHFILE)->EnableWindow(bEnable);
 	GetDlgItem(IDC_BUTTON_BARCHADDFILES)->EnableWindow(bEnable);
 	GetDlgItem(IDC_BUTTON_BATCHLOADLIST)->EnableWindow(bEnable);
@@ -540,14 +518,11 @@ void CBatchFormat::OnNMClickListBatchfile(NMHDR *pNMHDR, LRESULT *pResult)
 void CBatchFormat::AddDirToList( LPCTSTR pszDirName )
 {
 	CString strFileExt, strSynExt;
-	int nSizeList = sizeof(s_iIdList) / sizeof(int);
+    int nSizeList = sizeof(s_iSynList) / sizeof(int);
 	for (int i = 0; i < nSizeList; ++i)
 	{
-		if (((CButton *)(GetDlgItem(s_iIdList[i])))->GetCheck())
-		{
-			g_GlobalUtils.m_sLanguageExt.GetLanguageFilter(s_iSynList[i], strSynExt);
-			strFileExt.Append(strSynExt);
-		}
+        g_GlobalUtils.m_sLanguageExt.GetLanguageFilter(s_iSynList[i], strSynExt);
+        strFileExt.Append(strSynExt);
 	}
 
 	StringList allFileNameList;
@@ -654,22 +629,5 @@ LRESULT CBatchFormat::DoFomatterEvenet( WPARAM /*wParam*/, LPARAM /*lParam*/ )
 //////////////////////////////////////////////////////////////////////////
 void CBatchFormat::OnCancel()
 {
-	int nSizeList = sizeof(s_iIdList) / sizeof(int);
-	int nBatchSyn = 0;
-	int nCheck;
-	for (int i = 0; i < nSizeList; ++i)
-	{
-		nCheck = (BOOL)((CButton *)(GetDlgItem(s_iIdList[i])))->GetCheck();
-		if (1 == nCheck)
-		{
-			nBatchSyn |= (int)pow(2.0, i);
-		}
-		else
-		{
-			nBatchSyn &= (int)pow(2.0, i) - 1;
-		}		
-	}
-	theApp.m_nBatchSyn = nBatchSyn;
-
 	CBCGPDialog::OnCancel();
 }

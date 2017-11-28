@@ -177,7 +177,6 @@ int CCoolFormat3App::ExitInstance()
 	WriteInt(_T("ShowToolTipDescr"), m_bShowToolTipDescr);
 	WriteInt(_T("ApplicationLanguage"), m_nAppLanguageID);
 	WriteInt(_T("SynLanguage"), m_nSynLanguage);
-	WriteInt(_T("BatchLanguage"), m_nBatchSyn);
 	WriteInt(_T("LastCheckUpdate"), m_nLastCheckUpdate);
 	WriteString(_T("LastNewVersion"), m_strNewVersion);
 	BCGCBProCleanUp();
@@ -276,7 +275,6 @@ void CCoolFormat3App::LoadReg()
 	m_bShowToolTipDescr = GetInt (_T("ShowToolTipDescr"), TRUE);
 	m_nAppLanguageID = GetInt(_T("ApplicationLanguage"), 0);
 	m_nSynLanguage = GetInt(_T("SynLanguage"), SYN_NORMALTEXT);
-	m_nBatchSyn = GetInt(_T("BatchLanguage"), 0);
 	m_nLastCheckUpdate = GetInt(_T("LastCheckUpdate"), 0);
 	m_strNewVersion = GetString(_T("LastNewVersion"));
 	g_GlobalUtils.InitGlobalUtilsFrist();

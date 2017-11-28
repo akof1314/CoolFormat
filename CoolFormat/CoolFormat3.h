@@ -44,7 +44,6 @@ public:
 	BOOL m_bShowToolTipDescr;
 	UINT m_nAppLanguageID;
 	UINT m_nSynLanguage;
-	UINT m_nBatchSyn;	//批量格式化语言选择
 	UINT m_nLastCheckUpdate; // 上次检查更新的日期
 	CString m_strNewVersion; // 新版本号
 
