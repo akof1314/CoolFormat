@@ -103,7 +103,9 @@ void COptionsPropSheet::OnDrawPageHeader (CDC* pDC, int nPage, CRect rectHeader)
 BOOL COptionsPropSheet::OnInitDialog()
 {
 	BOOL bResult = CBCGPPropertySheet::OnInitDialog();
-	CString strTemp;
+    SendMessageToDescendants(WM_SETFONT, (WPARAM)globalData.fontRegular.m_hObject, MAKELPARAM(FALSE, 0), FALSE);
+
+    CString strTemp;
 	BOOL bNameVaild = strTemp.LoadString(IDOK);
 	ASSERT(bNameVaild);
 	SetDlgItemText(IDOK, strTemp);

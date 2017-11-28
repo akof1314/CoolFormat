@@ -55,7 +55,8 @@ BOOL CPageResource::OnInitDialog()
 {
 	CBCGPPropertyPage::OnInitDialog();
 
-	InitLang();
+    SendMessageToDescendants(WM_SETFONT, (WPARAM)globalData.fontRegular.m_hObject, MAKELPARAM(FALSE, 0), FALSE);
+    InitLang();
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 	// 异常: OCX 属性页应返回 FALSE

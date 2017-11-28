@@ -74,6 +74,7 @@ END_MESSAGE_MAP()
 BOOL CSetPageBase::OnInitDialog()
 {
 	CBCGPPropertyPage::OnInitDialog();
+    SendMessageToDescendants(WM_SETFONT, (WPARAM)globalData.fontRegular.m_hObject, MAKELPARAM(FALSE, 0), FALSE);
 
 	CString strTemp;
 	BOOL bNameVaild = strTemp.LoadString(IDS_STR_VIEWFORMATTER);
@@ -100,7 +101,8 @@ BOOL CSetPageBase::OnInitDialog()
 	m_wndPropList.SetAlphabeticMode(FALSE);
 	m_wndPropList.SetShowDragContext(FALSE);
 	m_wndPropList.EnableToolBar(TRUE);
-	m_wndPropList.EnableSearchBox(TRUE);
+    m_wndPropList.EnableSearchBox(TRUE);
+    m_wndPropList.SetFont(&globalData.fontRegular);
 
 	InitPropList();
 	InitTidyConfig();

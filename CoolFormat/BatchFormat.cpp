@@ -53,7 +53,8 @@ BOOL CBatchFormat::OnInitDialog()
 {
 	CBCGPDialog::OnInitDialog();
 
-	m_fileNameList.RemoveAll();
+    SendMessageToDescendants(WM_SETFONT, (WPARAM)globalData.fontRegular.m_hObject, MAKELPARAM(FALSE, 0), FALSE);
+    m_fileNameList.RemoveAll();
 	m_fileCheckList.RemoveAll();
 	m_fileNameMap.RemoveAll();
 	InitLang();

@@ -49,7 +49,8 @@ BOOL CPagePopular::OnInitDialog()
 {
 	CBCGPPropertyPage::OnInitDialog();
 
-	InitLang();
+    SendMessageToDescendants(WM_SETFONT, (WPARAM)globalData.fontRegular.m_hObject, MAKELPARAM(FALSE, 0), FALSE);
+    InitLang();
 
 	m_nColorStyle = theApp.m_nAppLook - ID_VIEW_APPLOOK_2010_1;
 

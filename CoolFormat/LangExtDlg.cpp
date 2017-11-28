@@ -38,7 +38,8 @@ BOOL CLangExtDlg::OnInitDialog()
 {
 	CBCGPDialog::OnInitDialog();
 
-	InitLang();
+    SendMessageToDescendants(WM_SETFONT, (WPARAM)globalData.fontRegular.m_hObject, MAKELPARAM(FALSE, 0), FALSE);
+    InitLang();
 	InitList();
 	
 	m_btnDefaultLink.SizeToContent();

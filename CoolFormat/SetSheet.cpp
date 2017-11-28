@@ -37,6 +37,7 @@ END_MESSAGE_MAP()
 BOOL CSetSheet::OnInitDialog()
 {
 	CBCGPPropertySheet::OnInitDialog();
+    SendMessageToDescendants(WM_SETFONT, (WPARAM)globalData.fontRegular.m_hObject, MAKELPARAM(FALSE, 0), FALSE);
 
 	CRect rc;
 	GetClientRect(&rc);
@@ -49,6 +50,7 @@ BOOL CSetSheet::OnInitDialog()
 	ASSERT(bNameVaild);	
 	m_btnDefaultLink.Create(strTemp, WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON, rc, this, IDC_SETSHEET_DEFAULT);
 	m_btnDefaultLink.SizeToContent();
+    m_btnDefaultLink.SetFont(&globalData.fontRegular);
 
 	bNameVaild = strTemp.LoadString(IDOK);
 	ASSERT(bNameVaild);

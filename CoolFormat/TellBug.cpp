@@ -34,9 +34,9 @@ END_MESSAGE_MAP()
 
 BOOL CTellBug::OnInitDialog()
 {
-	CBCGPDialog::OnInitDialog();
+    CBCGPDialog::OnInitDialog();
 
-	SendMessageToDescendants(WM_SETFONT, (WPARAM)globalData.fontRegular.m_hObject, MAKELPARAM(FALSE, 0), FALSE);
+    SendMessageToDescendants(WM_SETFONT, (WPARAM)globalData.fontRegular.m_hObject, MAKELPARAM(FALSE, 0), FALSE);
 	InitLang();
 	SetLinkBtn();
 
