@@ -88,71 +88,88 @@ void CSetHtmlDlg::InitLang()
 	bNameVaild = strTemp.LoadString(IDC_BUTTON_DEFAULTEXT);
 	ASSERT(bNameVaild);
 	SetDlgItemText(IDC_BUTTON_DEFAULTEXT, strTemp);
+	SetDlgItemSizeToContent(GetDlgItem(IDC_BUTTON_DEFAULTEXT));
 
 	bNameVaild = strTemp.LoadString(IDC_STATIC_EDITFONT);
 	ASSERT(bNameVaild);
 	SetDlgItemText(IDC_STATIC_EDITFONT, strTemp);
+	SetDlgItemSizeToContent(GetDlgItem(IDC_STATIC_EDITFONT));
 
 	bNameVaild = strTemp.LoadString(IDC_STATIC_EDITSTYLE);
 	ASSERT(bNameVaild);
 	SetDlgItemText(IDC_STATIC_EDITSTYLE, strTemp);
+	SetDlgItemSizeToContent(GetDlgItem(IDC_STATIC_EDITSTYLE));
 
 	bNameVaild = strTemp.LoadString(IDC_STATIC_EDITSIZE);
 	ASSERT(bNameVaild);
 	SetDlgItemText(IDC_STATIC_EDITSIZE, strTemp);
+	SetDlgItemSizeToContent(GetDlgItem(IDC_STATIC_EDITSIZE));
 
 	bNameVaild = strTemp.LoadString(IDC_STATIC_FONT);
 	ASSERT(bNameVaild);
 	SetDlgItemText(IDC_STATIC_FONT, strTemp);
+	//SetDlgItemSizeToContent(GetDlgItem(IDC_STATIC_FONT));
 
 	//////////////////////////////////////////////////////////////////////////
 	bNameVaild = strTemp.LoadString(IDC_CHECK_SHOW_BORDER);
 	ASSERT(bNameVaild);
 	SetDlgItemText(IDC_CHECK_SHOW_BORDER, strTemp);
+	//SetDlgItemSizeToContent(GetDlgItem(IDC_CHECK_SHOW_BORDER));
 
 	bNameVaild = strTemp.LoadString(IDC_STATIC_BORDER_WIDTH);
 	ASSERT(bNameVaild);
 	SetDlgItemText(IDC_STATIC_BORDER_WIDTH, strTemp);
+	SetDlgItemSizeToContent(GetDlgItem(IDC_STATIC_BORDER_WIDTH));
 
 	bNameVaild = strTemp.LoadString(IDC_STATIC_BORDER_STYLE);
 	ASSERT(bNameVaild);
 	SetDlgItemText(IDC_STATIC_BORDER_STYLE, strTemp);
+	SetDlgItemSizeToContent(GetDlgItem(IDC_STATIC_BORDER_STYLE));
 
 	bNameVaild = strTemp.LoadString(IDC_STATIC_BORDER_COLOR);
 	ASSERT(bNameVaild);
 	SetDlgItemText(IDC_STATIC_BORDER_COLOR, strTemp);
+	SetDlgItemSizeToContent(GetDlgItem(IDC_STATIC_BORDER_COLOR));
 
 	bNameVaild = strTemp.LoadString(IDC_CHECK_SHOW_LINENUMBER);
 	ASSERT(bNameVaild);
 	SetDlgItemText(IDC_CHECK_SHOW_LINENUMBER, strTemp);
+	//SetDlgItemSizeToContent(GetDlgItem(IDC_CHECK_SHOW_LINENUMBER));
 
 	bNameVaild = strTemp.LoadString(IDC_STATIC_BACKGROUND_COLOR);
 	ASSERT(bNameVaild);
 	SetDlgItemText(IDC_STATIC_BACKGROUND_COLOR, strTemp);	
+	SetDlgItemSizeToContent(GetDlgItem(IDC_STATIC_BACKGROUND_COLOR));
 
 	bNameVaild = strTemp.LoadString(IDC_CHECK_SHOW_SIDEBAR);
 	ASSERT(bNameVaild);
 	SetDlgItemText(IDC_CHECK_SHOW_SIDEBAR, strTemp);
+	//SetDlgItemSizeToContent(GetDlgItem(IDC_CHECK_SHOW_SIDEBAR));
 
 	bNameVaild = strTemp.LoadString(IDC_STATIC_BASIC_SET);
 		ASSERT(bNameVaild);
 	SetDlgItemText(IDC_STATIC_BASIC_SET, strTemp);
+	//SetDlgItemSizeToContent(GetDlgItem(IDC_STATIC_BASIC_SET));
 
 	bNameVaild = strTemp.LoadString(IDC_STATIC_OTHER_SET);
 	ASSERT(bNameVaild);
 	SetDlgItemText(IDC_STATIC_OTHER_SET, strTemp);
+	//SetDlgItemSizeToContent(GetDlgItem(IDC_STATIC_OTHER_SET));
 
 	bNameVaild = strTemp.LoadString(IDC_CHECK_SHOW_LANGTITLE);
 	ASSERT(bNameVaild);
 	SetDlgItemText(IDC_CHECK_SHOW_LANGTITLE, strTemp);
+	//SetDlgItemSizeToContent(GetDlgItem(IDC_CHECK_SHOW_LANGTITLE));
 
 	bNameVaild = strTemp.LoadString(IDC_CHECK_SHOW_ADDTITLE);
 	ASSERT(bNameVaild);
 	SetDlgItemText(IDC_CHECK_SHOW_ADDTITLE, strTemp);
+	//SetDlgItemSizeToContent(GetDlgItem(IDC_CHECK_SHOW_ADDTITLE));
 
 	bNameVaild = strTemp.LoadString(IDC_STATIC_LINEHEIGHT);
 	ASSERT(bNameVaild);
 	SetDlgItemText(IDC_STATIC_LINEHEIGHT, strTemp);
+	SetDlgItemSizeToContent(GetDlgItem(IDC_STATIC_LINEHEIGHT));
 
 	bNameVaild = strTemp.LoadString(IDS_EDITSTYLE_DATA);
 	ASSERT(bNameVaild);
@@ -181,10 +198,12 @@ void CSetHtmlDlg::InitLang()
 	bNameVaild = strTemp.LoadString(IDS_STRING_HTML_AUTOCOPY);
 	ASSERT(bNameVaild);
 	SetDlgItemText(IDC_CHECK_AUTO_COPY, strTemp);
+	//SetDlgItemSizeToContent(GetDlgItem(IDC_CHECK_AUTO_COPY));
 
 	bNameVaild = strTemp.LoadString(IDS_STRING_COPYCODE);
 	ASSERT(bNameVaild);
 	SetDlgItemText(IDC_CHECK_COPY_CODE, strTemp);
+	//SetDlgItemSizeToContent(GetDlgItem(IDC_CHECK_COPY_CODE));
 }
 
 void CSetHtmlDlg::InitFont()

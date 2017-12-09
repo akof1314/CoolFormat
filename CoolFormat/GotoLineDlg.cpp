@@ -66,4 +66,5 @@ void CGotoLineDlg::InitLang()
 	strTip.Format(strTemp, m_nMaxLine);
 	GetDlgItem(IDC_LINETIP)->SetWindowText(strTip);
 	GetDlgItem(IDC_LINE)->SetFocus();
+	SetDlgItemSizeToContent(GetDlgItem(IDC_LINETIP));
 }

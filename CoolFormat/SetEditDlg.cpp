@@ -103,98 +103,122 @@ void CSetEditDlg::InitLang()
 	bNameVaild = strTemp.LoadString(IDC_BUTTON_DEFAULTEXT);
 	ASSERT(bNameVaild);
 	SetDlgItemText(IDC_BUTTON_DEFAULTEXT, strTemp);
+	SetDlgItemSizeToContent(GetDlgItem(IDC_BUTTON_DEFAULTEXT));
 
 	bNameVaild = strTemp.LoadString(IDC_STATIC_EDITFONT);
 	ASSERT(bNameVaild);
 	SetDlgItemText(IDC_STATIC_EDITFONT, strTemp);
+	SetDlgItemSizeToContent(GetDlgItem(IDC_STATIC_EDITFONT));
 
 	bNameVaild = strTemp.LoadString(IDC_STATIC_EDITSTYLE);
 	ASSERT(bNameVaild);
 	SetDlgItemText(IDC_STATIC_EDITSTYLE, strTemp);
+	SetDlgItemSizeToContent(GetDlgItem(IDC_STATIC_EDITSTYLE));
 
 	bNameVaild = strTemp.LoadString(IDC_STATIC_EDITSIZE);
 	ASSERT(bNameVaild);
 	SetDlgItemText(IDC_STATIC_EDITSIZE, strTemp);
+	SetDlgItemSizeToContent(GetDlgItem(IDC_STATIC_EDITSIZE));
 
 	bNameVaild = strTemp.LoadString(IDC_STATIC_COLOR_BACK);
 	ASSERT(bNameVaild);
 	SetDlgItemText(IDC_STATIC_COLOR_BACK, strTemp);
+	SetDlgItemSizeToContent(GetDlgItem(IDC_STATIC_COLOR_BACK));
 
 	bNameVaild = strTemp.LoadString(IDC_STATIC_COLOR_LINEOUTLINE);
 	ASSERT(bNameVaild);
 	SetDlgItemText(IDC_STATIC_COLOR_LINEOUTLINE, strTemp);
+	SetDlgItemSizeToContent(GetDlgItem(IDC_STATIC_COLOR_LINEOUTLINE));
 
 	bNameVaild = strTemp.LoadString(IDC_STATIC_COLOR_SYN);
 	ASSERT(bNameVaild);
 	SetDlgItemText(IDC_STATIC_COLOR_SYN, strTemp);
+	SetDlgItemSizeToContent(GetDlgItem(IDC_STATIC_COLOR_SYN));
 
 	bNameVaild = strTemp.LoadString(IDC_STATIC_COLOR_TEXT);
 	ASSERT(bNameVaild);
 	SetDlgItemText(IDC_STATIC_COLOR_TEXT, strTemp);
+	SetDlgItemSizeToContent(GetDlgItem(IDC_STATIC_COLOR_TEXT));
 
 	bNameVaild = strTemp.LoadString(IDC_STATIC_COLOR_BACKOUTLINE);
 	ASSERT(bNameVaild);
 	SetDlgItemText(IDC_STATIC_COLOR_BACKOUTLINE, strTemp);
+	SetDlgItemSizeToContent(GetDlgItem(IDC_STATIC_COLOR_BACKOUTLINE));
 
 	bNameVaild = strTemp.LoadString(IDC_STATIC_COLOR_TYPE);
 	ASSERT(bNameVaild);
 	SetDlgItemText(IDC_STATIC_COLOR_TYPE, strTemp);
+	SetDlgItemSizeToContent(GetDlgItem(IDC_STATIC_COLOR_TYPE));
 
 	bNameVaild = strTemp.LoadString(IDC_STATIC_COLOR_LINENUMBER);
 	ASSERT(bNameVaild);
 	SetDlgItemText(IDC_STATIC_COLOR_LINENUMBER, strTemp);
+	SetDlgItemSizeToContent(GetDlgItem(IDC_STATIC_COLOR_LINENUMBER));
 
 	bNameVaild = strTemp.LoadString(IDC_STATIC_COLOR_BACKSELACTIVE);
 	ASSERT(bNameVaild);
 	SetDlgItemText(IDC_STATIC_COLOR_BACKSELACTIVE, strTemp);
+	SetDlgItemSizeToContent(GetDlgItem(IDC_STATIC_COLOR_BACKSELACTIVE));
 
 	bNameVaild = strTemp.LoadString(IDC_STATIC_COLOR_STRING);
 	ASSERT(bNameVaild);
 	SetDlgItemText(IDC_STATIC_COLOR_STRING, strTemp);
+	SetDlgItemSizeToContent(GetDlgItem(IDC_STATIC_COLOR_STRING));
 
 	bNameVaild = strTemp.LoadString(IDC_STATIC_COLOR_LINENUMBERBACK);
 	ASSERT(bNameVaild);
 	SetDlgItemText(IDC_STATIC_COLOR_LINENUMBERBACK, strTemp);
+	SetDlgItemSizeToContent(GetDlgItem(IDC_STATIC_COLOR_LINENUMBERBACK));
 
 	bNameVaild = strTemp.LoadString(IDC_STATIC_COLOR_BACKSELINACTIVE);
 	ASSERT(bNameVaild);
 	SetDlgItemText(IDC_STATIC_COLOR_BACKSELINACTIVE, strTemp);
+	SetDlgItemSizeToContent(GetDlgItem(IDC_STATIC_COLOR_BACKSELINACTIVE));
 
 	bNameVaild = strTemp.LoadString(IDC_STATIC_COLOR_NUMBER);
 	ASSERT(bNameVaild);
 	SetDlgItemText(IDC_STATIC_COLOR_NUMBER, strTemp);
+	SetDlgItemSizeToContent(GetDlgItem(IDC_STATIC_COLOR_NUMBER));
 
 	bNameVaild = strTemp.LoadString(IDC_STATIC_COLOR_SIDEBAR);
 	ASSERT(bNameVaild);
 	SetDlgItemText(IDC_STATIC_COLOR_SIDEBAR, strTemp);
+	SetDlgItemSizeToContent(GetDlgItem(IDC_STATIC_COLOR_SIDEBAR));
 
 	bNameVaild = strTemp.LoadString(IDC_STATIC_COLOR_TEXTSELACTIVE);
 	ASSERT(bNameVaild);
 	SetDlgItemText(IDC_STATIC_COLOR_TEXTSELACTIVE, strTemp);
+	SetDlgItemSizeToContent(GetDlgItem(IDC_STATIC_COLOR_TEXTSELACTIVE));
 
 	bNameVaild = strTemp.LoadString(IDC_STATIC_COLOR_CHAR);
 	ASSERT(bNameVaild);
 	SetDlgItemText(IDC_STATIC_COLOR_CHAR, strTemp);
+	SetDlgItemSizeToContent(GetDlgItem(IDC_STATIC_COLOR_CHAR));
 
 	bNameVaild = strTemp.LoadString(IDC_STATIC_COLOR_LINK);
 	ASSERT(bNameVaild);
 	SetDlgItemText(IDC_STATIC_COLOR_LINK, strTemp);
+	SetDlgItemSizeToContent(GetDlgItem(IDC_STATIC_COLOR_LINK));
 
 	bNameVaild = strTemp.LoadString(IDC_STATIC_COLOR_TEXTSELINACTIVE);
 	ASSERT(bNameVaild);
 	SetDlgItemText(IDC_STATIC_COLOR_TEXTSELINACTIVE, strTemp);
+	SetDlgItemSizeToContent(GetDlgItem(IDC_STATIC_COLOR_TEXTSELINACTIVE));
 
 	bNameVaild = strTemp.LoadString(IDC_STATIC_COLOR_COMMENT);
 	ASSERT(bNameVaild);
 	SetDlgItemText(IDC_STATIC_COLOR_COMMENT, strTemp);
+	SetDlgItemSizeToContent(GetDlgItem(IDC_STATIC_COLOR_COMMENT));
 
 	bNameVaild = strTemp.LoadString(IDC_STATIC_FONT);
 	ASSERT(bNameVaild);
 	SetDlgItemText(IDC_STATIC_FONT, strTemp);
+	//SetDlgItemSizeToContent(GetDlgItem(IDC_STATIC_FONT));
 
 	bNameVaild = strTemp.LoadString(IDC_STATIC_COLOR);
 	ASSERT(bNameVaild);
 	SetDlgItemText(IDC_STATIC_COLOR, strTemp);
+	//SetDlgItemSizeToContent(GetDlgItem(IDC_STATIC_COLOR));
 
 	bNameVaild = strTemp.LoadString(IDS_EDITSTYLE_DATA);
 	ASSERT(bNameVaild);

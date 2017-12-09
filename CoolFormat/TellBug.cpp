@@ -89,10 +89,12 @@ void CTellBug::InitLang()
 	bNameVaild = strTemp.LoadString(IDC_STATIC_CSDN);
 	ASSERT(bNameVaild);
 	SetDlgItemText(IDC_STATIC_CSDN, strTemp);
+	SetDlgItemSizeToContent(GetDlgItem(IDC_STATIC_CSDN));
 
 	bNameVaild = strTemp.LoadString(IDC_STATIC_QQ);
 	ASSERT(bNameVaild);
 	SetDlgItemText(IDC_STATIC_QQ, strTemp);
+	SetDlgItemSizeToContent(GetDlgItem(IDC_STATIC_QQ));
 
 	bNameVaild = strTemp.LoadString(IDS_EMAIL_TIP);
 	ASSERT(bNameVaild);

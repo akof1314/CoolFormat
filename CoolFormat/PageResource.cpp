@@ -68,11 +68,13 @@ void CPageResource::InitLang()
 	BOOL bNameVaild = strTemp.LoadString(IDS_STRING_RES_UPDATE);
 	ASSERT(bNameVaild);
 	SetDlgItemText(IDC_STATIC_RESUPDATE, strTemp);
+	SetDlgItemSizeToContent(GetDlgItem(IDC_STATIC_RESUPDATE));
 
 	bNameVaild = strTemp.LoadString(IDS_STRING_RES_LINKEME);
 	ASSERT(bNameVaild);
 	SetDlgItemText(IDC_STATIC_LINKME, strTemp);
 	SetDlgItemText(IDC_BUTTON_LINKME, strTemp);
+	SetDlgItemSizeToContent(GetDlgItem(IDC_STATIC_LINKME));
 
 	bNameVaild = strTemp.LoadString(IDS_STRING_RES_TITLE);
 	ASSERT(bNameVaild);
@@ -85,6 +87,7 @@ void CPageResource::InitLang()
 	bNameVaild = strTemp.LoadString(IDS_STRING_RES_ABOUTLB);
 	ASSERT(bNameVaild);
 	SetDlgItemText(IDC_STATIC_ABOUT, strTemp);
+	SetDlgItemSizeToContent(GetDlgItem(IDC_STATIC_ABOUT));
 
 	bNameVaild = strTemp.LoadString(IDS_STRING_RES_ABOUT);
 	ASSERT(bNameVaild);

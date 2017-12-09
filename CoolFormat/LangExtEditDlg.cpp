@@ -73,10 +73,12 @@ void CLangExtEditDlg::InitLang()
 	bNameVaild = strTemp.LoadString(IDS_LANGUAGE_EX);
 	ASSERT(bNameVaild);
 	SetDlgItemText(IDC_STATIC_LANG, strTemp);
+	SetDlgItemSizeToContent(GetDlgItem(IDC_STATIC_LANG));
 
 	bNameVaild = strTemp.LoadString(IDS_LANGUAGEEXT_EX);
 	ASSERT(bNameVaild);
 	SetDlgItemText(IDC_STATIC_EXT, strTemp);
+	SetDlgItemSizeToContent(GetDlgItem(IDC_STATIC_EXT));
 
 	bNameVaild = strTemp.LoadString(IDS_LANGEXT_EDIT_DLG);
 	ASSERT(bNameVaild);
