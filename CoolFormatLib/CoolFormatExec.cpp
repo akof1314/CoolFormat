@@ -487,6 +487,41 @@ void formatFile(const string& fileName_, unsigned int mode)
     }
 }
 
+
+void formatCinToCout(unsigned int mode, LineEndFormat lineEndFormat)
+{
+    if (mode == -1)
+    {
+        return;
+    }
+
+    // Using cin.tellg() causes problems with both Windows and Linux.
+    // The Windows problem occurs when the input is not Windows line-ends.
+    // The tellg() will be out of sequence with the get() statements.
+    // The Linux cin.tellg() will return -1 (invalid).
+    // Copying the input sequentially to a stringstream before
+    // formatting solves the problem for both.
+    istream* inStream = &cin;
+    stringstream outStream;
+    char ch;
+    inStream->get(ch);
+    while (!inStream->eof() && !inStream->fail())
+    {
+        outStream.put(ch);
+        inStream->get(ch);
+    }
+
+    string strTextOut, strMsgOut;
+    CFormatterHelp formatter;
+
+    bool doFormatted = formatter.DoFormatter(mode, outStream.str(), strTextOut, strMsgOut);;
+    if (doFormatted)
+    {
+        cout << strTextOut;
+    }
+    cout.flush();
+}
+
 //////////////////////////////////////////////////////////////////////////
 
 void printHelp()
@@ -540,6 +575,7 @@ void processOptions(const vector<string>& argvOptions)
     string arg;
     string optionsFileName = "CoolFormatConfig.cfconfig";
     int mode = -1;
+    LineEndFormat lineEndFormat = LINEEND_DEFAULT;
     vector<string> fileNameVector;
 
     for (size_t i = 0; i < argvOptions.size(); i++)
@@ -563,9 +599,21 @@ void processOptions(const vector<string>& argvOptions)
             cout << "CoolFormat Version " << _version << endl;
             exit(EXIT_SUCCESS);
         }
-        else if (arg[0] == '-')
+        else if (isParamOption(arg, "--mode="))
         {
             mode = processOptionMode(arg);
+        }
+        else if (isOption(arg, "--lineend=windows"))
+        {
+            lineEndFormat = LINEEND_WINDOWS;
+        }
+        else if (isOption(arg, "--lineend=linux"))
+        {
+            lineEndFormat = LINEEND_LINUX;
+        }
+        else if (isOption(arg, "--lineend=macold"))
+        {
+            lineEndFormat = LINEEND_MACOLD;
         }
         else // file-name
         {
@@ -573,17 +621,18 @@ void processOptions(const vector<string>& argvOptions)
         }
     }
 
-    if (fileNameVector.empty())
-    {
-        printHelp();
-        return;
-    }
-
     g_GlobalTidy.InitGlobalTidy("", optionsFileName);
 
-    for (size_t i = 0; i < fileNameVector.size(); i++)
+    if (!fileNameVector.empty())
     {
-        formatFile(fileNameVector[i], mode);
+        for (size_t i = 0; i < fileNameVector.size(); i++)
+        {
+            formatFile(fileNameVector[i], mode);
+        }
+    }
+    else
+    {
+        formatCinToCout(mode, lineEndFormat);
     }
 }
 
