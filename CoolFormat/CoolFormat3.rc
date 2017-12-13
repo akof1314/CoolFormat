@@ -442,17 +442,15 @@ END
 // Dialog
 //
 
-IDD_ABOUTBOX DIALOGEX 0, 0, 235, 122
+IDD_ABOUTBOX DIALOGEX 0, 0, 254, 85
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "关于 CoolFormat"
 FONT 9, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "无幻出品",IDC_STATIC_WUHUAN,7,105,69,8
-    DEFPUSHBUTTON   "确定",IDOK,178,100,50,16,WS_GROUP
-    PUSHBUTTON      "http://blog.csdn.net/akof1314",IDC_COMPANY_URL,55,104,119,14
+    LTEXT           "无幻出品",IDC_STATIC_WUHUAN,81,44,69,8
+    PUSHBUTTON      "http://blog.csdn.net/akof1314",IDC_COMPANY_URL,129,43,119,14
     CONTROL         IDB_BITMAP_ABOUT,IDC_STATIC,"Static",SS_BITMAP,21,21,46,46
-    LTEXT           "CoolFormat 版本 3.5       版权所有 (C) 2010-2018",IDC_STATIC_VERSION,7,90,180,8,SS_NOPREFIX
-    LTEXT           "静态",IDC_STATIC_ABOUT,84,24,142,57
+    LTEXT           "CoolFormat 版本 3.5       版权所有 (C) 2010-2018",IDC_STATIC_VERSION,81,29,165,8,SS_NOPREFIX
 END
 
 IDD_GOTO_LINE DIALOGEX 0, 0, 194, 71
@@ -714,6 +712,7 @@ GUIDELINES DESIGNINFO
 BEGIN
     IDD_ABOUTBOX, DIALOG
     BEGIN
+        RIGHTMARGIN, 252
     END
 
     IDD_GOTO_LINE, DIALOG
@@ -1304,7 +1303,7 @@ BEGIN
     IDS_STRING_UAT_TIDY     "格式化"
     IDS_STRING_MENU_EDIT    "编辑器上下文菜单"
     IDS_STRING_MENU_HTML    "高亮上下文菜单"
-    IDS_STRING_ABOUTDESC    "    CoolFormat源代码格式化是一款C\\C++\\C#\\ CSS\\HTML\\Java\\JavaScript\\JSON\\Objective-C \\PHP\\SQL\\Verilog\\XML代码格式化工具，并且支持代码高亮到网页上显示，方便博客文章之类的撰写阅读。"
+    IDS_STRING_ABOUTDESC    "\r\n\r\n    CoolFormat源代码格式化"
     IDS_STRING_OPTIONS      "选项"
     IDS_STRING_NEEDFILE     "未指定所要打开的文件名。"
     IDS_STRING57            "打开(&O)..."
@@ -1910,7 +1909,7 @@ BEGIN
     IDS_STRING_UAT_TIDY     "Formated"
     IDS_STRING_MENU_EDIT    "Editor context menu"
     IDS_STRING_MENU_HTML    "Highlight the context menu"
-    IDS_STRING_ABOUTDESC    "       CoolFormat source code formatter is a code formatter for C\\C++\\C#\\CSS \\HTML\\Java\\JavaScript\\JSON\\Objective-C \\PHP\\SQL\\Verilog\\XML. It supports code highlighting for web publishment which is truly convenient for writing and reading a blog post, etc."
+    IDS_STRING_ABOUTDESC    "\r\n\r\n       CoolFormat source code formatter"
     IDS_STRING_OPTIONS      "Options"
     IDS_STRING_NEEDFILE     "Do not specify the name of the file to open."
     IDS_STRING57            "&Open..."

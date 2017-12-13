@@ -446,7 +446,7 @@ BOOL CAboutDlg::OnInitDialog()
 	CString strTemp;
 	BOOL bNameVaild = strTemp.LoadString(IDS_STRING_ABOUTDESC);
 	ASSERT(bNameVaild);
-	SetDlgItemText(IDC_STATIC_ABOUT, strTemp);
+	//SetDlgItemText(IDC_STATIC_ABOUT, strTemp);
 	//SetDlgItemSizeToContent(GetDlgItem(IDC_STATIC_ABOUT));
 
 	bNameVaild = strTemp.LoadString(IDS_STRING_WUHUAN);
@@ -456,7 +456,7 @@ BOOL CAboutDlg::OnInitDialog()
 
 	bNameVaild = strTemp.LoadString(IDOK);
 	ASSERT(bNameVaild);
-	SetDlgItemText(IDOK, strTemp);
+	//SetDlgItemText(IDOK, strTemp);
 
 	bNameVaild = strTemp.LoadString(IDS_STRING_VERSION);
 	ASSERT(bNameVaild);
