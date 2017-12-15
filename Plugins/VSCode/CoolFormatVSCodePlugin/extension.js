@@ -15,11 +15,24 @@ class CoolformatFormatter {
             let coolformatBinPath = vscode.workspace.getConfiguration('coolformat')['executable'] || 'coolformat';
             let coolformatRcPath = vscode.workspace.getConfiguration('coolformat')['coolformatrc'];
             let args = [];
-            
+
             if (coolformatRcPath) {
                 args.push("--options=" + coolformatRcPath);
             }
-
+            let mode = document.languageId;
+            switch (document.languageId) {
+                case 'cpp':
+                    mode = 'c';
+                    break;
+                case 'csharp':
+                    mode = 'cs';
+                    break;
+                case 'objective-cpp':
+                    mode = 'objective-c';
+                    break;
+            }
+            args.push("--mode=" + mode);
+            
             coolformatBinPath = coolformatBinPath.replace(/\${workspaceRoot}/g, vscode.workspace.rootPath);
 
             let coolformat = childProcess.execFile(coolformatBinPath, args, {}, (err, stdout, stderr) => {
@@ -110,7 +123,7 @@ class CoolformatFormatter {
 function activate(context) {
     let formatter = new CoolformatFormatter();
 
-    ["c", "cpp", "objective-c", "csharp", "java"].forEach(function (language) {
+    ["c", "cpp", "csharp", "css", "html", "java", "javascript", "json", "objective-c", "objective-cpp", "php", "sql", "xml"].forEach(function (language) {
         let config = vscode.workspace.getConfiguration('coolformat')[language];
 
         if (config && !config.enable) {

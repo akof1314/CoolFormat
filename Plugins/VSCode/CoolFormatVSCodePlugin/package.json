@@ -29,7 +29,6 @@
 						"string",
 						"null"
 					],
-					"type": "string",
 					"default": null,
 					"description": "coolformat config path"
 				},
@@ -43,20 +42,60 @@
 					"default": true,
 					"description": "enable C++ formatting"
 				},
-				"coolformat.objective-c.enable": {
-					"type": "boolean",
-					"default": false,
-					"description": "enable Object-C formatting"
-				},
 				"coolformat.csharp.enable": {
 					"type": "boolean",
-					"default": true,
+					"default": false,
 					"description": "enable C# formatting"
+				},
+				"coolformat.css.enable": {
+					"type": "boolean",
+					"default": false,
+					"description": "enable CSS formatting"
+				},
+				"coolformat.html.enable": {
+					"type": "boolean",
+					"default": false,
+					"description": "enable HTML formatting"
 				},
 				"coolformat.java.enable": {
 					"type": "boolean",
 					"default": false,
 					"description": "enable Java formatting"
+				},
+				"coolformat.javascript.enable": {
+					"type": "boolean",
+					"default": false,
+					"description": "enable JavaScript formatting"
+				},
+				"coolformat.json.enable": {
+					"type": "boolean",
+					"default": false,
+					"description": "enable JSON formatting"
+				},
+				"coolformat.objective-c.enable": {
+					"type": "boolean",
+					"default": false,
+					"description": "enable Object-C formatting"
+				},
+				"coolformat.objective-cpp.enable": {
+					"type": "boolean",
+					"default": false,
+					"description": "enable Objective-C++ formatting"
+				},
+				"coolformat.php.enable": {
+					"type": "boolean",
+					"default": false,
+					"description": "enable PHP formatting"
+				},
+				"coolformat.sql.enable": {
+					"type": "boolean",
+					"default": false,
+					"description": "enable SQL formatting"
+				},
+				"coolformat.xml.enable": {
+					"type": "boolean",
+					"default": false,
+					"description": "enable XML formatting"
 				}
 			}
 		}
