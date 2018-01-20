@@ -102,7 +102,7 @@ BOOL CSetPageBase::OnInitDialog()
 	m_wndPropList.SetShowDragContext(FALSE);
 	m_wndPropList.EnableToolBar(TRUE);
     m_wndPropList.EnableSearchBox(TRUE);
-    m_wndPropList.SetFont(&globalData.fontRegular);
+    //m_wndPropList.SetFont(&globalData.fontRegular);
 
 	InitPropList();
 	InitTidyConfig();
