@@ -35,7 +35,7 @@
 				<PREVIEW>int Foo(bool isFoo)\r\n     {\r\n     if (isFoo)\r\n          {\r\n          bar();\r\n          return 1;\r\n          }\r\n     else\r\n          return 0;\r\n     }</PREVIEW>
 			</ITEM>
 			<ITEM>
-				<VALUE>Banner</VALUE>
+				<VALUE>Banner/ratliff</VALUE>
 				<SHORT>A6</SHORT>
 				<PREVIEW>int Foo(bool isFoo) {\r\n     if (isFoo) {\r\n          bar();\r\n          return 1;\r\n          }\r\n     else\r\n          return 0;\r\n     }</PREVIEW>
 			</ITEM>
@@ -45,12 +45,12 @@
 				<PREVIEW>int Foo(bool isFoo)\r\n{\r\n   if (isFoo)\r\n      {\r\n         bar();\r\n         return 1;\r\n      }\r\n   else\r\n      return 0;\r\n}</PREVIEW>
 			</ITEM>
 			<ITEM>
-				<VALUE>Linux</VALUE>
+				<VALUE>Linux/knf</VALUE>
 				<SHORT>A8</SHORT>
 				<PREVIEW>int Foo(bool isFoo)\r\n{\r\n         if (isFoo) {\r\n                   bar();\r\n                   return 1;\r\n         } else\r\n                   return 0;\r\n}</PREVIEW>
 			</ITEM>
 			<ITEM>
-				<VALUE>Horstmann</VALUE>
+				<VALUE>Horstmann/runin</VALUE>
 				<SHORT>A9</SHORT>
 				<PREVIEW>int Foo(bool isFoo)\r\n{  if (isFoo)\r\n    {   bar();\r\n         return 1;\r\n    }\r\n    else\r\n         return 0;\r\n}</PREVIEW>
 			</ITEM>
@@ -700,6 +700,62 @@
 			<ITEM>
 				<VALUE>No</VALUE>
 				<PREVIEW>if (isFoo)\r\n{\r\n    isFoo = false;\r\n}</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Break return type</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>xB</SHORT>
+				<PREVIEW>void\r\nFoo(bool isFoo) {}</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>void Foo(bool isFoo) {}</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Break return type decl</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>xD</SHORT>
+				<PREVIEW>void\r\nFoo(bool isFoo);</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>void Foo(bool isFoo);</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Attach return type</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>xf</SHORT>
+				<PREVIEW>void Foo(bool isFoo) {}</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>void\r\nFoo(bool isFoo) {}</PREVIEW>
+			</ITEM>
+		</PROPERTY>
+		<PROPERTY>
+			<NAME>Attach return type decl</NAME>
+			<TYPE>Combo</TYPE>
+			<VALUE>No</VALUE>
+			<ITEM>
+				<VALUE>Yes</VALUE>
+				<SHORT>xh</SHORT>
+				<PREVIEW>void Foo(bool isFoo);</PREVIEW>
+			</ITEM>
+			<ITEM>
+				<VALUE>No</VALUE>
+				<PREVIEW>void\r\nFoo(bool isFoo);</PREVIEW>
 			</ITEM>
 		</PROPERTY>
 		<PROPERTY>
