@@ -382,6 +382,7 @@ bool JSParser::GetToken()
 	PreparePosNeg(); // ÅÐ¶ÏÕý¸ºÊý
 
 	++m_tokenCount;
+	m_tokenPreA = m_tokenA;
 	m_tokenA = m_tokenB;
 
 	if(m_tokenBQueue.size() == 0)

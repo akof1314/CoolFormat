@@ -122,6 +122,7 @@ private:
 protected:
 	int m_charA;
 	int m_charB;
+	Token m_tokenPreA;
 	Token m_tokenA;
 	Token m_tokenB;
 	long m_lineCount;

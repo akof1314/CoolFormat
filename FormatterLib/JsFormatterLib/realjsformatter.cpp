@@ -827,7 +827,11 @@ void RealJSFormatter::ProcessOper(bool bHaveNewLine, char tokenAFirst, char toke
 
 void RealJSFormatter::ProcessString(bool bHaveNewLine, char tokenAFirst, char tokenBFirst)
 {
-	if(m_tokenA.code == "case" || m_tokenA.code == "default")
+	bool bTokenAPropName = false;
+	if(m_tokenPreA.code == ".")
+		bTokenAPropName = true;
+	if(!bTokenAPropName && 
+		(m_tokenA.code == "case" || m_tokenA.code == "default"))
 	{
 		// case, default 往里面缩一格
 		--m_nIndents;
@@ -838,9 +842,10 @@ void RealJSFormatter::ProcessString(bool bHaveNewLine, char tokenAFirst, char to
 		return;
 	}
 
-	if(m_tokenA.code == "do" ||
+	if(!bTokenAPropName && 
+		(m_tokenA.code == "do" ||
 		(m_tokenA.code == "else" && m_tokenB.code != "if") ||
-		m_tokenA.code == "try" || m_tokenA.code == "finally")
+		m_tokenA.code == "try" || m_tokenA.code == "finally"))
 	{
 		// do, else (NOT else if), try
 		PutToken(m_tokenA);
@@ -856,7 +861,7 @@ void RealJSFormatter::ProcessString(bool bHaveNewLine, char tokenAFirst, char to
 		return;
 	}
 
-	if(m_tokenA.code == "function")
+	if(!bTokenAPropName && m_tokenA.code == "function")
 	{
 		if(StackTopEq(m_blockStack, JS_ASSIGN))
 		{
@@ -881,8 +886,9 @@ void RealJSFormatter::ProcessString(bool bHaveNewLine, char tokenAFirst, char to
 		return;
 	}
 
-	if(m_specKeywordSet.find(m_tokenA.code) != m_specKeywordSet.end() &&
-		m_tokenB.code != ";")
+	if(!bTokenAPropName &&
+		(m_specKeywordSet.find(m_tokenA.code) != m_specKeywordSet.end() &&
+		m_tokenB.code != ";"))
 	{
 		PutToken(m_tokenA, string(""), string(" "));
 	}
@@ -898,8 +904,9 @@ void RealJSFormatter::ProcessString(bool bHaveNewLine, char tokenAFirst, char to
 		PutToken(m_tokenA);
 	}
 
-	if(m_tokenA.code == "if" || m_tokenA.code == "for" ||
-		m_tokenA.code == "while" || m_tokenA.code == "catch")
+	if(!bTokenAPropName && 
+		(m_tokenA.code == "if" || m_tokenA.code == "for" ||
+		m_tokenA.code == "while" || m_tokenA.code == "catch"))
 	{
 		// 等待 ()，() 到来后才能加缩进
 		m_brcNeedStack.push(false);
@@ -907,7 +914,7 @@ void RealJSFormatter::ProcessString(bool bHaveNewLine, char tokenAFirst, char to
 
 	}
 
-	if(m_tokenA.code == "switch")
+	if(!bTokenAPropName && m_tokenA.code == "switch")
 	{
 		//bBracket = false;
 		m_brcNeedStack.push(false);
