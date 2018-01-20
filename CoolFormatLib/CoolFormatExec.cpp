@@ -536,6 +536,26 @@ void printHelp()
     cout << endl;
     cout << "            coolformatexec [OPTIONS] < Original > Beautified\n";
     cout << endl;
+    cout << "Options:\n";
+    cout << "------------------\n";
+    cout << "    --options=####\n";
+    cout << "    Specify an options file #### to read and use.\n";
+    cout << endl;
+    cout << "    --lineend=windows  \n";
+    cout << "    --lineend=linux    \n";
+    cout << "    --lineend=macold   \n";
+    cout << "    Force use of the specified line end style. Valid options\n";
+    cout << "    are windows (CRLF), linux (LF), and macold (CR).\n";
+    cout << endl;
+    cout << "    --mode=c\n";
+    cout << "    Indent a C or C++ source file.\n";
+    cout << endl;
+    cout << "    --mode=java\n";
+    cout << "    Indent a Java source file.\n";
+    cout << endl;
+    cout << "    --mode=cs\n";
+    cout << "    Indent a C# source file.\n";
+    cout << endl;
 }
 
 bool isOption(const string& arg, const char* op)
@@ -632,6 +652,11 @@ void processOptions(const vector<string>& argvOptions)
     }
     else
     {
+        if (mode == -1)
+        {
+            printHelp();
+            return;
+        }
         formatCinToCout(mode, lineEndFormat);
     }
 }

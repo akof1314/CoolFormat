@@ -1,21 +1,21 @@
 {
-    "name": "vscode-coolformat",
-    "displayName": "CoolFormat",
-    "description": "A VSCode plugin for Source Code Formatter",
-    "version": "0.0.1",
-    "publisher": "WuHuan",
-    "engines": {
-        "vscode": "^1.18.0"
-    },
-    "categories": [
-        "Formatters"
-    ],
-    "activationEvents": [
-        "*"
-    ],
-    "main": "./extension",
-    "contributes": {
-        "configuration": {
+	"name": "vscode-coolformat",
+	"displayName": "CoolFormat",
+	"description": "A VSCode plugin for Source Code Formatter",
+	"version": "0.0.1",
+	"publisher": "WuHuan",
+	"engines": {
+		"vscode": "^1.18.0"
+	},
+	"categories": [
+		"Formatters"
+	],
+	"activationEvents": [
+		"*"
+	],
+	"main": "./extension",
+	"contributes": {
+		"configuration": {
 			"type": "object",
 			"title": "CoolFormat configuration",
 			"properties": {
@@ -99,19 +99,19 @@
 				}
 			}
 		}
-    },
-    "scripts": {
-        "postinstall": "node ./node_modules/vscode/bin/install",
-        "test": "node ./node_modules/vscode/bin/test"
-    },
-    "dependencies": {
+	},
+	"scripts": {
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "node ./node_modules/vscode/bin/test"
+	},
+	"dependencies": {
 		"diff-match-patch": "^1.0.0"
 	},
-    "devDependencies": {
-        "typescript": "^2.6.1",
-        "vscode": "^1.1.6",
-        "eslint": "^4.6.1",
-        "@types/node": "^7.0.43",
-        "@types/mocha": "^2.2.42"
-    }
+	"devDependencies": {
+		"typescript": "^2.6.1",
+		"vscode": "^1.1.6",
+		"eslint": "^4.6.1",
+		"@types/node": "^7.0.43",
+		"@types/mocha": "^2.2.42"
+	}
 }
