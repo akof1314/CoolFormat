@@ -36,21 +36,21 @@ RealJSFormatter::RealJSFormatter(const FormatterOption& option):
 
 string RealJSFormatter::Trim(const string& str)
 {
-	std::string ret(str);
+	string ret(str);
 	ret = ret.erase(ret.find_last_not_of(" \r\n\t") + 1);
 	return ret.erase(0, ret.find_first_not_of(" \r\n\t"));
 }
 
 string RealJSFormatter::TrimSpace(const string& str)
 {
-	std::string ret(str);
+	string ret(str);
 	ret = ret.erase(ret.find_last_not_of(" \t") + 1);
 	return ret.erase(0, ret.find_first_not_of(" \t"));
 }
 
 string RealJSFormatter::TrimRightSpace(const string& str)
 {
-	std::string ret(str);
+	string ret(str);
 	return ret.erase(ret.find_last_not_of(" \t") + 1);
 }
 
@@ -127,9 +127,9 @@ void RealJSFormatter::PrintAdditionalDebug(string& strDebugOutput)
 	strDebugOutput.append(buf);
 }
 
-int RealJSFormatter::GetFormattedLine(unsigned int originalLine)
+int RealJSFormatter::GetFormattedLine(int originalLine)
 {
-	if(originalLine <= 0 || m_lineFormattedVec.size() <= originalLine)
+	if(originalLine <= 0 || m_lineFormattedVec.size() <= (size_t)originalLine)
 		return -1;
 
 	for(int l = originalLine; l > 0; --l)
@@ -223,9 +223,9 @@ void RealJSFormatter::PutString(const Token& token)
 		else
 		{
 			m_lineBuffer += token.code[i];
-			int tokenLine = token.line;
+			int tokenLine = (int)token.line;
 			if(tokenLine != -1)
-				m_lineWaitVec.push_back(token.line);
+				m_lineWaitVec.push_back(tokenLine);
 		}
 	}
 }
@@ -253,8 +253,8 @@ void RealJSFormatter::PutLineBuffer()
 			break;
 		}
 
-		unsigned int oldLine = m_lineWaitVec[i];
-		if(oldLine >= m_lineFormattedVec.size())
+		int oldLine = m_lineWaitVec[i];
+		if((size_t)oldLine >= m_lineFormattedVec.size())
 		{
 			m_lineFormattedVec.resize(m_lineFormattedVec.size()*2, -1);
 			continue;
@@ -830,12 +830,17 @@ void RealJSFormatter::ProcessString(bool bHaveNewLine, char tokenAFirst, char to
 	bool bTokenAPropName = false;
 	if(m_tokenPreA.code == ".")
 		bTokenAPropName = true;
+
 	if(!bTokenAPropName && 
 		(m_tokenA.code == "case" || m_tokenA.code == "default"))
 	{
 		// case, default 往里面缩一格
 		--m_nIndents;
-		string rightDeco = m_tokenA.code != "default" ? string(" ") : string();
+		string rightDeco = string(" ");
+		if(m_tokenA.code == "default" && m_tokenB.code == ":")
+		{
+			rightDeco = string("");
+		}
 		PutToken(m_tokenA, string(""), rightDeco);
 		++m_nIndents;
 		m_blockStack.push(m_blockMap[m_tokenA.code]);

@@ -108,8 +108,8 @@ void JSParser::GetTokenRaw()
 	bool bFirst = true;
 	bool bNum = false; // 是不是数字
 	bool bLineBegin = false;
-	char chQuote; // 记录引号类型 ' 或 "
-	char chComment; // 注释类型 / 或 *
+	char chQuote = 0; // 记录引号类型 ' 或 "
+	char chComment = 0; // 注释类型 / 或 *
 
 	while(1)
 	{
@@ -174,9 +174,13 @@ void JSParser::GetTokenRaw()
 				if(!bRegularFlags && 
 					(IsNormalChar(m_charB) || m_iRegBracket > 0))
 				{
-					// 正则的 flags 部分
-					// /g /i /ig...
-					bRegularFlags = true;
+					if(m_iRegBracket == 0)
+					{
+						// 正则的 flags 部分
+						// /g /i /ig...
+						// 否则 [] 中 / 不需要转移
+						bRegularFlags = true;
+					}
 					continue;
 				}
 				else

@@ -51,7 +51,7 @@ public:
 
 	virtual void Go();
 
-	int GetFormattedLine(unsigned int originalLine);
+	int GetFormattedLine(int originalLine);
 
 private:
 	void Init();
