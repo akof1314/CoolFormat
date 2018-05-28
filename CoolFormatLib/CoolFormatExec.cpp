@@ -8,6 +8,10 @@
 #include <assert.h>
 #include <algorithm>
 
+#ifdef __GNUC__
+    #include <cstring>              // need both string and cstring for GCC
+#endif
+
 #include "StrUseful.h"
 #include "GlobalTidy.h"
 #include "FormatterHelp.h"
