@@ -8,6 +8,26 @@ NAME_PART           : welcome
 EXT_PART            : .html
 ```
 
+# 将coolformat与npp run结合
+
+## main.pyw
+```python
+import subprocess
+import sys
+
+if __name__ == '__main__':
+    si = subprocess.STARTUPINFO()
+    si.dwFlags |= subprocess.STARTF_USESHOWWINDOW
+    fname = sys.argv[1]
+    subprocess.call('coolformat.exe -f {}'.format(fname), startupinfo=si)
+    subprocess.call('notepad++.exe {}'.format(fname), startupinfo=si)
+```
+
+## run
+```shell
+pythonw.exe D:\coolformat\main.pyw "$(FULL_CURRENT_PATH)"
+```
+
 # 将coolformat与nppexec结合
 
 ## 方法1
